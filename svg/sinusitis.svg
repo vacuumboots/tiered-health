@@ -1,0 +1,164 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="sinus-viral" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="sinus-congested" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e88d5a"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="mucosa" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4a0a0" stop-opacity="0.4"/><stop offset="100%" stop-color="#c08080" stop-opacity="0.5"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ FACE OUTLINE (coronal view) ═══════════ -->
+
+  <!-- Head outline -->
+  <path d="M130,60 C120,70 115,85 112,100 L105,140 C100,170 100,200 105,230 L108,260 C110,280 115,300 120,315 L128,340 C132,355 135,365 138,375 L140,390 L142,410 C144,430 148,450 155,468 C162,485 172,498 185,510 C195,518 208,524 220,528 C235,532 250,534 265,532 C280,528 295,520 310,508 C320,498 330,485 338,468 C345,450 350,430 352,410 L354,390 L356,375 C360,365 364,355 368,340 L375,315 C380,300 385,280 388,260 L392,230 C395,200 395,170 392,140 L388,100 C385,85 380,70 370,60 C360,52 348,48 335,46 L320,42 C300,38 280,36 260,36 L240,36 C220,36 200,38 185,42 L170,46 C155,50 142,55 130,60 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Eyes -->
+  <ellipse cx="185" cy="215" rx="28" ry="14" fill="#f0f0ec" stroke="#c4b5a0" stroke-width="1.2"/>
+  <ellipse cx="185" cy="215" rx="10" ry="10" fill="#5c5c5c"/>
+  <ellipse cx="185" cy="213" rx="4" ry="4" fill="#fff"/>
+  <ellipse cx="315" cy="215" rx="28" ry="14" fill="#f0f0ec" stroke="#c4b5a0" stroke-width="1.2"/>
+  <ellipse cx="315" cy="215" rx="10" ry="10" fill="#5c5c5c"/>
+  <ellipse cx="315" cy="213" rx="4" ry="4" fill="#fff"/>
+
+  <!-- Eyebrows -->
+  <path d="M148,188 C160,185 175,182 188,185 C200,188 210,192 220,196" fill="none" stroke="#8a7e6e" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M280,196 C290,192 300,188 312,185 C325,182 340,185 352,188" fill="none" stroke="#8a7e6e" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Nose outline (bridge + nostrils) -->
+  <path d="M215,230 C210,250 208,270 210,290 C212,300 215,310 220,318 C225,325 232,330 240,332 C248,330 255,325 260,318 C265,310 268,300 270,290 C272,270 270,250 265,230" fill="none" stroke="#c4b5a0" stroke-width="1.2"/>
+  <!-- Nostrils -->
+  <path d="M195,325 C200,332 210,338 220,340 C225,340 230,338 233,334" fill="none" stroke="#c4b5a0" stroke-width="1" stroke-linecap="round"/>
+  <path d="M247,334 C250,338 255,340 260,340 C270,338 280,332 285,325" fill="none" stroke="#c4b5a0" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Mouth -->
+  <path d="M190,400 C210,418 230,425 250,425 C270,425 290,418 310,400" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ═══════════ SKULL BONE (ghosted) ═══════════ -->
+  <path d="M170,90 C165,100 162,120 160,145 L158,170 C156,190 155,205 158,220 L162,245 C165,260 170,270 178,278 L185,285 L192,290 L200,294 L210,296 L218,298 L225,298"
+        fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.35"/>
+  <path d="M330,90 C335,100 338,120 340,145 L342,170 C344,190 345,205 342,220 L338,245 C335,260 330,270 322,278 L315,285 L308,290 L300,294 L290,296 L282,298 L275,298"
+        fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.35"/>
+
+  <!-- ═══════════ FRONTAL SINUSES ═══════════ -->
+  <!-- Normal frontal sinus (left) -->
+  <path d="M165,115 C160,120 158,130 160,140 C162,148 168,152 175,152 L195,150 C200,148 204,144 205,138 C206,130 204,122 200,116 C195,110 185,108 175,110 C170,112 167,114 165,115 Z"
+        fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.6"/>
+  <text x="180" y="120" fill="#b8860b" font-size="8" font-weight="600" text-anchor="middle">Frontal</text>
+  <text x="180" y="130" fill="#b8860b" font-size="8" font-weight="600" text-anchor="middle">Sinus</text>
+
+  <!-- Congested frontal sinus (right) -->
+  <path d="M295,115 C290,110 285,108 278,108 L268,110 C262,114 258,120 258,128 C258,138 262,145 268,150 L282,152 C290,150 296,146 300,140 C303,132 302,122 298,116 Z"
+        fill="url(#sinus-congested)" stroke="#a03020" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- ═══════════ ETHMOID SINUSES ═══════════ -->
+  <!-- Normal ethmoid (left) -->
+  <ellipse cx="178" cy="225" rx="16" ry="22" fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.5"/>
+  <text x="178" y="222" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle">Ethmoid</text>
+
+  <!-- Congested ethmoid (right) -->
+  <ellipse cx="322" cy="225" rx="16" ry="22" fill="url(#sinus-congested)" stroke="#a03020" stroke-width="1.5" opacity="0.65"/>
+
+  <!-- Ethmoid cell detail (left - honeycomb pattern) -->
+  <path d="M170,235 L174,230 L178,235 L174,240 Z" fill="#d4a030" opacity="0.3"/>
+  <path d="M180,220 L184,215 L188,220 L184,225 Z" fill="#d4a030" opacity="0.3"/>
+
+  <!-- ═══════════ MAXILLARY SINUSES ═══════════ -->
+  <!-- Normal maxillary sinus (left) -->
+  <path d="M140,260 C135,270 132,285 132,300 C132,315 135,328 142,338 C148,345 158,348 168,346 L178,342 C185,336 190,326 192,315 C193,302 191,288 186,276 C182,266 175,258 166,255 C155,252 146,254 140,260 Z"
+        fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.5"/>
+  <text x="162" y="272" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle">Maxillary</text>
+  <text x="162" y="282" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle">Sinus</text>
+
+  <!-- Congested maxillary sinus (right) -->
+  <path d="M308,255 C300,252 290,254 282,260 C275,266 270,276 268,288 C266,302 268,318 274,330 C280,340 290,346 300,346 L312,344 C322,340 330,332 335,322 C338,310 338,296 334,282 C330,270 322,260 314,256 Z"
+        fill="url(#sinus-congested)" stroke="#a03020" stroke-width="1.5" opacity="0.65"/>
+
+  <!-- Fluid level in congested maxillary sinus -->
+  <path d="M274,318 C278,328 288,334 300,336 L312,334 C320,330 326,324 330,316 L325,320 C320,326 312,330 302,332 C290,332 280,328 274,318 Z"
+        fill="#a03020" opacity="0.3"/>
+
+  <!-- ═══════════ SPHENOID SINUS (behind, shown as ghosted) ═══════════ -->
+  <ellipse cx="250" cy="280" rx="18" ry="14" fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.35" stroke-dasharray="4,3"/>
+  <text x="250" y="283" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle" opacity="0.6">Sphenoid</text>
+
+  <!-- ═══════════ NASAL CAVITY ═══════════ -->
+  <path d="M230,190 C226,200 224,215 224,230 C224,245 226,260 230,275 C234,285 238,290 242,292 L248,293 L252,292 C256,290 260,285 264,275 C268,260 270,245 270,230 C270,215 268,200 265,190 L260,180 C255,175 250,172 250,172 C250,172 245,175 240,180 Z"
+        fill="#d4a0a0" opacity="0.25" stroke="#c4b5a0" stroke-width="1"/>
+
+  <!-- Nasal septum -->
+  <line x1="250" y1="172" x2="250" y2="293" stroke="#c4b5a0" stroke-width="2" opacity="0.5"/>
+
+  <!-- Inferior turbinates -->
+  <path d="M232,265 C228,268 225,272 224,276 C225,280 228,282 232,282" fill="none" stroke="#c08080" stroke-width="2" opacity="0.5"/>
+  <path d="M268,265 C272,268 275,272 276,276 C275,280 272,282 268,282" fill="none" stroke="#c08080" stroke-width="2" opacity="0.5"/>
+
+  <!-- Middle turbinates -->
+  <path d="M228,235 C225,238 223,242 223,246 C224,250 226,252 230,252" fill="none" stroke="#c08080" stroke-width="2" opacity="0.4"/>
+  <path d="M272,235 C275,238 277,242 277,246 C276,250 274,252 270,252" fill="none" stroke="#c08080" stroke-width="2" opacity="0.4"/>
+
+  <!-- ═══════════ INFLAMMATION MARKERS ═══════════ -->
+  <!-- Swelling lines on congested side -->
+  <path d="M262,155 C265,160 268,168 268,175" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <path d="M338,240 C342,245 344,252 344,260" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <path d="M338,290 C342,296 344,304 344,312" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Pressure arrows (congested side) -->
+  <path d="M340,155 L348,155" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+  <path d="M340,340 L348,340" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Label: Inflammation -->
+  <text x="354" y="152" fill="#c0392b" font-size="9" font-weight="600">Inflammation</text>
+  <text x="354" y="164" fill="#c0392b" font-size="9" font-weight="600">&amp; swelling</text>
+
+  <!-- ═══════════ LABELS ═══════════ -->
+  <!-- Left side labels (normal) -->
+  <text x="58" y="115" fill="#8a7e6e" font-size="9" font-weight="600">Frontal</text>
+  <text x="58" y="127" fill="#8a7e6e" font-size="9" font-weight="600">Sinus</text>
+  <line x1="108" y1="121" x2="158" y2="121" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <text x="58" y="225" fill="#8a7e6e" font-size="9" font-weight="600">Ethmoid</text>
+  <text x="58" y="237" fill="#8a7e6e" font-size="9" font-weight="600">Sinus</text>
+  <line x1="112" y1="228" x2="162" y2="228" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <text x="40" y="300" fill="#8a7e6e" font-size="9" font-weight="600">Maxillary</text>
+  <text x="40" y="312" fill="#8a7e6e" font-size="9" font-weight="600">Sinus</text>
+  <line x1="95" y1="306" x2="133" y2="306" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <text x="50" y="380" fill="#8a7e6e" font-size="9" font-weight="600">Nasal</text>
+  <text x="50" y="392" fill="#8a7e6e" font-size="9" font-weight="600">Cavity</text>
+  <line x1="95" y1="386" x2="220" y2="386" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Sinus opening (ostium) label -->
+  <circle cx="215" cy="298" r="3" fill="none" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="40" y="475" fill="#8a7e6e" font-size="8">Sinus Ostium</text>
+  <text x="40" y="487" fill="#8a7e6e" font-size="8">(drainage opening)</text>
+  <line x1="108" y1="481" x2="212" y2="300" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- ═══════════ COMPARISON BOXES ═══════════ -->
+  <line x1="30" y1="525" x2="470" y2="525" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Normal sinus panel -->
+  <g transform="translate(40, 535)">
+    <rect x="0" y="0" width="200" height="55" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="100" y="18" fill="#6a9e6a" font-size="10" font-weight="600" text-anchor="middle">✓ Healthy Sinus</text>
+    <text x="100" y="34" fill="#8a7e6e" font-size="8" text-anchor="middle">Thin mucous lining, open ostium,</text>
+    <text x="100" y="46" fill="#8a7e6e" font-size="8" text-anchor="middle">normal mucus drainage, clear airway</text>
+  </g>
+
+  <!-- Sinusitis panel -->
+  <g transform="translate(260, 535)">
+    <rect x="0" y="0" width="200" height="55" rx="6" fill="var(--surface, #fff)" stroke="#c0392b" stroke-width="1" opacity="0.9"/>
+    <text x="100" y="18" fill="#c0392b" font-size="10" font-weight="600" text-anchor="middle">✗ Sinusitis</text>
+    <text x="100" y="34" fill="#8a7e6e" font-size="8" text-anchor="middle">Swollen lining, blocked ostium,</text>
+    <text x="100" y="46" fill="#8a7e6e" font-size="8" text-anchor="middle">trapped mucus, pressure &amp; pain</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="14" font-weight="700" text-anchor="middle">Paranasal Sinuses — Coronal View</text>
+  <text x="250" y="40" fill="#8a7e6e" font-size="10" text-anchor="middle">Left: healthy · Right: inflamed (sinusitis)</text>
+</svg>

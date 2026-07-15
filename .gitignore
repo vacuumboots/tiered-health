@@ -1,0 +1,20 @@
+# Generated output
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Large models / downloads
+*.safetensors
+*.bin
+flux_test.png
+
+# Keep the original prototype out of the repo
+radial-nerve-palsy.html
+
+# Personal research notes
+Top-Human-Medical-Ailments.md

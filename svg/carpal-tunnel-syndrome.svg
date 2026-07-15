@@ -1,0 +1,210 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="nerve" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="ligament" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c4b5a0"/><stop offset="100%" stop-color="#b0a595"/></linearGradient>
+    <linearGradient id="tendon" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d4c8b8"/><stop offset="100%" stop-color="#c4b5a0"/></linearGradient>
+    <linearGradient id="compression" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ TITLE ═══════════ -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Carpal Tunnel Anatomy &amp; Median Nerve Compression</text>
+
+  <!-- ═══════════ TOP VIEW: Palmar wrist (anterior view) ═══════════ -->
+
+  <!-- Wrist/forearm outline -->
+  <path d="M140,60 C130,62 122,70 118,82 L108,120 C100,155 95,190 95,220 L95,260 C95,280 98,295 105,305 L110,315 C115,322 122,326 130,328 L145,330 L160,330 L175,328 C185,326 192,322 198,315 L205,305 C212,295 215,280 215,260 L215,220 C215,190 210,155 202,120 L192,82 C188,70 180,62 170,60 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Carpal bones (wrist region) - cluster of 8 small bones -->
+  <!-- Proximal row: Scaphoid, Lunate, Triquetrum -->
+  <ellipse cx="155" cy="260" rx="10" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="180" cy="262" rx="9" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="205" cy="265" rx="8" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+
+  <!-- Distal row: Trapezium, Trapezoid, Capitate, Hamate -->
+  <ellipse cx="148" cy="285" rx="9" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="170" cy="290" rx="8" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="192" cy="292" rx="10" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="212" cy="295" rx="8" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+
+  <!-- Metacarpals (hand) -->
+  <path d="M148,292 L140,340" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M170,296 L165,348" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M192,300 L190,355" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M212,302 L215,350" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Label: Carpal bones -->
+  <text x="155" y="310" fill="#b0a595" font-size="8" font-style="italic">Carpal</text>
+  <text x="155" y="320" fill="#b0a595" font-size="8" font-style="italic">bones</text>
+
+  <!-- Median nerve (yellow, running through the tunnel) -->
+  <path d="M165,80 C168,100 170,130 170,160 C170,180 170,200 170,230 C170,245 168,255 165,265 L162,280 C158,295 155,310 152,330 L150,345"
+        fill="none" stroke="url(#nerve)" stroke-width="4" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Nerve label -->
+  <text x="178" y="115" fill="#b8860b" font-size="10" font-weight="600">Median nerve</text>
+  <line x1="172" y1="118" x2="178" y2="115" stroke="#b8860b" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- Transverse carpal ligament (flexor retinaculum) - the roof of the tunnel -->
+  <path d="M135,235 C142,230 150,225 160,223 C170,221 180,221 190,223 L200,225 C208,228 215,232 220,237"
+        fill="none" stroke="url(#ligament)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <text x="248" y="235" fill="#8a7e6e" font-size="9" font-weight="600">Transverse carpal</text>
+  <text x="248" y="246" fill="#8a7e6e" font-size="9" font-weight="600">ligament (roof)</text>
+
+  <!-- Compression indicator at carpal tunnel -->
+  <ellipse cx="170" cy="245" rx="18" ry="12" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2" opacity="0.9"/>
+  <line x1="188" y1="245" x2="248" y2="268" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="248" y="265" fill="#c0392b" font-size="9" font-weight="600">Compression zone</text>
+
+  <!-- Radius bone (forearm) -->
+  <path d="M155,70 L152,100 L150,130 L150,160 L152,185 L156,205 L162,220 L168,230 L172,232"
+        fill="none" stroke="url(#bone-grad)" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+  <text x="115" y="150" fill="#b0a595" font-size="10" font-style="italic">Radius</text>
+
+  <!-- Ulna bone (forearm) -->
+  <path d="M178,65 L180,95 L182,125 L183,155 L183,180 L181,200 L178,215 L174,228"
+        fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.35"/>
+  <text x="195" y="155" fill="#b0a595" font-size="10" font-style="italic">Ulna</text>
+
+  <!-- Thenar eminence (thumb pad) label -->
+  <text x="105" y="340" fill="#8a7e6e" font-size="9">Thenar</text>
+  <text x="105" y="350" fill="#8a7e6e" font-size="9">eminence</text>
+
+  <!-- ═══════════ CROSS-SECTION INSET: The Carpal Tunnel ═══════════ -->
+  <g transform="translate(255, 50)">
+    <!-- Background box -->
+    <rect x="0" y="0" width="220" height="200" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1.2" opacity="0.95"/>
+    <text x="110" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Cross-section at the wrist</text>
+
+    <!-- Carpal bone arc (floor and sides) -->
+    <path d="M35,160 C20,150 15,130 20,110 C25,90 35,80 50,75 L60,72 L75,70 L90,70 L105,72 L120,76 L135,82 L148,90 C158,100 165,115 168,130 C170,145 168,155 160,165"
+          fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Carpal tunnel cavity (filled area) -->
+    <path d="M35,160 C30,148 28,130 32,115 C36,100 45,88 58,82 L70,78 L85,75 L100,76 L115,80 L130,86 L142,95 C152,108 158,125 160,140 C160,152 155,162 145,168"
+          fill="none" stroke="none"/>
+    
+    <!-- Transverse carpal ligament (roof) -->
+    <path d="M35,160 C55,155 80,148 110,148 C140,148 155,153 165,160"
+          fill="none" stroke="url(#ligament)" stroke-width="5" stroke-linecap="round"/>
+    <text x="110" y="182" fill="#8a7e6e" font-size="8" text-anchor="middle">Transverse carpal ligament</text>
+
+    <!-- Median nerve (center, flattened) -->
+    <ellipse cx="90" cy="120" rx="12" ry="6" fill="url(#nerve)" stroke="#e6a817" stroke-width="1" opacity="0.9"/>
+    <text x="90" y="115" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle" transform="rotate(-5, 90, 115)">Median</text>
+    <text x="90" y="124" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle" transform="rotate(-5, 90, 124)">nerve</text>
+
+    <!-- Flexor tendons (9 small circles representing the finger flexor tendons) -->
+    <circle cx="65" cy="140" r="5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="80" cy="145" r="5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="95" cy="148" r="4.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="110" cy="145" r="5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="125" cy="140" r="4.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="70" cy="132" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="85" cy="133" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="100" cy="134" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="115" cy="133" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+
+    <!-- Compression arrows pressing on nerve -->
+    <path d="M38,158 L70,130" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+    <path d="M40,162 L72,136" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+    <path d="M165,158 L110,128" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+    <path d="M163,162 L108,134" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+
+    <!-- Label: Flexor tendons -->
+    <text x="110" y="160" fill="#8a7e6e" font-size="7" text-anchor="middle">Flexor tendons (9×)</text>
+
+    <!-- Label: Carpal bones -->
+    <text x="50" y="32" fill="#b0a595" font-size="8" font-style="italic">Carpal bones</text>
+    <text x="50" y="42" fill="#b0a595" font-size="8" font-style="italic">(floor &amp; sides)</text>
+  </g>
+
+  <!-- ═══════════ BOTTOM INSET: Thenar atrophy comparison ═══════════ -->
+  <g transform="translate(25, 380)">
+    <rect x="0" y="0" width="450" height="100" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1.2" opacity="0.95"/>
+    <text x="225" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Thenar Atrophy — A Late Sign</text>
+
+    <!-- Normal hand outline -->
+    <g transform="translate(65, 30)">
+      <!-- Palm -->
+      <path d="M0,45 C-8,40 -12,28 -10,18 C-8,8 -2,2 8,0 L28,0 C38,2 44,8 46,18 C48,28 44,40 36,45 Z"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="1"/>
+      <!-- Thumb -->
+      <path d="M-10,18 C-18,10 -24,-2 -22,-10 C-20,-18 -15,-22 -8,-22 C-2,-22 4,-18 8,-8 C10,0 8,10 8,18"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.85"/>
+      <!-- Thenar eminence (normal, full) -->
+      <ellipse cx="5" cy="28" rx="14" ry="10" fill="#f5e6d3" stroke="none" opacity="0.7"/>
+      <text x="10" y="52" fill="#8a7e6e" font-size="8" text-anchor="middle">Normal thenar</text>
+      <text x="10" y="62" fill="#8a7e6e" font-size="8" text-anchor="middle">eminence</text>
+    </g>
+
+    <!-- Arrow -->
+    <text x="225" y="72" fill="#c0392b" font-size="12" text-anchor="middle">→</text>
+
+    <!-- Atrophied hand outline -->
+    <g transform="translate(310, 30)">
+      <!-- Palm -->
+      <path d="M0,45 C-8,40 -12,28 -10,18 C-8,8 -2,2 8,0 L28,0 C38,2 44,8 46,18 C48,28 44,40 36,45 Z"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="1"/>
+      <!-- Thumb -->
+      <path d="M-10,18 C-18,10 -24,-2 -22,-10 C-20,-18 -15,-22 -8,-22 C-2,-22 4,-18 8,-8 C10,0 8,10 8,18"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.85"/>
+      <!-- Thenar eminence (atrophied, flat) -->
+      <ellipse cx="5" cy="28" rx="14" ry="4" fill="#eddcc8" stroke="none" opacity="0.7"/>
+      <text x="10" y="52" fill="#c0392b" font-size="8" text-anchor="middle">Thenar wasting</text>
+      <text x="10" y="62" fill="#c0392b" font-size="8" text-anchor="middle">(late stage)</text>
+    </g>
+  </g>
+
+  <!-- ═══════════ KEY ═══════════ -->
+  <g transform="translate(25, 495)">
+    <rect x="0" y="0" width="450" height="85" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="15" y="18" fill="#8a7e6e" font-size="9" font-weight="600">Key</text>
+
+    <!-- Nerve -->
+    <line x1="15" y1="35" x2="35" y2="35" stroke="#e6a817" stroke-width="4" stroke-linecap="round"/>
+    <text x="42" y="38" fill="#8a7e6e" font-size="8">Median nerve</text>
+
+    <!-- Ligament -->
+    <line x1="130" y1="35" x2="150" y2="35" stroke="#b0a595" stroke-width="4" stroke-linecap="round"/>
+    <text x="157" y="38" fill="#8a7e6e" font-size="8">Transverse ligament</text>
+
+    <!-- Bone -->
+    <line x1="280" y1="35" x2="300" y2="35" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round"/>
+    <text x="307" y="38" fill="#8a7e6e" font-size="8">Carpal bones</text>
+
+    <!-- Tendon -->
+    <circle cx="25" cy="55" r="4" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <text x="42" y="58" fill="#8a7e6e" font-size="8">Flexor tendons (9×)</text>
+
+    <!-- Compression -->
+    <line x1="170" y1="55" x2="185" y2="55" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="192" y="58" fill="#8a7e6e" font-size="8">Compression site</text>
+
+    <!-- Symptom distribution -->
+    <path d="M290,50 C295,48 300,48 305,50 C310,52 312,56 310,60 C308,64 302,66 295,65 C288,64 284,60 285,55 Z" fill="url(#nerve)" stroke="#e6a817" stroke-width="0.5" opacity="0.7"/>
+    <text x="342" y="58" fill="#8a7e6e" font-size="8">Symptom distribution</text>
+  </g>
+
+  <!-- Sensory distribution diagram (hand icon showing median nerve territory) -->
+  <g transform="translate(430, 350)">
+    <rect x="0" y="0" width="55" height="65" rx="4" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="0.8" opacity="0.85"/>
+    <!-- Simplified hand -->
+    <path d="M10,40 C6,36 4,28 6,20 C8,12 12,8 18,6 L22,6 C28,8 32,12 33,20 C34,28 32,36 28,40 L24,42 L20,42 Z"
+          fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Thumb -->
+    <path d="M6,20 C2,15 -1,8 0,3 C1,-2 4,-4 7,-3 C10,-2 12,3 12,8 L10,18"
+          fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.6" opacity="0.8"/>
+    <!-- Shaded median nerve distribution -->
+    <path d="M6,20 L10,18 L12,8 C13,12 14,18 14,22 L16,26 L20,28 L22,30 L20,32 L16,34 L14,36 L12,38 L10,40 Z"
+          fill="url(#nerve)" opacity="0.35"/>
+    <text x="27" y="55" fill="#8a7e6e" font-size="6" text-anchor="middle">Median n.</text>
+    <text x="27" y="62" fill="#8a7e6e" font-size="6" text-anchor="middle">territory</text>
+  </g>
+</svg>

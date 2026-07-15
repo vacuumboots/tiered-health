@@ -1,0 +1,120 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="fascia" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="fascia-degen" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="40%" stop-color="#f5c842"/><stop offset="40%" stop-color="#c0392b"/><stop offset="60%" stop-color="#c0392b"/><stop offset="60%" stop-color="#f5c842"/><stop offset="100%" stop-color="#f5c842"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Foot outline (medial/sagittal view) -->
+  <path d="M140,80 C130,85 122,95 118,110 L114,140 C112,160 112,180 115,200 L120,240 C125,265 132,290 140,310 L152,335 C160,350 168,360 178,368 L200,380 C215,388 230,393 245,395 L265,396 C280,395 292,390 300,382 L312,370 C320,358 325,345 328,330 L332,310 C335,290 335,270 332,252 L328,235 C325,220 320,208 315,200 L308,188 C300,178 290,170 278,165 L260,158 C245,153 230,150 218,148 L200,145 C180,142 160,135 148,120 L140,98 C138,90 138,84 140,80 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Calcaneus (heel bone) -->
+  <path d="M148,170 C142,180 140,195 142,210 C145,225 152,238 162,248 L175,260 C185,268 195,272 205,274 L215,275 C225,274 232,270 238,264 L245,255 C250,245 252,235 252,225 C252,215 250,205 245,198 L238,188 C230,178 220,170 210,166 L198,162 C185,160 172,160 162,162 L155,166 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="155" y="225" fill="#b0a595" font-size="11" font-style="italic">Calcaneus</text>
+
+  <!-- Talus (hint) -->
+  <path d="M200,130 C195,136 193,144 194,152 C196,160 202,166 210,170 L222,174 C232,176 240,174 246,170 C252,165 255,158 255,150 C255,142 252,136 248,132 L242,126 C234,122 225,120 216,120 L208,122 C202,125 198,128 200,130 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.5"/>
+
+  <!-- Metatarsals and phalanges -->
+  <path d="M240,280 C248,285 255,292 260,302 L268,320 C272,332 275,345 276,358 L278,370"
+        fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <text x="290" y="330" fill="#b0a595" font-size="10" font-style="italic">Metatarsals</text>
+
+  <!-- Plantar fascia (from calcaneus to toes) -->
+  <path d="M160,275 C168,280 178,285 190,288 C205,292 220,294 235,296 C250,298 265,300 278,305 C288,308 296,312 302,318"
+        fill="none" stroke="url(#fascia)" stroke-width="5" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Degeneration zone at calcaneal attachment -->
+  <path d="M158,276 C162,278 166,280 170,281 C176,282 182,283 186,284"
+        fill="none" stroke="url(#fascia-degen)" stroke-width="5.5" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Fascia label -->
+  <text x="245" y="310" fill="#b8860b" font-size="11" font-weight="600">Plantar</text>
+  <text x="245" y="324" fill="#b8860b" font-size="11" font-weight="600">Fascia</text>
+
+  <!-- Pain spot marker at calcaneal attachment -->
+  <ellipse cx="163" cy="273" rx="12" ry="8" fill="#c0392b" opacity="0.25"/>
+  <circle cx="163" cy="273" r="4" fill="#c0392b" opacity="0.7"/>
+  <line x1="140" y1="273" x2="75" y2="248" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="20" y="245" fill="#c0392b" font-size="10" font-weight="600">Pain at enthesis</text>
+  <text x="20" y="258" fill="#c0392b" font-size="10">(medial calcaneal</text>
+  <text x="20" y="271" fill="#c0392b" font-size="10">tubercle)</text>
+
+  <!-- Degeneration zone label -->
+  <line x1="172" y1="283" x2="80" y2="330" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="10" y="330" fill="#c0392b" font-size="9">Degenerated collagen</text>
+  <text x="10" y="342" fill="#c0392b" font-size="9">(disorganized fibers,</text>
+  <text x="10" y="354" fill="#c0392b" font-size="9">neovascularization)</text>
+
+  <!-- Windlass mechanism arrow -->
+  <path d="M296,316 C310,330 315,348 308,360 C300,372 285,376 270,372"
+        fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="5,3" opacity="0.7"/>
+  <text x="310" y="350" fill="#8a7e6e" font-size="9">Windlass</text>
+  <text x="310" y="362" fill="#8a7e6e" font-size="9">mechanism</text>
+
+  <!-- Toes -->
+  <path d="M278,370 C280,378 284,385 290,390 C296,394 302,396 308,394 C314,392 318,388 320,382 C322,376 320,370 316,366"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.8"/>
+  <path d="M302,394 C306,400 310,404 316,406 C322,408 328,406 332,402 C336,398 338,392 336,388 C334,384 330,382 326,382"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.7"/>
+  <text x="340" y="395" fill="#b0a595" font-size="9" font-style="italic">Phalanges</text>
+
+  <!-- Silfverskiöld test inset (lower right) -->
+  <line x1="30" y1="460" x2="470" y2="460" stroke="#e0e0dc" stroke-width="1"/>
+
+  <g transform="translate(25, 475)">
+    <rect x="0" y="0" width="210" height="105" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="105" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Silfverskiöld Test</text>
+    <!-- Leg with knee extended -->
+    <path d="M15,28 L15,48" stroke="#c4b5a0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M12,48 L18,48 L15,55 Z" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <path d="M12,58 L18,58" stroke="#c4b5a0" stroke-width="2"/>
+    <text x="5" y="82" fill="#8a7e6e" font-size="7">Knee extended</text>
+    <text x="5" y="92" fill="#8a7e6e" font-size="7">(gastrocnemius)</text>
+    <text x="25" y="68" fill="#c0392b" font-size="7">⇐ Limited ←</text>
+    <text x="42" y="42" fill="#8a7e6e" font-size="7">Normal angle &gt;10°</text>
+
+    <!-- Leg with knee flexed -->
+    <path d="M120,28 L120,48" stroke="#c4b5a0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M120,48 L108,50 L120,60 L132,50 Z" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <path d="M120,60 L120,68" stroke="#c4b5a0" stroke-width="2"/>
+    <text x="105" y="82" fill="#8a7e6e" font-size="7">Knee flexed</text>
+    <text x="105" y="92" fill="#8a7e6e" font-size="7">(soleus isolated)</text>
+    <text x="178" y="55" fill="#27ae60" font-size="7">✓ Normal →</text>
+  </g>
+
+  <!-- Normal vs thickened fascia inset -->
+  <g transform="translate(265, 475)">
+    <rect x="0" y="0" width="210" height="105" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="105" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Fascia on Ultrasound</text>
+    <!-- Normal fascia -->
+    <text x="15" y="35" fill="#8a7e6e" font-size="7">Normal (2–4 mm)</text>
+    <rect x="15" y="40" width="55" height="6" rx="2" fill="#e6a817" opacity="0.6"/>
+    <rect x="15" y="46" width="55" height="6" rx="2" fill="#e6a817" opacity="0.4"/>
+    <text x="15" y="65" fill="#8a7e6e" font-size="7">Fibrillar pattern</text>
+
+    <!-- Thickened fascia -->
+    <text x="115" y="35" fill="#c0392b" font-size="7">Thickened (&gt;4 mm)</text>
+    <rect x="115" y="38" width="55" height="10" rx="3" fill="#c0392b" opacity="0.25"/>
+    <rect x="115" y="48" width="55" height="10" rx="3" fill="#c0392b" opacity="0.15"/>
+    <text x="115" y="71" fill="#c0392b" font-size="7">Hypoechoic, lost fibrils</text>
+
+    <!-- Doppler dot markers (neovascularization) -->
+    <circle cx="128" cy="43" r="1.5" fill="#e74c3c" opacity="0.8"/>
+    <circle cx="145" cy="48" r="1.5" fill="#e74c3c" opacity="0.8"/>
+    <circle cx="158" cy="42" r="1.5" fill="#e74c3c" opacity="0.8"/>
+    <text x="115" y="82" fill="#e74c3c" font-size="7">Neovascularization ↑</text>
+    <text x="115" y="92" fill="#e74c3c" font-size="7">(Doppler flow)</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Plantar Fasciopathy — Medial Foot Anatomy</text>
+</svg>

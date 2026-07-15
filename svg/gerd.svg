@@ -1,0 +1,162 @@
+<svg class="anatomy-svg" viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tissue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8b4b8"/><stop offset="100%" stop-color="#d9a0a4"/></linearGradient>
+    <linearGradient id="stomach-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5d5c4"/><stop offset="100%" stop-color="#e8bfa8"/></linearGradient>
+    <linearGradient id="acid" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="esophageal-lining" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f2e3d4"/><stop offset="100%" stop-color="#e8ceb8"/></linearGradient>
+    <linearGradient id="acid-reflux" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#e6a817"/><stop offset="100%" stop-color="#d4870a"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow-up" viewBox="0 0 10 10" refX="5" refY="0" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,10 L5,0 L10,10 Z" fill="#c0392b" opacity="0.7"/>
+    </marker>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L5,10 L10,0 Z" fill="#8a7e6e" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ DIAPHRAGM ═══════════ -->
+  <path d="M60,165 C100,145 150,130 200,125 L250,122 L300,125 C350,130 400,145 440,165"
+        fill="none" stroke="#d9a0a4" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+  <path d="M60,165 C100,175 150,182 200,185 L250,188 L300,185 C350,182 400,175 440,165"
+        fill="none" stroke="#d9a0a4" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <text x="450" y="148" fill="#b8860b" font-size="10" font-weight="600">Diaphragm</text>
+  <text x="450" y="160" fill="#b8860b" font-size="9">(crural sling)</text>
+
+  <!-- ═══════════ ESOPHAGUS ═══════════ -->
+  <!-- Esophagus outer wall -->
+  <path d="M225,30 L223,60 L220,90 L218,120 L216,150 L215,175 C214,190 214,200 216,210 L218,220"
+        fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.7"/>
+  <path d="M270,30 L272,60 L275,90 L277,120 L279,150 L280,175 C281,190 281,200 279,210 L277,220"
+        fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.7"/>
+  <!-- Esophageal lining -->
+  <path d="M230,30 L228,60 L226,90 L224,120 L222,150 L221,175 C220,190 220,200 222,210 L224,220"
+        fill="url(#esophageal-lining)" stroke="none" opacity="0.5"/>
+  <path d="M265,30 L267,60 L269,90 L271,120 L273,150 L274,175 C275,190 275,200 273,210 L271,220"
+        fill="url(#esophageal-lining)" stroke="none" opacity="0.5"/>
+  <!-- Central esophageal column (lumen) -->
+  <path d="M236,30 L234,60 L232,90 L230,120 L228,150 L227,175 L226,190 L226,200 L228,210"
+        fill="none" stroke="#e8ceb8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <path d="M260,30 L262,60 L264,90 L266,120 L268,150 L269,175 L270,190 L270,200 L268,210"
+        fill="none" stroke="#e8ceb8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- Label: Esophagus -->
+  <text x="220" y="75" fill="#8a7e6e" font-size="11" font-weight="600">Esophagus</text>
+
+  <!-- ═══════════ LOWER ESOPHAGEAL SPHINCTER ═══════════ -->
+  <!-- LES muscle band -->
+  <ellipse cx="248" cy="218" rx="34" ry="14" fill="none" stroke="#c0392b" stroke-width="3" stroke-dasharray="none" opacity="0.8"/>
+  <ellipse cx="248" cy="218" rx="34" ry="14" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+  <text x="290" y="215" fill="#c0392b" font-size="10" font-weight="600">LES</text>
+  <text x="290" y="227" fill="#c0392b" font-size="9">(Lower Esophageal</text>
+  <text x="290" y="238" fill="#c0392b" font-size="9">Sphincter)</text>
+
+  <!-- ═══════════ STOMACH ═══════════ -->
+  <!-- Stomach outline (dome/body shape below the LES) -->
+  <path d="M200,225 C195,230 190,240 188,255 C185,270 184,290 186,310 C188,330 192,350 198,365 C205,380 215,390 228,395 C240,398 255,396 268,390 C282,382 295,370 305,355 C312,342 316,328 318,312 C320,295 320,280 318,268 C316,258 312,250 308,245 L305,240 C300,235 295,230 290,228 C280,224 270,222 260,222 L248,222 L235,222 C225,222 215,224 208,226 Z"
+        fill="url(#stomach-grad)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.75"/>
+
+  <!-- Fundus (top of stomach) label -->
+  <text x="175" y="268" fill="#b0a595" font-size="9" font-style="italic">Fundus</text>
+
+  <!-- Stomach contents: acid pool -->
+  <ellipse cx="245" cy="320" rx="45" ry="20" fill="url(#acid)" opacity="0.25"/>
+  <ellipse cx="248" cy="315" rx="35" ry="12" fill="url(#acid)" opacity="0.15"/>
+  <text x="270" y="330" fill="#b8860b" font-size="9" font-weight="600">Gastric acid</text>
+  <text x="270" y="342" fill="#b8860b" font-size="8">(pH 1–2)</text>
+
+  <!-- Label: Stomach -->
+  <text x="305" y="365" fill="#8a7e6e" font-size="11" font-weight="600">Stomach</text>
+
+  <!-- ═══════════ HIATAL HERNIA HINT ═══════════ -->
+  <!-- Dotted line showing where diaphragm normally sits -->
+  <line x1="60" y1="175" x2="440" y2="175" stroke="#d9a0a4" stroke-width="1" stroke-dasharray="3,4" opacity="0.4"/>
+
+  <!-- ═══════════ ACID REFLUX ARROWS ═══════════ -->
+  <!-- Reflux path: stomach up through LES into esophagus -->
+  <path d="M240,240 C238,230 237,220 237,210 C237,200 238,190 239,180"
+        fill="none" stroke="url(#acid-reflux)" stroke-width="3" stroke-dasharray="5,3"
+        marker-end="url(#arrow-up)" opacity="0.6"/>
+  <path d="M252,240 C250,228 249,218 249,208 C249,198 248,188 248,180"
+        fill="none" stroke="url(#acid-reflux)" stroke-width="2.5" stroke-dasharray="4,3"
+        marker-end="url(#arrow-up)" opacity="0.5"/>
+  <path d="M265,238 C264,226 263,216 262,206 C261,196 260,186 260,178"
+        fill="none" stroke="url(#acid-reflux)" stroke-width="2" stroke-dasharray="4,3"
+        marker-end="url(#arrow-up)" opacity="0.4"/>
+
+  <!-- Acid reflux label -->
+  <text x="180" y="155" fill="#c0392b" font-size="10" font-weight="600">Acid reflux</text>
+  <text x="180" y="167" fill="#c0392b" font-size="9">(retrograde flow)</text>
+
+  <!-- ═══════════ SWALLOWED BOLUS (down arrow) ═══════════ -->
+  <path d="M250,40 L250,100" fill="none" stroke="#8a7e6e" stroke-width="2"
+        marker-end="url(#arrow-down)" opacity="0.5"/>
+  <text x="258" y="75" fill="#8a7e6e" font-size="9" font-style="italic">Food</text>
+
+  <!-- ═══════════ ESOPHAGEAL LINING INFLAMMATION ═══════════ -->
+  <!-- Highlight strip showing irritated area -->
+  <path d="M229,120 L227,150 L226,175 C225,190 225,200 227,210"
+        fill="none" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" opacity="0.2"/>
+  <path d="M266,120 L268,150 L269,175 C270,190 270,200 268,210"
+        fill="none" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" opacity="0.2"/>
+
+  <text x="150" y="118" fill="#c0392b" font-size="8">Inflamed</text>
+  <text x="150" y="130" fill="#c0392b" font-size="8">lining</text>
+
+  <!-- ═══════════ GRADE INSETS ═══════════ -->
+  <!-- Separator -->
+  <line x1="20" y1="415" x2="480" y2="415" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="250" y="20" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">GERD — Anatomy &amp; Mechanism of Reflux</text>
+
+  <!-- Glandular vs squamous junction -->
+  <text x="310" y="195" fill="#8a7e6e" font-size="8">Squamocolumnar</text>
+  <text x="310" y="206" fill="#8a7e6e" font-size="8">junction (Z-line)</text>
+
+  <!-- Panel: Normal LES -->
+  <g transform="translate(25, 425)">
+    <rect x="0" y="0" width="145" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="72" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Normal LES (closed)</text>
+    <!-- Esophagus tube -->
+    <path d="M55,22 L54,35 L53,45 L52,55 L52,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M90,22 L91,35 L92,45 L93,55 L93,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <!-- LES - tightly closed -->
+    <ellipse cx="72" cy="60" rx="22" ry="8" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+    <text x="72" y="38" fill="#c0392b" font-size="7" text-anchor="middle">LES contracted</text>
+    <!-- No reflux symbol -->
+    <line x1="60" y1="55" x2="84" y2="55" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="72" y="76" fill="#27ae60" font-size="7" text-anchor="middle">No reflux</text>
+  </g>
+
+  <!-- Panel: Weak / relaxed LES -->
+  <g transform="translate(177, 425)">
+    <rect x="0" y="0" width="145" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="72" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Weak LES (open)</text>
+    <!-- Esophagus tube -->
+    <path d="M55,22 L54,35 L53,45 L52,55 L52,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M90,22 L91,35 L92,45 L93,55 L93,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <!-- LES - open/gaping -->
+    <ellipse cx="72" cy="55" rx="22" ry="12" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <!-- Acid going up -->
+    <path d="M68,62 L67,70 L66,78" fill="none" stroke="#e6a817" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrow-up)" opacity="0.7"/>
+    <path d="M76,62 L77,70 L78,78" fill="none" stroke="#e6a817" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrow-up)" opacity="0.7"/>
+    <text x="72" y="42" fill="#c0392b" font-size="7" text-anchor="middle">LES relaxed</text>
+    <text x="72" y="76" fill="#c0392b" font-size="7" text-anchor="middle">Reflux of acid</text>
+  </g>
+
+  <!-- Panel: Hiatal hernia -->
+  <g transform="translate(330, 425)">
+    <rect x="0" y="0" width="145" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="72" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Hiatal Hernia</text>
+    <!-- Diaphragm line -->
+    <line x1="10" y1="35" x2="135" y2="35" stroke="#d9a0a4" stroke-width="2.5"/>
+    <!-- Esophagus / stomach herniated up -->
+    <ellipse cx="72" cy="40" rx="20" ry="8" fill="url(#stomach-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+    <path d="M55,22 L54,32 L55,40 L56,55 L55,70" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M90,22 L91,32 L90,40 L89,55 L90,70" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M72,60 L71,70" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#arrow-up)" opacity="0.6"/>
+    <text x="72" y="55" fill="#c0392b" font-size="6" text-anchor="middle">Stomach above</text>
+    <text x="72" y="76" fill="#c0392b" font-size="6" text-anchor="middle">diaphragm level</text>
+  </g>
+</svg>

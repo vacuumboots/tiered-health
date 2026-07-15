@@ -1,0 +1,185 @@
+<svg class="anatomy-svg" viewBox="0 0 500 550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="disc-normal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4e8d0"/><stop offset="100%" stop-color="#b8d8b0"/></linearGradient>
+    <linearGradient id="disc-nucleus" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f0e8c0"/><stop offset="100%" stop-color="#e0d8a0"/></linearGradient>
+    <linearGradient id="disc-herniated" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4e8d0"/><stop offset="100%" stop-color="#b8d8b0"/></linearGradient>
+    <linearGradient id="nerve-color" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="cord" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Background outline (body silhouette, lateral view) -->
+  <path d="M120,30 C115,50 112,80 112,110 L110,200 C108,240 108,280 110,320 L112,380 C115,400 120,410 130,415 L140,420 L250,425 L360,420 L370,415 C380,410 385,400 388,380 L390,320 C392,280 392,240 390,200 L388,110 C388,80 385,50 380,30 L370,20 L360,15 L250,12 L140,15 L130,20 Z"
+        fill="none" stroke="#e0e0dc" stroke-width="1" stroke-dasharray="8,4" opacity="0.4"/>
+
+  <!-- ===== L4 VERTEBRA (top) ===== -->
+  <path d="M160,60 C155,55 150,60 148,70 L145,100 C143,115 143,125 145,135 L148,145 C150,150 155,152 160,150 L340,150 C345,152 350,150 352,145 L355,135 C357,125 357,115 355,100 L352,70 C350,60 345,55 340,60 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.85"/>
+  <!-- Vertebral body texture lines -->
+  <path d="M155,80 L345,80" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M152,100 L348,100" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M152,120 L348,120" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <!-- Spinous process L4 -->
+  <path d="M160,60 C155,50 152,42 148,38 L144,36 C140,35 136,38 134,42 L138,48 C140,50 144,52 148,50"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- ===== L4-L5 DISC (NORMAL — left half shown intact) ===== -->
+  <ellipse cx="250" cy="170" rx="90" ry="16" fill="url(#disc-normal)" stroke="#a8c8a0" stroke-width="1"/>
+  <!-- Annulus fibrosus rings -->
+  <ellipse cx="250" cy="170" rx="80" ry="13" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <ellipse cx="250" cy="170" rx="65" ry="11" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <!-- Nucleus pulposus -->
+  <ellipse cx="250" cy="170" rx="40" ry="8" fill="url(#disc-nucleus)" stroke="#d0c880" stroke-width="0.8"/>
+
+  <!-- ===== L5 VERTEBRA ===== -->
+  <path d="M160,202 C155,197 150,202 148,212 L145,242 C143,257 143,267 145,277 L148,287 C150,292 155,294 160,292 L340,292 C345,294 350,292 352,287 L355,277 C357,267 357,257 355,242 L352,212 C350,202 345,197 340,202 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.85"/>
+  <path d="M152,222 L348,222" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M150,242 L350,242" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M150,262 L350,262" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <!-- Spinous process L5 -->
+  <path d="M160,202 C155,192 152,184 148,180 L144,178 C140,177 136,180 134,184 L138,190 C140,192 144,194 148,192"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- ===== L5-S1 DISC (HERNIATED) ===== -->
+  <!-- Disc body -->
+  <ellipse cx="250" cy="310" rx="90" ry="16" fill="url(#disc-herniated)" stroke="#a8c8a0" stroke-width="1"/>
+  <!-- Annular rings --->
+  <ellipse cx="250" cy="310" rx="80" ry="13" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <ellipse cx="250" cy="310" rx="65" ry="11" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <!-- Nucleus pulposus displaced -->
+  <ellipse cx="230" cy="310" rx="35" ry="7" fill="url(#disc-nucleus)" stroke="#d0c880" stroke-width="0.8"/>
+  <!-- Annular tear -- red dash line showing the crack -->
+  <path d="M280,290 C285,295 288,300 288,306 C288,312 286,316 282,320 C278,324 275,326 272,327"
+        fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3" opacity="0.8"/>
+  <!-- Herniated fragment protruding posteriorly and compressing nerve root -->
+  <path d="M288,306 C294,304 300,302 305,304 C310,306 312,310 310,314 C308,318 304,320 298,320 C292,320 286,318 282,316"
+        fill="#d0c880" stroke="#c0392b" stroke-width="1.2" opacity="0.85"/>
+  <!-- Herniated material extending further -->
+  <path d="M305,304 C312,302 318,304 322,308 C325,312 324,316 320,318 C315,320 310,318 308,315"
+        fill="#d8d098" stroke="#c0392b" stroke-width="1.2" opacity="0.75"/>
+
+  <!-- ===== S1 (SACRUM, top) ===== -->
+  <path d="M160,344 C155,339 150,344 148,354 L145,384 C143,400 143,415 145,428 L148,438 C150,443 155,445 160,443 L340,443 C345,445 350,443 352,438 L355,428 C357,415 357,400 355,384 L352,354 C350,344 345,339 340,344 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.75"/>
+  <!-- Sacral ala / wing hints -->
+  <path d="M145,370 C120,365 100,370 90,380" fill="none" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+  <path d="M355,370 C380,365 400,370 410,380" fill="none" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+
+  <!-- ===== SPINAL CANAL ===== -->
+  <path d="M175,50 L175,190 L175,310 L175,430" fill="none" stroke="#d8ccc0" stroke-width="0.5" opacity="0.3"/>
+  <path d="M325,50 L325,190 L325,310 L325,430" fill="none" stroke="#d8ccc0" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- ===== SPINAL CORD / CAUDA EQUINA ===== -->
+  <!-- Thecal sac -->
+  <path d="M200,60 C195,80 193,100 193,120 L192,160 C192,180 195,195 200,205 L205,210 C210,212 215,210 218,205 L220,195 C222,180 220,165 218,155 L216,140 C214,125 212,110 210,95 L208,80 C206,68 204,62 200,60 Z"
+        fill="url(#cord)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Cauda equina nerve roots (multiple fine lines descending) -->
+  <path d="M205,160 C203,180 201,200 200,220 L198,260 C196,280 195,300 195,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+  <path d="M210,160 C208,180 207,200 206,220 L205,260 C204,280 203,300 203,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+  <path d="M215,160 C214,180 213,200 212,220 L211,260 C210,280 209,300 209,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+  <path d="M220,160 C219,180 218,200 217,220 L216,260 C215,280 214,300 214,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- ===== L5 NERVE ROOT (exiting and being compressed) ===== -->
+  <path d="M200,200 C198,210 196,220 195,230 L193,260 C192,280 191,295 192,305 C193,310 195,315 198,318 C202,322 206,324 210,324 C215,324 218,322 222,318"
+        fill="none" stroke="url(#nerve-color)" stroke-width="4" stroke-linecap="round" filter="url(#soft)" opacity="0.8"/>
+  <!-- Nerve root label -->
+  <text x="140" y="260" fill="#b8860b" font-size="10" font-weight="600">L5 nerve</text>
+  <text x="140" y="273" fill="#b8860b" font-size="10" font-weight="600">root</text>
+
+  <!-- Compression zone where herniated material hits nerve -->
+  <ellipse cx="210" cy="310" rx="14" ry="8" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.9"/>
+  <!-- Compression arrows -->
+  <line x1="290" y1="308" x2="228" y2="310" stroke="#c0392b" stroke-width="1.2" marker-end="url(#arrow)" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="293" y="304" fill="#c0392b" font-size="9" font-weight="600">Compression</text>
+
+  <!-- ===== S1 NERVE ROOT (uncompressed, for reference) ===== -->
+  <path d="M200,340 C198,350 197,360 197,370 L198,390 C199,405 201,415 204,420 C208,425 212,427 218,425 C222,423 225,420 228,415"
+        fill="none" stroke="url(#nerve-color)" stroke-width="3.5" stroke-linecap="round" filter="url(#soft)" opacity="0.5"/>
+  <text x="140" y="380" fill="#b8860b" font-size="10" font-weight="600" opacity="0.6">S1 nerve</text>
+  <text x="140" y="393" fill="#b8860b" font-size="10" font-weight="600" opacity="0.6">root</text>
+
+  <!-- ===== LABELS ===== -->
+
+  <!-- L4 vertebra label -->
+  <line x1="355" y1="105" x2="405" y2="105" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="102" fill="#8a7e6e" font-size="11" font-weight="600">L4 vertebra</text>
+  <text x="408" y="115" fill="#8a7e6e" font-size="9">(body)</text>
+
+  <!-- Normal disc label -->
+  <line x1="355" y1="170" x2="405" y2="170" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="167" fill="#8a7e6e" font-size="10" font-weight="600">Normal disc</text>
+  <text x="408" y="180" fill="#8a7e6e" font-size="9">(intact)</text>
+
+  <!-- Nucleus pulposus label -->
+  <line x1="250" y1="178" x2="250" y2="195" stroke="#8a7e6e" stroke-width="0.7"/>
+  <line x1="250" y1="195" x2="380" y2="195" stroke="#8a7e6e" stroke-width="0.7"/>
+  <text x="382" y="193" fill="#8a7e6e" font-size="9" font-style="italic">Nucleus pulposus</text>
+
+  <!-- Annulus fibrosus label -->
+  <line x1="310" y1="165" x2="370" y2="140" stroke="#8a7e6e" stroke-width="0.7"/>
+  <text x="372" y="138" fill="#8a7e6e" font-size="9" font-style="italic">Annulus fibrosus</text>
+
+  <!-- L5 vertebra label -->
+  <line x1="355" y1="245" x2="405" y2="245" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="242" fill="#8a7e6e" font-size="11" font-weight="600">L5 vertebra</text>
+  <text x="408" y="255" fill="#8a7e6e" font-size="9">(body)</text>
+
+  <!-- Herniated disc label -->
+  <line x1="310" y1="316" x2="405" y2="316" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="408" y="313" fill="#c0392b" font-size="10" font-weight="600">Herniated disc</text>
+  <text x="408" y="326" fill="#c0392b" font-size="9">(extruded fragment</text>
+  <text x="408" y="338" fill="#c0392b" font-size="9">compressing nerve)</text>
+
+  <!-- Annular tear label -->
+  <line x1="275" y1="298" x2="220" y2="280" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="188" y="277" fill="#c0392b" font-size="9">Annular tear</text>
+
+  <!-- S1 / sacrum label -->
+  <line x1="355" y1="393" x2="405" y2="393" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="390" fill="#8a7e6e" font-size="11" font-weight="600">Sacrum (S1)</text>
+
+  <!-- Spine level labels -->
+  <text x="80" y="110" fill="#b0a595" font-size="10" font-weight="600" text-anchor="middle">L4</text>
+  <text x="80" y="250" fill="#b0a595" font-size="10" font-weight="600" text-anchor="middle">L5</text>
+  <text x="80" y="393" fill="#b0a595" font-size="10" font-weight="600" text-anchor="middle">S1</text>
+
+  <!-- Direction arrow: anterior / posterior -->
+  <text x="470" y="46" fill="#b0a595" font-size="9" text-anchor="end">Anterior</text>
+  <text x="30" y="46" fill="#b0a595" font-size="9" text-anchor="start">Posterior</text>
+  <line x1="30" y1="48" x2="470" y2="48" stroke="#e0e0dc" stroke-width="0.5"/>
+  <path d="M460,45 L470,48 L460,51" fill="none" stroke="#b0a595" stroke-width="0.8"/>
+  <path d="M40,45 L30,48 L40,51" fill="none" stroke="#b0a595" stroke-width="0.8"/>
+
+  <!-- ===== INSET: Cross-section view (top right) ===== -->
+  <g transform="translate(360, 34)">
+    <rect x="0" y="0" width="110" height="95" rx="6" fill="var(--surface, #fafaf8)" stroke="var(--border, #e0e0dc)" stroke-width="0.8" opacity="0.95"/>
+    <text x="55" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Axial view</text>
+    <!-- Vertebral body outline (axial) -->
+    <path d="M15,45 C15,28 30,20 55,20 C80,20 95,28 95,45 C95,62 80,70 55,70 C30,70 15,62 15,45 Z"
+          fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.7"/>
+    <!-- Spinal canal (axial) -->
+    <circle cx="55" cy="45" r="10" fill="#e8ddd0" stroke="#c4b5a0" stroke-width="0.5" opacity="0.5"/>
+    <!-- Disc material protruding into canal -->
+    <path d="M48,30 C50,25 55,22 60,25 C65,28 65,34 60,37 C55,40 50,38 48,35 Z"
+          fill="#d0c880" stroke="#c0392b" stroke-width="0.8" opacity="0.8"/>
+    <!-- Nerve root compression in axial view -->
+    <circle cx="42" cy="45" r="3" fill="#e6a817" opacity="0.6"/>
+    <circle cx="68" cy="45" r="3" fill="#e6a817" opacity="0.6"/>
+    <!-- Compression indication -->
+    <line x1="60" y1="37" x2="50" y2="43" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,2"/>
+    <!-- Label for herniation -->
+    <text x="30" y="85" fill="#c0392b" font-size="7" text-anchor="middle">Herniation</text>
+    <line x1="55" y1="78" x2="55" y2="70" stroke="#c0392b" stroke-width="0.6"/>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="490" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Lumbar Disc Herniation — Lateral View</text>
+  <text x="250" y="506" fill="var(--text-muted, #8a7e6e)" font-size="10" text-anchor="middle">Most common at L4–L5 and L5–S1, disc protrudes posterolaterally</text>
+  <text x="250" y="520" fill="var(--text-muted, #8a7e6e)" font-size="10" text-anchor="middle">into the spinal canal, compressing the exiting nerve root</text>
+</svg>

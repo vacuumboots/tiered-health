@@ -1,0 +1,186 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vertebra" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="disc" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b8d4d0"/><stop offset="100%" stop-color="#a0c4be"/></linearGradient>
+    <linearGradient id="disc-herniated" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b8d4d0"/><stop offset="60%" stop-color="#a0c4be"/><stop offset="100%" stop-color="#d99b8a"/></linearGradient>
+    <linearGradient id="nerve" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="spinal-cord" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e0c0"/><stop offset="100%" stop-color="#e8d0a8"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Body outline (torso cross-section) -->
+  <path d="M120,30 C110,35 100,50 95,70 L88,120 C85,160 85,200 88,240 L92,280 C95,310 100,330 108,345 L115,355 C120,360 130,365 140,365 L160,365 C170,365 178,360 185,352 L195,340 C200,328 205,310 208,290 L212,250 C215,210 215,170 212,130 L208,90 C205,65 198,45 190,35 L180,28 C168,24 155,24 145,28 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Spinal cord / cauda equina -->
+  <path d="M245,60 L242,90 L240,120 L238,150 L236,180 L235,210 L234,240 L234,270 L235,300 L236,330 L237,350 L238,365"
+        fill="none" stroke="url(#spinal-cord)" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+  <path d="M240,60 C238,65 236,75 235,90 L233,120 C232,140 232,160 234,180 L236,200"
+        fill="none" stroke="#c4b5a0" stroke-width="1" stroke-dasharray="3,2" opacity="0.3"/>
+
+  <!-- L1 vertebra -->
+  <path d="M190,58 C195,52 205,48 215,48 C225,48 235,50 245,55 C250,58 252,62 252,66 L252,78 C252,82 250,86 245,89 C235,94 225,96 215,96 C205,96 195,94 190,89 C185,86 183,82 183,78 L183,66 C183,62 185,58 190,58 Z"
+        fill="url(#vertebra)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+
+  <!-- Disc L1-L2 -->
+  <rect x="190" y="99" width="62" height="10" rx="3" fill="url(#disc)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- L2 vertebra -->
+  <path d="M188,112 C193,104 203,100 215,100 C227,100 237,104 243,112 C248,116 250,120 250,125 L250,138 C250,142 248,146 243,149 C235,154 225,156 215,156 C205,156 195,154 190,149 C185,146 183,142 183,138 L183,125 C183,120 185,116 188,112 Z"
+        fill="url(#vertebra)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+
+  <!-- Disc L2-L3 -->
+  <rect x="188" y="159" width="62" height="10" rx="3" fill="url(#disc)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- L3 vertebra -->
+  <path d="M186,172 C191,163 201,158 215,158 C229,158 239,163 245,172 C250,177 252,182 252,188 L252,202 C252,207 250,212 245,216 C237,222 225,224 215,224 C205,224 195,222 188,216 C183,212 181,207 181,202 L181,188 C181,182 183,177 186,172 Z"
+        fill="url(#vertebra)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+
+  <!-- Disc L3-L4 -->
+  <rect x="186" y="227" width="62" height="10" rx="3" fill="url(#disc)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- L4 vertebra -->
+  <path d="M184,240 C190,230 200,225 215,225 C230,225 240,230 246,240 C252,245 254,251 254,258 L254,273 C254,279 252,284 246,288 C238,294 226,296 215,296 C204,296 194,294 188,288 C182,284 180,279 180,273 L180,258 C180,251 182,245 184,240 Z"
+        fill="url(#vertebra)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Disc L4-L5 (intact) -->
+  <rect x="183" y="300" width="63" height="12" rx="3" fill="url(#disc)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.7"/>
+
+  <!-- L5 vertebra -->
+  <path d="M182,315 C189,304 200,298 216,298 C232,298 243,304 250,315 C256,321 258,328 258,336 L258,353 C258,360 256,366 250,370 C242,377 230,380 216,380 C202,380 192,377 186,370 C180,366 178,360 178,353 L178,336 C178,328 180,321 182,315 Z"
+        fill="url(#vertebra)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Disc L5-S1 (herniated — bulging posteriorly and compressing nerve root) -->
+  <path d="M183,384 L185,384 L195,386 L205,388 L216,388 L227,386 L237,384 L245,382 L248,381"
+        fill="none" stroke="#c4b5a0" stroke-width="0.8"/>
+  <!-- Disc body -->
+  <path d="M183,384 C183,394 183,400 183,404 L248,403 C248,397 248,390 248,382 C237,385 226,386 216,386 C205,386 195,385 183,384 Z"
+        fill="url(#disc)" stroke="none" opacity="0.7"/>
+
+  <!-- Herniation bulge (posterior herniated fragment compressing S1 nerve root) -->
+  <path d="M248,382 C255,385 262,392 265,400 C267,406 266,412 262,416 C258,420 252,420 248,418 C246,416 245,412 245,407 C245,402 246,396 248,382 Z"
+        fill="url(#disc-herniated)" stroke="#d99b8a" stroke-width="1" opacity="0.8"/>
+  <path d="M265,400 L278,395" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="280" y="393" fill="#c0392b" font-size="9" font-weight="600">Herniated disc</text>
+  <text x="280" y="405" fill="#c0392b" font-size="9">fragment compressing</text>
+  <text x="280" y="417" fill="#c0392b" font-size="9">S1 nerve root</text>
+
+  <!-- S1 (sacral segment) -->
+  <path d="M185,408 C192,398 204,393 216,393 C228,393 238,398 244,408 L250,420 C254,430 256,440 256,450 L258,470 C260,490 262,510 264,530 L266,550 L268,560"
+        fill="none" stroke="url(#vertebra)" stroke-width="18" stroke-linecap="round" opacity="0.5" stroke-dasharray="2,1"/>
+  <text x="310" y="468" fill="#b0a595" font-size="10" font-style="italic">Sacrum (S1–S5)</text>
+
+  <!-- ═══════════ NERVE ROOTS ═══════════ -->
+
+  <!-- L4 nerve root (exits above L5) -->
+  <path d="M186,260 C170,265 155,270 145,278 C138,284 134,290 133,298"
+        fill="none" stroke="url(#nerve)" stroke-width="3" stroke-linecap="round" filter="url(#soft)"/>
+  <text x="85" y="278" fill="#b8860b" font-size="10" font-weight="600">L4 nerve root</text>
+
+  <!-- L5 nerve root (exits above S1, compressed) -->
+  <path d="M188,330 C172,336 158,342 148,350 C140,356 135,364 134,372"
+        fill="none" stroke="url(#nerve)" stroke-width="3" stroke-linecap="round" filter="url(#soft)"/>
+  <!-- Compression zone -->
+  <ellipse cx="172" cy="339" rx="8" ry="5" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+  <text x="85" y="350" fill="#b8860b" font-size="10" font-weight="600">L5 nerve root</text>
+
+  <!-- S1 nerve root (exits S1 foramen) — compressed by herniated disc -->
+  <path d="M248,395 C255,400 262,410 268,420 C272,428 274,435 274,442"
+        fill="none" stroke="url(#nerve)" stroke-width="3" stroke-linecap="round" filter="url(#soft)"/>
+  <ellipse cx="255" cy="403" rx="9" ry="6" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8"/>
+
+  <!-- Sciatic nerve (formed from L4-S3, descending into leg) -->
+  <path d="M140,370 C135,385 130,400 128,415 C125,435 122,455 118,475 C115,490 112,505 108,520 C105,530 102,538 100,545"
+        fill="none" stroke="url(#nerve)" stroke-width="5" stroke-linecap="round" filter="url(#soft)"/>
+  <text x="55" y="510" fill="#b8860b" font-size="12" font-weight="600">Sciatic</text>
+  <text x="55" y="525" fill="#b8860b" font-size="12" font-weight="600">Nerve</text>
+
+  <!-- Pain pathway arrows from compressed nerve down the leg -->
+  <path d="M100,450 C80,460 65,470 55,482 C48,490 45,500 45,510"
+        fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)" opacity="0.6"/>
+  <text x="10" y="495" fill="#c0392b" font-size="9">Pain radiation</text>
+  <text x="10" y="507" fill="#c0392b" font-size="9">down leg</text>
+
+  <!-- ═══════════ LABELS ═══════════ -->
+
+  <!-- Spinal level labels -->
+  <line x1="183" y1="78" x2="130" y2="78" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="100" y="75" fill="#8a7e6e" font-size="9" text-anchor="end">L1</text>
+
+  <line x1="183" y1="135" x2="130" y2="135" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="100" y="132" fill="#8a7e6e" font-size="9" text-anchor="end">L2</text>
+
+  <line x1="181" y1="200" x2="130" y2="200" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="100" y="197" fill="#8a7e6e" font-size="9" text-anchor="end">L3</text>
+
+  <line x1="180" y1="270" x2="130" y2="270" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="100" y="267" fill="#8a7e6e" font-size="9" text-anchor="end">L4</text>
+
+  <line x1="178" y1="350" x2="130" y2="350" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="100" y="347" fill="#8a7e6e" font-size="9" text-anchor="end">L5</text>
+
+  <line x1="185" y1="440" x2="130" y2="440" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="100" y="437" fill="#8a7e6e" font-size="9" text-anchor="end">S1</text>
+
+  <!-- Disc labels -->
+  <text x="330" y="230" fill="#8a7e6e" font-size="9">Intervertebral</text>
+  <text x="330" y="242" fill="#8a7e6e" font-size="9">disc (normal)</text>
+
+  <!-- Healthy vs herniated inset labels -->
+  <rect x="310" y="260" width="170" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.85"/>
+  <text x="355" y="277" fill="#8a7e6e" font-size="10" font-weight="600">Normal Disc</text>
+  <rect x="318" y="284" width="30" height="8" rx="2" fill="url(#disc)" stroke="#c4b5a0" stroke-width="0.5"/>
+  <text x="352" y="292" fill="#8a7e6e" font-size="8">Gel cushion between vertebrae</text>
+
+  <text x="355" y="310" fill="#c0392b" font-size="10" font-weight="600">Herniated Disc</text>
+  <rect x="318" y="316" width="25" height="8" rx="2" fill="url(#disc)" stroke="#c4b5a0" stroke-width="0.5"/>
+  <path d="M343,320 L350,324 L355,326 L360,324 L362,320"
+        fill="none" stroke="#d99b8a" stroke-width="2"/>
+  <text x="352" y="335" fill="#8a7e6e" font-size="8">Gel pushes out, presses nerve</text>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Lumbosacral Spine — Disc Herniation &amp; Sciatica</text>
+
+  <!-- Spine/Groin label area -->
+  <text x="315" y="435" fill="#8a7e6e" font-size="9" font-weight="600">Key:</text>
+  <rect x="315" y="442" width="14" height="6" rx="2" fill="url(#nerve)"/>
+  <text x="334" y="449" fill="#8a7e6e" font-size="8">Spinal nerve roots</text>
+  <rect x="315" y="456" width="14" height="6" rx="2" fill="url(#vertebra)"/>
+  <text x="334" y="463" fill="#8a7e6e" font-size="8">Vertebra (bone)</text>
+  <rect x="315" y="470" width="14" height="6" rx="2" fill="url(#disc)"/>
+  <text x="334" y="477" fill="#8a7e6e" font-size="8">Disc (normal)</text>
+
+  <!-- ═══════════ BOTTOM INSET: Symptoms by level ═══════════ -->
+  <line x1="20" y1="515" x2="480" y2="515" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- L4 distribution -->
+  <g transform="translate(18, 525)">
+    <rect x="0" y="0" width="150" height="65" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">L4 Root (L3-L4 disc)</text>
+    <text x="75" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Pain: front of thigh &amp; inner calf</text>
+    <text x="75" y="44" fill="#8a7e6e" font-size="8" text-anchor="middle">Weakness: quadriceps (knee extension)</text>
+    <text x="75" y="56" fill="#8a7e6e" font-size="8" text-anchor="middle">Reflex: patellar (knee jerk) ↓</text>
+  </g>
+
+  <!-- L5 distribution -->
+  <g transform="translate(175, 525)">
+    <rect x="0" y="0" width="150" height="65" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">L5 Root (L4-L5 disc)</text>
+    <text x="75" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Pain: lateral thigh → shin → big toe</text>
+    <text x="75" y="44" fill="#8a7e6e" font-size="8" text-anchor="middle">Weakness: big toe lift, foot dorsiflexion</text>
+    <text x="75" y="56" fill="#8a7e6e" font-size="8" text-anchor="middle">Reflex: none specific</text>
+  </g>
+
+  <!-- S1 distribution -->
+  <g transform="translate(332, 525)">
+    <rect x="0" y="0" width="150" height="65" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">S1 Root (L5-S1 disc)</text>
+    <text x="75" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Pain: posterior calf → heel → foot</text>
+    <text x="75" y="44" fill="#8a7e6e" font-size="8" text-anchor="middle">Weakness: calf (plantarflexion)</text>
+    <text x="75" y="56" fill="#8a7e6e" font-size="8" text-anchor="middle">Reflex: Achilles (ankle jerk) ↓</text>
+  </g>
+</svg>

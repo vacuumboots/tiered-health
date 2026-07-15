@@ -1,0 +1,131 @@
+<svg class="anatomy-svg" viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brain" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0e6d6"/><stop offset="100%" stop-color="#e0d0c0"/></linearGradient>
+    <linearGradient id="nerve" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="artery" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <linearGradient id="csd-wave" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8e44ad" stop-opacity="0"/><stop offset="50%" stop-color="#8e44ad" stop-opacity="0.3"/><stop offset="100%" stop-color="#8e44ad" stop-opacity="0"/></linearGradient>
+    <linearGradient id="cgrp-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e74c3c" stop-opacity="0.7"/><stop offset="100%" stop-color="#e74c3c" stop-opacity="0.1"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+    <marker id="arrow-neuro" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Head outline (profile) -->
+  <path d="M120,40 C100,40 85,60 80,85 L75,120 C70,150 68,180 68,210 L65,250 C62,280 60,310 62,340 L65,370 C68,395 72,410 80,420 L90,430 C100,435 112,438 125,438 L155,435 C175,430 190,420 200,405 L210,385 C218,360 222,330 224,300 C226,270 226,240 225,210 C224,180 222,150 218,120 C215,95 210,75 202,60 C195,48 185,40 170,38 Z"
+        fill="url(#brain)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Head label -->
+  <text x="180" y="22" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Migraine Mechanism</text>
+
+  <!-- Cerebellum hint -->
+  <path d="M280,380 C290,370 300,365 310,368 C320,372 325,382 322,395 C318,408 308,415 295,415 C282,415 274,405 270,395 C268,388 270,382 280,380 Z"
+        fill="url(#brain)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+  <text x="275" y="430" fill="#b0a595" font-size="9" font-style="italic">Cerebellum</text>
+
+  <!-- Brainstem / trigeminal nucleus caudalis -->
+  <path d="M170,340 C175,345 180,355 182,370 C184,385 183,400 180,415 C178,425 175,432 170,435"
+        fill="none" stroke="#c4b5a0" stroke-width="8" opacity="0.4" stroke-linecap="round"/>
+  <text x="148" y="388" fill="#b0a595" font-size="9">Brainstem</text>
+
+  <!-- Trigeminal nerve pathway (yellow) -->
+  <path d="M170,360 C155,365 140,372 128,380 C120,385 115,390 112,395"
+        fill="none" stroke="url(#nerve)" stroke-width="3.5" stroke-linecap="round" filter="url(#soft)"/>
+  <path d="M112,395 C105,400 98,410 95,420 C92,430 92,440 95,450"
+        fill="none" stroke="url(#nerve)" stroke-width="3" stroke-linecap="round" filter="url(#soft)" marker-end="url(#arrow-neuro)"/>
+
+  <!-- Trigeminal nerve label -->
+  <text x="64" y="410" fill="#b8860b" font-size="10" font-weight="600">Trigeminal</text>
+  <text x="64" y="422" fill="#b8860b" font-size="10" font-weight="600">nerve (V)</text>
+
+  <!-- Trigeminal nucleus caudalis label -->
+  <text x="64" y="440" fill="#b8860b" font-size="9">→ Trigeminal</text>
+  <text x="64" y="452" fill="#b8860b" font-size="9">nucleus caudalis</text>
+
+  <!-- Cortical surface with CSD wave -->
+  <path d="M120,90 C130,88 145,85 160,86 C175,87 190,90 200,92"
+        fill="none" stroke="#8e44ad" stroke-width="2" opacity="0.5"/>
+  <path d="M140,82 C150,78 165,76 180,78 C195,80 210,85 220,88"
+        fill="none" stroke="url(#csd-wave)" stroke-width="12" stroke-linecap="round" filter="url(#glow)" opacity="0.4"/>
+
+  <!-- CSD spreading wave arrow -->
+  <path d="M135,80 C145,78 155,77 165,78 C175,79 185,82 195,86"
+        fill="none" stroke="#8e44ad" stroke-width="1.5" marker-end="url(#arrow-neuro)" stroke-dasharray="4,2" opacity="0.6"/>
+  <text x="138" y="72" fill="#8e44ad" font-size="10" font-weight="600">Cortical spreading</text>
+  <text x="138" y="62" fill="#8e44ad" font-size="10" font-weight="600">depression (CSD)</text>
+
+  <!-- Dura mater / meninges line -->
+  <path d="M110,105 C130,102 160,100 195,100 C210,100 225,102 235,105"
+        fill="none" stroke="#c4b5a0" stroke-width="1" stroke-dasharray="5,2" opacity="0.6"/>
+  <text x="235" y="108" fill="#b0a595" font-size="8">Dura mater</text>
+
+  <!-- Dilated meningeal artery (red) -->
+  <path d="M130,110 C140,115 152,118 165,118 C178,118 190,115 200,110 L210,106"
+        fill="none" stroke="url(#artery)" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M130,110 C140,115 152,118 165,118 C178,118 190,115 200,110"
+        fill="none" stroke="url(#artery)" stroke-width="5" stroke-linecap="round" opacity="0.7" filter="url(#glow)"/>
+
+  <!-- Artery label -->
+  <text x="185" y="130" fill="#c0392b" font-size="9">Dilated</text>
+  <text x="185" y="142" fill="#c0392b" font-size="9">meningeal</text>
+  <text x="185" y="154" fill="#c0392b" font-size="9">artery</text>
+
+  <!-- CGRP release dots near artery -->
+  <circle cx="145" cy="112" r="2" fill="#e74c3c" opacity="0.6"/>
+  <circle cx="155" cy="116" r="2.5" fill="#e74c3c" opacity="0.5"/>
+  <circle cx="168" cy="115" r="2" fill="#e74c3c" opacity="0.7"/>
+  <circle cx="178" cy="112" r="1.8" fill="#e74c3c" opacity="0.5"/>
+  <circle cx="160" cy="108" r="2" fill="#e74c3c" opacity="0.6"/>
+
+  <!-- CGRP label -->
+  <text x="135" y="138" fill="#c0392b" font-size="10" font-weight="600">CGRP ↑</text>
+  <text x="130" y="150" fill="#c0392b" font-size="8">Inflammatory</text>
+  <text x="130" y="160" fill="#c0392b" font-size="8">cascade</text>
+
+  <!-- Pain signal up arrow -->
+  <path d="M155,475 C155,465 158,455 162,448"
+        fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-neuro)" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="132" y="478" fill="#c0392b" font-size="9">Pain signal to</text>
+  <text x="132" y="490" fill="#c0392b" font-size="9">thalamus → cortex</text>
+
+  <!-- ═══════════ PHASE PANEL ═══════════ -->
+
+  <line x1="30" y1="495" x2="470" y2="495" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Phase 1: Prodrome -->
+  <g transform="translate(22, 500)">
+    <rect x="0" y="0" width="110" height="48" rx="5" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="55" y="15" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Prodrome</text>
+    <text x="55" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">Hrs–2 days</text>
+    <text x="55" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Yawning, cravings,</text>
+    <text x="55" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">mood change, fatigue</text>
+  </g>
+
+  <!-- Phase 2: Aura -->
+  <g transform="translate(142, 500)">
+    <rect x="0" y="0" width="100" height="48" rx="5" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="50" y="15" fill="#8e44ad" font-size="9" font-weight="600" text-anchor="middle">Aura</text>
+    <text x="50" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">5–60 min</text>
+    <text x="50" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Visual zigs/zags,</text>
+    <text x="50" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">tingling, numbness</text>
+  </g>
+
+  <!-- Phase 3: Headache -->
+  <g transform="translate(252, 500)">
+    <rect x="0" y="0" width="100" height="48" rx="5" fill="var(--surface, #fff)" stroke="#c0392b" stroke-width="1.5" opacity="0.9"/>
+    <text x="50" y="15" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Headache</text>
+    <text x="50" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">4–72 hours</text>
+    <text x="50" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Throbbing pain,</text>
+    <text x="50" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">nausea, photophobia</text>
+  </g>
+
+  <!-- Phase 4: Postdrome -->
+  <g transform="translate(362, 500)">
+    <rect x="0" y="0" width="110" height="48" rx="5" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="55" y="15" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Postdrome</text>
+    <text x="55" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">24–48 hours</text>
+    <text x="55" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Fatigue, brain fog,</text>
+    <text x="55" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">residual ache</text>
+  </g>
+</svg>

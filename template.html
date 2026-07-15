@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ TITLE }} — Tiered Health</title>
+<meta name="description" content="{{ TITLE }}: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">{{ ICON }} Tiered Health <span>/ {{ TITLE }}</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">{{ ICON }} {{ TITLE }}</h1>
+  {{ AKA_HTML }}
+
+{{ ANATOMY_SECTION }}
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+{{ TIER_GIST }}
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+{{ TIER_ADULT }}
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+{{ TIER_FULL }}
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> {{ LAST_REVIEWED }}</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

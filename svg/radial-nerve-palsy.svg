@@ -1,0 +1,47 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="nerve" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="bone" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+  </defs>
+
+  <!-- Arm outline -->
+  <path d="M220,40 C200,40 185,55 180,80 L175,180 C173,200 178,210 185,220 L195,280 C198,290 200,300 198,320 L190,380 C188,395 185,410 185,425 L188,450 C190,465 195,475 205,480 L210,490 C215,500 220,510 225,520 L228,540 C230,550 235,555 240,558 L250,560 L260,558 C265,555 270,550 272,540 L275,520 C280,510 285,500 290,490 L295,480 C305,475 310,465 312,450 L315,425 C315,410 312,395 310,380 L302,320 C300,300 302,290 305,280 L315,220 C322,210 327,200 325,180 L320,80 C315,55 300,40 280,40 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Humerus bone (ghosted) -->
+  <path d="M225,100 L223,150 L220,200 L222,250 L224,300 L226,340 L228,370" stroke="url(#bone)" stroke-width="14" stroke-linecap="round" opacity="0.5"/>
+  <text x="160" y="245" fill="#b0a595" font-size="11" font-style="italic">Humerus</text>
+
+  <!-- Radial nerve path -->
+  <path d="M195,105 C190,120 188,160 190,200 C192,220 195,235 200,250 C205,260 210,265 215,268 C220,270 225,265 228,258 C232,248 235,235 240,220 C245,210 250,205 258,200 C265,196 272,195 280,198 C290,202 298,212 305,225 L310,235"
+        fill="none" stroke="url(#nerve)" stroke-width="4" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Nerve label -->
+  <text x="118" y="175" fill="#b8860b" font-size="12" font-weight="600">Radial</text>
+  <text x="118" y="190" fill="#b8860b" font-size="12" font-weight="600">Nerve</text>
+
+  <!-- Compression site marker (spiral groove) -->
+  <ellipse cx="220" cy="252" rx="18" ry="10" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2" opacity="0.8"/>
+  <line x1="238" y1="252" x2="310" y2="252" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="314" y="248" fill="#c0392b" font-size="10" font-weight="600">Spiral groove</text>
+  <text x="314" y="260" fill="#c0392b" font-size="10">(compression site)</text>
+
+  <!-- Branches to extensors -->
+  <path d="M280,198 C290,198 300,200 308,210" fill="none" stroke="url(#nerve)" stroke-width="2.5"/>
+  <path d="M285,205 C298,208 310,215 318,228" fill="none" stroke="url(#nerve)" stroke-width="2.5"/>
+  <path d="M290,212 C305,218 318,228 325,240" fill="none" stroke="url(#nerve)" stroke-width="2"/>
+  <text x="330" y="210" fill="#b8860b" font-size="9">To wrist/finger</text>
+  <text x="330" y="222" fill="#b8860b" font-size="9">extensors</text>
+
+  <!-- Hand (simplified) -->
+  <ellipse cx="310" cy="440" rx="22" ry="28" fill="url(#skin)" stroke="#c4b5a0" stroke-width="1"/>
+  <text x="295" y="480" fill="#8a7e6e" font-size="10">Wrist drop</text>
+  <text x="295" y="492" fill="#8a7e6e" font-size="10">(can't extend)</text>
+
+  <!-- Brachial plexus origin -->
+  <circle cx="195" cy="105" r="5" fill="#e6a817" opacity="0.6"/>
+  <text x="130" y="108" fill="#8a7e6e" font-size="9">Posterior cord</text>
+  <text x="130" y="120" fill="#8a7e6e" font-size="9">(C5–T1)</text>
+</svg>

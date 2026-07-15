@@ -1,0 +1,154 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="joint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5ece0"/><stop offset="100%" stop-color="#e8dccc"/></linearGradient>
+    <linearGradient id="crystal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8e8f0"/><stop offset="100%" stop-color="#c8c8d8"/></linearGradient>
+    <linearGradient id="inflamed" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5a0a0"/><stop offset="100%" stop-color="#d06060"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Gout — First Metatarsophalangeal (MTP) Joint</text>
+
+  <!-- ═══════ Foot outline (dorsal/medial view — big toe side) ═══════ -->
+
+  <!-- Foot silhouette -->
+  <path d="M100,380 C80,370 65,350 58,330 C50,305 48,280 52,260 C55,245 60,230 68,220 L80,205 C88,195 95,190 100,185 L108,178 C115,170 120,160 122,150 L124,140 C125,130 125,120 124,110 L122,95 C120,82 118,72 115,65 C112,58 108,52 100,48 C92,44 84,42 76,42 C68,42 60,45 54,50 C48,55 44,62 42,72 C40,85 42,100 45,112 C48,122 52,130 55,135 C58,140 60,142 62,142"
+        fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Foot/leg outline (lower leg + foot, medial view) -->
+  <path d="M210,30 C200,30 190,40 185,58 L180,80 L178,120 L176,160 L175,200 L174,230 L174,260 L175,290 L178,320 L182,350 C185,370 190,385 195,395 L200,405 C205,415 210,420 218,422 L230,425 C245,428 260,428 275,425 C290,422 300,415 308,405 C315,395 320,380 322,365 L324,345 C325,330 324,315 322,300 L318,275 C315,250 312,225 310,200 C308,175 307,150 306,125 C305,100 305,80 306,65 C307,50 310,40 315,35"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Toe outline (big toe/great toe) -->
+  <path d="M218,422 C225,435 230,448 232,462 C234,475 233,485 228,492 C223,498 215,500 205,498 C195,495 188,488 184,478 C180,465 180,450 185,438 C190,428 200,422 218,422 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Toes 2-5 (simplified) -->
+  <path d="M275,425 C285,432 293,442 298,455 C302,465 300,475 295,480 C288,485 280,482 275,475 C270,465 268,450 270,440 C272,432 274,428 275,425 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+  <path d="M295,420 C305,425 312,435 316,448 C318,458 315,468 310,472 C303,476 296,472 292,462 C288,450 288,436 292,427 C294,423 295,421 295,420 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1" opacity="0.5"/>
+
+  <!-- ═══════ Bones ═══════ -->
+
+  <!-- Proximal phalanx (big toe) -->
+  <path d="M206,400 C200,395 195,395 190,398 C185,402 182,410 180,420 L178,435 C177,442 178,448 182,452 C186,456 192,456 198,454 L208,450 C215,446 220,440 222,432 C224,424 224,416 220,410 C216,404 212,400 206,400 Z"
+        fill="url(#bone)" stroke="#c4b5a0" stroke-width="1" opacity="0.75"/>
+
+  <!-- First metatarsal head (MTP joint, where gout strikes) -->
+  <path d="M200,370 C192,365 185,365 180,370 C175,375 172,383 172,392 C173,400 176,406 182,410 C188,414 196,416 206,416 C215,416 222,414 228,410 C234,406 237,400 238,392 C239,384 237,376 232,370 C227,364 220,360 212,358 C204,357 196,358 200,370 Z"
+        fill="url(#bone)" stroke="#c4b5a0" stroke-width="1" opacity="0.75"/>
+
+  <!-- First metatarsal shaft -->
+  <path d="M200,370 C203,360 205,345 207,330 L210,310 C212,295 215,280 218,265 L222,248"
+        fill="none" stroke="url(#bone)" stroke-width="14" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Cuneiform / tarsal bones -->
+  <path d="M215,245 C210,240 205,240 202,245 C198,250 197,258 198,268 L200,278 C203,288 208,295 215,298 L225,300 C235,298 242,294 245,288 C248,280 248,272 245,265 C242,258 236,252 228,248 C220,245 215,245 215,245 Z"
+        fill="url(#bone)" stroke="#c4b5a0" stroke-width="1" opacity="0.5"/>
+
+  <!-- ═══════ Inflamed MTP joint (swollen, red) ═══════ -->
+
+  <!-- Inflammation halo around MTP joint -->
+  <ellipse cx="205" cy="395" rx="35" ry="28" fill="url(#inflamed)" opacity="0.25" filter="url(#soft)"/>
+
+  <!-- Joint outline -->
+  <ellipse cx="205" cy="393" rx="18" ry="10" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.7"/>
+
+  <!-- ═══════ MSU crystals in joint ═══════ -->
+
+  <!-- Needle-shaped crystals (MSU) -->
+  <g opacity="0.9">
+    <rect x="195" y="387" width="3" height="10" rx="1" fill="url(#crystal)" transform="rotate(-20, 196, 392)"/>
+    <rect x="200" y="385" width="2.5" height="9" rx="1" fill="url(#crystal)" transform="rotate(15, 201, 389)"/>
+    <rect x="207" y="388" width="2.5" height="8" rx="1" fill="url(#crystal)" transform="rotate(-35, 208, 392)"/>
+    <rect x="212" y="390" width="2" height="7" rx="1" fill="url(#crystal)" transform="rotate(25, 213, 393)"/>
+    <rect x="190" y="392" width="2" height="7" rx="1" fill="url(#crystal)" transform="rotate(-10, 191, 395)"/>
+    <rect x="203" y="395" width="2" height="6" rx="1" fill="url(#crystal)" transform="rotate(45, 204, 398)"/>
+    <rect x="215" y="395" width="2" height="7" rx="1" fill="url(#crystal)" transform="rotate(-50, 216, 398)"/>
+    <rect x="198" y="398" width="2" height="6" rx="1" fill="url(#crystal)" transform="rotate(8, 199, 401)"/>
+  </g>
+
+  <!-- Crystal label -->
+  <line x1="218" y1="385" x2="280" y2="340" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="282" y="338" fill="#6a6a8a" font-size="9" font-weight="600">MSU crystals</text>
+  <text x="282" y="350" fill="#6a6a8a" font-size="8">(monosodium urate)</text>
+  <text x="282" y="362" fill="#6a6a8a" font-size="8">needle-shaped,</text>
+  <text x="282" y="374" fill="#6a6a8a" font-size="8">negatively birefringent</text>
+
+  <!-- ═══════ Labels ═══════ -->
+
+  <!-- MTP joint label -->
+  <line x1="205" y1="420" x2="205" y2="465" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="148" y="475" fill="#c0392b" font-size="10" font-weight="600">First MTP joint</text>
+  <text x="148" y="488" fill="#c0392b" font-size="9">(podagra — classic site)</text>
+
+  <!-- Bone labels -->
+  <text x="250" y="290" fill="#b0a595" font-size="9" font-style="italic">First metatarsal</text>
+  <text x="155" y="440" fill="#b0a595" font-size="9" font-style="italic">Proximal phalanx</text>
+
+  <!-- Inflammation label -->
+  <line x1="175" y1="383" x2="130" y2="355" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="82" y="348" fill="#c0392b" font-size="9" font-weight="600">Inflammation</text>
+  <text x="82" y="360" fill="#c0392b" font-size="8">redness, swelling,</text>
+  <text x="82" y="372" fill="#c0392b" font-size="8">intense pain</text>
+
+  <!-- Inflammatory cascade (right side) -->
+  <text x="330" y="80" fill="#8a7e6e" font-size="11" font-weight="600">Inflammatory cascade</text>
+  <text x="330" y="98" fill="#8a7e6e" font-size="9">MSU crystals are</text>
+  <text x="330" y="112" fill="#8a7e6e" font-size="9">phagocytosed by</text>
+  <text x="330" y="126" fill="#8a7e6e" font-size="9">macrophages →</text>
+
+  <text x="330" y="145" fill="#8a7e6e" font-size="9">NLRP3 inflammasome</text>
+  <text x="330" y="159" fill="#8a7e6e" font-size="9">activation → IL-1β</text>
+  <text x="330" y="173" fill="#8a7e6e" font-size="9">release → neutrophil</text>
+  <text x="330" y="187" fill="#8a7e6e" font-size="9">recruitment →</text>
+  <text x="330" y="201" fill="#8a7e6e" font-size="9">acute inflammatory</text>
+  <text x="330" y="215" fill="#8a7e6e" font-size="9">flare.</text>
+
+  <!-- ═══════ INSETS: Healthy vs Gout ═══════ -->
+
+  <!-- Separator -->
+  <line x1="30" y1="510" x2="470" y2="510" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Healthy joint -->
+  <g transform="translate(25, 520)">
+    <rect x="0" y="0" width="215" height="68" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="16" fill="#5a7a5a" font-size="9" font-weight="600" text-anchor="middle">Healthy joint</text>
+    <!-- Normal joint space -->
+    <ellipse cx="107" cy="38" rx="16" ry="10" fill="url(#joint)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bone ends -->
+    <path d="M107,48 L100,42" stroke="#c4b5a0" stroke-width="0.5"/>
+    <path d="M107,48 L114,42" stroke="#c4b5a0" stroke-width="0.5"/>
+    <ellipse cx="80" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <ellipse cx="134" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <text x="107" y="60" fill="#8a7e6e" font-size="7" text-anchor="middle">Clear joint space, no crystals</text>
+  </g>
+
+  <!-- Gouty joint -->
+  <g transform="translate(260, 520)">
+    <rect x="0" y="0" width="215" height="68" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="16" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Acute gout flare</text>
+    <!-- Inflamed joint space -->
+    <ellipse cx="107" cy="38" rx="18" ry="12" fill="url(#inflamed)" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+    <!-- Crystals in joint space -->
+    <rect x="99" y="33" width="2" height="7" rx="1" fill="#c8c8d8" transform="rotate(-20, 100, 36)"/>
+    <rect x="107" y="34" width="2" height="6" rx="1" fill="#c8c8d8" transform="rotate(15, 108, 37)"/>
+    <rect x="114" y="35" width="1.5" height="5" rx="1" fill="#c8c8d8" transform="rotate(-30, 115, 37)"/>
+    <!-- Bone ends -->
+    <ellipse cx="75" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <ellipse cx="139" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <text x="107" y="60" fill="#8a7e6e" font-size="7" text-anchor="middle">Crystals in joint space, inflammation</text>
+  </g>
+
+  <!-- Key -->
+  <g transform="translate(20, 490)">
+    <line x1="0" y1="4" x2="16" y2="4" stroke="#c0392b" stroke-width="2"/>
+    <text x="20" y="8" fill="#8a7e6e" font-size="8">Inflammation / pain</text>
+  </g>
+</svg>
