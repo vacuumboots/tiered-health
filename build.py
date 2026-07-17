@@ -15,7 +15,7 @@ from textwrap import dedent
 ROOT = Path(__file__).resolve().parent
 CONTENT_DIR = ROOT / "content"
 SVG_DIR = ROOT / "svg"
-DIST_DIR = ROOT / "dist"
+DIST_DIR = ROOT / "docs"
 TEMPLATE_PATH = ROOT / "template.html"
 
 # ── Markdown → HTML converter ──────────────────────────────────────────
