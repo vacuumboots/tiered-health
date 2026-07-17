@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sinusitis — Tiered Health</title>
+<meta name="description" content="Sinusitis: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">👃 Tiered Health <span>/ Sinusitis</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">👃 Sinusitis</h1>
+  <p class="aka">Also called: sinus infection · rhinosinusitis</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="sinus-viral" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="sinus-congested" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e88d5a"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="mucosa" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4a0a0" stop-opacity="0.4"/><stop offset="100%" stop-color="#c08080" stop-opacity="0.5"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ FACE OUTLINE (coronal view) ═══════════ -->
+
+  <!-- Head outline -->
+  <path d="M130,60 C120,70 115,85 112,100 L105,140 C100,170 100,200 105,230 L108,260 C110,280 115,300 120,315 L128,340 C132,355 135,365 138,375 L140,390 L142,410 C144,430 148,450 155,468 C162,485 172,498 185,510 C195,518 208,524 220,528 C235,532 250,534 265,532 C280,528 295,520 310,508 C320,498 330,485 338,468 C345,450 350,430 352,410 L354,390 L356,375 C360,365 364,355 368,340 L375,315 C380,300 385,280 388,260 L392,230 C395,200 395,170 392,140 L388,100 C385,85 380,70 370,60 C360,52 348,48 335,46 L320,42 C300,38 280,36 260,36 L240,36 C220,36 200,38 185,42 L170,46 C155,50 142,55 130,60 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Eyes -->
+  <ellipse cx="185" cy="215" rx="28" ry="14" fill="#f0f0ec" stroke="#c4b5a0" stroke-width="1.2"/>
+  <ellipse cx="185" cy="215" rx="10" ry="10" fill="#5c5c5c"/>
+  <ellipse cx="185" cy="213" rx="4" ry="4" fill="#fff"/>
+  <ellipse cx="315" cy="215" rx="28" ry="14" fill="#f0f0ec" stroke="#c4b5a0" stroke-width="1.2"/>
+  <ellipse cx="315" cy="215" rx="10" ry="10" fill="#5c5c5c"/>
+  <ellipse cx="315" cy="213" rx="4" ry="4" fill="#fff"/>
+
+  <!-- Eyebrows -->
+  <path d="M148,188 C160,185 175,182 188,185 C200,188 210,192 220,196" fill="none" stroke="#8a7e6e" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M280,196 C290,192 300,188 312,185 C325,182 340,185 352,188" fill="none" stroke="#8a7e6e" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Nose outline (bridge + nostrils) -->
+  <path d="M215,230 C210,250 208,270 210,290 C212,300 215,310 220,318 C225,325 232,330 240,332 C248,330 255,325 260,318 C265,310 268,300 270,290 C272,270 270,250 265,230" fill="none" stroke="#c4b5a0" stroke-width="1.2"/>
+  <!-- Nostrils -->
+  <path d="M195,325 C200,332 210,338 220,340 C225,340 230,338 233,334" fill="none" stroke="#c4b5a0" stroke-width="1" stroke-linecap="round"/>
+  <path d="M247,334 C250,338 255,340 260,340 C270,338 280,332 285,325" fill="none" stroke="#c4b5a0" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Mouth -->
+  <path d="M190,400 C210,418 230,425 250,425 C270,425 290,418 310,400" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ═══════════ SKULL BONE (ghosted) ═══════════ -->
+  <path d="M170,90 C165,100 162,120 160,145 L158,170 C156,190 155,205 158,220 L162,245 C165,260 170,270 178,278 L185,285 L192,290 L200,294 L210,296 L218,298 L225,298"
+        fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.35"/>
+  <path d="M330,90 C335,100 338,120 340,145 L342,170 C344,190 345,205 342,220 L338,245 C335,260 330,270 322,278 L315,285 L308,290 L300,294 L290,296 L282,298 L275,298"
+        fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.35"/>
+
+  <!-- ═══════════ FRONTAL SINUSES ═══════════ -->
+  <!-- Normal frontal sinus (left) -->
+  <path d="M165,115 C160,120 158,130 160,140 C162,148 168,152 175,152 L195,150 C200,148 204,144 205,138 C206,130 204,122 200,116 C195,110 185,108 175,110 C170,112 167,114 165,115 Z"
+        fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.6"/>
+  <text x="180" y="120" fill="#b8860b" font-size="8" font-weight="600" text-anchor="middle">Frontal</text>
+  <text x="180" y="130" fill="#b8860b" font-size="8" font-weight="600" text-anchor="middle">Sinus</text>
+
+  <!-- Congested frontal sinus (right) -->
+  <path d="M295,115 C290,110 285,108 278,108 L268,110 C262,114 258,120 258,128 C258,138 262,145 268,150 L282,152 C290,150 296,146 300,140 C303,132 302,122 298,116 Z"
+        fill="url(#sinus-congested)" stroke="#a03020" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- ═══════════ ETHMOID SINUSES ═══════════ -->
+  <!-- Normal ethmoid (left) -->
+  <ellipse cx="178" cy="225" rx="16" ry="22" fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.5"/>
+  <text x="178" y="222" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle">Ethmoid</text>
+
+  <!-- Congested ethmoid (right) -->
+  <ellipse cx="322" cy="225" rx="16" ry="22" fill="url(#sinus-congested)" stroke="#a03020" stroke-width="1.5" opacity="0.65"/>
+
+  <!-- Ethmoid cell detail (left - honeycomb pattern) -->
+  <path d="M170,235 L174,230 L178,235 L174,240 Z" fill="#d4a030" opacity="0.3"/>
+  <path d="M180,220 L184,215 L188,220 L184,225 Z" fill="#d4a030" opacity="0.3"/>
+
+  <!-- ═══════════ MAXILLARY SINUSES ═══════════ -->
+  <!-- Normal maxillary sinus (left) -->
+  <path d="M140,260 C135,270 132,285 132,300 C132,315 135,328 142,338 C148,345 158,348 168,346 L178,342 C185,336 190,326 192,315 C193,302 191,288 186,276 C182,266 175,258 166,255 C155,252 146,254 140,260 Z"
+        fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.5"/>
+  <text x="162" y="272" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle">Maxillary</text>
+  <text x="162" y="282" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle">Sinus</text>
+
+  <!-- Congested maxillary sinus (right) -->
+  <path d="M308,255 C300,252 290,254 282,260 C275,266 270,276 268,288 C266,302 268,318 274,330 C280,340 290,346 300,346 L312,344 C322,340 330,332 335,322 C338,310 338,296 334,282 C330,270 322,260 314,256 Z"
+        fill="url(#sinus-congested)" stroke="#a03020" stroke-width="1.5" opacity="0.65"/>
+
+  <!-- Fluid level in congested maxillary sinus -->
+  <path d="M274,318 C278,328 288,334 300,336 L312,334 C320,330 326,324 330,316 L325,320 C320,326 312,330 302,332 C290,332 280,328 274,318 Z"
+        fill="#a03020" opacity="0.3"/>
+
+  <!-- ═══════════ SPHENOID SINUS (behind, shown as ghosted) ═══════════ -->
+  <ellipse cx="250" cy="280" rx="18" ry="14" fill="url(#sinus-viral)" stroke="#d4a030" stroke-width="1" opacity="0.35" stroke-dasharray="4,3"/>
+  <text x="250" y="283" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle" opacity="0.6">Sphenoid</text>
+
+  <!-- ═══════════ NASAL CAVITY ═══════════ -->
+  <path d="M230,190 C226,200 224,215 224,230 C224,245 226,260 230,275 C234,285 238,290 242,292 L248,293 L252,292 C256,290 260,285 264,275 C268,260 270,245 270,230 C270,215 268,200 265,190 L260,180 C255,175 250,172 250,172 C250,172 245,175 240,180 Z"
+        fill="#d4a0a0" opacity="0.25" stroke="#c4b5a0" stroke-width="1"/>
+
+  <!-- Nasal septum -->
+  <line x1="250" y1="172" x2="250" y2="293" stroke="#c4b5a0" stroke-width="2" opacity="0.5"/>
+
+  <!-- Inferior turbinates -->
+  <path d="M232,265 C228,268 225,272 224,276 C225,280 228,282 232,282" fill="none" stroke="#c08080" stroke-width="2" opacity="0.5"/>
+  <path d="M268,265 C272,268 275,272 276,276 C275,280 272,282 268,282" fill="none" stroke="#c08080" stroke-width="2" opacity="0.5"/>
+
+  <!-- Middle turbinates -->
+  <path d="M228,235 C225,238 223,242 223,246 C224,250 226,252 230,252" fill="none" stroke="#c08080" stroke-width="2" opacity="0.4"/>
+  <path d="M272,235 C275,238 277,242 277,246 C276,250 274,252 270,252" fill="none" stroke="#c08080" stroke-width="2" opacity="0.4"/>
+
+  <!-- ═══════════ INFLAMMATION MARKERS ═══════════ -->
+  <!-- Swelling lines on congested side -->
+  <path d="M262,155 C265,160 268,168 268,175" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <path d="M338,240 C342,245 344,252 344,260" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <path d="M338,290 C342,296 344,304 344,312" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Pressure arrows (congested side) -->
+  <path d="M340,155 L348,155" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+  <path d="M340,340 L348,340" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+
+  <!-- Label: Inflammation -->
+  <text x="354" y="152" fill="#c0392b" font-size="9" font-weight="600">Inflammation</text>
+  <text x="354" y="164" fill="#c0392b" font-size="9" font-weight="600">&amp; swelling</text>
+
+  <!-- ═══════════ LABELS ═══════════ -->
+  <!-- Left side labels (normal) -->
+  <text x="58" y="115" fill="#8a7e6e" font-size="9" font-weight="600">Frontal</text>
+  <text x="58" y="127" fill="#8a7e6e" font-size="9" font-weight="600">Sinus</text>
+  <line x1="108" y1="121" x2="158" y2="121" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <text x="58" y="225" fill="#8a7e6e" font-size="9" font-weight="600">Ethmoid</text>
+  <text x="58" y="237" fill="#8a7e6e" font-size="9" font-weight="600">Sinus</text>
+  <line x1="112" y1="228" x2="162" y2="228" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <text x="40" y="300" fill="#8a7e6e" font-size="9" font-weight="600">Maxillary</text>
+  <text x="40" y="312" fill="#8a7e6e" font-size="9" font-weight="600">Sinus</text>
+  <line x1="95" y1="306" x2="133" y2="306" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <text x="50" y="380" fill="#8a7e6e" font-size="9" font-weight="600">Nasal</text>
+  <text x="50" y="392" fill="#8a7e6e" font-size="9" font-weight="600">Cavity</text>
+  <line x1="95" y1="386" x2="220" y2="386" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Sinus opening (ostium) label -->
+  <circle cx="215" cy="298" r="3" fill="none" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="40" y="475" fill="#8a7e6e" font-size="8">Sinus Ostium</text>
+  <text x="40" y="487" fill="#8a7e6e" font-size="8">(drainage opening)</text>
+  <line x1="108" y1="481" x2="212" y2="300" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- ═══════════ COMPARISON BOXES ═══════════ -->
+  <line x1="30" y1="525" x2="470" y2="525" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Normal sinus panel -->
+  <g transform="translate(40, 535)">
+    <rect x="0" y="0" width="200" height="55" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="100" y="18" fill="#6a9e6a" font-size="10" font-weight="600" text-anchor="middle">✓ Healthy Sinus</text>
+    <text x="100" y="34" fill="#8a7e6e" font-size="8" text-anchor="middle">Thin mucous lining, open ostium,</text>
+    <text x="100" y="46" fill="#8a7e6e" font-size="8" text-anchor="middle">normal mucus drainage, clear airway</text>
+  </g>
+
+  <!-- Sinusitis panel -->
+  <g transform="translate(260, 535)">
+    <rect x="0" y="0" width="200" height="55" rx="6" fill="var(--surface, #fff)" stroke="#c0392b" stroke-width="1" opacity="0.9"/>
+    <text x="100" y="18" fill="#c0392b" font-size="10" font-weight="600" text-anchor="middle">✗ Sinusitis</text>
+    <text x="100" y="34" fill="#8a7e6e" font-size="8" text-anchor="middle">Swollen lining, blocked ostium,</text>
+    <text x="100" y="46" fill="#8a7e6e" font-size="8" text-anchor="middle">trapped mucus, pressure &amp; pain</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="14" font-weight="700" text-anchor="middle">Paranasal Sinuses — Coronal View</text>
+  <text x="250" y="40" fill="#8a7e6e" font-size="10" text-anchor="middle">Left: healthy · Right: inflamed (sinusitis)</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is sinusitis?</h4>
+<p>The air-filled pockets in your face — your sinuses — are swollen and inflamed. This traps mucus, making your face feel full and sore. Sinusitis usually starts from a cold virus. Most people get better without antibiotics in 7–10 days.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Flush your nose with saline.</strong> A neti pot or saline spray washes out mucus and germs. Use distilled or boiled (cooled) water only.</li>
+<li><strong>Drink lots of fluids.</strong> Water and warm tea thin the mucus so it drains better.</li>
+<li><strong>Rest and sleep with your head elevated.</strong> Propping up pillows helps your sinuses drain while you sleep.</li>
+<li><strong>Try a decongestant spray</strong> (oxymetazoline) — but stop after 3 days or it backfires and makes congestion worse.</li>
+<li><strong>Take acetaminophen or ibuprofen</strong> for face pain and headache.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>Your eye is swollen shut, red, or painful to move</li>
+<li>You have sudden vision changes or double vision</li>
+<li>You can't bend your chin to your chest (stiff neck)</li>
+<li>You have a high fever (over 39°C / 102°F) with severe headache</li>
+<li>You feel confused or unusually sleepy</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>The vast majority of sinusitis (90%+) is caused by viruses, not bacteria. Antibiotics won't help viral sinusitis — they're only needed if you're still sick after 10 days or you got better then suddenly got worse again. Your body can handle this on its own with simple home care.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your paranasal sinuses are four pairs of air-filled cavities in the bones of your face and skull: the <strong>maxillary</strong> (behind your cheekbones), <strong>frontal</strong> (above your eyebrows), <strong>ethmoid</strong> (between your eyes), and <strong>sphenoid</strong> (deep behind your nose). They're lined with a mucous membrane that normally produces a thin layer of mucus that traps particles and drains through small openings (ostia) into your nasal cavity.</p>
+<p>When a virus (or, less commonly, bacteria) infects this lining, the membrane swells. The swelling blocks the narrow sinus openings — each about 2–3 mm wide — trapping mucus inside. Trapped mucus becomes a perfect breeding ground for bacteria and creates pressure inside the sinus cavity. This pressure is what causes the hallmark pain and tenderness.</p>
+<p>The most common trigger is the <strong>rhinovirus</strong> (the common cold). About 1 in 30 colds leads to acute sinusitis. Allergies, dental infections, smoking, and structural issues (deviated septum, nasal polyps) increase your risk by promoting ongoing inflammation or obstructing drainage.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Facial pressure and pain:</strong> worse when you lean forward. Usually over the cheekbones (maxillary) or above the eyes (frontal). May feel like a toothache — the maxillary sinus roots sit right above your upper teeth.</li>
+<li><strong>Nasal congestion and discharge:</strong> thick, colored (yellow/green) mucus. <em>Green mucus does not mean bacterial infection</em> — it's just an immune cell byproduct that happens in both viral and bacterial cases.</li>
+<li><strong>Headache:</strong> a dull, pressure-type headache, often worse in the morning after lying flat all night.</li>
+<li><strong>Loss of smell (hyposmia):</strong> from swelling blocking the olfactory cleft.</li>
+<li><strong>Cough:</strong> especially at night, when postnasal drip triggers your cough reflex.</li>
+<li><strong>Fever:</strong> low-grade (under 38.5°C / 101°F) in viral cases; higher fever suggests bacterial involvement.</li>
+<li><strong>Fatigue and malaise:</strong> your immune system is working overtime.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Saline nasal irrigation:</strong> This is the single most effective home treatment. A 2012 Cochrane review found strong evidence that daily saline irrigation reduces symptoms and speeds recovery. Use a neti pot or squeeze bottle with 240 mL distilled (or boiled-then-cooled) water mixed with 1 teaspoon of non-iodized salt and a pinch of baking soda. Clean the device after every use.</li>
+<li><strong>Intranasal corticosteroids:</strong> Sprays like fluticasone (Flonase) or mometasone (Nasonex) reduce inflammation in the sinus openings. They work best when started early and used consistently. They're the first-line medical treatment recommended by the AAO-HNS guideline.</li>
+<li><strong>Decongestants:</strong> Oral (pseudoephedrine) or topical (oxymetazoline). Topical works faster but — critical — <strong>do not use for more than 3 days</strong>. Longer use causes rebound congestion (rhinitis medicamentosa) that's worse than the original problem. Oral decongestants don't cause rebound but may raise blood pressure and heart rate.</li>
+<li><strong>Analgesics:</strong> Acetaminophen or ibuprofen for pain and fever.</li>
+<li><strong>Antibiotics:</strong> Only if bacterial sinusitis is diagnosed. The AAO-HNS guideline recommends watchful waiting for 7 days in mild cases before considering antibiotics. When prescribed, amoxicillin-clavulanate is first-line for 5–7 days in adults.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't ask for antibiotics unnecessarily — they don't work for viral sinusitis and contribute to antibiotic resistance, which is a serious public health problem.</li>
+<li>Don't use decongestant spray for more than 3 days in a row. The rebound congestion is miserable.</li>
+<li>Don't use antihistamines unless you have proven allergies — they dry up mucus, making it thicker and harder to drain.</li>
+<li>Don't fly if you can avoid it — pressure changes during takeoff and landing can be extremely painful with blocked sinuses.</li>
+<li>Don't smoke or vape — smoke irritates the sinus lining and delays healing.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Cold symptoms begin: runny nose, sneezing, mild sore throat. Congestion and facial pressure typically start around day 3.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 4–7</div>
+<div class="tl-text">Peak sinus symptoms. Facial pain, thick nasal discharge, and headache are worst here. Start saline irrigation and intranasal steroids. Fever, if present, is usually low-grade.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 7–10</div>
+<div class="tl-text">Viral sinusitis starts improving. Symptoms should be noticeably better by day 10. If you got better then suddenly got worse with new fever — this is the "double-sickening" pattern that suggests bacterial superinfection.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 10–14</div>
+<div class="tl-text">If symptoms are still present and severe, or if the double-sickening pattern occurred, see a doctor. They may diagnose acute bacterial rhinosinusitis and prescribe a 5–7 day course of antibiotics.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">2–4 weeks</div>
+<div class="tl-text">Most people are fully recovered. A lingering cough or mild congestion can persist for a few more weeks as the sinus lining heals. If symptoms last beyond 4 weeks, you may have subacute or chronic sinusitis.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Acute rhinosinusitis is an inflammatory condition of the sinonasal mucosa involving the nasal cavity and at least one paranasal sinus. The initiating event is typically a <strong>viral upper respiratory tract infection</strong> — most commonly rhinovirus, influenza virus, parainfluenza virus, respiratory syncytial virus, or coronavirus. The virus infects the ciliated columnar epithelial cells of the sinonasal mucosa, triggering an innate immune response via <strong>toll-like receptors (TLR3, TLR7)</strong> and <strong>RIG-I-like receptors</strong>, which activate NF-κB and IRF signaling cascades. This leads to the release of pro-inflammatory cytokines — IL-1β, IL-6, TNF-α, and IL-8 (CXCL8) — which recruit neutrophils and cause vasodilation with increased capillary permeability.</p>
+<p>The resulting <strong>mucosal edema</strong> obstructs the sinus ostia (the narrow 2–3 mm diameter drainage pathways). Obstruction creates a closed environment with <strong>mucociliary stasis</strong> — the ciliated epithelial cells can no longer clear mucus against the pressure gradient. Oxygen within the sinus cavity is consumed by resident immune cells, creating a <strong>hypoxic, acidic environment (pH 6.5–7.0)</strong> that impairs neutrophil phagocytic function and ciliary beat frequency.</p>
+<p>In approximately <strong>0.5–2%</strong> of viral URIs, bacterial superinfection occurs. The most common pathogens in acute bacterial rhinosinusitis (ABRS) are <strong>Streptococcus pneumoniae (30–40%)</strong>, <strong>Haemophilus influenzae (20–30%)</strong>, <strong>Moraxella catarrhalis (10–15%)</strong>, and <strong>Streptococcus pyogenes (5–10%)</strong>. Anaerobic organisms are more common in chronic sinusitis or odontogenic sources. The diagnosis of ABRS rests not on culture but on clinical criteria — either persistent symptoms beyond 10 days without improvement, severe symptoms (fever ≥39°C + purulent discharge + facial pain for 3–4 consecutive days), or a double-sickening (worsening) pattern.</p>
+<p><strong>Chronic rhinosinusitis (CRS)</strong> — symptoms lasting ≥12 weeks — represents a different disease process. CRS is subclassified into CRSwNP (with nasal polyps) and CRSsNP (without polyps). The pathophysiology involves a dysregulated immune response with eosinophilic inflammation, type 2 cytokine skewing (IL-4, IL-5, IL-13), tissue remodeling, and biofilm formation by bacteria such as <em>Staphylococcus aureus</em>. CRS is not simply acute sinusitis that didn't resolve.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Viral URI (common cold):</strong> Symptoms peak at 1–3 days and improve by day 7–10. Facial pressure is mild or absent. Sore throat and cough are more prominent. Differentiating viral from bacterial rhinosinusitis is the most important clinical challenge — and guidelines emphasize that time course, not mucus color, is the key.</li>
+<li><strong>Allergic rhinitis:</strong> Itchy, watery eyes, sneezing paroxysms, clear thin discharge. Symptoms are seasonal or triggered by specific allergens. No fever or facial pressure. Eosinophils on nasal smear.</li>
+<li><strong>Migraine (with autonomic symptoms):</strong> Unilateral throbbing headache with nasal congestion, rhinorrhea, and lacrimation on the same side (cranial autonomic symptoms). The key distinction: migraine pain is pulsatile and episodic, sinusitis pain is constant pressure. Up to 40% of patients presenting to ENT with "sinus headache" actually have migraine.</li>
+<li><strong>Odontogenic (dental) infection:</strong> Maxillary sinusitis from an infected upper molar or premolar. The roots of the maxillary teeth project into the floor of the maxillary sinus. Unilateral foul-smelling discharge, unilateral pain, and a recent dental history are clues. Requires dental evaluation and treatment of the source.</li>
+<li><strong>Invasive fungal sinusitis:</strong> A medical emergency seen almost exclusively in immunocompromised patients (uncontrolled diabetes with ketoacidosis, neutropenia, transplant recipients). Caused by Mucorales or Aspergillus species. Presents with fever, facial pain, black necrotic eschar on the turbinates. Tissue invasion can extend to the orbit and brain within hours. Mortality >50% without urgent surgical debridement.</li>
+<li><strong>Nasal polyps:</strong> Bilateral translucent grape-like masses in the nasal cavity. Cause chronic congestion, anosmia, and facial pressure. Associated with asthma, NSAID-exacerbated respiratory disease (AERD/N-ERD), and cystic fibrosis. Seen on nasal endoscopy.</li>
+<li><strong>Cerebrospinal fluid (CSF) rhinorrhea:</strong> Clear, watery unilateral discharge that tests positive for beta-2 transferrin. Usually follows head trauma or skull base surgery. The fluid is thin and salty — not thick like sinus mucus.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical history and exam</td>
+<td>Key criteria: symptom duration >10 days, double-sickening, severe presentation. Nasal endoscopy may show purulence at the middle meatus.</td>
+<td>Every patient — this alone is sufficient for diagnosis in most cases</td>
+</tr>
+<tr>
+<td>Anterior rhinoscopy (speculum exam)</td>
+<td>Mucosal edema, discharge color/consistency, polyp visualization</td>
+<td>Quick bedside assessment</td>
+</tr>
+<tr>
+<td>Nasal endoscopy (rigid or flexible scope)</td>
+<td>Purulence from the middle meatus or sphenoethmoidal recess (gold standard for confirming sinus origin). Identifies polyps, structural abnormalities.</td>
+<td>Patients with recurrent or chronic symptoms, uncertain diagnosis, or who fail initial management</td>
+</tr>
+<tr>
+<td>CT sinuses (non-contrast, limited coronal)</td>
+<td>Mucosal thickening (>4 mm), air-fluid levels, complete sinus opacification, bony erosion. Incidental sinus findings are common — up to 40% of asymptomatic people have mucosal thickening on CT.</td>
+<td>NOT for uncomplicated acute sinusitis (AAO-HNS strongly recommends against). Reserve for: suspected complications, chronic sinusitis, pre-surgical planning, or atypical presentations</td>
+</tr>
+<tr>
+<td>Ultrasonography of sinuses</td>
+<td>Fluid levels or mucosal thickening in maxillary/frontal sinuses</td>
+<td>Rarely used in clinical practice — operator-dependent and less sensitive than CT</td>
+</tr>
+<tr>
+<td>Sinus aspiration / culture (maxillary antral tap)</td>
+<td>Identifies specific bacterial pathogen and sensitivities</td>
+<td>Reserved for: immunocompromised patients, treatment failure after two antibiotic courses, orbital/intracranial complications, or nosocomial sinusitis</td>
+</tr>
+<tr>
+<td>Allergy testing (skin prick or specific IgE)</td>
+<td>Identifies atopic triggers</td>
+<td>Recurrent acute sinusitis or chronic rhinosinusitis with suspected allergic component</td>
+</tr>
+<tr>
+<td>Sweat chloride test / CFTR genetic testing</td>
+<td>Elevated chloride (>60 mmol/L) or CFTR mutation</td>
+<td>CRS in a child or young adult, especially with nasal polyps, recurrent pneumonia, or male infertility</td>
+</tr>
+<tr>
+<td>ESR / CRP</td>
+<td>Markers of systemic inflammation. CRP >10 mg/L is more suggestive of bacterial than viral illness</td>
+<td>When distinguishing viral from bacterial disease in equivocal cases</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Clinical guidelines:</strong> The AAO-HNS Clinical Practice Guideline: Adult Sinusitis (Rosenfeld et al., 2015; updated 2025) is the most widely adopted North American guideline. It strongly recommends saline irrigation and intranasal corticosteroids as first-line management. It recommends against imaging for uncomplicated acute sinusitis. It recommends watchful waiting (7 days) before considering antibiotics for mild cases. The IDSA guideline (Chow et al., 2012) uses stricter criteria for ABRS diagnosis (persistent symptoms ≥10 days, or severe onset, or double worsening) and recommends amoxicillin-clavulanate as first-line therapy. The EPOS2020 guideline (Fokkens et al., 2020) takes a similar approach with a strong emphasis on symptom duration and severity to guide antibiotic prescribing.</p>
+<p><strong>Antibiotics for acute sinusitis:</strong> The Cochrane review by Lemiengre et al. (2012, update 2018) analyzed 15 RCTs (n=3,273) and found that antibiotics provide a modest benefit — number needed to treat (NNT) for cure at 7–15 days was 18. Compared to 1 in 18 patients benefiting, the number needed to harm from adverse effects was 8. In other words, antibiotics cause more side effects than they cure in the average patient with acute sinusitis. Subgroup analysis showed greater benefit in patients with confirmed bacterial infection (purulence on endoscopy + symptoms >10 days).</p>
+<p><strong>Intranasal corticosteroids:</strong> A Cochrane review by Zalmanovici Trestioreanu & Yaphe (2013) included 6 RCTs (n=2,523) and found that intranasal corticosteroids increased the rate of symptom resolution or improvement compared to placebo (RR 1.11, 95% CI 1.04–1.18). The effect was modest but consistent, with no significant adverse effects. They are recommended as first-line medical therapy by both AAO-HNS and EPOS guidelines.</p>
+<p><strong>Saline irrigation:</strong> A Cochrane review by Harvey et al. (2007) found that saline irrigation improves symptom scores in chronic sinusitis and is associated with improved quality of life. For acute sinusitis, a 2012 meta-analysis found a significant reduction in symptom severity with daily saline irrigation. It is the most widely recommended non-pharmacological intervention.</p>
+<p><strong>Decongestants:</strong> A systematic review by Hox et al. (2010) found limited evidence from small trials supporting the use of topical decongestants for symptom relief in acute sinusitis. However, the risk of rhinitis medicamentosa with prolonged use is well-documented. The AAO-HNS guideline suggests a max of 3 days for topical decongestants. No high-quality evidence supports oral decongestants specifically for sinusitis — they are an adjunctive option for nasal congestion.</p>
+<h4>Surgical options (if indicated)</h4>
+<p>Surgery is rarely indicated for acute bacterial rhinosinusitis. Indications for surgical management include:</p>
+<ul>
+<li><strong>Orbital or intracranial complication:</strong> Abscess (subperiosteal, orbital, epidural, subdural, brain) requiring surgical drainage alongside intravenous antibiotics. This is an emergency — the most common route of spread is through the lamina papyracea (the thin bone separating the ethmoid sinus from the orbit).</li>
+<li><strong>Acute bacterial rhinosinusitis refractory to maximal medical therapy:</strong> Failure of two courses of guideline-directed antibiotics in a patient with CT-confirmed sinusitis. Functional endoscopic sinus surgery (FESS) opens the obstructed sinus ostia and drains purulent material.</li>
+<li><strong>Chronic rhinosinusitis (CRS) after failed medical therapy:</strong> FESS with ethmoidectomy, maxillary antrostomy, and/or frontal sinusotomy after 8–12 weeks of maximal medical therapy (intranasal corticosteroids, saline irrigation, ± oral corticosteroids, ± antibiotics). FESS improves quality of life in CRS patients — a multicenter RCT (Smith et al., 2010) showed clinically meaningful improvement in SNOT-22 scores at 6 months (mean reduction 28 points vs. 12 points with continued medical therapy alone).</li>
+<li><strong>Invasive fungal sinusitis:</strong> Urgent endoscopic debridement of all necrotic tissue combined with systemic antifungal therapy.</li>
+<li><strong>Antrochoanal polyp:</strong> A solitary polyp originating from the maxillary sinus and extending into the choana. Requires endoscopic removal of both the polyp and its antral origin.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>Can biomarkers (nasal nitrite, IL-8, CRP, procalcitonin) accurately distinguish viral from bacterial sinusitis at the point of care? Procalcitonin-guided algorithms show promise in respiratory infections broadly, but specific data for sinusitis is limited.</li>
+<li>What is the optimal duration of antibiotic therapy for ABRS? Current guidelines recommend 5–7 days (AAO-HNS) to 5–10 days (IDSA), but shorter courses may be equally effective with fewer adverse effects and lower resistance pressure.</li>
+<li>Does saline irrigation prevent recurrence in patients with recurrent acute sinusitis? Biologically plausible, but prospective data are lacking.</li>
+<li>What is the role of the sinonasal microbiome in the transition from acute to chronic rhinosinusitis? Loss of microbial diversity (dysbiosis) may be a driver, but causal evidence is missing.</li>
+<li>Are biologic therapies (dupilumab, omalizumab, mepolizumab) effective for CRS without polyps? They show clear benefit for CRSwNP (dupilumab is FDA-approved), but evidence for CRSsNP is mixed and ongoing.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Rosenfeld RM et al. "Clinical practice guideline (update): adult sinusitis." <em>Otolaryngol Head Neck Surg</em> 2015;152(2 Suppl):S1–S39. PMID: 25832968. (AAO-HNS guideline — the primary North American clinical practice guideline for adult sinusitis.)</li>
+<li>Chow AW et al. "IDSA clinical practice guideline for acute bacterial rhinosinusitis in children and adults." <em>Clin Infect Dis</em> 2012;54(8):e72–e112. PMID: 22438350. (IDSA guideline focusing on bacterial infection criteria and antibiotic management.)</li>
+<li>Fokkens WJ et al. "European Position Paper on Rhinosinusitis and Nasal Polyps 2020." <em>Rhinology</em> 2020;58(Suppl S29):1–464. (EPOS2020 — comprehensive European guideline covering diagnosis, treatment, and prevention.)</li>
+<li>Lemiengre MB et al. "Antibiotics for acute rhinosinusitis in adults." <em>Cochrane Database Syst Rev</em> 2012;(12):CD006089. (Meta-analysis of 15 RCTs showing NNT 18, NNH 8 for antibiotics in acute sinusitis.)</li>
+<li>Zalmanovici Trestioreanu A, Yaphe J. "Intranasal steroids for acute sinusitis." <em>Cochrane Database Syst Rev</em> 2013;(12):CD005149. (Meta-analysis of 6 RCTs supporting intranasal corticosteroids as first-line therapy.)</li>
+<li>Harvey R et al. "Nasal saline irrigations for the symptoms of chronic rhinosinusitis." <em>Cochrane Database Syst Rev</em> 2007;(3):CD006394. (Evidence supporting saline irrigation for symptom improvement.)</li>
+<li>Smith TL et al. "Medical therapy vs surgery for chronic rhinosinusitis: a prospective, multi-institutional study." <em>Int Forum Allergy Rhinol</em> 2011;1(4):235–241. (Multicenter RCT showing FESS improves SNOT-22 scores in CRS.)</li>
+<li>Orlandi RR et al. "International Consensus Statement on Allergy and Rhinology: Rhinosinusitis 2021." <em>Int Forum Allergy Rhinol</em> 2021;11(3):213–739. (Comprehensive international consensus document.)</li>
+<li>DeMuri GP, Wald ER. "Clinical practice. Acute bacterial sinusitis in children." <em>N Engl J Med</em> 2012;367(12):1128–1134. (Pediatric guidelines for ABRS diagnosis and management.)</li>
+<li>Hox V et al. "Systematic review of topical decongestants for acute rhinosinusitis." <em>Rhinology</em> 2010;48(2):129–137. (Limited evidence for topical decongestants with well-documented risk of rhinitis medicamentosa.)</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

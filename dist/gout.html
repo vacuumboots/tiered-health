@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gout — Tiered Health</title>
+<meta name="description" content="Gout: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🦶 Tiered Health <span>/ Gout</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🦶 Gout</h1>
+  <p class="aka">Also called: gouty arthritis · podagra</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="joint" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5ece0"/><stop offset="100%" stop-color="#e8dccc"/></linearGradient>
+    <linearGradient id="crystal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8e8f0"/><stop offset="100%" stop-color="#c8c8d8"/></linearGradient>
+    <linearGradient id="inflamed" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5a0a0"/><stop offset="100%" stop-color="#d06060"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Gout — First Metatarsophalangeal (MTP) Joint</text>
+
+  <!-- ═══════ Foot outline (dorsal/medial view — big toe side) ═══════ -->
+
+  <!-- Foot silhouette -->
+  <path d="M100,380 C80,370 65,350 58,330 C50,305 48,280 52,260 C55,245 60,230 68,220 L80,205 C88,195 95,190 100,185 L108,178 C115,170 120,160 122,150 L124,140 C125,130 125,120 124,110 L122,95 C120,82 118,72 115,65 C112,58 108,52 100,48 C92,44 84,42 76,42 C68,42 60,45 54,50 C48,55 44,62 42,72 C40,85 42,100 45,112 C48,122 52,130 55,135 C58,140 60,142 62,142"
+        fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Foot/leg outline (lower leg + foot, medial view) -->
+  <path d="M210,30 C200,30 190,40 185,58 L180,80 L178,120 L176,160 L175,200 L174,230 L174,260 L175,290 L178,320 L182,350 C185,370 190,385 195,395 L200,405 C205,415 210,420 218,422 L230,425 C245,428 260,428 275,425 C290,422 300,415 308,405 C315,395 320,380 322,365 L324,345 C325,330 324,315 322,300 L318,275 C315,250 312,225 310,200 C308,175 307,150 306,125 C305,100 305,80 306,65 C307,50 310,40 315,35"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Toe outline (big toe/great toe) -->
+  <path d="M218,422 C225,435 230,448 232,462 C234,475 233,485 228,492 C223,498 215,500 205,498 C195,495 188,488 184,478 C180,465 180,450 185,438 C190,428 200,422 218,422 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Toes 2-5 (simplified) -->
+  <path d="M275,425 C285,432 293,442 298,455 C302,465 300,475 295,480 C288,485 280,482 275,475 C270,465 268,450 270,440 C272,432 274,428 275,425 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+  <path d="M295,420 C305,425 312,435 316,448 C318,458 315,468 310,472 C303,476 296,472 292,462 C288,450 288,436 292,427 C294,423 295,421 295,420 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1" opacity="0.5"/>
+
+  <!-- ═══════ Bones ═══════ -->
+
+  <!-- Proximal phalanx (big toe) -->
+  <path d="M206,400 C200,395 195,395 190,398 C185,402 182,410 180,420 L178,435 C177,442 178,448 182,452 C186,456 192,456 198,454 L208,450 C215,446 220,440 222,432 C224,424 224,416 220,410 C216,404 212,400 206,400 Z"
+        fill="url(#bone)" stroke="#c4b5a0" stroke-width="1" opacity="0.75"/>
+
+  <!-- First metatarsal head (MTP joint, where gout strikes) -->
+  <path d="M200,370 C192,365 185,365 180,370 C175,375 172,383 172,392 C173,400 176,406 182,410 C188,414 196,416 206,416 C215,416 222,414 228,410 C234,406 237,400 238,392 C239,384 237,376 232,370 C227,364 220,360 212,358 C204,357 196,358 200,370 Z"
+        fill="url(#bone)" stroke="#c4b5a0" stroke-width="1" opacity="0.75"/>
+
+  <!-- First metatarsal shaft -->
+  <path d="M200,370 C203,360 205,345 207,330 L210,310 C212,295 215,280 218,265 L222,248"
+        fill="none" stroke="url(#bone)" stroke-width="14" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Cuneiform / tarsal bones -->
+  <path d="M215,245 C210,240 205,240 202,245 C198,250 197,258 198,268 L200,278 C203,288 208,295 215,298 L225,300 C235,298 242,294 245,288 C248,280 248,272 245,265 C242,258 236,252 228,248 C220,245 215,245 215,245 Z"
+        fill="url(#bone)" stroke="#c4b5a0" stroke-width="1" opacity="0.5"/>
+
+  <!-- ═══════ Inflamed MTP joint (swollen, red) ═══════ -->
+
+  <!-- Inflammation halo around MTP joint -->
+  <ellipse cx="205" cy="395" rx="35" ry="28" fill="url(#inflamed)" opacity="0.25" filter="url(#soft)"/>
+
+  <!-- Joint outline -->
+  <ellipse cx="205" cy="393" rx="18" ry="10" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.7"/>
+
+  <!-- ═══════ MSU crystals in joint ═══════ -->
+
+  <!-- Needle-shaped crystals (MSU) -->
+  <g opacity="0.9">
+    <rect x="195" y="387" width="3" height="10" rx="1" fill="url(#crystal)" transform="rotate(-20, 196, 392)"/>
+    <rect x="200" y="385" width="2.5" height="9" rx="1" fill="url(#crystal)" transform="rotate(15, 201, 389)"/>
+    <rect x="207" y="388" width="2.5" height="8" rx="1" fill="url(#crystal)" transform="rotate(-35, 208, 392)"/>
+    <rect x="212" y="390" width="2" height="7" rx="1" fill="url(#crystal)" transform="rotate(25, 213, 393)"/>
+    <rect x="190" y="392" width="2" height="7" rx="1" fill="url(#crystal)" transform="rotate(-10, 191, 395)"/>
+    <rect x="203" y="395" width="2" height="6" rx="1" fill="url(#crystal)" transform="rotate(45, 204, 398)"/>
+    <rect x="215" y="395" width="2" height="7" rx="1" fill="url(#crystal)" transform="rotate(-50, 216, 398)"/>
+    <rect x="198" y="398" width="2" height="6" rx="1" fill="url(#crystal)" transform="rotate(8, 199, 401)"/>
+  </g>
+
+  <!-- Crystal label -->
+  <line x1="218" y1="385" x2="280" y2="340" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="282" y="338" fill="#6a6a8a" font-size="9" font-weight="600">MSU crystals</text>
+  <text x="282" y="350" fill="#6a6a8a" font-size="8">(monosodium urate)</text>
+  <text x="282" y="362" fill="#6a6a8a" font-size="8">needle-shaped,</text>
+  <text x="282" y="374" fill="#6a6a8a" font-size="8">negatively birefringent</text>
+
+  <!-- ═══════ Labels ═══════ -->
+
+  <!-- MTP joint label -->
+  <line x1="205" y1="420" x2="205" y2="465" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="148" y="475" fill="#c0392b" font-size="10" font-weight="600">First MTP joint</text>
+  <text x="148" y="488" fill="#c0392b" font-size="9">(podagra — classic site)</text>
+
+  <!-- Bone labels -->
+  <text x="250" y="290" fill="#b0a595" font-size="9" font-style="italic">First metatarsal</text>
+  <text x="155" y="440" fill="#b0a595" font-size="9" font-style="italic">Proximal phalanx</text>
+
+  <!-- Inflammation label -->
+  <line x1="175" y1="383" x2="130" y2="355" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="82" y="348" fill="#c0392b" font-size="9" font-weight="600">Inflammation</text>
+  <text x="82" y="360" fill="#c0392b" font-size="8">redness, swelling,</text>
+  <text x="82" y="372" fill="#c0392b" font-size="8">intense pain</text>
+
+  <!-- Inflammatory cascade (right side) -->
+  <text x="330" y="80" fill="#8a7e6e" font-size="11" font-weight="600">Inflammatory cascade</text>
+  <text x="330" y="98" fill="#8a7e6e" font-size="9">MSU crystals are</text>
+  <text x="330" y="112" fill="#8a7e6e" font-size="9">phagocytosed by</text>
+  <text x="330" y="126" fill="#8a7e6e" font-size="9">macrophages →</text>
+
+  <text x="330" y="145" fill="#8a7e6e" font-size="9">NLRP3 inflammasome</text>
+  <text x="330" y="159" fill="#8a7e6e" font-size="9">activation → IL-1β</text>
+  <text x="330" y="173" fill="#8a7e6e" font-size="9">release → neutrophil</text>
+  <text x="330" y="187" fill="#8a7e6e" font-size="9">recruitment →</text>
+  <text x="330" y="201" fill="#8a7e6e" font-size="9">acute inflammatory</text>
+  <text x="330" y="215" fill="#8a7e6e" font-size="9">flare.</text>
+
+  <!-- ═══════ INSETS: Healthy vs Gout ═══════ -->
+
+  <!-- Separator -->
+  <line x1="30" y1="510" x2="470" y2="510" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Healthy joint -->
+  <g transform="translate(25, 520)">
+    <rect x="0" y="0" width="215" height="68" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="16" fill="#5a7a5a" font-size="9" font-weight="600" text-anchor="middle">Healthy joint</text>
+    <!-- Normal joint space -->
+    <ellipse cx="107" cy="38" rx="16" ry="10" fill="url(#joint)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bone ends -->
+    <path d="M107,48 L100,42" stroke="#c4b5a0" stroke-width="0.5"/>
+    <path d="M107,48 L114,42" stroke="#c4b5a0" stroke-width="0.5"/>
+    <ellipse cx="80" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <ellipse cx="134" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <text x="107" y="60" fill="#8a7e6e" font-size="7" text-anchor="middle">Clear joint space, no crystals</text>
+  </g>
+
+  <!-- Gouty joint -->
+  <g transform="translate(260, 520)">
+    <rect x="0" y="0" width="215" height="68" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="16" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Acute gout flare</text>
+    <!-- Inflamed joint space -->
+    <ellipse cx="107" cy="38" rx="18" ry="12" fill="url(#inflamed)" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+    <!-- Crystals in joint space -->
+    <rect x="99" y="33" width="2" height="7" rx="1" fill="#c8c8d8" transform="rotate(-20, 100, 36)"/>
+    <rect x="107" y="34" width="2" height="6" rx="1" fill="#c8c8d8" transform="rotate(15, 108, 37)"/>
+    <rect x="114" y="35" width="1.5" height="5" rx="1" fill="#c8c8d8" transform="rotate(-30, 115, 37)"/>
+    <!-- Bone ends -->
+    <ellipse cx="75" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <ellipse cx="139" cy="38" rx="12" ry="10" fill="#d8cfc0" stroke="#c4b5a0" stroke-width="0.8"/>
+    <text x="107" y="60" fill="#8a7e6e" font-size="7" text-anchor="middle">Crystals in joint space, inflammation</text>
+  </g>
+
+  <!-- Key -->
+  <g transform="translate(20, 490)">
+    <line x1="0" y1="4" x2="16" y2="4" stroke="#c0392b" stroke-width="2"/>
+    <text x="20" y="8" fill="#8a7e6e" font-size="8">Inflammation / pain</text>
+  </g>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is gout?</h4>
+<p>Gout is a form of arthritis where tiny needle-shaped uric acid crystals build up in your joints — most often the big toe — causing sudden, intense pain, redness, and swelling. It affects about 4% of adults and is linked to diet, genetics, and how your body handles uric acid.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Stop and rest the joint.</strong> Don't walk on it if it hurts. Any movement of the affected joint will make the pain worse.</li>
+<li><strong>Ice it.</strong> Wrap ice in a towel and hold it on the joint for 15–20 minutes every 2–3 hours. This helps with swelling and pain.</li>
+<li><strong>Take an anti-inflammatory.</strong> Ibuprofen (Advil, Motrin) or naproxen (Aleve) work well if you can take them safely. Higher doses work better — follow the package directions for acute pain.</li>
+<li><strong>Elevate the joint.</strong> Prop your foot up on pillows to help drain swelling.</li>
+<li><strong>Call your doctor.</strong> You may need a prescription for stronger medication (colchicine or corticosteroids) to stop the flare quickly.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have a fever with joint pain and swelling (could be a joint infection — septic arthritis)</li>
+<li>The joint is hot, red, and you can't move it at all</li>
+<li>The pain is unbearable despite rest and over-the-counter medication</li>
+<li>You have multiple joints affected at the same time with fever</li>
+<li>You're on chemotherapy and develop sudden joint pain (tumor lysis syndrome)</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Key fact</h5>
+<p>Gout flares usually peak within 12–24 hours and begin to settle on their own within 3–10 days — even without treatment. But untreated gout can lead to permanent joint damage and hard lumps called tophi. The good news: gout is one of the most treatable forms of arthritis. Once you get the right diagnosis, you can stop flares and prevent long-term damage.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Gout is caused by <strong>hyperuricemia</strong> — too much uric acid in your blood. Uric acid is a normal waste product when your body breaks down <strong>purines</strong> (chemical compounds found in many foods and also produced naturally by your cells). Normally, your kidneys filter uric acid out through urine. But if you produce too much or your kidneys can't excrete enough, uric acid builds up.</p>
+<p>When blood uric acid levels stay above about 6.8 mg/dL for long enough, the uric acid can crystallize — forming microscopic, needle-shaped <strong>monosodium urate (MSU) crystals</strong>. These crystals are like tiny shards of glass in your joint. Your immune system recognizes them as foreign and launches an all-out inflammatory attack.</p>
+<p>The big toe joint (first metatarsophalangeal joint) is the classic site — this is called <strong>podagra</strong> (Greek for "foot trap"). Why the toe? It's the coolest part of the body (lower temperature makes crystals more likely to form) and it bears the most weight and pressure. But gout can affect the ankle, knee, wrist, elbow, and fingers too.</p>
+<p>About half of first flares happen in the big toe. Other common sites include the midfoot (tarsal joints), ankle, and knee.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Sudden onset:</strong> Gout is famous for waking people up in the middle of the night with excruciating pain. The joint goes from fine to agony in 6–12 hours.</li>
+<li><strong>Intense pain:</strong> Often described as "someone put a hot poker in my joint" or "like broken glass grinding." Even the weight of a bedsheet on the toe is unbearable.</li>
+<li><strong>Redness and swelling:</strong> The joint looks inflamed — bright red, shiny, swollen, and warm to the touch. The redness can look like cellulitis (a skin infection).</li>
+<li><strong>Peak at 12–24 hours:</strong> The pain is worst about 12–24 hours after it starts, then gradually improves over 3–10 days.</li>
+<li><strong>Desquamation (peeling skin):</strong> As the flare resolves, the skin over the joint may peel — a classic sign that it was gout.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>NSAIDs (ibuprofen, naproxen, indomethacin):</strong> First-line treatment for acute flares. Take at full anti-inflammatory doses (e.g., naproxen 500 mg twice daily, ibuprofen 800 mg three times daily) but only for a few days. Start as soon as you feel a flare coming on. A Cochrane review found strong evidence that NSAIDs are effective for acute gout pain.</li>
+<li><strong>Colchicine:</strong> A prescription medication that works best if taken within 12–24 hours of flare onset. It blocks microtubule assembly in inflammatory cells, stopping the immune response. The modern dosing is much safer: 1.2 mg (two 0.6 mg tablets) at the first sign, then 0.6 mg one hour later. Don't take more — higher doses cause severe diarrhea and vomiting without better pain relief. Avoid or reduce dose if you have kidney disease or take certain other medications.</li>
+<li><strong>Corticosteroids:</strong> Prednisone (oral) or corticosteroid injections into the joint. Used when NSAIDs and colchicine aren't safe (e.g., kidney disease, blood thinners) or don't work. Oral prednisone 30–35 mg daily for 5 days works as well as NSAIDs.</li>
+<li><strong>Urate-lowering therapy (ULT):</strong> For people with recurrent flares (2+ per year), tophi, or joint damage. <strong>Allopurinol</strong> is the first choice — it reduces uric acid production. Start at 100 mg daily and increase slowly over weeks to months, targeting serum urate below 6.0 mg/dL (or below 5.0 mg/dL if tophi are present). <strong>Febuxostat</strong> is an alternative. Starting ULT during a flare is now recommended (it doesn't prolong the flare), and all patients starting ULT should also have flare prophylaxis (low-dose colchicine or NSAIDs) for 3–6 months.</li>
+<li><strong>Lifestyle:</strong> Weight loss if overweight, limit purine-rich foods (red meat, organ meats, shellfish, beer), avoid sugary drinks (especially those sweetened with high-fructose corn syrup — fructose directly raises uric acid), and stay well hydrated with water.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't take low-dose aspirin every day if you have gout — it raises serum uric acid levels and can trigger flares. If you need aspirin for heart protection, talk to your doctor about alternatives.</li>
+<li>Don't drink beer or spirits during a flare — alcohol both dehydrates you and raises uric acid. Wine is less problematic but still best avoided during flares.</li>
+<li>Don't use a heating pad on the joint — heat increases inflammation and makes it worse. Use ice instead.</li>
+<li>Don't suddenly stop your urate-lowering medication — rapid changes in uric acid levels can trigger a flare. This is why ULT is started slowly and increased gradually.</li>
+<li>Don't eat high-purine foods during a flare — save the steak and shrimp for when the joint has settled.</li>
+<li>Don't assume it's "just a sprain" — if you have recurrent episodes of a hot, swollen big toe with no clear injury, it's almost certainly gout, not an injury.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Hour 0–6</div>
+<div class="tl-text">The flare begins, often at night. The joint goes from normal to painful over a few hours. Start NSAIDs or colchicine immediately — the earlier you treat, the faster it resolves.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Hour 12–24</div>
+<div class="tl-text">Peak pain and swelling. The joint is red, hot, and swollen. Even light touch hurts. Continue anti-inflammatory medication. Ice and elevation help.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 2–3</div>
+<div class="tl-text">Pain begins to subside. Swelling and redness start fading. Continue NSAIDs for another 2–3 days. Start gentle range of motion as tolerated.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 4–10</div>
+<div class="tl-text">Most flares resolve within this window. The joint may feel stiff or "creaky." The skin over the joint may peel (desquamation) — a harmless sign that confirms it was gout.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2+</div>
+<div class="tl-text">Joint returns to normal. Now is the time to see your doctor for long-term planning. If this was your first flare and uric acid is very high, discuss starting urate-lowering therapy. If you've had multiple flares, you likely need ULT.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Gout is a <strong>crystal-deposition arthropathy</strong> caused by the precipitation of <strong>monosodium urate (MSU) monohydrate crystals</strong> in synovial fluid and periarticular tissues. The sine qua non of gout is <strong>hyperuricemia</strong> — serum urate concentration exceeding the solubility threshold of ~6.8 mg/dL (~404 μmol/L) at physiological pH and 37°C.</p>
+<p><strong>Uric acid metabolism.</strong> Uric acid is the terminal oxidation product of <strong>purine metabolism</strong> in humans (and other primates lacking the enzyme <strong>uricase</strong>, which degrades urate to allantoin in most mammals). Purines originate from three sources: dietary intake (red meat, organ meats, shellfish), endogenous nucleotide turnover, and de novo purine synthesis. Two enzymes — <strong>hypoxanthine-guanine phosphoribosyltransferase (HGPT)</strong> and <strong>phosphoribosylpyrophosphate (PRPP) synthetase</strong> — are key regulators; their dysfunction causes inherited forms of hyperuricemia (Lesch-Nyhan syndrome, HGPT deficiency).</p>
+<p>Two-thirds of uric acid excretion is renal; one-third is gastrointestinal (gut bacteria degrade urate). In most people with gout, <strong>renal urate underexcretion</strong> is the dominant mechanism (80–90% of cases), driven by impaired function or reduced expression of urate transporters in the proximal tubule — particularly <strong>URAT1 (SLC22A12)</strong> and <strong>GLUT9 (SLC2A9)</strong> which reabsorb urate, and <strong>ABCG2</strong> and <strong>OAT1/OAT3</strong> which secrete it. Genetic variants in these transporters are strongly associated with hyperuricemia. A minority (10–20%) have <strong>urate overproduction</strong>, often dietary or due to high cell turnover (myeloproliferative disorders, psoriasis, chemotherapy).</p>
+<p><strong>Crystal formation and the inflammatory cascade.</strong> When supersaturation persists, MSU crystals nucleate in the joint — favoured by cooler temperature (the distal extremities are ~30–33°C, below the solubility threshold), low pH, low proteoglycan concentration, and repeated joint microtrauma. The crystals are needle-shaped, strongly <strong>negatively birefringent</strong> under polarized light (a key diagnostic feature; they appear yellow when aligned parallel to the compensator axis).</p>
+<p>The crystal triggers an innate immune response via two main pathways:</p>
+<ol>
+<li><strong>NLRP3 inflammasome activation.</strong> MSU crystals are phagocytosed by joint-resident macrophages. Inside the phagolysosome, the crystals cause lysosomal rupture, releasing cathepsin B and reactive oxygen species. This activates the <strong>NLRP3 (NALP3) inflammasome</strong> — a multiprotein complex that cleaves pro-caspase-1 to active caspase-1, which in turn cleaves pro-IL-1β to active <strong>interleukin-1β (IL-1β)</strong>. This is the central molecular event in acute gout (Martinon et al., <em>Nature</em> 2006).</li>
+</ol>
+<ol>
+<li><strong>IL-1β–driven amplification.</strong> IL-1β binds to the IL-1 receptor on synovial fibroblasts and endothelial cells, triggering NF-κB–dependent transcription of chemokines (CXCL8/IL-8, CCL2/MCP-1) and adhesion molecules (E-selectin, ICAM-1). This recruits massive numbers of <strong>neutrophils</strong> into the joint space — the hallmark of an acute gout flare. Neutrophils phagocytose MSU crystals and release proteases, reactive oxygen species, and additional pro-inflammatory mediators, amplifying tissue damage and pain.</li>
+</ol>
+<p>The flare is self-limiting — within 7–10 days, the inflammatory response resolves through several mechanisms: neutrophil extracellular trap (NET) formation, macrophage switching from pro-inflammatory (M1) to anti-inflammatory (M2) phenotype, and crystal coating by apolipoprotein B which reduces surface reactivity.</p>
+<p><strong>Tophi and chronic gout.</strong> If hyperuricemia persists for years, MSU crystals aggregate into macroscopic deposits called <strong>tophi</strong> — chalky white, nodular collections of crystalline urate surrounded by a foreign-body granulomatous response (giant cells, epithelioid histiocytes, fibrosis). Tophi erode bone, destroy cartilage, and can cause chronic pain, deformity, and functional impairment. They can also deposit in soft tissues (olecranon bursa, Achilles tendon, ear helix) and rarely in organs (kidney, heart valves).</p>
+<p><strong>Renal implications.</strong> Chronic hyperuricemia can cause <strong>urate nephropathy</strong> (crystal deposition in the medullary interstitium) and <strong>urolithiasis</strong> (uric acid kidney stones, accounting for 10–15% of all kidney stones). Acute urate nephropathy occurs in tumor lysis syndrome.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Septic arthritis:</strong> The critical mimic. A hot, swollen, red joint with fever, inability to bear weight, and systemic illness. Requires urgent joint aspiration — if the Gram stain shows bacteria and culture is positive, it's septic until proven otherwise. Gout and septic arthritis can coexist (rare but reported). Never assume a hot swollen joint is gout without aspiration, especially in hospitalized or immunocompromised patients.</li>
+<li><strong>Pseudogout (calcium pyrophosphate deposition disease, CPPD):</strong> Presents identically to acute gout but affects larger joints (knee > wrist > shoulder). Crystals are rhomboid-shaped and weakly positively birefringent (blue when parallel to the compensator). Can coexist with gout. Aspiration and crystal analysis are the only way to distinguish.</li>
+<li><strong>Cellulitis:</strong> Diffuse skin infection with redness, warmth, and swelling that extends beyond the joint. Key difference: cellulitis doesn't cause severe pain with passive range of motion, and the redness is more diffuse and spreading.</li>
+<li><strong>Acute inflammatory arthritis (reactive, psoriatic, palindromic rheumatism):</strong> These can present with monoarticular flares. Clues against gout: involvement of atypical joints (sacroiliac, DIPs), skin changes (psoriasis, nail pitting), preceding infection (reactive), and absence of typical crystal findings.</li>
+<li><strong>Trauma / stress fracture:</strong> History of injury and X-ray findings usually distinguish. But acute gout can be triggered by joint trauma — don't be misled by a history of a minor bump.</li>
+<li><strong>Osteomyelitis:</strong> Bone infection with localized pain, fever, and elevated inflammatory markers. MRI or bone scan can differentiate.</li>
+<li><strong>Rheumatoid arthritis (palindromic phase):</strong> Palindromic RA presents as episodic monoarticular flares lasting days. Clues: symmetrical involvement over time, positive rheumatoid factor/anti-CCP, and absence of crystals.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Joint aspiration (arthrocentesis) — the gold standard</td>
+<td>Negatively birefringent needle-shaped MSU crystals under polarized light microscopy. Also rules out septic arthritis via Gram stain, culture, and cell count</td>
+<td>Any undiagnosed acute monoarthritis — essential to confirm gout and exclude infection</td>
+</tr>
+<tr>
+<td>Serum uric acid</td>
+<td>Hyperuricemia >6.8 mg/dL. However, during an acute flare, serum urate may be normal (false negative in up to 25% of flares due to acute-phase uricosuria). A normal level during a flare does NOT rule out gout</td>
+<td>Every patient with suspected gout; follow serially during ULT</td>
+</tr>
+<tr>
+<td>24-hour urinary uric acid</td>
+<td>>800 mg/day indicates overproduction phenotype. <800 mg/day suggests underexcretion. Helps guide ULT choice</td>
+<td>Recurrent gout, young-onset (<25), family history, or tophaceous gout to classify phenotype</td>
+</tr>
+<tr>
+<td>X-ray (plain radiograph)</td>
+<td>Early: normal or mild soft tissue swelling. Late: well-defined erosions with overhanging edges (rat-bite lesions), punched-out lytic lesions, tophaceous soft tissue masses, joint space preservation until late stages</td>
+<td>Chronic gout, suspected joint damage, tophaceous disease</td>
+</tr>
+<tr>
+<td>Dual-energy CT (DECT)</td>
+<td>Color-coded mapping of MSU crystal deposits (green) vs. calcium (white). Sensitivity ~85%, specificity ~90% for gout. Can detect subclinical crystal deposition</td>
+<td>Atypical presentation, crystal-negative by aspiration, tophus characterization, pre-surgical planning</td>
+</tr>
+<tr>
+<td>Ultrasound (musculoskeletal)</td>
+<td><strong>Double-contour sign:</strong> hyperechoic linear deposition of MSU crystals on the superficial margin of hyaline cartilage — a specific sign of gout (sensitivity 69–95%, specificity 76–91%). Also shows tophi as hyperechoic aggregates with posterior acoustic shadowing and erosions</td>
+<td>First-line imaging for suspected gout when available; useful for monitoring crystal load during ULT</td>
+</tr>
+<tr>
+<td>Serum creatinine / eGFR</td>
+<td>Assesses renal function — critical for ULT dosing (allopurinol dose adjustment in CKD) and colchicine safety</td>
+<td>All patients before starting ULT</td>
+</tr>
+<tr>
+<td>Inflammatory markers (CRP, ESR)</td>
+<td>Elevated during acute flares but non-specific. Normalizes between flares</td>
+<td>To monitor response to treatment; helps distinguish from infection if mild elevation</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> Gout is the most common inflammatory arthritis in adults, with a global prevalence of 1–4% (Kuo et al., <em>Nat Rev Rheumatol</em> 2015). Prevalence is higher in men (3–6%) than women (1–2%), increases with age, and is rising worldwide due to dietary changes, obesity, and increased longevity. The incidence in men peaks at age 40–50 and in women after menopause (when oestrogen's uricosuric effect drops). In the US, prevalence exceeds 8.3 million adults (NHANES 2007–2008).</p>
+<p><strong>Diagnostic gold standard:</strong> Joint aspiration with polarized light microscopy remains the diagnostic standard. The 2020 ACR guideline strongly recommends synovial fluid analysis for definitive diagnosis (FitzGerald et al., <em>Arthritis Care Res</em> 2020). DECT and ultrasound have emerged as valuable non-invasive alternatives, though neither replaces crystal confirmation in uncertain cases.</p>
+<p><strong>Acute treatment:</strong> The Cochrane review by van Durme et al. (2021) found high-certainty evidence that NSAIDs provide effective pain relief for acute gout. The Cochrane review by McKenzie et al. (2021) confirmed that colchicine reduces pain at 24–36 hours compared to placebo but has a higher rate of gastrointestinal adverse effects (diarrhoea in up to 40% with high-dose regimens). The 2016 EULAR guidelines (Richette et al., <em>Ann Rheum Dis</em> 2017) recommend initiating treatment within 12–24 hours of flare onset, with NSAIDs or colchicine as first-line therapy and intra-articular corticosteroids as an alternative.</p>
+<p><strong>Urate-lowering therapy:</strong> Allopurinol is the first-line ULT. The 2020 ACR guideline recommends starting allopurinol at low dose (≤100 mg daily, with dose adjustment in CKD) and titrating to a serum urate target of <6.0 mg/dL (<5.0 mg/dL if tophaceous). The CARES trial (White et al., <em>NEJM</em> 2018) compared febuxostat with allopurinol in 6,190 patients with gout and established CVD; febuxostat was non-inferior for the primary composite cardiovascular endpoint but was associated with higher all-cause and cardiovascular mortality — leading to an FDA black-box warning for febuxostat. The subsequent FAST trial (NCT01994798) found no significant difference in cardiovascular outcomes between febuxostat and allopurinol, but allopurinol remains first-line per ACR/EULAR guidelines.</p>
+<p><strong>Dietary management:</strong> Yokose et al. (<em>Diabetes Care</em> 2020) found that a Mediterranean-style low-carbohydrate diet was associated with lower serum urate levels than a low-fat diet. Wang et al. (<em>Am J Clin Nutr</em> 2025) validated an empirical dietary index for lower urate concentrations. The 2020 ACR guideline recommends dietary counselling emphasizing limitation of high-purine foods (red meat, organ meat, shellfish), alcohol (especially beer and spirits), and sugar-sweetened beverages, while encouraging coffee (moderate protective effect), dairy (mild uricosuric), and vitamin C supplements (modest urate-lowering, ~0.5 mg/dL).</p>
+<p><strong>Clinical practice guidelines:</strong> Conley et al. (<em>BMC Rheumatol</em> 2023) conducted a systematic review of clinical practice guidelines for gout and found consistent recommendations across ACR, EULAR, and the British Society for Rheumatology: treat-to-target serum urate, first-line allopurinol with appropriate dosing, flare prophylaxis during ULT initiation, and joint aspiration for definitive diagnosis.</p>
+<h4>Surgical options</h4>
+<p>Surgery is rarely needed for gout and is reserved for complications of chronic tophaceous disease:</p>
+<ul>
+<li><strong>Tophus excision:</strong> Indicated for tophi causing nerve compression (carpal tunnel, ulnar nerve), joint deformity, functional impairment, skin ulceration with sinus tract formation, or persistent infection. Simple excision is usually sufficient.</li>
+<li><strong>Joint debridement and synovectomy:</strong> For chronic gouty arthropathy with severe synovitis and joint destruction. Urate crystal-laden synovium is removed to reduce pain and improve function.</li>
+<li><strong>Arthrodesis (joint fusion):</strong> For end-stage destruction of small joints (toe, finger, wrist), where joint replacement is not feasible. Fusion provides pain relief at the cost of range of motion.</li>
+<li><strong>Arthroplasty (joint replacement):</strong> Rarely indicated. Hip or knee replacement may be considered for advanced gouty destruction of large joints.</li>
+</ul>
+<p>All surgical patients should have serum urate controlled to target before elective surgery to reduce the risk of post-operative gout flares (triggered by perioperative uric acid fluctuations).</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>Can aggressive urate-lowering (target <5.0 mg/dL) dissolve established tophi faster than standard targets? The CRYSTAL dissolution study is ongoing.</li>
+<li>What is the optimal duration of flare prophylaxis when starting ULT? Current guidelines recommend 3–6 months, but individual risk stratification data are lacking.</li>
+<li>Why does the first MTP joint have such a high predilection? Lower temperature, higher mechanical stress, and local pH are implicated, but the exact molecular trigger for site-specific crystal nucleation is unknown.</li>
+<li>Can IL-1β inhibitors (canakinumab, anakinra) be used more broadly for acute gout, especially in patients with contraindications to NSAIDs/colchicine/steroids? Currently cost and access are limiting factors.</li>
+<li>Does lowering serum urate reduce cardiovascular risk independently of gout flares? Observational data suggest benefit, but no large randomized trial has shown this definitively.</li>
+<li>What is the role of the gut microbiome in urate metabolism and gout pathogenesis? Emerging data show that certain gut bacteria degrade urate, and dysbiosis is associated with hyperuricemia.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Dalbeth N, Merriman TR, Stamp LK. "Gout." <em>Lancet</em> 2016;388(10055):2039–2052. PMID: 27112094.</li>
+<li>FitzGerald JD, Dalbeth N, Mikuls T, et al. "2020 American College of Rheumatology Guideline for the Management of Gout." <em>Arthritis Care Res (Hoboken)</em> 2020;72(6):744–760. PMID: 32391934.</li>
+<li>Richette P, Doherty M, Pascual E, et al. "2016 updated EULAR evidence-based recommendations for the management of gout." <em>Ann Rheum Dis</em> 2017;76(1):29–42. PMID: 27457514.</li>
+<li>Kuo CF, Grainge MJ, Zhang W, Doherty M. "Global epidemiology of gout: prevalence, incidence and risk factors." <em>Nat Rev Rheumatol</em> 2015;11(11):649–662. PMID: 26150127.</li>
+<li>Martinon F, Pétrilli V, Mayor A, et al. "Gout-associated uric acid crystals activate the NALP3 inflammasome." <em>Nature</em> 2006;440(7081):237–241. PMID: 16407889.</li>
+<li>White WB, Saag KG, Becker MA, et al. "Cardiovascular Safety of Febuxostat or Allopurinol in Patients with Gout." <em>N Engl J Med</em> 2018;378(13):1200–1210. PMID: 29527974.</li>
+<li>van Durme CM, Wechalekar MD, Landewé RB, et al. "Non-steroidal anti-inflammatory drugs for acute gout." <em>Cochrane Database Syst Rev</em> 2021;12(12):CD010120. PMID: 34882311.</li>
+<li>McKenzie BJ, Wechalekar MD, Johnston RV, et al. "Colchicine for acute gout." <em>Cochrane Database Syst Rev</em> 2021;8(8):CD006190. PMID: 34438469.</li>
+<li>Conley B, Bunzli S, Bullen J, et al. "What are the core recommendations for gout management in first line and specialist care? Systematic review of clinical practice guidelines." <em>BMC Rheumatol</em> 2023;7(1):15. PMID: 37316871.</li>
+<li>Yokose C, McCormick N, Rai SK, et al. "Effects of Low-Fat, Mediterranean, or Low-Carbohydrate Weight Loss Diets on Serum Urate and Cardiometabolic Risk Factors: A Secondary Analysis of the DIRECT Trial." <em>Diabetes Care</em> 2020;43(11):2812–2820. PMID: 33082244.</li>
+<li>Wang X, Rai SK, Zhang W, et al. "Empirical dietary index for lower urate concentrations and risk of gout: evidence from cohort studies." <em>Am J Clin Nutr</em> 2025;122(3):793–802. PMID: 40602608.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

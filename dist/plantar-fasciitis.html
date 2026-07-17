@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantar Fasciitis — Tiered Health</title>
+<meta name="description" content="Plantar Fasciitis: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🦶 Tiered Health <span>/ Plantar Fasciitis</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🦶 Plantar Fasciitis</h1>
+  <p class="aka">Also called: heel pain · plantar fasciopathy</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="fascia" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="fascia-degen" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="40%" stop-color="#f5c842"/><stop offset="40%" stop-color="#c0392b"/><stop offset="60%" stop-color="#c0392b"/><stop offset="60%" stop-color="#f5c842"/><stop offset="100%" stop-color="#f5c842"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Foot outline (medial/sagittal view) -->
+  <path d="M140,80 C130,85 122,95 118,110 L114,140 C112,160 112,180 115,200 L120,240 C125,265 132,290 140,310 L152,335 C160,350 168,360 178,368 L200,380 C215,388 230,393 245,395 L265,396 C280,395 292,390 300,382 L312,370 C320,358 325,345 328,330 L332,310 C335,290 335,270 332,252 L328,235 C325,220 320,208 315,200 L308,188 C300,178 290,170 278,165 L260,158 C245,153 230,150 218,148 L200,145 C180,142 160,135 148,120 L140,98 C138,90 138,84 140,80 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Calcaneus (heel bone) -->
+  <path d="M148,170 C142,180 140,195 142,210 C145,225 152,238 162,248 L175,260 C185,268 195,272 205,274 L215,275 C225,274 232,270 238,264 L245,255 C250,245 252,235 252,225 C252,215 250,205 245,198 L238,188 C230,178 220,170 210,166 L198,162 C185,160 172,160 162,162 L155,166 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="155" y="225" fill="#b0a595" font-size="11" font-style="italic">Calcaneus</text>
+
+  <!-- Talus (hint) -->
+  <path d="M200,130 C195,136 193,144 194,152 C196,160 202,166 210,170 L222,174 C232,176 240,174 246,170 C252,165 255,158 255,150 C255,142 252,136 248,132 L242,126 C234,122 225,120 216,120 L208,122 C202,125 198,128 200,130 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.5"/>
+
+  <!-- Metatarsals and phalanges -->
+  <path d="M240,280 C248,285 255,292 260,302 L268,320 C272,332 275,345 276,358 L278,370"
+        fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <text x="290" y="330" fill="#b0a595" font-size="10" font-style="italic">Metatarsals</text>
+
+  <!-- Plantar fascia (from calcaneus to toes) -->
+  <path d="M160,275 C168,280 178,285 190,288 C205,292 220,294 235,296 C250,298 265,300 278,305 C288,308 296,312 302,318"
+        fill="none" stroke="url(#fascia)" stroke-width="5" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Degeneration zone at calcaneal attachment -->
+  <path d="M158,276 C162,278 166,280 170,281 C176,282 182,283 186,284"
+        fill="none" stroke="url(#fascia-degen)" stroke-width="5.5" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Fascia label -->
+  <text x="245" y="310" fill="#b8860b" font-size="11" font-weight="600">Plantar</text>
+  <text x="245" y="324" fill="#b8860b" font-size="11" font-weight="600">Fascia</text>
+
+  <!-- Pain spot marker at calcaneal attachment -->
+  <ellipse cx="163" cy="273" rx="12" ry="8" fill="#c0392b" opacity="0.25"/>
+  <circle cx="163" cy="273" r="4" fill="#c0392b" opacity="0.7"/>
+  <line x1="140" y1="273" x2="75" y2="248" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="20" y="245" fill="#c0392b" font-size="10" font-weight="600">Pain at enthesis</text>
+  <text x="20" y="258" fill="#c0392b" font-size="10">(medial calcaneal</text>
+  <text x="20" y="271" fill="#c0392b" font-size="10">tubercle)</text>
+
+  <!-- Degeneration zone label -->
+  <line x1="172" y1="283" x2="80" y2="330" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="10" y="330" fill="#c0392b" font-size="9">Degenerated collagen</text>
+  <text x="10" y="342" fill="#c0392b" font-size="9">(disorganized fibers,</text>
+  <text x="10" y="354" fill="#c0392b" font-size="9">neovascularization)</text>
+
+  <!-- Windlass mechanism arrow -->
+  <path d="M296,316 C310,330 315,348 308,360 C300,372 285,376 270,372"
+        fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="5,3" opacity="0.7"/>
+  <text x="310" y="350" fill="#8a7e6e" font-size="9">Windlass</text>
+  <text x="310" y="362" fill="#8a7e6e" font-size="9">mechanism</text>
+
+  <!-- Toes -->
+  <path d="M278,370 C280,378 284,385 290,390 C296,394 302,396 308,394 C314,392 318,388 320,382 C322,376 320,370 316,366"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.8"/>
+  <path d="M302,394 C306,400 310,404 316,406 C322,408 328,406 332,402 C336,398 338,392 336,388 C334,384 330,382 326,382"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.7"/>
+  <text x="340" y="395" fill="#b0a595" font-size="9" font-style="italic">Phalanges</text>
+
+  <!-- Silfverskiöld test inset (lower right) -->
+  <line x1="30" y1="460" x2="470" y2="460" stroke="#e0e0dc" stroke-width="1"/>
+
+  <g transform="translate(25, 475)">
+    <rect x="0" y="0" width="210" height="105" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="105" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Silfverskiöld Test</text>
+    <!-- Leg with knee extended -->
+    <path d="M15,28 L15,48" stroke="#c4b5a0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M12,48 L18,48 L15,55 Z" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <path d="M12,58 L18,58" stroke="#c4b5a0" stroke-width="2"/>
+    <text x="5" y="82" fill="#8a7e6e" font-size="7">Knee extended</text>
+    <text x="5" y="92" fill="#8a7e6e" font-size="7">(gastrocnemius)</text>
+    <text x="25" y="68" fill="#c0392b" font-size="7">⇐ Limited ←</text>
+    <text x="42" y="42" fill="#8a7e6e" font-size="7">Normal angle &gt;10°</text>
+
+    <!-- Leg with knee flexed -->
+    <path d="M120,28 L120,48" stroke="#c4b5a0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M120,48 L108,50 L120,60 L132,50 Z" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <path d="M120,60 L120,68" stroke="#c4b5a0" stroke-width="2"/>
+    <text x="105" y="82" fill="#8a7e6e" font-size="7">Knee flexed</text>
+    <text x="105" y="92" fill="#8a7e6e" font-size="7">(soleus isolated)</text>
+    <text x="178" y="55" fill="#27ae60" font-size="7">✓ Normal →</text>
+  </g>
+
+  <!-- Normal vs thickened fascia inset -->
+  <g transform="translate(265, 475)">
+    <rect x="0" y="0" width="210" height="105" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="105" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Fascia on Ultrasound</text>
+    <!-- Normal fascia -->
+    <text x="15" y="35" fill="#8a7e6e" font-size="7">Normal (2–4 mm)</text>
+    <rect x="15" y="40" width="55" height="6" rx="2" fill="#e6a817" opacity="0.6"/>
+    <rect x="15" y="46" width="55" height="6" rx="2" fill="#e6a817" opacity="0.4"/>
+    <text x="15" y="65" fill="#8a7e6e" font-size="7">Fibrillar pattern</text>
+
+    <!-- Thickened fascia -->
+    <text x="115" y="35" fill="#c0392b" font-size="7">Thickened (&gt;4 mm)</text>
+    <rect x="115" y="38" width="55" height="10" rx="3" fill="#c0392b" opacity="0.25"/>
+    <rect x="115" y="48" width="55" height="10" rx="3" fill="#c0392b" opacity="0.15"/>
+    <text x="115" y="71" fill="#c0392b" font-size="7">Hypoechoic, lost fibrils</text>
+
+    <!-- Doppler dot markers (neovascularization) -->
+    <circle cx="128" cy="43" r="1.5" fill="#e74c3c" opacity="0.8"/>
+    <circle cx="145" cy="48" r="1.5" fill="#e74c3c" opacity="0.8"/>
+    <circle cx="158" cy="42" r="1.5" fill="#e74c3c" opacity="0.8"/>
+    <text x="115" y="82" fill="#e74c3c" font-size="7">Neovascularization ↑</text>
+    <text x="115" y="92" fill="#e74c3c" font-size="7">(Doppler flow)</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Plantar Fasciopathy — Medial Foot Anatomy</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is plantar fasciitis?</h4>
+<p>Your plantar fascia — a thick band of tissue running from your heel bone to the base of your toes — has developed tiny tears and degeneration where it attaches to your heel. It's not really "itis" (inflammation); it's more like a fraying rope from overuse. About 1 in 10 people get heel pain like this at some point.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Stretch your calf and foot first thing.</strong> Before you step out of bed, loop a towel around your foot and gently pull your toes toward you. Hold for 30 seconds. This alone cuts morning pain more than any other single thing.</li>
+<li><strong>Ice the sore spot.</strong> Freeze a water bottle, put it under your foot, and roll it around for 10–15 minutes. That massages and cools at the same time.</li>
+<li><strong>Wear supportive shoes.</strong> Avoid bare feet, flip-flops, or flat shoes. A shoe with a firm sole and arch support makes a big difference.</li>
+<li><strong>Take ibuprofen</strong> (Advil, Motrin) if you can take it safely — it helps with pain especially in the first few weeks.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>Your heel is red, hot, and swollen (could be an infection like calcaneal osteomyelitis)</li>
+<li>You have numbness or tingling in your foot</li>
+<li>You stepped on something and the pain started after that</li>
+<li>You have a fever along with the heel pain</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>For 80–90% of people, plantar fasciitis gets better with simple at-home treatments within 6–12 months. Most improvements happen in the first 3–6 months if you stick with daily stretching. Surgery is almost never needed.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>The <strong>plantar fascia</strong> is a thick, tough band of connective tissue — like a ligament, but broader and flatter — that runs from your <strong>calcaneus</strong> (heel bone) to the bases of your toes. Think of it like a bowstring: when you push off to walk or run, it tightens to support your foot's arch. Every step stretches it.</p>
+<p>Over time, repeated micro-trauma at the heel attachment causes <strong>collagen degeneration</strong>, not acute inflammation. Under a microscope, the tissue shows <strong>angiofibroblastic hyperplasia</strong> — disorganized collagen fibers, increased ground substance, and new blood vessels where they shouldn't be. The condition is more accurately called <strong>plantar fasciosis</strong> or <strong>plantar fasciopathy</strong>, since neutrophils and traditional inflammatory markers are largely absent in chronic cases.</p>
+<p>The classic clue: your first steps out of bed are excruciating. After a night's sleep, the plantar fascia shortens and tightens as it heals in a relaxed position. When you stand up abruptly, it stretches suddenly, tearing through the microscar tissue that formed overnight. After a few steps, the tissue warms up and the pain settles — but it comes back after sitting for a while, then again the next morning.</p>
+<h4>Risk factors</h4>
+<ul>
+<li><strong>Tight calf muscles (gastrocnemius tightness):</strong> the single strongest risk factor. Limited ankle dorsiflexion (<10°) forces the foot to pronate more, loading the plantar fascia excessively.</li>
+<li><strong>Obesity:</strong> every extra kilogram increases force across the fascia by roughly 3–4× during walking.</li>
+<li><strong>Prolonged standing:</strong> occupations like nursing, retail, and factory work are overrepresented.</li>
+<li><strong>Flat feet (pes planus) or high arches:</strong> both alter the normal tension distribution across the fascia.</li>
+<li><strong>Sudden increase in activity:</strong> starting a running program, increasing mileage, or switching to minimalist shoes too quickly.</li>
+</ul>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Sharp heel pain with the first steps in the morning:</strong> the hallmark. Rates 8–9/10 for the first 5–10 steps, then settles to a dull ache.</li>
+<li><strong>Pain after prolonged sitting:</strong> "start-up" pain that improves after walking a few steps but returns after rest (gel phenomenon).</li>
+<li><strong>Pain with weight-bearing activities:</strong> worse after standing for long periods, brisk walking, running, or jumping.</li>
+<li><strong>Tenderness to palpation:</strong> the spot is just medial (inside) of the center of the heel pad at the calcaneal tuberosity attachment.</li>
+<li><strong>Pain with passive dorsiflexion of the toes:</strong> stretching the fascia reproduces the pain.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Calf and plantar fascia stretching:</strong> the cornerstone of treatment. The best-studied protocol is the DiGiovanni <em>runner's stretch</em> (gastrocnemius stretch with knee extended) combined with the <em>plantar fascia-specific stretch</em> (pulling the toes back while seated). Do both before taking a single step in the morning.</li>
+<li><strong>Supportive footwear and orthotics:</strong> shoes with a stiff sole and arch support reduce fascia strain by 10–30%. Over-the-counter arch supports (silicone heel cups, prefabricated orthotics) work almost as well as custom ones for most people.</li>
+<li><strong>Night splints:</strong> keep the ankle in neutral position and the toes dorsiflexed while you sleep, preventing the fascia from tightening overnight. Best for people with morning pain lasting >30 minutes.</li>
+<li><strong>Ice massage:</strong> roll a frozen water bottle under the arch for 10–15 minutes, 2–3 times daily, especially after activity.</li>
+<li><strong>NSAIDs:</strong> ibuprofen or naproxen for 2–4 weeks. Evidence is limited — NSAIDs treat inflammation, but this condition is primarily degenerative. Still, many people get symptomatic relief early on.</li>
+<li><strong>Activity modification:</strong> reduce high-impact loading. Switch to elliptical, cycling, or swimming while symptoms settle.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't walk barefoot on hard surfaces — every barefoot step adds tension to the fascia.</li>
+<li>Don't do high-impact activities (running, jumping, plyometrics) through the pain.</li>
+<li>Don't expect a quick fix — this takes weeks to months. Most people start feeling better at 6–8 weeks with consistent stretching.</li>
+<li>Don't get a corticosteroid injection without trying stretching first. It can help short-term but increases risk of plantar fascia rupture (about 2–4% risk).</li>
+<li>Don't ignore it and "walk it off" — the degeneration gets worse, and recovery takes longer the more you delay treatment.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–7</div>
+<div class="tl-text">Start twice-daily stretching (calf + plantar fascia-specific). Ice massage after walking. Switch to supportive shoes. Morning pain should begin to shorten in duration after the first week.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–4</div>
+<div class="tl-text">Pain intensity starts dropping. Morning pain may drop from 8/10 to 4–5/10. Add night splint if morning pain persists >30 minutes. Continue stretching — this is where most people stop and relapse.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 2–3</div>
+<div class="tl-text">Significant improvement for most. Morning pain may be 1–2/10 or gone. Begin gradual return to activity. Switch from daily stretching to maintenance (3–4×/week).</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 3–6</div>
+<div class="tl-text">80–90% of people are substantially better. If not improving by month 4, consider advanced interventions: shockwave therapy, PRP injection, or specialist referral.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 6–12</div>
+<div class="tl-text">Most reach full resolution. For refractory cases, reassess for differential diagnoses (calcaneal stress fracture, nerve entrapment, fat pad atrophy).</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Plantar fasciopathy is a <strong>degenerative enthesopathy</strong> — a non-inflammatory breakdown of the collagenous attachment of the plantar fascia to the <strong>medial calcaneal tubercle</strong>. The dominant histopathological finding is <strong>angiofibroblastic hyperplasia</strong>: fibroblast hypercellularity, chondroid metaplasia, fragmentation of the extracellular matrix, and neovascularization, all in the absence of significant inflammatory infiltrate. This is why the label "fasciitis" is a misnomer — the condition is a fasciosis.</p>
+<p>The plantar fascia originates from the medial process of the calcaneal tuberosity and divides into five digital bands that attach to the proximal phalanges via the plantar plate. The central band bears the bulk of tensile load — roughly 40% of body weight during quiet standing and up to 2.5× body weight during running. This tension is transmitted through the <strong>windlass mechanism</strong>: when the toes dorsiflex during toe-off, the fascia is drawn around the metatarsal heads like a cable around a pulley, raising the arch. In plantar fasciopathy, repetitive microtrauma at the enthesis overwhelms the fibroblast repair capacity. The resulting collagen fibers are <strong>type III</strong> (smaller diameter, less organized) rather than the native <strong>type I</strong>, creating a mechanically weak region at the insertion.</p>
+<p><strong>Pain mechanisms</strong> are incompletely understood. Neovascularization — ingrowth of small blood vessels and accompanying nerve fibers (substance P-positive and CGRP-positive nociceptors) — correlates with pain more strongly than tissue degeneration itself. Doppler ultrasound studies (Walther et al., 2004) found that 88% of symptomatic patients had neovascularization at the enthesis versus 14% of asymptomatic controls. This suggests that the pain is mediated by neoinnervation rather than simple mechanical irritation.</p>
+<p><strong>Biomechanically</strong>, the key loading event is <strong>pronation during the stance phase of gait</strong>. Excessive or prolonged pronation leads to a whipping action of the plantar fascia at its calcaneal attachment during mid-stance, with peak strain occurring just before heel lift. Tightness of the gastrocnemius-soleus complex reduces ankle dorsiflexion, which the foot compensates for by pronating more — creating a vicious cycle.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Calcaneal stress fracture:</strong> Dull, deep heel pain that worsens with weight-bearing and persists even after warming up. Tenderness over the body of the calcaneus (not the medial tubercle). Positive "squeeze test" (squeezing the heel from both sides reproduces pain). X-ray may show a sclerotic line; MRI shows bone marrow edema.</li>
+<li><strong>Tarsal tunnel syndrome (Baxter's nerve entrapment):</strong> Burning or shooting pain, often radiating from the heel along the medial arch. Tinel's sign over the abductor hallucis muscle belly. The first branch of the lateral plantar nerve (Baxter's nerve) is compressed between the deep fascia of the abductor hallucis and the medial head of the quadratus plantae. EMG/NCS can confirm.</li>
+<li><strong>Fat pad atrophy:</strong> Attenuation of the heel fat pad, often in older adults or after repeated corticosteroid injections. Pain is deep, central, and felt as "walking on bone." The heel pad feels thin and soft. No pain with toe dorsiflexion. MRI shows thinning of the septal chambers.</li>
+<li><strong>Calcaneal apophysitis (Sever's disease):</strong> Heel pain in children aged 8–14, especially active boys. Tenderness at the posterior calcaneus (Achilles insertion), not the plantar surface. The growth plate is the source.</li>
+<li><strong>Achilles tendinopathy:</strong> Pain is at the back of the heel, not the bottom. Tender along the Achilles tendon 2–6 cm above the calcaneus.</li>
+<li><strong>Plantar fascia rupture:</strong> Acute tearing sensation during a push-off movement (sprinting, jumping). Sudden bruising and swelling along the arch, with a palpable gap in the fascia. Can be mistaken for a sudden improvement in "pain" — actually loss of tension.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical exam</td>
+<td>Tenderness at medial calcaneal tubercle, pain with passive toe dorsiflexion (windlass test), limited ankle dorsiflexion (<10°), palpation over the proximal plantar fascia insertion</td>
+<td>Every patient — primary diagnostic tool</td>
+</tr>
+<tr>
+<td>Windlass test</td>
+<td>Passive dorsiflexion of the toes reproduces plantar heel pain. Positive predictive value ~85%</td>
+<td>All suspected plantar fasciopathy</td>
+</tr>
+<tr>
+<td>Silfverskiöld test</td>
+<td>Passive ankle dorsiflexion with knee extended (gastrocnemius) vs. flexed (soleus). Differentiates gastrocnemius tightness from soleus tightness or Achilles contracture</td>
+<td>Every patient to guide stretching prescription</td>
+</tr>
+<tr>
+<td>X-ray (weight-bearing, lateral view)</td>
+<td>Calcaneal spur (present in ~50% of asymptomatic adults too — incidental, not diagnostic), stress fracture line, heel fat pad integrity</td>
+<td>Suspected fracture, unilateral pain, or failed conservative management</td>
+</tr>
+<tr>
+<td>Ultrasound (high-res, 7–15 MHz)</td>
+<td>Thickened plantar fascia (normal 2–4 mm, >4 mm is diagnostic). Hypoechoic regions, loss of fibrillar pattern, neovascularization on Doppler. Gap in rupture cases.</td>
+<td>Confirm diagnosis when unclear, guide injection, evaluate rupture</td>
+</tr>
+<tr>
+<td>MRI</td>
+<td>T2 hyperintensity at calcaneal enthesis, fascial thickening, bone marrow edema in calcaneus. Best for differential diagnosis (stress fracture, nerve entrapment, tumor)</td>
+<td>When differentials are suspected or pre-surgical planning</td>
+</tr>
+<tr>
+<td>EMG/NCS</td>
+<td>Slowed conduction in medial/lateral plantar nerves. Sensory nerve conduction studies</td>
+<td>Suspected tarsal tunnel or Baxter's nerve entrapment</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Incidence and epidemiology:</strong> Plantar fasciopathy is the most common cause of heel pain in adults, with a lifetime prevalence of about 10%. The Rochester Epidemiology Study (Riddle et al., 2003) reported an annual incidence of 1.0 per 1,000 person-years in the general population, with peak rates in the 40–60 age group. Women are affected slightly more than men. Obesity (BMI >30) increases risk 3-fold (odds ratio 3.2, 95% CI 1.8–5.7).</p>
+<p><strong>Stretching:</strong> DiGiovanni et al. (2006) conducted a landmark RCT (n=101) comparing plantar fascia-specific stretching (toe pull-back) to standard Achilles stretching. The specific stretch group had significantly better outcomes: 75% rated treatment as "successful" or "completely successful" at 8 weeks vs. 33% in the Achilles-only group (p<0.001). At 2-year follow-up, 92% of the specific-stretch group reported satisfaction. This is the single best-supported intervention.</p>
+<p><strong>Orthotics:</strong> Landorf et al. (2006) conducted the largest RCT (n=136) comparing custom orthotics to prefabricated orthotics and a sham (thin felt insoles). At 12 months, the custom orthotic group had no statistically significant benefit over sham for pain or function. Both active groups improved similarly. A 2020 Cochrane review (Hawke et al.) confirmed that custom orthotics do not outperform prefabricated orthotics for plantar heel pain.</p>
+<p><strong>Night splints:</strong> A 1999 RCT by Probe et al. (n=47) found that night splints plus stretching improved symptoms more than stretching alone at 6 weeks, but the benefit was not significant at 12 months. Consistent with expert opinion that night splints are most useful in the first 3 months for patients with prominent morning pain (>30 minutes duration).</p>
+<p><strong>Corticosteroid injection:</strong> Provides short-term pain relief (4–12 weeks) superior to placebo in multiple RCTs. However, the risk of plantar fascia rupture is real — a systematic review of 12 studies (McMillan et al., 2012) reported a rupture rate of 2.4% after corticosteroid injection. Rupture rates may be higher with repeated injections (>3) and steroid injected directly into the fascia rather than perifascially.</p>
+<p><strong>Extracorporeal shockwave therapy (ESWT):</strong> The most studied intervention for refractory cases. A 2020 meta-analysis (Sun et al., 2020, n=1,420 from 20 RCTs) found that focused ESWT significantly reduced pain at 12 weeks compared to placebo (SMD −0.54, 95% CI −0.78 to −0.30). Outcomes were better with focused rather than radial ESWT, and with high-energy (>0.2 mJ/mm²) rather than low-energy protocols. Number needed to treat (NNT) for 50% pain reduction: 3–4.</p>
+<p><strong>Platelet-rich plasma (PRP):</strong> Comparative meta-analyses (Franchini et al., 2020; Rayo-Martín et al., 2025) show that PRP is superior to corticosteroid injection for pain reduction and functional outcomes beyond 6–12 months, though not at 4–8 weeks. The mechanism is thought to be mediated by growth factors (PDGF, TGF-β, VEGF) that promote collagen remodeling rather than the immediate anti-inflammatory effect of steroids. Current evidence favors PRP over steroids for chronic (>6 months) cases.</p>
+<p><strong>Dry needling:</strong> A 2017 systematic review (Cotchett et al.) found limited evidence — small RCTs with inconsistent protocols. May help short-term but not enough data for a strong recommendation.</p>
+<p><strong>Surgery:</strong> Plantar fasciotomy (open or endoscopic) — a cohort study by DiGiovanni et al. (2012) of 43 patients undergoing open release showed 82% good-to-excellent outcomes at 5 years. However, iatrogenic flatfoot deformity from complete fasciotomy is a recognized complication (the fascia provides ~15% of arch support) — partial release (medial 30–50%) is preferred. Gastrocnemius recession (Strayer procedure) is increasingly used for recalcitrant cases with confirmed gastrocnemius tightness (Monteagudo et al., 2013) and addresses the root biomechanical driver rather than the enthesis itself.</p>
+<h4>Surgical options</h4>
+<p>Surgery is reserved for the 5–10% of patients who fail 6–12 months of non-operative management.</p>
+<ul>
+<li><strong>Partial plantar fasciotomy (open or endoscopic):</strong> Release of the medial 30–50% of the fascia at the calcaneal origin. Endoscopic approach allows faster recovery (return to walking at 2–4 weeks vs. 4–6 weeks for open). Success rates 70–90% in carefully selected patients. Risk of arch collapse if too much fascia is released.</li>
+<li><strong>Gastrocnemius recession (Strayer procedure or Vulpius procedure):</strong> Lengthening of the gastrocnemius aponeurosis to address the most common underlying biomechanical driver — calf tightness. A 2026 systematic review (Pérez González et al., 2026) pooled 11 studies (n=381) and found a 71–93% satisfaction rate in recalcitrant plantar fasciopathy with gastrocnemius recession, with low complication rates (5.2% sural nerve neurapraxia, 1.8% infection). This approach is gaining popularity as an alternative to plantar fasciotomy.</li>
+<li><strong>Radiofrequency ablation / cryoneurolysis:</strong> Percutaneous ablation of the nerve branches (Baxter's nerve terminal branches) for neurogenic heel pain. Limited evidence, mostly case series.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal dose and frequency of plantar fascia stretching? DiGiovanni's protocol uses 3 × 30-second holds twice daily, but no dose-response trial exists.</li>
+<li>Does neovascularization cause pain or is it a secondary phenomenon? The correlation is strong but causality is unproven. Anti-VEGF agents (bevacizumab) have been tried in tiny case series only.</li>
+<li>Can focused ESWT be combined with stretching for synergistic effect? A 2024 meta-analysis (n=430, 4 RCTs) suggested superiority of combination therapy over monotherapy, but protocols varied widely and heterogeneity was high.</li>
+<li>What is the role of biologics (PRP vs. bone marrow aspirate concentrate vs. amniotic membrane) in refractory cases? Head-to-head trials are lacking.</li>
+<li>Is gastrocnemius recession more cost-effective than prolonged non-operative management in refractory cases? No economic analysis exists.</li>
+<li>Does the presence of a heel spur on X-ray predict treatment response to any specific intervention? Current data says no, but prospective studies with power for subgroup analysis are absent.</li>
+<li>Can high-resolution ultrasound identify which patients will progress to chronic cases? Fascial thickness >4.8 mm at diagnosis predicted >6-month symptom duration in one prospective cohort (Fabrikant & Park, 2011), but validation is pending.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Riddle DL, Pulisic M, Pidcoe P, Johnson RE. "Risk factors for plantar fasciitis: a matched case-control study." <em>J Bone Joint Surg Am</em> 2003;85(5):872–877. PMID: 12728072.</li>
+<li>DiGiovanni BF, Nawoczenski DA, Lintal ME, et al. "Tissue-specific plantar fascia-stretching exercise enhances outcomes in patients with chronic heel pain." <em>J Bone Joint Surg Am</em> 2006;88(8):1775–1781. PMID: 16882901.</li>
+<li>Landorf KB, Keenan AM, Herbert RD. "Effectiveness of foot orthoses to treat plantar fasciitis: a randomized trial." <em>Arch Intern Med</em> 2006;166(12):1305–1310. PMID: 16801514.</li>
+<li>Walther M, Radke S, Kirschner S, et al. "Power Doppler findings in plantar fasciitis." <em>Ultrasound Med Biol</em> 2004;30(4):435–440. PMID: 15121248.</li>
+<li>McMillan AM, Landorf KB, Gilheany MF, et al. "Ultrasound guided injection of dexamethasone versus placebo for plantar fasciitis: a randomised controlled trial." <em>Br J Sports Med</em> 2012;46(11):782–788. PMID: 22505537.</li>
+<li>Probe RA, Baca M, Adams R, Preece C. "Night splint treatment for plantar fasciitis: a prospective randomized study." <em>Clin Orthop Relat Res</em> 1999;(368):202–208. PMID: 10613171.</li>
+<li>Sun K, Wang L, Ma Y, et al. "Extracorporeal shock wave therapy versus placebo for the treatment of chronic plantar fasciitis: a meta-analysis of randomized controlled trials." <em>J Orthop Surg Res</em> 2020;15(1):565. PMID: 33287864.</li>
+<li>Franchini M, Cruciani M, Mengoli C, et al. "Efficacy of platelet-rich plasma in the treatment of plantar fasciitis: a systematic review and meta-analysis." <em>Blood Transfus</em> 2020;18(4):277–288. PMID: 32362965.</li>
+<li>Rayo-Martín R, García-García I, Delgado-Martínez AD. "Comparison of PRP Injections Versus Corticosteroid Injections in Plantar Fasciitis: Systematic Review and Meta-analysis." <em>Foot Ankle Spec</em> 2025 Sep 6. PMID: 40913486.</li>
+<li>Pérez González A, Cuenca-Zaldívar JN, Sevillano-Castaño A, et al. "Gastrocnemius Recession in Recalcitrant Plantar Fasciitis: A Systematic Review and Meta-Analysis of Randomized Controlled Trials." <em>J Clin Med</em> 2026;15(2):345. PMID: 41598555.</li>
+<li>Monteagudo M, Maceira E, Garcia-Virto V, Canosa R. "Chronic plantar fasciopathy: a new approach to an old problem." <em>Foot Ankle Surg</em> 2013;19(1):37–43. PMID: 23337254.</li>
+<li>Cotchett MP, Landorf KB, Munteanu SE. "Effectiveness of dry needling for plantar heel pain: a systematic review." <em>J Foot Ankle Res</em> 2017;10:41. PMID: 28878818.</li>
+<li>Fabrikant JM, Park TS. "Plantar fasciitis: a comprehensive review." <em>Clin Podiatr Med Surg</em> 2011;28(4):701–720. PMID: 21944283.</li>
+<li>Hawke F, Burns J, Landorf KB. "Custom foot orthoses for plantar heel pain." <em>Cochrane Database Syst Rev</em> 2020;(10):CD006801.</li>
+<li>Buchbinder R. "Plantar fasciitis." <em>N Engl J Med</em> 2004;350(21):2159–2166. PMID: 15152061.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

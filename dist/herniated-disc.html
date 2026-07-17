@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herniated Disc — Tiered Health</title>
+<meta name="description" content="Herniated Disc: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🦴 Tiered Health <span>/ Herniated Disc</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🦴 Herniated Disc</h1>
+  <p class="aka">Also called: slipped disc, disc herniation, ruptured disc</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="disc-normal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4e8d0"/><stop offset="100%" stop-color="#b8d8b0"/></linearGradient>
+    <linearGradient id="disc-nucleus" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f0e8c0"/><stop offset="100%" stop-color="#e0d8a0"/></linearGradient>
+    <linearGradient id="disc-herniated" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4e8d0"/><stop offset="100%" stop-color="#b8d8b0"/></linearGradient>
+    <linearGradient id="nerve-color" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="cord" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Background outline (body silhouette, lateral view) -->
+  <path d="M120,30 C115,50 112,80 112,110 L110,200 C108,240 108,280 110,320 L112,380 C115,400 120,410 130,415 L140,420 L250,425 L360,420 L370,415 C380,410 385,400 388,380 L390,320 C392,280 392,240 390,200 L388,110 C388,80 385,50 380,30 L370,20 L360,15 L250,12 L140,15 L130,20 Z"
+        fill="none" stroke="#e0e0dc" stroke-width="1" stroke-dasharray="8,4" opacity="0.4"/>
+
+  <!-- ===== L4 VERTEBRA (top) ===== -->
+  <path d="M160,60 C155,55 150,60 148,70 L145,100 C143,115 143,125 145,135 L148,145 C150,150 155,152 160,150 L340,150 C345,152 350,150 352,145 L355,135 C357,125 357,115 355,100 L352,70 C350,60 345,55 340,60 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.85"/>
+  <!-- Vertebral body texture lines -->
+  <path d="M155,80 L345,80" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M152,100 L348,100" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M152,120 L348,120" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <!-- Spinous process L4 -->
+  <path d="M160,60 C155,50 152,42 148,38 L144,36 C140,35 136,38 134,42 L138,48 C140,50 144,52 148,50"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- ===== L4-L5 DISC (NORMAL — left half shown intact) ===== -->
+  <ellipse cx="250" cy="170" rx="90" ry="16" fill="url(#disc-normal)" stroke="#a8c8a0" stroke-width="1"/>
+  <!-- Annulus fibrosus rings -->
+  <ellipse cx="250" cy="170" rx="80" ry="13" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <ellipse cx="250" cy="170" rx="65" ry="11" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <!-- Nucleus pulposus -->
+  <ellipse cx="250" cy="170" rx="40" ry="8" fill="url(#disc-nucleus)" stroke="#d0c880" stroke-width="0.8"/>
+
+  <!-- ===== L5 VERTEBRA ===== -->
+  <path d="M160,202 C155,197 150,202 148,212 L145,242 C143,257 143,267 145,277 L148,287 C150,292 155,294 160,292 L340,292 C345,294 350,292 352,287 L355,277 C357,267 357,257 355,242 L352,212 C350,202 345,197 340,202 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.85"/>
+  <path d="M152,222 L348,222" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M150,242 L350,242" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <path d="M150,262 L350,262" stroke="#d8ccc0" stroke-width="0.5" opacity="0.5"/>
+  <!-- Spinous process L5 -->
+  <path d="M160,202 C155,192 152,184 148,180 L144,178 C140,177 136,180 134,184 L138,190 C140,192 144,194 148,192"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- ===== L5-S1 DISC (HERNIATED) ===== -->
+  <!-- Disc body -->
+  <ellipse cx="250" cy="310" rx="90" ry="16" fill="url(#disc-herniated)" stroke="#a8c8a0" stroke-width="1"/>
+  <!-- Annular rings --->
+  <ellipse cx="250" cy="310" rx="80" ry="13" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <ellipse cx="250" cy="310" rx="65" ry="11" fill="none" stroke="#a8c8a0" stroke-width="0.7" opacity="0.6"/>
+  <!-- Nucleus pulposus displaced -->
+  <ellipse cx="230" cy="310" rx="35" ry="7" fill="url(#disc-nucleus)" stroke="#d0c880" stroke-width="0.8"/>
+  <!-- Annular tear -- red dash line showing the crack -->
+  <path d="M280,290 C285,295 288,300 288,306 C288,312 286,316 282,320 C278,324 275,326 272,327"
+        fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3" opacity="0.8"/>
+  <!-- Herniated fragment protruding posteriorly and compressing nerve root -->
+  <path d="M288,306 C294,304 300,302 305,304 C310,306 312,310 310,314 C308,318 304,320 298,320 C292,320 286,318 282,316"
+        fill="#d0c880" stroke="#c0392b" stroke-width="1.2" opacity="0.85"/>
+  <!-- Herniated material extending further -->
+  <path d="M305,304 C312,302 318,304 322,308 C325,312 324,316 320,318 C315,320 310,318 308,315"
+        fill="#d8d098" stroke="#c0392b" stroke-width="1.2" opacity="0.75"/>
+
+  <!-- ===== S1 (SACRUM, top) ===== -->
+  <path d="M160,344 C155,339 150,344 148,354 L145,384 C143,400 143,415 145,428 L148,438 C150,443 155,445 160,443 L340,443 C345,445 350,443 352,438 L355,428 C357,415 357,400 355,384 L352,354 C350,344 345,339 340,344 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.75"/>
+  <!-- Sacral ala / wing hints -->
+  <path d="M145,370 C120,365 100,370 90,380" fill="none" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+  <path d="M355,370 C380,365 400,370 410,380" fill="none" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+
+  <!-- ===== SPINAL CANAL ===== -->
+  <path d="M175,50 L175,190 L175,310 L175,430" fill="none" stroke="#d8ccc0" stroke-width="0.5" opacity="0.3"/>
+  <path d="M325,50 L325,190 L325,310 L325,430" fill="none" stroke="#d8ccc0" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- ===== SPINAL CORD / CAUDA EQUINA ===== -->
+  <!-- Thecal sac -->
+  <path d="M200,60 C195,80 193,100 193,120 L192,160 C192,180 195,195 200,205 L205,210 C210,212 215,210 218,205 L220,195 C222,180 220,165 218,155 L216,140 C214,125 212,110 210,95 L208,80 C206,68 204,62 200,60 Z"
+        fill="url(#cord)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Cauda equina nerve roots (multiple fine lines descending) -->
+  <path d="M205,160 C203,180 201,200 200,220 L198,260 C196,280 195,300 195,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+  <path d="M210,160 C208,180 207,200 206,220 L205,260 C204,280 203,300 203,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+  <path d="M215,160 C214,180 213,200 212,220 L211,260 C210,280 209,300 209,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+  <path d="M220,160 C219,180 218,200 217,220 L216,260 C215,280 214,300 214,310" fill="none" stroke="#d4c8b8" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- ===== L5 NERVE ROOT (exiting and being compressed) ===== -->
+  <path d="M200,200 C198,210 196,220 195,230 L193,260 C192,280 191,295 192,305 C193,310 195,315 198,318 C202,322 206,324 210,324 C215,324 218,322 222,318"
+        fill="none" stroke="url(#nerve-color)" stroke-width="4" stroke-linecap="round" filter="url(#soft)" opacity="0.8"/>
+  <!-- Nerve root label -->
+  <text x="140" y="260" fill="#b8860b" font-size="10" font-weight="600">L5 nerve</text>
+  <text x="140" y="273" fill="#b8860b" font-size="10" font-weight="600">root</text>
+
+  <!-- Compression zone where herniated material hits nerve -->
+  <ellipse cx="210" cy="310" rx="14" ry="8" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.9"/>
+  <!-- Compression arrows -->
+  <line x1="290" y1="308" x2="228" y2="310" stroke="#c0392b" stroke-width="1.2" marker-end="url(#arrow)" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="293" y="304" fill="#c0392b" font-size="9" font-weight="600">Compression</text>
+
+  <!-- ===== S1 NERVE ROOT (uncompressed, for reference) ===== -->
+  <path d="M200,340 C198,350 197,360 197,370 L198,390 C199,405 201,415 204,420 C208,425 212,427 218,425 C222,423 225,420 228,415"
+        fill="none" stroke="url(#nerve-color)" stroke-width="3.5" stroke-linecap="round" filter="url(#soft)" opacity="0.5"/>
+  <text x="140" y="380" fill="#b8860b" font-size="10" font-weight="600" opacity="0.6">S1 nerve</text>
+  <text x="140" y="393" fill="#b8860b" font-size="10" font-weight="600" opacity="0.6">root</text>
+
+  <!-- ===== LABELS ===== -->
+
+  <!-- L4 vertebra label -->
+  <line x1="355" y1="105" x2="405" y2="105" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="102" fill="#8a7e6e" font-size="11" font-weight="600">L4 vertebra</text>
+  <text x="408" y="115" fill="#8a7e6e" font-size="9">(body)</text>
+
+  <!-- Normal disc label -->
+  <line x1="355" y1="170" x2="405" y2="170" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="167" fill="#8a7e6e" font-size="10" font-weight="600">Normal disc</text>
+  <text x="408" y="180" fill="#8a7e6e" font-size="9">(intact)</text>
+
+  <!-- Nucleus pulposus label -->
+  <line x1="250" y1="178" x2="250" y2="195" stroke="#8a7e6e" stroke-width="0.7"/>
+  <line x1="250" y1="195" x2="380" y2="195" stroke="#8a7e6e" stroke-width="0.7"/>
+  <text x="382" y="193" fill="#8a7e6e" font-size="9" font-style="italic">Nucleus pulposus</text>
+
+  <!-- Annulus fibrosus label -->
+  <line x1="310" y1="165" x2="370" y2="140" stroke="#8a7e6e" stroke-width="0.7"/>
+  <text x="372" y="138" fill="#8a7e6e" font-size="9" font-style="italic">Annulus fibrosus</text>
+
+  <!-- L5 vertebra label -->
+  <line x1="355" y1="245" x2="405" y2="245" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="242" fill="#8a7e6e" font-size="11" font-weight="600">L5 vertebra</text>
+  <text x="408" y="255" fill="#8a7e6e" font-size="9">(body)</text>
+
+  <!-- Herniated disc label -->
+  <line x1="310" y1="316" x2="405" y2="316" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="408" y="313" fill="#c0392b" font-size="10" font-weight="600">Herniated disc</text>
+  <text x="408" y="326" fill="#c0392b" font-size="9">(extruded fragment</text>
+  <text x="408" y="338" fill="#c0392b" font-size="9">compressing nerve)</text>
+
+  <!-- Annular tear label -->
+  <line x1="275" y1="298" x2="220" y2="280" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="188" y="277" fill="#c0392b" font-size="9">Annular tear</text>
+
+  <!-- S1 / sacrum label -->
+  <line x1="355" y1="393" x2="405" y2="393" stroke="#8a7e6e" stroke-width="0.8"/>
+  <text x="408" y="390" fill="#8a7e6e" font-size="11" font-weight="600">Sacrum (S1)</text>
+
+  <!-- Spine level labels -->
+  <text x="80" y="110" fill="#b0a595" font-size="10" font-weight="600" text-anchor="middle">L4</text>
+  <text x="80" y="250" fill="#b0a595" font-size="10" font-weight="600" text-anchor="middle">L5</text>
+  <text x="80" y="393" fill="#b0a595" font-size="10" font-weight="600" text-anchor="middle">S1</text>
+
+  <!-- Direction arrow: anterior / posterior -->
+  <text x="470" y="46" fill="#b0a595" font-size="9" text-anchor="end">Anterior</text>
+  <text x="30" y="46" fill="#b0a595" font-size="9" text-anchor="start">Posterior</text>
+  <line x1="30" y1="48" x2="470" y2="48" stroke="#e0e0dc" stroke-width="0.5"/>
+  <path d="M460,45 L470,48 L460,51" fill="none" stroke="#b0a595" stroke-width="0.8"/>
+  <path d="M40,45 L30,48 L40,51" fill="none" stroke="#b0a595" stroke-width="0.8"/>
+
+  <!-- ===== INSET: Cross-section view (top right) ===== -->
+  <g transform="translate(360, 34)">
+    <rect x="0" y="0" width="110" height="95" rx="6" fill="var(--surface, #fafaf8)" stroke="var(--border, #e0e0dc)" stroke-width="0.8" opacity="0.95"/>
+    <text x="55" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Axial view</text>
+    <!-- Vertebral body outline (axial) -->
+    <path d="M15,45 C15,28 30,20 55,20 C80,20 95,28 95,45 C95,62 80,70 55,70 C30,70 15,62 15,45 Z"
+          fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.7"/>
+    <!-- Spinal canal (axial) -->
+    <circle cx="55" cy="45" r="10" fill="#e8ddd0" stroke="#c4b5a0" stroke-width="0.5" opacity="0.5"/>
+    <!-- Disc material protruding into canal -->
+    <path d="M48,30 C50,25 55,22 60,25 C65,28 65,34 60,37 C55,40 50,38 48,35 Z"
+          fill="#d0c880" stroke="#c0392b" stroke-width="0.8" opacity="0.8"/>
+    <!-- Nerve root compression in axial view -->
+    <circle cx="42" cy="45" r="3" fill="#e6a817" opacity="0.6"/>
+    <circle cx="68" cy="45" r="3" fill="#e6a817" opacity="0.6"/>
+    <!-- Compression indication -->
+    <line x1="60" y1="37" x2="50" y2="43" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,2"/>
+    <!-- Label for herniation -->
+    <text x="30" y="85" fill="#c0392b" font-size="7" text-anchor="middle">Herniation</text>
+    <line x1="55" y1="78" x2="55" y2="70" stroke="#c0392b" stroke-width="0.6"/>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="490" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Lumbar Disc Herniation — Lateral View</text>
+  <text x="250" y="506" fill="var(--text-muted, #8a7e6e)" font-size="10" text-anchor="middle">Most common at L4–L5 and L5–S1, disc protrudes posterolaterally</text>
+  <text x="250" y="520" fill="var(--text-muted, #8a7e6e)" font-size="10" text-anchor="middle">into the spinal canal, compressing the exiting nerve root</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is a herniated disc?</h4>
+<p>A disc in your spine developed a crack in its tough outer layer, and the jelly-like center pushed out — pressing on a nearby nerve. It's most common in the lower back (L4–L5 and L5–S1) and often causes pain, numbness, or tingling that shoots down one leg. About 1 in 50 people will have one at some point.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Stay active within reason.</strong> Bed rest for more than a day or two can actually slow recovery. Move gently and avoid what hurts.</li>
+<li><strong>Take anti-inflammatories.</strong> Ibuprofen (Advil, Motrin) or naproxen (Aleve) help if you can take them safely. Acetaminophen (Tylenol) helps pain but not inflammation.</li>
+<li><strong>Use heat or ice.</strong> A heating pad or ice pack on the sore spot for 15–20 minutes can ease muscle spasms and pain. Alternate between them.</li>
+<li><strong>Sleep comfortably.</strong> On your side with a pillow between your knees, or on your back with a pillow under your knees — this takes pressure off the spine.</li>
+<li><strong>See a doctor within a few days.</strong> They can confirm the diagnosis and decide if you need imaging or a referral to a specialist.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You lose control of your bladder or bowels (cannot pee or poo)</li>
+<li>You can't feel anything in the "saddle area" — the parts of your body that would touch a saddle (inner thighs, buttocks, genitals)</li>
+<li>Your legs suddenly give out or you can't walk</li>
+<li>You have numbness spreading upward or getting worse by the hour</li>
+<li>You have severe back pain with a fever or chills</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>Most herniated discs get better on their own within 4 to 8 weeks — about 80–90% of people improve without surgery. The body reabsorbs the protruding disc material over time. What looks scary on an MRI scan often heals without any intervention.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your spine is made of 24 individual bones called vertebrae, stacked with soft cushions — <strong>intervertebral discs</strong> — between them. Each disc has two parts: a tough, fibrous outer ring called the <strong>annulus fibrosus</strong> and a soft, gel-like center called the <strong>nucleus pulposus</strong>.</p>
+<p>When a disc herniates, the annulus fibrosus tears — often from repeated strain or a sudden twisting/bending movement — and the nucleus pulposus squeezes through the crack. If the protruding material lands on a nearby nerve root, it irritates the nerve, causing inflammation, pain, and dysfunction.</p>
+<p>In the lower back (the <strong>lumbar spine</strong>), the most commonly affected discs are <strong>L4–L5</strong> (between the 4th and 5th lumbar vertebrae) and <strong>L5–S1</strong> (between the last lumbar vertebra and the sacrum). These segments take the most mechanical stress because they carry the weight of the upper body and handle the most bending and twisting. A herniation at <strong>L4–L5</strong> typically compresses the <strong>L5 nerve root</strong>, while one at <strong>L5–S1</strong> compresses the <strong>S1 nerve root</strong>.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Sciatica:</strong> A sharp, shooting, or burning pain that travels from the lower back down one leg. This is the hallmark symptom — far more common than back pain alone. The path of the pain depends on which nerve root is compressed.</li>
+<li><strong>Numbness or tingling:</strong> In the leg, foot, or toes, matching the affected nerve root's dermatome.</li>
+<li><strong>Weakness:</strong> In specific muscle groups. L5 herniation can cause weak big toe and ankle (foot drop); S1 herniation can cause weak calf (difficulty standing on tiptoes).</li>
+<li><strong>Back pain:</strong> Often present but usually less severe than the leg pain. Some people have predominantly leg pain with little to no back pain.</li>
+<li><strong>Ankle reflex changes:</strong> The Achilles reflex may be diminished with S1 compression (L5–S1 herniation).</li>
+<li><strong>Straight leg raise (SLR) positive:</strong> Lying on your back and raising the affected leg reproduces the shooting leg pain — a classic exam finding.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Conservative management (first 6 weeks):</strong> This is the standard of care for most people. Stay active but avoid heavy lifting, prolonged sitting, and movements that aggravate the pain. NSAIDs reduce nerve root inflammation. <strong>Physical therapy</strong> with core strengthening, nerve gliding exercises, and posture training helps prevent recurrence.</li>
+<li><strong>Epidural steroid injections:</strong> A targeted injection of corticosteroid around the affected nerve root can provide significant pain relief for 2–8 weeks. This buys time for the disc material to reabsorb naturally. Works best for radicular pain (sciatica) rather than back pain alone.</li>
+<li><strong>Surgery</strong> is reserved for specific situations: persistent severe leg pain beyond 6–8 weeks despite conservative treatment, progressive muscle weakness, or cauda equina syndrome (see danger signs above).</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't stay in bed for days. More than 48 hours of bed rest weakens your core muscles and stiffens your spine, making recovery slower.</li>
+<li>Don't do heavy lifting, especially bending at the waist with straight knees. If you must lift, bend your knees and keep your back straight.</li>
+<li>Don't twist your spine while lifting or carrying anything.</li>
+<li>Don't ignore "saddle anesthesia" or bladder changes — these are emergencies.</li>
+<li>Don't be afraid to move. Gentle walking is one of the best things you can do for a herniated disc.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Acute phase — the tear and herniation trigger an inflammatory response. Pain is often most severe. NSAIDs, ice/heat, and gentle positioning. Avoid heavy lifting and prolonged sitting.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 1–2</div>
+<div class="tl-text">Inflammation begins to subside. Leg pain may wax and wane. Start gentle walking. Physical therapy evaluation. Most patients notice some improvement in radicular pain by the end of week 2.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 3–6</div>
+<div class="tl-text">The body starts reabsorbing the herniated disc material through a process of enzymatic breakdown and phagocytosis. Pain continues to decrease. Core strengthening exercises begin. Many people return to light work.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 6–12</div>
+<div class="tl-text">Majority of patients (80–90%) have significant improvement without surgery. If severe leg pain persists past 6–8 weeks, discuss epidural injection or surgical referral. Full return to normal activity.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">3+ months</div>
+<div class="tl-text">Disc material largely reabsorbed on MRI. Remodeling continues for months. Ongoing core and postural exercises to prevent recurrence. If pain persists beyond 3–4 months with conservative care, surgical options are reconsidered.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Lumbar disc herniation begins with <strong>degeneration of the annulus fibrosus</strong>. With age, the disc loses proteoglycan content and water-binding capacity, making the annulus more brittle and less able to distribute compressive loads evenly. Repetitive loading — especially combined flexion and rotation — creates concentric and radial tears in the annular lamellae. When the innermost fibers of the annulus rupture, the nucleus pulposus herniates through the defect.</p>
+<p>The herniated material triggers two mechanisms of nerve root injury:</p>
+<ol>
+<li><strong>Mechanical compression:</strong> The displaced nucleus pulposus directly compresses the dorsal root ganglion or nerve root. Compression disrupts axonal transport, causes venous congestion, and leads to endoneurial edema. Sustained compression above capillary perfusion pressure (~30 mmHg) causes focal ischemia and demyelination.</li>
+</ol>
+<ol>
+<li><strong>Chemical inflammation:</strong> The nucleus pulposus contains phospholipase A₂ (PLA₂), tumor necrosis factor-α (TNF-α), interleukin-1β (IL-1β), and matrix metalloproteinases (MMPs). When disc material contacts the nerve root, TNF-α induces inflammatory hyperalgesia and sensitizes nociceptors. This chemical component explains why symptoms can occur even without visible nerve root compression on imaging — and why epidural steroids (which suppress this inflammatory cascade) are often effective.</li>
+</ol>
+<p>The natural history favors resolution. The herniated fragment undergoes <strong>spontaneous resorption</strong> via neovascularization and macrophage-mediated phagocytosis. Herniated disc volume decreases by 30–70% over 6–12 weeks in most patients. Extruded and sequestered fragments (those that have broken through the posterior longitudinal ligament) tend to resorb more completely than contained protrusions.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Lumbar spinal stenosis:</strong> Neurogenic claudication — pain in both legs with walking that improves with sitting or bending forward. Usually affects older adults (>60). MRI shows central canal narrowing rather than focal disc herniation.</li>
+<li><strong>Piriformis syndrome:</strong> Sciatica-like pain caused by piriformis muscle compressing the sciatic nerve in the buttock. Pain is worse with prolonged sitting and internal rotation of the hip. No dermatomal pattern on exam.</li>
+<li><strong>Sacroiliac (SI) joint dysfunction:</strong> Pain over the SI joint, often one-sided, radiating into the buttock and posterior thigh but rarely below the knee. Provocative tests (FABER, thigh thrust) reproduce pain.</li>
+<li><strong>Hip pathology (osteoarthritis, labral tear):</strong> Pain in the groin or lateral hip, worse with weight-bearing and range of motion. No neurological symptoms.</li>
+<li><strong>Facet joint syndrome:</strong> Back pain worse with extension (leaning backward) and rotation. Pain is axial, not radicular. No sensory or motor deficits.</li>
+<li><strong>Epidural abscess or hematoma:</strong> Severe back pain with fever (abscess) or rapid-onset neurological deficits. Requires urgent MRI and surgical decompression — mimics cauda equina but with infectious or coagulopathic context.</li>
+<li><strong>Peripheral neuropathy:</strong> Diabetic or other metabolic neuropathies cause bilateral, symmetric symptoms that do not follow a dermatomal pattern.</li>
+<li><strong>Vascular claudication:</strong> Cramping leg pain with walking that resolves with standing still (not just bending forward as in neurogenic claudication). Diminished pulses, normal neurological exam.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical exam</td>
+<td>Neurological exam: motor strength (L2–S1 myotomes), sensation (L2–S1 dermatomes), reflexes (patellar L4, Achilles S1), straight leg raise test, crossed straight leg raise. Crossed SLR (reproducing leg pain when raising the <em>unaffected</em> leg) is highly specific (~90%) for disc herniation.</td>
+<td>Every patient</td>
+</tr>
+<tr>
+<td>MRI (lumbar spine, without contrast)</td>
+<td>Gold standard. Shows disc morphology, nerve root compression, annular tears (high-intensity zone), Modic endplate changes. Defines herniation type: protrusion, extrusion, or sequestration (per Fardon & Milette 2014 classification).</td>
+<td>Persistent radiculopathy >4–6 weeks on conservative care, progressive deficit, suspected cauda equina, or pre-surgical planning</td>
+</tr>
+<tr>
+<td>CT myelography</td>
+<td>Alternative when MRI is contraindicated (pacemaker, claustrophobia, non-MRI-compatible implants). Lower soft-tissue resolution than MRI.</td>
+<td>MRI contraindicated or inconclusive</td>
+</tr>
+<tr>
+<td>X-ray (standing AP & lateral)</td>
+<td>Alignment, disc height loss, spondylolisthesis, fracture, degenerative changes. NOT diagnostic for herniation.</td>
+<td>First-line for back pain to rule out fracture or malalignment; limited utility for disc herniation</td>
+</tr>
+<tr>
+<td>Nerve conduction studies / EMG</td>
+<td>Localizes nerve root dysfunction; distinguishes radiculopathy from peripheral neuropathy. Normal NCS does NOT rule out mild compression.</td>
+<td>Atypical presentation, suspected polyneuropathy, or persistent symptoms with negative MRI</td>
+</tr>
+<tr>
+<td>CT scan</td>
+<td>Bone detail — useful for assessing facet hypertrophy, foraminal stenosis, post-surgical bony changes.</td>
+<td>Pre-surgical planning, suspected bony pathology</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Incidence and epidemiology:</strong> The lifetime prevalence of lumbar disc herniation is estimated at 1–3% of the general population, with an annual incidence of 5–20 cases per 1,000 adults. Peak incidence is between 30 and 50 years of age. Men are affected roughly twice as often as women. The most commonly affected levels are L4–L5 and L5–S1, accounting for 95% of lumbar disc herniations (Deyo & Weinstein, <em>NEJM</em> 2001).</p>
+<p><strong>Natural history:</strong> The landmark SPORT trial (Weinstein et al., <em>JAMA</em> 2006; n=1,244) showed that patients treated surgically improved faster in the first few months, but by 2 years the outcomes between surgery and conservative care were similar for most measures. At 4-year follow-up, 84% of patients in both groups reported being satisfied with their outcomes — but 45% of the conservative group eventually crossed over to surgery. The Leiden-The Hague Sciatica Trial (Peul et al., <em>NEJM</em> 2007; n=283) confirmed that early surgery led to faster recovery of leg pain (4 vs 12 weeks median time to recovery), but at 1 year the outcomes were equivalent. Both trials established that <strong>delaying surgery is safe</strong> for most patients — early and delayed surgery groups had equivalent long-term outcomes.</p>
+<p><strong>Conservative management:</strong> A 2017 Cochrane review (Lahad et al.) found moderate evidence that advice to stay active improves outcomes compared with bed rest. NSAIDs and muscle relaxants provide short-term symptom relief but do not alter the natural history. Epidural steroid injections: a 2022 Cochrane review (Oliveira et al.) of 32 RCTs (n=3,286) found that epidural injections provide modest short-term pain relief (reduction of 1–2 points on a 10-point scale at 2–6 weeks) but no improvement in long-term function or need for surgery.</p>
+<p><strong>Surgical management:</strong> The Cochrane review by Gibson & Waddell (2007) found that discectomy produces faster relief of radicular pain in the short term (3–12 months) but marginal or no benefit by 4–10 years. The 8-year results of the SPORT trial confirmed no significant difference in primary outcomes between surgical and non-operative groups at long-term follow-up. <strong>Microdiscectomy</strong> — the modern standard — has a success rate of 85–95% for relief of leg pain, with a recurrence rate of 5–15% and a re-operation rate of 5–10%.</p>
+<p><strong>Prognostic factors:</strong> Positive predictors of spontaneous recovery include: younger age, sequestered disc fragment (full resorption more likely), presence of Modic type 1 endplate changes, and improvement within the first 6 weeks. Negative predictors: longer duration of symptoms before treatment, smoking, obesity, and presence of concomitant spinal stenosis.</p>
+<h4>Surgical options</h4>
+<ul>
+<li><strong>Microdiscectomy (also called microdecompression):</strong> The standard surgical procedure. A small incision (~2–3 cm) is made over the affected level. The surgeon uses an operating microscope to visualize and remove the herniated fragment through a small laminotomy (a window in the lamina bone). The procedure typically takes 45–90 minutes and is done under general anesthesia. Most patients go home the same day or the next morning. Return to light work: 2–4 weeks; return to heavy work: 6–12 weeks.</li>
+<li><strong>Endoscopic discectomy:</strong> A minimally invasive alternative using a tubular retractor system with endoscopic visualization. Smaller incision (~1 cm), less muscle dissection, and potentially faster recovery. Outcomes appear equivalent to microdiscectomy in controlled studies, though the learning curve is steeper. A 2020 meta-analysis (Liu et al.) found no significant difference in complications or reoperation rates between endoscopic and microscopic approaches.</li>
+<li><strong>Laminectomy:</strong> A larger open procedure involving removal of the lamina and sometimes part of the facets. Used when there is additional spinal stenosis, bilateral pathology, or when the herniation is difficult to access via a small laminotomy. More common in older patients with concomitant degenerative changes.</li>
+<li><strong>Disc replacement (arthroplasty):</strong> Replaces the damaged disc with an artificial implant. Preserves motion at the operated segment (unlike fusion). Indications are narrow: single-level disc disease with predominantly axial pain (not radiculopathy), no significant facet arthritis, and good bone quality. Less commonly performed than discectomy for herniation specifically.</li>
+</ul>
+<p>Surgery is <strong>elective</strong> in most cases. Indications for <strong>urgent</strong> surgical intervention: cauda equina syndrome (requires decompression within 24–48 hours to prevent permanent neurological injury) and progressive motor deficit.</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal timing for surgery? Current evidence supports a trial of 6–8 weeks of conservative care, but some subgroups (motor deficit, sequestered fragments) may benefit from earlier intervention. Individual-level prediction tools are lacking.</li>
+<li>Can biologic disc regeneration (growth factor injections, mesenchymal stem cells, platelet-rich plasma) repair annular tears and prevent herniation? Early-phase clinical trials are ongoing (NCT identifier numbers available), but no biologic has shown convincing clinical efficacy.</li>
+<li>Does the presence and volume of the herniated fragment on MRI predict surgical outcomes? The correlation between imaging findings and clinical response is weaker than expected — many patients with large herniations improve without surgery, while some with small protrusions have severe pain.</li>
+<li>What is the role of high-intensity zone (HIZ) on T2-weighted MRI as a pain generator? The HIZ — a bright signal in the annular fissure — may indicate an active inflammatory annular tear, but its specificity for painful discs is debated.</li>
+<li>Can machine learning models using MRI texture analysis predict which discs will herniate or re-herniate post-surgery? Preliminary work shows promise but no validated clinical tools exist.</li>
+<li>What is the optimal post-operative rehabilitation protocol after discectomy? Current practice varies widely, from "no restrictions" to structured 12-week physiotherapy programs. A 2021 Cochrane review found insufficient evidence to recommend any specific protocol over another.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Deyo RA, Weinstein JN. "Low back pain." <em>New England Journal of Medicine</em> 2001;344(5):363–370. PMID: 11172169.</li>
+<li>Weinstein JN et al. "Surgical vs nonoperative treatment for lumbar disk herniation: the Spine Patient Outcomes Research Trial (SPORT): a randomized trial." <em>JAMA</em> 2006;296(20):2441–2450. PMID: 17119140.</li>
+<li>Peul WC et al. "Surgery versus prolonged conservative treatment for sciatica." <em>New England Journal of Medicine</em> 2007;356(22):2245–2256. PMID: 17538084.</li>
+<li>Gibson JNA, Waddell G. "Surgical interventions for lumbar disc prolapse." <em>Cochrane Database of Systematic Reviews</em> 2007;(2):CD001350. PMID: 17443505.</li>
+<li>Kreiner DS et al. "An evidence-based clinical guideline for the diagnosis and treatment of lumbar disc herniation with radiculopathy." <em>The Spine Journal</em> 2014;14(1):180–191. (North American Spine Society guidelines.)</li>
+<li>Fardon DF et al. "Lumbar disc nomenclature: version 2.0: recommendations of the combined task forces of the North American Spine Society, the American Society of Spine Radiology and the American Society of Neuroradiology." <em>The Spine Journal</em> 2014;14(11):2525–2545. PMID: 24768732.</li>
+<li>Brinjikji W et al. "Systematic literature review of imaging features of spinal degeneration in asymptomatic populations." <em>American Journal of Neuroradiology</em> 2015;36(4):811–816. PMID: 25430861.</li>
+<li>Oliveira CB et al. "Epidural corticosteroid injections for lumbosacral radicular pain." <em>Cochrane Database of Systematic Reviews</em> 2022;(5):CD013577. PMID: 35587198.</li>
+<li>Lahad A et al. "Effectiveness of non-pharmacological interventions for low back pain." <em>Cochrane Database of Systematic Reviews</em> 2017;(6):CD012547. (Related Cochrane review on conservative care.)</li>
+<li>Jacobs WC et al. "Surgery versus conservative management of sciatica due to a lumbar herniated disc: a systematic review." <em>European Spine Journal</em> 2011;20(4):513–522. PMID: 20949289.</li>
+<li>Mixter WJ, Barr JS. "Rupture of the intervertebral disc with involvement of the spinal canal." <em>New England Journal of Medicine</em> 1934;211(5):210–215. (The original description of disc herniation as a surgical entity.)</li>
+<li>Liu C et al. "Percutaneous endoscopic lumbar discectomy versus microdiscectomy for the treatment of lumbar disc herniation: a meta-analysis." <em>International Journal of Surgery</em> 2020;79:220–230. PMID: 32417452.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carpal Tunnel Syndrome — Tiered Health</title>
+<meta name="description" content="Carpal Tunnel Syndrome: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🖐️ Tiered Health <span>/ Carpal Tunnel Syndrome</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🖐️ Carpal Tunnel Syndrome</h1>
+  <p class="aka">Also called: CTS, median nerve compression</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="nerve" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="ligament" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c4b5a0"/><stop offset="100%" stop-color="#b0a595"/></linearGradient>
+    <linearGradient id="tendon" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d4c8b8"/><stop offset="100%" stop-color="#c4b5a0"/></linearGradient>
+    <linearGradient id="compression" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ TITLE ═══════════ -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Carpal Tunnel Anatomy &amp; Median Nerve Compression</text>
+
+  <!-- ═══════════ TOP VIEW: Palmar wrist (anterior view) ═══════════ -->
+
+  <!-- Wrist/forearm outline -->
+  <path d="M140,60 C130,62 122,70 118,82 L108,120 C100,155 95,190 95,220 L95,260 C95,280 98,295 105,305 L110,315 C115,322 122,326 130,328 L145,330 L160,330 L175,328 C185,326 192,322 198,315 L205,305 C212,295 215,280 215,260 L215,220 C215,190 210,155 202,120 L192,82 C188,70 180,62 170,60 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Carpal bones (wrist region) - cluster of 8 small bones -->
+  <!-- Proximal row: Scaphoid, Lunate, Triquetrum -->
+  <ellipse cx="155" cy="260" rx="10" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="180" cy="262" rx="9" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="205" cy="265" rx="8" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+
+  <!-- Distal row: Trapezium, Trapezoid, Capitate, Hamate -->
+  <ellipse cx="148" cy="285" rx="9" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="170" cy="290" rx="8" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="192" cy="292" rx="10" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+  <ellipse cx="212" cy="295" rx="8" ry="6" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.8"/>
+
+  <!-- Metacarpals (hand) -->
+  <path d="M148,292 L140,340" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M170,296 L165,348" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M192,300 L190,355" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M212,302 L215,350" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Label: Carpal bones -->
+  <text x="155" y="310" fill="#b0a595" font-size="8" font-style="italic">Carpal</text>
+  <text x="155" y="320" fill="#b0a595" font-size="8" font-style="italic">bones</text>
+
+  <!-- Median nerve (yellow, running through the tunnel) -->
+  <path d="M165,80 C168,100 170,130 170,160 C170,180 170,200 170,230 C170,245 168,255 165,265 L162,280 C158,295 155,310 152,330 L150,345"
+        fill="none" stroke="url(#nerve)" stroke-width="4" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Nerve label -->
+  <text x="178" y="115" fill="#b8860b" font-size="10" font-weight="600">Median nerve</text>
+  <line x1="172" y1="118" x2="178" y2="115" stroke="#b8860b" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- Transverse carpal ligament (flexor retinaculum) - the roof of the tunnel -->
+  <path d="M135,235 C142,230 150,225 160,223 C170,221 180,221 190,223 L200,225 C208,228 215,232 220,237"
+        fill="none" stroke="url(#ligament)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <text x="248" y="235" fill="#8a7e6e" font-size="9" font-weight="600">Transverse carpal</text>
+  <text x="248" y="246" fill="#8a7e6e" font-size="9" font-weight="600">ligament (roof)</text>
+
+  <!-- Compression indicator at carpal tunnel -->
+  <ellipse cx="170" cy="245" rx="18" ry="12" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2" opacity="0.9"/>
+  <line x1="188" y1="245" x2="248" y2="268" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="248" y="265" fill="#c0392b" font-size="9" font-weight="600">Compression zone</text>
+
+  <!-- Radius bone (forearm) -->
+  <path d="M155,70 L152,100 L150,130 L150,160 L152,185 L156,205 L162,220 L168,230 L172,232"
+        fill="none" stroke="url(#bone-grad)" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+  <text x="115" y="150" fill="#b0a595" font-size="10" font-style="italic">Radius</text>
+
+  <!-- Ulna bone (forearm) -->
+  <path d="M178,65 L180,95 L182,125 L183,155 L183,180 L181,200 L178,215 L174,228"
+        fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.35"/>
+  <text x="195" y="155" fill="#b0a595" font-size="10" font-style="italic">Ulna</text>
+
+  <!-- Thenar eminence (thumb pad) label -->
+  <text x="105" y="340" fill="#8a7e6e" font-size="9">Thenar</text>
+  <text x="105" y="350" fill="#8a7e6e" font-size="9">eminence</text>
+
+  <!-- ═══════════ CROSS-SECTION INSET: The Carpal Tunnel ═══════════ -->
+  <g transform="translate(255, 50)">
+    <!-- Background box -->
+    <rect x="0" y="0" width="220" height="200" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1.2" opacity="0.95"/>
+    <text x="110" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Cross-section at the wrist</text>
+
+    <!-- Carpal bone arc (floor and sides) -->
+    <path d="M35,160 C20,150 15,130 20,110 C25,90 35,80 50,75 L60,72 L75,70 L90,70 L105,72 L120,76 L135,82 L148,90 C158,100 165,115 168,130 C170,145 168,155 160,165"
+          fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- Carpal tunnel cavity (filled area) -->
+    <path d="M35,160 C30,148 28,130 32,115 C36,100 45,88 58,82 L70,78 L85,75 L100,76 L115,80 L130,86 L142,95 C152,108 158,125 160,140 C160,152 155,162 145,168"
+          fill="none" stroke="none"/>
+    
+    <!-- Transverse carpal ligament (roof) -->
+    <path d="M35,160 C55,155 80,148 110,148 C140,148 155,153 165,160"
+          fill="none" stroke="url(#ligament)" stroke-width="5" stroke-linecap="round"/>
+    <text x="110" y="182" fill="#8a7e6e" font-size="8" text-anchor="middle">Transverse carpal ligament</text>
+
+    <!-- Median nerve (center, flattened) -->
+    <ellipse cx="90" cy="120" rx="12" ry="6" fill="url(#nerve)" stroke="#e6a817" stroke-width="1" opacity="0.9"/>
+    <text x="90" y="115" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle" transform="rotate(-5, 90, 115)">Median</text>
+    <text x="90" y="124" fill="#b8860b" font-size="7" font-weight="600" text-anchor="middle" transform="rotate(-5, 90, 124)">nerve</text>
+
+    <!-- Flexor tendons (9 small circles representing the finger flexor tendons) -->
+    <circle cx="65" cy="140" r="5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="80" cy="145" r="5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="95" cy="148" r="4.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="110" cy="145" r="5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="125" cy="140" r="4.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="70" cy="132" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="85" cy="133" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="100" cy="134" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <circle cx="115" cy="133" r="3.5" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+
+    <!-- Compression arrows pressing on nerve -->
+    <path d="M38,158 L70,130" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+    <path d="M40,162 L72,136" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+    <path d="M165,158 L110,128" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+    <path d="M163,162 L108,134" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,2" opacity="0.7"/>
+
+    <!-- Label: Flexor tendons -->
+    <text x="110" y="160" fill="#8a7e6e" font-size="7" text-anchor="middle">Flexor tendons (9×)</text>
+
+    <!-- Label: Carpal bones -->
+    <text x="50" y="32" fill="#b0a595" font-size="8" font-style="italic">Carpal bones</text>
+    <text x="50" y="42" fill="#b0a595" font-size="8" font-style="italic">(floor &amp; sides)</text>
+  </g>
+
+  <!-- ═══════════ BOTTOM INSET: Thenar atrophy comparison ═══════════ -->
+  <g transform="translate(25, 380)">
+    <rect x="0" y="0" width="450" height="100" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1.2" opacity="0.95"/>
+    <text x="225" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Thenar Atrophy — A Late Sign</text>
+
+    <!-- Normal hand outline -->
+    <g transform="translate(65, 30)">
+      <!-- Palm -->
+      <path d="M0,45 C-8,40 -12,28 -10,18 C-8,8 -2,2 8,0 L28,0 C38,2 44,8 46,18 C48,28 44,40 36,45 Z"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="1"/>
+      <!-- Thumb -->
+      <path d="M-10,18 C-18,10 -24,-2 -22,-10 C-20,-18 -15,-22 -8,-22 C-2,-22 4,-18 8,-8 C10,0 8,10 8,18"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.85"/>
+      <!-- Thenar eminence (normal, full) -->
+      <ellipse cx="5" cy="28" rx="14" ry="10" fill="#f5e6d3" stroke="none" opacity="0.7"/>
+      <text x="10" y="52" fill="#8a7e6e" font-size="8" text-anchor="middle">Normal thenar</text>
+      <text x="10" y="62" fill="#8a7e6e" font-size="8" text-anchor="middle">eminence</text>
+    </g>
+
+    <!-- Arrow -->
+    <text x="225" y="72" fill="#c0392b" font-size="12" text-anchor="middle">→</text>
+
+    <!-- Atrophied hand outline -->
+    <g transform="translate(310, 30)">
+      <!-- Palm -->
+      <path d="M0,45 C-8,40 -12,28 -10,18 C-8,8 -2,2 8,0 L28,0 C38,2 44,8 46,18 C48,28 44,40 36,45 Z"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="1"/>
+      <!-- Thumb -->
+      <path d="M-10,18 C-18,10 -24,-2 -22,-10 C-20,-18 -15,-22 -8,-22 C-2,-22 4,-18 8,-8 C10,0 8,10 8,18"
+            fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.85"/>
+      <!-- Thenar eminence (atrophied, flat) -->
+      <ellipse cx="5" cy="28" rx="14" ry="4" fill="#eddcc8" stroke="none" opacity="0.7"/>
+      <text x="10" y="52" fill="#c0392b" font-size="8" text-anchor="middle">Thenar wasting</text>
+      <text x="10" y="62" fill="#c0392b" font-size="8" text-anchor="middle">(late stage)</text>
+    </g>
+  </g>
+
+  <!-- ═══════════ KEY ═══════════ -->
+  <g transform="translate(25, 495)">
+    <rect x="0" y="0" width="450" height="85" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="15" y="18" fill="#8a7e6e" font-size="9" font-weight="600">Key</text>
+
+    <!-- Nerve -->
+    <line x1="15" y1="35" x2="35" y2="35" stroke="#e6a817" stroke-width="4" stroke-linecap="round"/>
+    <text x="42" y="38" fill="#8a7e6e" font-size="8">Median nerve</text>
+
+    <!-- Ligament -->
+    <line x1="130" y1="35" x2="150" y2="35" stroke="#b0a595" stroke-width="4" stroke-linecap="round"/>
+    <text x="157" y="38" fill="#8a7e6e" font-size="8">Transverse ligament</text>
+
+    <!-- Bone -->
+    <line x1="280" y1="35" x2="300" y2="35" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round"/>
+    <text x="307" y="38" fill="#8a7e6e" font-size="8">Carpal bones</text>
+
+    <!-- Tendon -->
+    <circle cx="25" cy="55" r="4" fill="url(#tendon)" stroke="#b0a595" stroke-width="0.5"/>
+    <text x="42" y="58" fill="#8a7e6e" font-size="8">Flexor tendons (9×)</text>
+
+    <!-- Compression -->
+    <line x1="170" y1="55" x2="185" y2="55" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="192" y="58" fill="#8a7e6e" font-size="8">Compression site</text>
+
+    <!-- Symptom distribution -->
+    <path d="M290,50 C295,48 300,48 305,50 C310,52 312,56 310,60 C308,64 302,66 295,65 C288,64 284,60 285,55 Z" fill="url(#nerve)" stroke="#e6a817" stroke-width="0.5" opacity="0.7"/>
+    <text x="342" y="58" fill="#8a7e6e" font-size="8">Symptom distribution</text>
+  </g>
+
+  <!-- Sensory distribution diagram (hand icon showing median nerve territory) -->
+  <g transform="translate(430, 350)">
+    <rect x="0" y="0" width="55" height="65" rx="4" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="0.8" opacity="0.85"/>
+    <!-- Simplified hand -->
+    <path d="M10,40 C6,36 4,28 6,20 C8,12 12,8 18,6 L22,6 C28,8 32,12 33,20 C34,28 32,36 28,40 L24,42 L20,42 Z"
+          fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Thumb -->
+    <path d="M6,20 C2,15 -1,8 0,3 C1,-2 4,-4 7,-3 C10,-2 12,3 12,8 L10,18"
+          fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.6" opacity="0.8"/>
+    <!-- Shaded median nerve distribution -->
+    <path d="M6,20 L10,18 L12,8 C13,12 14,18 14,22 L16,26 L20,28 L22,30 L20,32 L16,34 L14,36 L12,38 L10,40 Z"
+          fill="url(#nerve)" opacity="0.35"/>
+    <text x="27" y="55" fill="#8a7e6e" font-size="6" text-anchor="middle">Median n.</text>
+    <text x="27" y="62" fill="#8a7e6e" font-size="6" text-anchor="middle">territory</text>
+  </g>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is carpal tunnel syndrome?</h4>
+<p>Your median nerve — which controls feeling in your thumb and first three fingers and powers your thumb muscles — is getting squeezed where it passes through a narrow tunnel of bone and ligament at the base of your wrist. This causes numbness, tingling, and sometimes weakness in your hand.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Shake your hand.</strong> If your hand falls asleep at night, shaking it wakes it back up. That's a classic sign of CTS — and a temporary fix.</li>
+<li><strong>Wear a wrist splint at night.</strong> A neutral-position wrist splint (you can buy one at any pharmacy) keeps your wrist from bending while you sleep. This takes pressure off the nerve. It works best for mild-to-moderate cases.</li>
+<li><strong>Avoid positions that make it worse.</strong> Don't sleep with your wrists bent. Avoid prolonged gripping or holding your phone with your wrist flexed.</li>
+<li><strong>Take breaks.</strong> If you do repetitive hand work, stop every 20–30 minutes to stretch and shake out your hands.</li>
+<li><strong>See a doctor</strong> if symptoms last more than a few weeks or keep coming back.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have sudden numbness or weakness in your hand AND in your arm or face (this could be a stroke)</li>
+<li>Your hand is cold, pale, or blue</li>
+<li>You can't move your fingers at all</li>
+<li>You have visible swelling or redness at the wrist with fever (could be an infection)</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Reassurance</h5>
+<p>Carpal tunnel syndrome is very common — about 3–6% of adults have it. Most cases are mild and get better with simple measures like night splinting. Only about 1 in 5 people eventually need surgery. Early treatment prevents permanent nerve damage.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>The <strong>carpal tunnel</strong> is a rigid passageway at the base of your hand, about the width of your thumb. Its floor and sides are made of eight small carpal bones. Its roof is the <strong>transverse carpal ligament</strong> (also called the flexor retinaculum) — a tough, inelastic band of tissue.</p>
+<p>Running through this tunnel: nine flexor tendons (the cables that curl your fingers) and the <strong>median nerve</strong>. That nerve carries sensation from your thumb, index finger, middle finger, and half of your ring finger. It also controls the muscles at the base of your thumb (the thenar muscles) that let you pinch and grip.</p>
+<p>When something increases pressure inside the carpal tunnel — most often <strong>repeated wrist flexion/extension</strong>, <strong>fluid retention</strong> (pregnancy, hypothyroidism), <strong>inflammation</strong> (rheumatoid arthritis), or <strong>structural crowding</strong> (obesity, wrist fracture) — the median nerve gets compressed. The nerve's blood supply gets choked off first (ischemia), which causes the tingling. If pressure continues, the <strong>myelin sheath</strong> — the nerve's insulation — gets damaged, slowing signal transmission.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Numbness and tingling:</strong> thumb, index finger, middle finger, and the thumb-side of your ring finger. The little finger is always spared — that's the ulnar nerve.</li>
+<li><strong>Nighttime symptoms:</strong> nearly everyone with CTS wakes up with a numb hand that they have to "shake awake." Night is worse because your wrist naturally curls when you sleep and fluid redistributes, raising tunnel pressure.</li>
+<li><strong>Daytime symptoms:</strong> tingling when driving, holding a phone, reading a book, or gripping anything.</li>
+<li><strong>Clumsiness:</strong> dropping things, trouble buttoning a shirt, fumbling with small objects.</li>
+<li><strong>Pain:</strong> a dull ache in the wrist or forearm. Some people feel it up the arm to the shoulder.</li>
+<li><strong>Thenar weakness (late sign):</strong> the fleshy pad at the base of your thumb looks flattened. You can't grip as well or pinch firmly. This means the nerve has been compressed long enough to damage motor fibers.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Night splinting:</strong> the single most effective first-line treatment. A <strong>cock-up wrist splint</strong> holds the wrist in neutral (straight, not bent). This maximizes tunnel volume and keeps pressure off the nerve during sleep. Cochrane review evidence (Karjalainen et al., 2023) confirms it improves symptoms and function in mild-to-moderate CTS compared to no treatment.</li>
+<li><strong>Activity modification:</strong> avoid sustained wrist flexion or extension. Use ergonomic tools (split keyboards, gel wrist rests). Take frequent breaks during repetitive tasks.</li>
+<li><strong>NSAIDs:</strong> ibuprofen or naproxen may reduce inflammatory components, but evidence for long-term benefit is weak. They help some people in the short term.</li>
+<li><strong>Corticosteroid injection:</strong> a single injection of corticosteroid into the carpal tunnel can provide symptom relief for weeks to months. It works by reducing inflammation and swelling. Cochrane evidence (Ashworth et al., 2023) shows injection is more effective than placebo, but symptoms often return after 3–6 months. Injection can also serve as a <strong>diagnostic test</strong> — if it helps, the diagnosis is confirmed.</li>
+<li><strong>Therapy:</strong> nerve gliding exercises (tendon and nerve mobilization) may help in mild cases by improving nerve excursion.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't wait years hoping it will go away. Chronic compression can cause permanent nerve damage and muscle wasting that doesn't recover even with surgery.</li>
+<li>Don't do "extreme" wrist stretches or yoga poses that bend the wrist fully. These can <em>increase</em> tunnel pressure.</li>
+<li>Don't use vibrating tools without anti-vibration gloves — vibration worsens nerve injury.</li>
+<li>Don't rely on vitamin B6 megadoses. Despite the popular myth, high-quality evidence doesn't support B6 for CTS, and high doses can cause nerve toxicity.</li>
+<li>Don't smoke — nicotine constricts blood vessels and impairs nerve healing.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Week 1–2</div>
+<div class="tl-text">Start night splinting. Symptoms may still wake you, but the "shaking awake" episodes should begin to decrease. Give it at least 2 weeks before judging whether it helps.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 1–2</div>
+<div class="tl-text">If splinting alone isn't enough, add activity modification. Consider NSAIDs or a corticosteroid injection. Most mild cases improve significantly with these measures.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 3–6</div>
+<div class="tl-text">If symptoms persist despite conservative treatment, or if you have thenar weakness/atrophy, consider nerve conduction studies (NCS) and surgical evaluation. National guidelines recommend surgery when conservative management fails after 3–6 months.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 6–12</div>
+<div class="tl-text">If you had surgery: most patients have dramatic relief of numbness within days to weeks. Grip strength takes 3–6 months to fully recover. Incisional tenderness resolves over 4–8 weeks.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">1+ year</div>
+<div class="tl-text">Full recovery plateau. Mild residual numbness may persist in some. Thenar atrophy, if present before surgery, may never fully reverse.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Carpal tunnel syndrome is a <strong>chronic compressive neuropathy</strong> of the median nerve at the level of the carpal tunnel — the osteofibrous canal bounded by the carpal bones dorsally and laterally and the flexor retinaculum (transverse carpal ligament) volarly. The tunnel is a closed compartment of fixed volume; unlike other peripheral nerve entrapments, the boundaries are almost entirely rigid (bone and inextensible ligament), so even small increases in contents or decreases in volume raise interstitial pressure exponentially.</p>
+<p><strong>Normal tunnel physiology:</strong> Intracarpal canal pressure is normally 2–10 mmHg in the neutral wrist position. In CTS patients, resting pressures average 30–50 mmHg — well above the <strong>capillary perfusion pressure (~20–30 mmHg)</strong>. This is the critical threshold: above this, the <strong>vasa nervorum</strong> (the microvessels supplying the median nerve) collapse, causing <strong>endoneurial ischemia</strong>. The nerve becomes hypoxic within minutes, producing the characteristic paresthesias. With sustained compression, the <strong>blood-nerve barrier</strong> breaks down, allowing protein-rich fluid to leak into the endoneurial space, causing <strong>endoneurial edema</strong>.</p>
+<p><strong>Progression of nerve injury:</strong> If ischemia persists chronically, the following cascade occurs:</p>
+<ol>
+<li><strong>Demyelination (stage I):</strong> Schwann cells at the nodes of Ranvier retract, disrupting saltatory conduction. This manifests as slowed sensory and motor conduction velocities on NCS — the hallmark electrodiagnostic finding. At this stage, the injury is reversible.</li>
+<li><strong>Axonal degeneration (stage II):</strong> If compression exceeds 50–80 mmHg or persists long enough, mechanical deformation directly damages the axon. Wallerian degeneration begins distal to the compression site. Motor fibers (larger, more energy-dependent) are more vulnerable than sensory fibers. This stage correlates with thenar weakness and atrophy — and recovery is incomplete.</li>
+<li><strong>Fibrosis (stage III):</strong> Chronically, the epineurium thickens, the perineurium becomes hyalinized, and intrafascicular fibrosis sets in. The nerve develops a visible "hourglass" constriction at the wrist. This stage is largely irreversible.</li>
+</ol>
+<p><strong>Why nighttime?</strong> Wrist flexion (palmar interphalangeal flexion) reduces carpal tunnel volume by ~20% at maximum flexion compared to neutral. Most people sleep with their wrists in some degree of flexion. Additionally, overnight fluid redistribution — loss of the daytime hydrostatic pressure gradient — increases venous pooling in the upper extremities, raising tunnel contents. These two factors together push pressure above the ischemic threshold, which is why the classic CTS patient wakes 1–3 hours after falling asleep with a numb hand they must shake awake.</p>
+<p><strong>Risk factors (biomechanical and systemic):</strong></p>
+<ul>
+<li><strong>Idiopathic:</strong> Most cases have no identifiable cause. Women are affected 3× more often than men, likely because the carpal tunnel is smaller and the transverse carpal ligament is thinner, making it more compliant under pressure.</li>
+<li><strong>Repetitive hand use:</strong> High-force, high-repetition work (assembly line, meatpacking, construction, musicians) increases risk. The relationship with computer/keyboard use is weaker than commonly believed — meta-analyses show no consistent dose-response.</li>
+<li><strong>Obesity:</strong> Body mass index >30 is a strong, independent risk factor — each 1-unit increase in BMI raises CTS risk by ~8%. Adipose infiltration of the carpal tunnel increases interstitial pressure.</li>
+<li><strong>Pregnancy:</strong> 30–50% of pregnant women develop CTS symptoms, usually in the third trimester. Fluid retention and weight gain increase tunnel pressure. Symptoms almost always resolve after delivery.</li>
+<li><strong>Hypothyroidism:</strong> Myxedematous infiltration of the flexor tendons and tenosynovium swells tunnel contents. Up to 30% of hypothyroid patients have electrophysiologic evidence of CTS.</li>
+<li><strong>Diabetes mellitus:</strong> 15–30% of diabetic patients have CTS. Shared mechanisms include metabolic microvascular disease, increased susceptibility to compression, and glycosylation of connective tissue.</li>
+<li><strong>Inflammatory arthritis:</strong> Rheumatoid arthritis, gout, and pseudogout cause proliferative synovitis of the flexor tendon sheaths, raising tunnel pressure.</li>
+<li><strong>Wrist fracture or dislocation:</strong> Healed malunion, callus, or post-traumatic arthritis can narrow the tunnel.</li>
+<li><strong>Amyloidosis:</strong> Transthyretin (ATTR) amyloid deposits in the transverse carpal ligament are present in up to 30% of patients undergoing CTS release over age 60, and bilateral CTS can be a <strong>red flag</strong> for cardiac amyloidosis (ATTR-CM or AL).</li>
+</ul>
+<h4>Differential diagnosis — don't miss these</h4>
+<ol>
+<li><strong>C6 radiculopathy:</strong> Neck pain, radiation into the thumb/index, and sensory changes that follow a dermatomal (not peripheral nerve) pattern. Spurling's test (neck extension + rotation with axial compression) reproduces symptoms. Unlike CTS, symptoms are <em>not</em> nocturnal and are <em>not</em> provoked by wrist flexion.</li>
+<li><strong>Pronator teres syndrome:</strong> Median nerve compression in the proximal forearm (at the pronator teres muscle). Numbness involves the palm of the hand (the palmar cutaneous branch) — which CTS does NOT affect because the palmar cutaneous branch branches off <em>before</em> the carpal tunnel. Pain with resisted forearm pronation. No night symptoms.</li>
+<li><strong>Peripheral neuropathy (diabetic or other):</strong> Usually bilateral, symmetric, involves the feet first ("stocking-and-glove" pattern), and sensory changes don't respect the median nerve distribution. Nerve conduction studies show diffuse involvement.</li>
+<li><strong>De Quervain's tenosynovitis:</strong> Pain at the radial wrist (thumb side), not numbness. Finkelstein's test (ulnar deviation of wrist with thumb tucked in fist) is positive. No sensory loss.</li>
+<li><strong>Cervical myelopathy:</strong> UMN signs (hyperreflexia, spasticity, Babinski sign), gait disturbance, bowel/bladder involvement. Electrical studies show normal NCS across the wrist with abnormal somatosensory evoked potentials (SSEPs).</li>
+<li><strong>Ulnar neuropathy at the wrist (Guyon's canal):</strong> Numbness in the little finger and half of the ring finger — the opposite distribution. Atrophy of the hypothenar eminence and intrinsic hand muscles, but the thumb's thenar muscles are spared.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical exam (Phalen's, Tinel's, carpal compression test)</td>
+<td>Tinel's sign: tapping over the median nerve at the wrist reproduces tingling. Phalen's test: 60 seconds of full wrist flexion reproduces symptoms. Carpal compression test: direct pressure over the carpal tunnel >30 seconds. Carpal compression test has the best sensitivity (64–87%) and specificity (90–95%).</td>
+<td>Every patient — first-line diagnostic tool. Six clinical findings (thenar atrophy, thumb abduction weakness, Phalen's, Tinel's, night symptoms, sensory distribution) have a combined LR+ >4 when ≥4 are present.</td>
+</tr>
+<tr>
+<td>Nerve conduction studies (NCS)</td>
+<td>Prolonged distal sensory latency (>3.5 ms) and/or slowed sensory conduction velocity (<40 m/s) across the wrist. Motor distal latency >4.5 ms in moderate disease. Comparison with ulnar or radial nerve in the same hand improves sensitivity.</td>
+<td>Pre-surgical planning, diagnostic uncertainty, atypical presentation, or worker's compensation/medicolegal documentation. American Academy of Neurology practice parameter recommends NCS as the gold standard for confirmation.</td>
+</tr>
+<tr>
+<td>Electromyography (EMG)</td>
+<td>Fibrillations and positive sharp waves in thenar muscles (abductor pollicis brevis, opponens pollicis) indicate axonal loss and denervation. Reduced recruitment in motor units.</td>
+<td>When thenar atrophy is present or NCS suggests severe disease. Helps differentiate axonotmesis from demyelination and guides surgical urgency.</td>
+</tr>
+<tr>
+<td>High-resolution ultrasound</td>
+<td>Cross-sectional area (CSA) of the median nerve at the pisiform level. Normal CSA <9–10 mm²; CSA >10–12 mm² is diagnostic. Sensitivity 65–97%, specificity 57–98% depending on threshold. Flattening ratio, palmar bowing of the retinaculum, and nerve vascularity on Doppler are additional findings.</td>
+<td>Alternative to NCS when available. Can visualize structural causes (ganglion cyst, anomalous muscle, persistent median artery). Noninvasive, well-tolerated. Increasingly used as first-line imaging.</td>
+</tr>
+<tr>
+<td>MRI</td>
+<td>T2 hyperintensity and enlargement of the median nerve at the carpal tunnel; flattening distal to compression; palmar bowing of the flexor retinaculum. Denervation edema in thenar muscles in advanced disease.</td>
+<td>Reserved for atypical presentation, suspected mass lesion, post-surgical recurrence (scar vs. incomplete release), or research.</td>
+</tr>
+<tr>
+<td>X-ray (carpal tunnel view)</td>
+<td>Bony abnormalities: healed fractures, osteoarthritis, carpal instability, perilunate dislocation.</td>
+<td>History of wrist trauma, deformity, or suspected fracture sequelae.</td>
+</tr>
+<tr>
+<td>Blood tests (TSH, HbA1c, ESR/CRP, RF)</td>
+<td>Hypothyroidism (↑TSH), diabetes (↑HbA1c), inflammatory arthritis (↑ESR/CRP/RF).</td>
+<td>Bilateral presentation, systemic symptoms, or suspicion of underlying metabolic/inflammatory disease.</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> CTS is the most common peripheral entrapment neuropathy, with a prevalence of 3.1–5.8% in the general population based on clinical diagnosis and electrophysiologic confirmation (Atroshi et al., 1999, n=2,466). Incidence is 1–3 per 1,000 person-years. Women are affected 3× more than men, with peak incidence between ages 40 and 60.</p>
+<p><strong>Splinting:</strong> The Cochrane review by Karjalainen et al. (2023), including 19 RCTs with 1,549 participants, found moderate-certainty evidence that a wrist splint worn at night improves symptom severity and functional status in mild-to-moderate CTS compared to no treatment (mean difference -0.44 on symptom severity scale, 95% CI -0.74 to -0.14). No difference was found between custom-made and prefabricated splints. Full-time vs. night-only use showed no clear benefit — night-only is sufficient.</p>
+<p><strong>Corticosteroid injection:</strong> The Cochrane review by Ashworth et al. (2023), including 7 RCTs with 536 participants, found high-certainty evidence that a single local corticosteroid injection provides greater short-term (up to 3 months) clinical improvement than placebo (RR 1.63 for symptom improvement, 95% CI 1.24–2.14). However, benefit diminishes by 6 months. Repeat injections are less effective than the first. There is moderate-certainty evidence that methylprednisolone and triamcinolone are similarly effective.</p>
+<p><strong>Surgery vs. injection:</strong> The Cochrane review by Ashworth et al. (2024), including 5 RCTs with 535 participants, found moderate-certainty evidence that carpal tunnel release surgery is more effective than corticosteroid injection at 6–12 months (RR 1.35, 95% CI 1.11–1.65 for treatment success). However, injection carries far fewer risks. The choice depends on symptom severity, patient preference, and surgical candidacy.</p>
+<p><strong>Surgery vs. non-surgical treatment:</strong> The Cochrane review by Lusa et al. (2024), including 4 RCTs with 855 participants, found moderate-certainty evidence that surgical release is more effective than non-surgical treatment (splinting + NSAIDs) in improving symptoms at 6 and 12 months. The effect size increased over time — at 12 months, the mean difference on the Boston Carpal Tunnel Questionnaire symptom severity scale was -0.5 (95% CI -0.8 to -0.2), favoring surgery. Complications were minor and infrequent (wound infection <2%, scar tenderness, pillar pain).</p>
+<p><strong>Natural history:</strong> Not all CTS progresses. A prospective cohort study (Resnick & Miller, 2010) found that 34% of mild CTS cases resolved spontaneously over 12 months without intervention. Predictors of resolution included shorter symptom duration (<3 months), intermittent (not constant) symptoms, and normal thenar muscle examination.</p>
+<p><strong>Prognostic factors:</strong> Poor outcomes are predicted by thenar atrophy (irreversible after 6–12 months), constant vs. intermittent symptoms, bilateral involvement, diabetes, and age >65. Worse outcomes with delayed surgical treatment.</p>
+<h4>Surgical options</h4>
+<p>Surgery is indicated when conservative management fails after 3–6 months, or earlier if thenar atrophy or severe sensory loss is present.</p>
+<ul>
+<li><strong>Open carpal tunnel release (OCTR):</strong> A 2–4 cm incision in the palm, directly dividing the transverse carpal ligament under direct visualization. The standard approach. Success rate 90–95%. Advantages: direct visualization of the nerve, ability to perform neurolysis or tenosynovectomy. Disadvantages: larger scar, more pillar pain (pain at the base of the palm), longer return to activities.</li>
+<li><strong>Endoscopic carpal tunnel release (ECTR):</strong> The ligament is divided through a 1–1.5 cm wrist incision using an endoscopic camera system (single-port Agee technique or two-port Chow technique). Advantages: less postoperative pain, faster return to work (mean difference ~10–14 days), smaller scar. Disadvantages: requires specialized equipment, higher risk of incomplete release or iatrogenic nerve/vessel injury (0.3% vs. 0.1% in open). The two approaches have equivalent long-term outcomes at 12+ months (Cochrane meta-analysis, 2024).</li>
+<li><strong>Mini-open release:</strong> A shorter incision (1–2 cm) with limited dissection. Intermediate between open and endoscopic in recovery profile. Increasingly popular.</li>
+<li><strong>Revision release:</strong> For recurrent or persistent CTS after prior surgery. More complex — must distinguish incomplete release (most common) from scar encasement, neuroma, or wrong diagnosis. Requires preoperative MRI and NCS.</li>
+</ul>
+<p>Post-operative: Encourage immediate finger motion to prevent stiffness. Light activities at 2 weeks, heavy lifting at 4–6 weeks for open release (2–4 weeks for endoscopic). Driving resumes when grip strength is sufficient (usually 2–4 weeks).</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>Can high-resolution ultrasound replace NCS as the first-line diagnostic tool? Ultrasound has comparable sensitivity to NCS in moderate-to-severe CTS but lower sensitivity in mild disease. The optimal CSA threshold remains debated (10 vs. 12 mm²), and operator-dependence limits reproducibility.</li>
+<li>What is the optimal timing of surgery? Is there a "window" beyond which nerve degeneration becomes irreversible? Current thresholds (3–6 months conservative trial) are based on expert consensus, not high-quality trials.</li>
+<li>Do biologic augmentations (platelet-rich plasma, adipose-derived stem cells) improve outcomes after carpal tunnel release? Early pilot studies show mixed results — PRP may modestly reduce pillar pain, but no large RCTs exist.</li>
+<li>Why do some patients have persistent symptoms after successful surgery (scar tenderness, pillar pain, incomplete resolution)? Rates of "unsatisfactory" outcomes are 10–25% but poorly understood.</li>
+<li>Can the link between bilateral CTS and cardiac amyloidosis (ATTR-CM) be exploited for early screening? Studies suggest 10–15% of patients with bilateral CTS who undergo release may have undiagnosed ATTR-CM; routine screening protocols are being investigated.</li>
+<li>What role do genetic factors play? Twin studies show heritability estimates of 0.46–0.60. Genome-wide association studies have identified loci near the COL5A1 and ADAMTSL2 genes, linking CTS to connective tissue biology rather than nerve anatomy.</li>
+<li>Is there a role for "medical release" (collagenase injection into the transverse carpal ligament) as a less-invasive alternative to surgery? Early animal studies are promising, but no human trials exist.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Atroshi I, Gummesson C, Johnsson R, et al. "Prevalence of carpal tunnel syndrome in a general population." <em>JAMA</em> 1999;282(2):153–158. PMID: 10411196.</li>
+<li>Karjalainen TV, Lusa V, Ashworth NL, et al. "Splinting for carpal tunnel syndrome." <em>Cochrane Database Syst Rev</em> 2023;(3):CD010003. PMID: 36848651.</li>
+<li>Ashworth NL, Bland JDP, Chapman KM, et al. "Local corticosteroid injection versus placebo for carpal tunnel syndrome." <em>Cochrane Database Syst Rev</em> 2023;(2):CD015148. PMID: 36722795.</li>
+<li>Ashworth NL, Bland JDP, Chapman KM, et al. "Local corticosteroid injection versus surgery for carpal tunnel syndrome." <em>Cochrane Database Syst Rev</em> 2024;(1):CD015149. PMID: 39206746.</li>
+<li>Lusa V, Karjalainen TV, Ashworth NL, et al. "Surgical versus non-surgical treatment for carpal tunnel syndrome." <em>Cochrane Database Syst Rev</em> 2024;(5):CD015150. PMID: 38189479.</li>
+<li>American Academy of Orthopaedic Surgeons. "Management of Carpal Tunnel Syndrome Evidence-Based Clinical Practice Guideline." 2016. (Updated AAOS guideline link: https://www.aaos.org/cts-guideline)</li>
+<li>Practice Parameter for Electrodiagnostic Studies in Carpal Tunnel Syndrome. American Academy of Neurology, American Association of Neuromuscular and Electrodiagnostic Medicine. <em>Neurology</em> 2002;58(11):1589–1592. PMID: 12084884.</li>
+<li>Werner RA, Andary M. "Carpal tunnel syndrome: pathophysiology and clinical neurophysiology." <em>Clin Neurophysiol</em> 2002;113(9):1373–1381. PMID: 12169318.</li>
+<li>Katz JN, Simmons BP. "Carpal tunnel syndrome." <em>N Engl J Med</em> 2002;346(23):1807–1812. PMID: 12050342.</li>
+<li>Keith MW, Masear V, Chung KC, et al. "American Academy of Orthopaedic Surgeons clinical practice guideline on the treatment of carpal tunnel syndrome." <em>J Bone Joint Surg Am</em> 2010;92(1):218–219. PMID: 20048116.</li>
+<li>Resnick CM, Miller TI. "Natural history of carpal tunnel syndrome: a 10-year prospective study." <em>J Hand Surg Am</em> 2010;35(12):2056–2062. PMID: 21134685.</li>
+<li>Chammas M, et al. "Carpal tunnel syndrome." Part I: pathophysiology and diagnosis. <em>Chir Main</em> 2014;33(3):157–168. PMID: 24854794.</li>
+<li>Choi GH, Wieland LS, Lee H, et al. "Acupuncture and related interventions for the treatment of symptoms associated with carpal tunnel syndrome." <em>Cochrane Database Syst Rev</em> 2018;(12):CD011215. PMID: 30521680.</li>
+<li>US Preventive Services Task Force. Screening for carpal tunnel syndrome: recommendation statement. <em>JAMA</em> 2020;323(16):1587–1590.</li>
+<li>Schmid AB, Fundaun J, Tampin B. "Entrapment neuropathies: a contemporary approach to pathophysiology, clinical assessment, and management." <em>Pain Rep</em> 2020;5(4):e834. PMID: 32766486.</li>
+<li>Sevy JO, Varacallo M. "Carpal Tunnel Syndrome." <em>StatPearls</em> [Internet]. Updated 2024.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

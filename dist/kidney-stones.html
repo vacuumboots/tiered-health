@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kidney Stones — Tiered Health</title>
+<meta name="description" content="Kidney Stones: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🩨 Tiered Health <span>/ Kidney Stones</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🩨 Kidney Stones</h1>
+  <p class="aka">Also called: nephrolithiasis · renal calculi · urolithiasis</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="kidney-surface" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8c4a0"/><stop offset="100%" stop-color="#d4a87a"/></linearGradient>
+    <linearGradient id="cortex" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#dbb48f"/><stop offset="100%" stop-color="#c9a27e"/></linearGradient>
+    <linearGradient id="medulla" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c2956a"/><stop offset="100%" stop-color="#af8458"/></linearGradient>
+    <linearGradient id="pelvis" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f0dcc8"/><stop offset="100%" stop-color="#e0c8b0"/></linearGradient>
+    <linearGradient id="ureter" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0c8b0"/><stop offset="100%" stop-color="#d0b8a0"/></linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="50%" stop-color="#d4c8b8"/><stop offset="100%" stop-color="#c0b0a0"/></linearGradient>
+    <linearGradient id="stone-core" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#a93226"/></linearGradient>
+    <linearGradient id="vessel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="shadow"><feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-opacity="0.15"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="22" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Kidney &amp; Ureter — Stone Locations</text>
+
+  <!-- ═══════ KIDNEY OUTER SHAPE ═══════ -->
+  <g transform="translate(30, 20)">
+    <!-- Kidney outline (bean shape) -->
+    <path d="M140,35 C160,30 185,32 205,45 C225,58 240,78 248,100 C256,122 256,145 250,168 C244,191 232,212 215,228 C200,240 182,248 162,250 C142,252 120,248 102,238 C84,228 70,212 62,194 C54,176 52,155 54,134 C56,113 62,94 74,78 C86,62 102,50 120,42 C128,38 134,36 140,35 Z"
+          fill="url(#kidney-surface)" stroke="#c4a88a" stroke-width="1.5" opacity="0.95" filter="url(#shadow)"/>
+
+    <!-- Renal artery (entering hilum) -->
+    <path d="M220,145 C235,143 250,140 265,138 C280,136 290,135 300,134"
+          fill="none" stroke="url(#vessel)" stroke-width="4" stroke-linecap="round"/>
+    <text x="302" y="130" fill="#c0392b" font-size="9" font-style="italic">Renal a.</text>
+
+    <!-- Renal vein (exiting hilum) -->
+    <path d="M218,178 C235,180 252,183 270,185 C285,187 295,188 305,189"
+          fill="none" stroke="#3498db" stroke-width="4.5" stroke-linecap="round"/>
+    <text x="305" y="188" fill="#2980b9" font-size="9" font-style="italic">Renal v.</text>
+
+    <!-- Hilum notch (indentation) -->
+    <path d="M200,145 C210,152 215,160 215,170 C215,178 210,185 205,190 C200,195 195,198 190,200"
+          fill="none" stroke="#b09070" stroke-width="1.5"/>
+
+    <!-- ═══════ INTERNAL KIDNEY ANATOMY ═══════ -->
+
+    <!-- Medulla (pyramids) - triangular regions -->
+    <!-- Pyramid 1 (upper) -->
+    <path d="M110,65 C120,60 135,62 145,70 C152,76 155,85 150,95 C142,105 128,108 118,100 C108,92 105,80 110,65 Z"
+          fill="url(#medulla)" stroke="#af8458" stroke-width="1" opacity="0.7"/>
+    <!-- Pyramid 2 (mid-upper) -->
+    <path d="M100,105 C112,100 128,102 138,112 C145,120 145,132 138,140 C128,148 112,148 102,140 C94,132 92,118 100,105 Z"
+          fill="url(#medulla)" stroke="#af8458" stroke-width="1" opacity="0.7"/>
+    <!-- Pyramid 3 (mid) -->
+    <path d="M92,148 C104,142 120,144 130,154 C137,162 137,174 130,182 C120,190 104,190 94,182 C86,174 84,160 92,148 Z"
+          fill="url(#medulla)" stroke="#af8458" stroke-width="1" opacity="0.7"/>
+    <!-- Pyramid 4 (mid-lower) -->
+    <path d="M98,190 C108,185 122,187 130,196 C136,204 135,215 128,222 C120,228 108,228 100,222 C94,216 92,204 98,190 Z"
+          fill="url(#medulla)" stroke="#af8458" stroke-width="1" opacity="0.7"/>
+    <!-- Pyramid 5 (lower) -->
+    <path d="M112,228 C122,224 135,226 142,233 C148,240 147,250 140,256 C132,262 118,260 110,254 C104,248 104,236 112,228 Z"
+          fill="url(#medulla)" stroke="#af8458" stroke-width="1" opacity="0.7"/>
+
+    <!-- Cortex (outer rim) -->
+    <path d="M140,35 C160,30 185,32 205,45 C225,58 240,78 248,100 C256,122 256,145 250,168 C244,191 232,212 215,228 C200,240 182,248 162,250 C142,252 120,248 102,238 C84,228 70,212 62,194 C54,176 52,155 54,134 C56,113 62,94 74,78 C86,62 102,50 120,42 C128,38 134,36 140,35 Z"
+          fill="none" stroke="#c9a27e" stroke-width="8" opacity="0.3"/>
+
+    <!-- Renal pelvis (funnel-shaped collecting area) -->
+    <path d="M130,154 C140,148 155,145 170,145 C180,145 190,148 198,155 C205,162 208,172 205,182 C200,192 192,198 182,200 C172,202 160,200 150,195 C140,190 133,182 130,172 C127,164 127,158 130,154 Z"
+          fill="url(#pelvis)" stroke="#d0b8a0" stroke-width="1.2"/>
+
+    <!-- Calyces (minor) - connecting pyramids to pelvis -->
+    <!-- Upper calyx -->
+    <path d="M130,100 C138,98 148,100 155,108 C160,115 162,125 158,135 C152,142 142,148 135,148 C128,148 124,140 126,130 C128,120 130,110 130,100 Z"
+          fill="url(#pelvis)" stroke="#d0b8a0" stroke-width="1" opacity="0.8"/>
+    <!-- Lower calyx -->
+    <path d="M115,210 C122,206 132,206 140,210 C148,215 152,224 150,232 C148,238 140,242 132,240 C124,238 116,230 114,222 C113,216 113,212 115,210 Z"
+          fill="url(#pelvis)" stroke="#d0b8a0" stroke-width="1" opacity="0.8"/>
+
+    <!-- ═══════ STONE IN KIDNEY (calyx) ═══════ -->
+    <g transform="translate(138, 114)">
+      <circle cx="0" cy="0" r="7" fill="url(#stone)" stroke="#a09080" stroke-width="1" filter="url(#shadow)"/>
+      <circle cx="-1" cy="-1" r="2" fill="url(#stone-core)" opacity="0.6"/>
+    </g>
+
+    <!-- Stone label --> 
+    <line x1="150" y1="114" x2="178" y2="85" stroke="#8a7e6e" stroke-width="1" marker-end="url(#arrow)"/>
+    <text x="180" y="80" fill="#8a7e6e" font-size="9" font-weight="600">Calculus (stone)</text>
+    <text x="180" y="92" fill="#8a7e6e" font-size="8">in the renal calyx</text>
+
+    <!-- Cortex label -->
+    <line x1="65" y1="68" x2="45" y2="60" stroke="#8a7e6e" stroke-width="0.8"/>
+    <text x="14" y="58" fill="#8a7e6e" font-size="9" font-style="italic">Cortex</text>
+
+    <!-- Medulla label -->
+    <line x1="72" y1="140" x2="45" y2="135" stroke="#8a7e6e" stroke-width="0.8"/>
+    <text x="14" y="139" fill="#8a7e6e" font-size="9" font-style="italic">Medulla</text>
+
+    <!-- Pyramid label -->
+    <line x1="78" y1="115" x2="45" y2="108" stroke="#8a7e6e" stroke-width="0.8"/>
+    <text x="14" y="106" fill="#8a7e6e" font-size="8">Renal pyramid</text>
+
+    <!-- Pelvis label -->
+    <text x="155" y="196" fill="#8a7e6e" font-size="9" font-style="italic">Renal pelvis</text>
+
+    <!-- ═══════ URETER ═══════ -->
+    <path d="M182,200 C190,210 195,225 195,240 C195,255 192,270 188,285 C184,300 180,315 178,330 C176,345 176,360 178,375 C180,390 184,405 186,420"
+          fill="none" stroke="url(#ureter)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M182,200 C190,210 195,225 195,240 C195,255 192,270 188,285 C184,300 180,315 178,330 C176,345 176,360 178,375 C180,390 184,405 186,420"
+          fill="none" stroke="#d0b8a0" stroke-width="1.2" opacity="0.5"/>
+
+    <!-- Ureter label -->
+    <line x1="178" y1="340" x2="160" y2="340" stroke="#8a7e6e" stroke-width="0.8"/>
+    <text x="130" y="337" fill="#8a7e6e" font-size="9" font-style="italic">Ureter</text>
+    <text x="130" y="349" fill="#8a7e6e" font-size="8">(~3–4 mm diameter)</text>
+
+    <!-- ═══════ STONE IN URETER (proximal) ═══════ -->
+    <g transform="translate(190, 252)">
+      <circle cx="0" cy="0" r="6" fill="url(#stone)" stroke="#a09080" stroke-width="1" filter="url(#shadow)"/>
+      <circle cx="-1" cy="-1" r="1.5" fill="url(#stone-core)" opacity="0.5"/>
+    </g>
+
+    <!-- ═══════ STONE IN URETER (mid) - stuck ═══════ -->
+    <g transform="translate(183, 320)">
+      <circle cx="0" cy="0" r="7" fill="url(#stone)" stroke="#a09080" stroke-width="1" filter="url(#shadow)"/>
+      <circle cx="-1" cy="-1" r="2" fill="url(#stone-core)" opacity="0.5"/>
+      <!-- Pain indicator -->
+      <path d="M-12,-12 L-8,-8 M-14,-6 L-9,-5 M-13,2 L-8,1 M-12,10 L-7,9"
+            fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+    </g>
+
+    <!-- Mid-ureter stone label -->
+    <line x1="175" y1="322" x2="148" y2="302" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="92" y="297" fill="#c0392b" font-size="9" font-weight="600">Obstructing stone</text>
+    <text x="98" y="309" fill="#c0392b" font-size="8">(causes hydronephrosis)</text>
+
+    <!-- ═══════ STONE IN DISTAL URETER ═══════ -->
+    <g transform="translate(185, 395)">
+      <circle cx="0" cy="0" r="5" fill="url(#stone)" stroke="#a09080" stroke-width="1" filter="url(#shadow)"/>
+    </g>
+    <line x1="192" y1="395" x2="225" y2="395" stroke="#8a7e6e" stroke-width="1" marker-end="url(#arrow)"/>
+    <text x="227" y="392" fill="#8a7e6e" font-size="8">Distal stone</text>
+    <text x="227" y="403" fill="#8a7e6e" font-size="8">(near UVJ)</text>
+
+    <!-- ═══════ BLADDER HINT ═══════════ -->
+    <path d="M170,422 C175,418 185,416 195,418 C205,420 212,425 215,432 C218,440 215,448 208,454 C200,458 188,460 178,456 C168,452 162,445 162,438 C162,430 165,425 170,422 Z"
+          fill="none" stroke="#b0a090" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+    <text x="160" y="468" fill="#b0a090" font-size="8" font-style="italic">Bladder</text>
+
+    <!-- ═══════ STONE FORMATION INSET ═══════ -->
+    <line x1="20" y1="470" x2="460" y2="470" stroke="#e0e0dc" stroke-width="1"/>
+
+    <g transform="translate(20, 476)">
+      <rect x="0" y="0" width="140" height="62" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+      <text x="70" y="16" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Stone Formation</text>
+      <!-- Supersaturation of Ca²⁺ + Ox -->
+      <text x="14" y="32" fill="#6a5d4e" font-size="7">Supersaturated urine</text>
+      <text x="14" y="42" fill="#6a5d4e" font-size="7">(Ca²⁺ + oxalate)</text>
+      <!-- Arrow -->
+      <text x="32" y="53" fill="#8a7e6e" font-size="9">→</text>
+      <!-- Crystal aggregation -->
+      <text x="48" y="32" fill="#6a5d4e" font-size="7">Crystal nucleation</text>
+      <text x="48" y="42" fill="#6a5d4e" font-size="7">&amp; aggregation</text>
+      <!-- Arrow -->
+      <text x="77" y="53" fill="#8a7e6e" font-size="9">→</text>
+      <!-- Stone growth -->
+      <text x="92" y="32" fill="#6a5d4e" font-size="7">Stone growth</text>
+      <text x="92" y="42" fill="#6a5d4e" font-size="7">on Randall's</text>
+      <text x="92" y="52" fill="#6a5d4e" font-size="7">plaque</text>
+    </g>
+
+    <!-- Stone composition inset -->
+    <g transform="translate(180, 476)">
+      <rect x="0" y="0" width="140" height="62" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+      <text x="70" y="16" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Stone Composition</text>
+      <!-- Bar: Calcium oxalate ~80% -->
+      <rect x="14" y="22" width="90" height="8" rx="2" fill="#e8c4a0" stroke="#c4a88a" stroke-width="0.5"/>
+      <text x="107" y="29" fill="#8a7e6e" font-size="7">~80%</text>
+      <text x="14" y="28" fill="#8a7e6e" font-size="6" font-weight="600">Ca oxalate</text>
+      <!-- Bar: Calcium phosphate ~10% -->
+      <rect x="14" y="34" width="35" height="8" rx="2" fill="#d0bcd0" stroke="#c0a8c0" stroke-width="0.5"/>
+      <text x="52" y="41" fill="#8a7e6e" font-size="7">~10%</text>
+      <text x="14" y="40" fill="#8a7e6e" font-size="6" font-weight="600">Ca phosphate</text>
+      <!-- Bar: Uric acid ~8% -->
+      <rect x="14" y="46" width="28" height="8" rx="2" fill="#d8c8a0" stroke="#c8b890" stroke-width="0.5"/>
+      <text x="45" y="53" fill="#8a7e6e" font-size="7">~8%</text>
+      <text x="14" y="52" fill="#8a7e6e" font-size="6" font-weight="600">Uric acid</text>
+    </g>
+
+    <!-- Pain referral pattern inset -->
+    <g transform="translate(340, 476)">
+      <rect x="0" y="0" width="140" height="62" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+      <text x="70" y="16" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Pain Location by Stone Site</text>
+      <text x="14" y="32" fill="#6a5d4e" font-size="7">Upper ureter: flank pain</text>
+      <text x="14" y="42" fill="#6a5d4e" font-size="7">Mid ureter: lower abdominal</text>
+      <text x="14" y="52" fill="#6a5d4e" font-size="7">Distal ureter: groin/testicle</text>
+    </g>
+
+  </g>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What are kidney stones?</h4>
+<p>A kidney stone is a hard crystal that forms in your urine. It can sit quietly in your kidney or — when it moves into the narrow tube (ureter) that drains your kidney — cause the worst pain of your life. About 1 in 10 people will get one at some point.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Drink water.</strong> Lots. If you think you might have a stone, start drinking. Aim for 2–3 litres a day. This helps small stones pass.</li>
+<li><strong>Take ibuprofen</strong> (Advil, Motrin) or naproxen (Aleve) for the pain. NSAIDs work better than opioids for kidney stone pain and have fewer side effects.</li>
+<li><strong>Strain your urine.</strong> Pee through a sieve or coffee filter into a cup. If you catch the stone, keep it — knowing what it's made of helps prevent another one.</li>
+<li><strong>Wait.</strong> Stones smaller than 5 mm pass on their own about 80% of the time. It may take a few days to a few weeks.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have a fever or chills with the pain (could mean a kidney infection)</li>
+<li>The pain is so bad you can't sit still or find a comfortable position</li>
+<li>You can't keep water down (vomiting)</li>
+<li>You see blood in your urine (pink or red)</li>
+<li>You haven't been able to pee for several hours</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>Stones are common but rarely dangerous if caught early. With proper prevention — mostly drinking enough water — most people can avoid a second stone. About half of people who get one stone will have another within 5 years, but that drops sharply if you stay hydrated.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your kidneys filter about 180 litres of blood every day and concentrate waste into about 1–2 litres of urine. Normally, substances like calcium, oxalate, and phosphate stay dissolved in the urine. But if the urine becomes too concentrated (too many stone-forming crystals, too little water), the minerals start to crystallize — just like sugar crystals forming in honey that's been sitting too long.</p>
+<p>The crystals grow on tiny calcium deposits on the tip of your kidney papillae called <strong>Randall's plaques</strong>. Over weeks to months, these crystals layer together into a solid stone. Most stones are made of <strong>calcium oxalate</strong> (about 80%). Others are calcium phosphate, uric acid, struvite (from infections), or cystine.</p>
+<p>When the stone is small and sitting in the kidney, you might not feel anything. The pain starts when the stone drops into the <strong>ureter</strong> — the thin, muscular tube connecting your kidney to your bladder. The ureter is only about 3–4 mm wide and doesn't stretch well. The stone gets stuck, blocks urine flow, and the kidney swells (hydronephrosis). Your body responds with intense waves of cramping as the ureter tries to push the stone down. This is <strong>renal colic</strong> — the classic "worst pain of my life" kidney stone pain.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Severe flank pain:</strong> sudden, waves of pain on one side of your lower back, just under your ribs. The pain builds, peaks, and eases in cycles. People often can't sit still — they writhe, pace, and try to find a position that helps.</li>
+<li><strong>Pain radiating to the groin:</strong> as the stone moves down the ureter, the pain moves with it — to your lower belly, groin, testicle (in men), or labia (in women).</li>
+<li><strong>Hematuria (blood in urine):</strong> the stone scrapes the lining of the ureter. Visible blood (pink or cola-coloured urine) happens in about 30% of cases; microscopic blood in nearly all.</li>
+<li><strong>Nausea and vomiting:</strong> the intense pain stimulates the vagus nerve, triggering nausea. Many people vomit.</li>
+<li><strong>Urinary urgency and frequency:</strong> when the stone is near the bladder (at the ureterovesical junction — UVJ), it irritates the bladder and makes you feel like you need to pee constantly.</li>
+<li><strong>Painful urination (dysuria):</strong> common when the stone is at the UVJ.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Conservative management (watchful waiting):</strong> For stones <5 mm, spontaneous passage rate is 68–90%. Drink 2–3 L/day. NSAIDs (ibuprofen, diclofenac, ketorolac) for pain — they are more effective than opioids and cause less nausea. Most stones pass within 2 weeks of leaving the kidney. Stones >5 mm are less likely to pass spontaneously and may need intervention.</li>
+<li><strong>Medical expulsive therapy (MET):</strong> Tamsulosin (Flomax), an alpha-blocker, relaxes the ureter smooth muscle and may help stones >5 mm pass faster. A large Cochrane review (2018) found it reduced time to passage by about 3–4 days and reduced the need for surgery. For stones <5 mm, the benefit is marginal.</li>
+<li><strong>Lithotripsy (ESWL — Extracorporeal Shock Wave Lithotripsy):</strong> Shock waves from outside the body break the stone into sand-sized pieces that pass in the urine. Best for stones <2 cm in the kidney or upper ureter. No incision needed. Success rate ~70–90% for appropriate stones. Complications: bruising, blood in urine, possible need for multiple sessions.</li>
+<li><strong>Ureteroscopy with laser lithotripsy:</strong> A thin scope is passed up the ureter to the stone. A laser (holmium:YAG) fragments it. This is the preferred method for stones in the mid/lower ureter and for stones >1.5 cm. Success rate >90%. Often requires a temporary ureteral stent afterward.</li>
+<li><strong>PCNL (Percutaneous Nephrolithotomy):</strong> A small incision in the back and a direct tunnel into the kidney. For very large stones (>2 cm), staghorn calculi, or stones that failed ESWL. Most effective for large stones but most invasive. Hospital stay 1–2 days.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't drink cranberry juice — it increases oxalate levels and can make stones worse.</li>
+<li>Don't take high-dose vitamin C supplements (>1000 mg/day) — vitamin C is metabolized to oxalate.</li>
+<li>Don't decrease your calcium intake — this is a common myth. Dietary calcium actually <em>reduces</em> stone risk by binding oxalate in the gut. It's <em>calcium supplements</em> (without food) that may increase risk.</li>
+<li>Don't wait indefinitely with a known stone. If it hasn't passed after 4–6 weeks, see a urologist.</li>
+<li>Don't ignore fever with flank pain — this is a medical emergency (obstructive pyelonephritis).</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Acute renal colic. Severe pain, nausea, hematuria. Diagnosis via CT KUB or ultrasound. Start NSAIDs, tamsulosin if stone >5 mm and distal. Push fluids 2–3 L/day. Strain urine.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 3–10</div>
+<div class="tl-text">Pain subsides in waves. Stone may pass — 60–80% of stones <5 mm pass by this point. The "pain-free gap" can be misleading — revisit care if pain returns.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–4</div>
+<div class="tl-text">If stone hasn't passed, reassess. Persistent stones >5 mm in the ureter should be referred to urology for intervention (ESWL or ureteroscopy). Stones <5 mm still have a reasonable chance of spontaneous passage up to 6 weeks.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 4–6</div>
+<div class="tl-text">Spontaneous passage becomes unlikely after 6 weeks for ureteral stones. Surgical intervention (ureteroscopy with laser, ESWL) is indicated. Collect passed stone for analysis — this determines the prevention plan.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">After stone removal/passage</div>
+<div class="tl-text">Metabolic evaluation: 24-hour urine collection (after 3–4 weeks), serum calcium/PTH in calcium stone formers. Start prevention: increase fluids to maintain urine output ≥2.5 L/day, reduce sodium, maintain adequate dietary calcium, limit oxalate-rich foods (spinach, rhubarb, nuts, chocolate, tea).</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Nephrolithiasis is a multi-step process of <strong>supersaturation → nucleation → growth → aggregation → retention</strong>.</p>
+<p><strong>Supersaturation:</strong> Urine concentration of stone-forming solutes (calcium, oxalate, phosphate, uric acid) exceeds their solubility limit. This is the thermodynamic driver for all stone formation. The key protective factors are urine volume (dilution) and urinary inhibitors — citrate (chelates calcium), magnesium, pyrophosphate, and Tamm-Horsfall protein (uromodulin). When inhibitors are deficient or the solute load is excessive, the metastable zone is breached.</p>
+<p><strong>Nucleation:</strong> Crystal nuclei form on <strong>Randall's plaques</strong> — subepithelial deposits of calcium apatite that form at the tip of the renal papilla. These plaques are found in virtually all kidneys of recurrent calcium stone formers, and their presence correlates with stone activity. The mechanism involves interstitial deposition of calcium phosphate at the basement membrane of the thin loop of Henle, followed by extension into the interstitium and eventual erosion through the papillary urothelium, where the plaque is exposed to urine.</p>
+<p><strong>Growth and aggregation:</strong> Once a crystal nucleus is exposed to supersaturated urine, it grows by epitaxial crystal addition — calcium oxalate monohydrate (COM, whewellite) crystals layer onto the plaque surface. Aggregation of multiple crystals accelerates growth. Inhibitors like citrate and osteopontin normally block aggregation; their dysfunction or deficiency promotes rapid stone enlargement.</p>
+<p><strong>Retention:</strong> A stone must be retained in the collecting system long enough to become clinically significant. Anatomical factors (calyceal diverticula, horseshoe kidney, ureteropelvic junction obstruction), papillary tip abnormalities, and the stone's size/roughness all affect retention. Once the stone reaches ~2–3 mm, it may dislodge and migrate into the ureter — at which point the clinical presentation shifts from incidental to acute.</p>
+<p><strong>Stone composition determines approach:</strong></p>
+<table class="data-table">
+<thead><tr>
+<th>Composition</th>
+<th>Frequency</th>
+<th>Key features</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Calcium oxalate (whewellite/weddellite)</td>
+<td>~80%</td>
+<td>Radiopaque. Monohydrate (COM, whewellite) is denser and harder to fragment with ESWL than dihydrate (COD, weddellite).</td>
+</tr>
+<tr>
+<td>Calcium phosphate (apatite/brushite)</td>
+<td>~10%</td>
+<td>Radiopaque. Associated with renal tubular acidosis, hyperparathyroidism, and medullary sponge kidney. Brushite is very ESWL-resistant.</td>
+</tr>
+<tr>
+<td>Uric acid</td>
+<td>~5–10%</td>
+<td>Radiolucent (not visible on plain X-ray — diagnosed by CT or ultrasound). Forms in acidic urine (pH <5.5). Treat with urine alkalinization (K-citrate).</td>
+</tr>
+<tr>
+<td>Struvite (magnesium ammonium phosphate)</td>
+<td>~5–10%</td>
+<td>"Infection stones" — form only in urine containing urease-producing bacteria (Proteus, Klebsiella, Pseudomonas). Can grow into large staghorn calculi.</td>
+</tr>
+<tr>
+<td>Cystine</td>
+<td><1%</td>
+<td>Autosomal recessive defect in dibasic amino acid transport (SLC3A1/SLC7A9). Causes hexagonal crystals.</td>
+</tr>
+</tbody></table>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Acute pyelonephritis:</strong> Fever, flank pain, dysuria. Key difference: fever is present from the start, pain is constant (not colicky). Urinalysis shows WBC casts, nitrites, leukocyte esterase.</li>
+<li><strong>Ruptured AAA (abdominal aortic aneurysm):</strong> Sudden severe abdominal or flank pain radiating to the back in an older patient (>60) with vascular risk factors. The pain is constant, not colicky. May have hypotension, pulsatile mass. CT with contrast is diagnostic.</li>
+<li><strong>Testicular torsion:</strong> Acute scrotal/testicular pain with nausea. The pain originates in the scrotum, not the flank. The testicle is swollen, tender, and may be horizontally oriented. Doppler ultrasound shows absent blood flow.</li>
+<li><strong>Ovarian torsion:</strong> Acute lower abdominal/pelvic pain in women. Pain is constant, worsens with movement. Ultrasound with Doppler shows ovarian enlargement and absent venous flow.</li>
+<li><strong>Acute appendicitis:</strong> Right lower quadrant pain with rebound tenderness, fever, anorexia. The pain migrates from the periumbilical region — it's not colicky and doesn't radiate to the groin. Positive psoas/obturator signs.</li>
+<li><strong>Diverticulitis:</strong> Left lower quadrant pain, fever, change in bowel habits. Pain is constant, not colicky. CT shows diverticula with pericolonic inflammation.</li>
+<li><strong>Renal infarction:</strong> Sudden flank pain from renal artery thromboembolism. Atrial fibrillation is a risk factor (source of emboli). Lactate dehydrogenase (LDH) is markedly elevated. CT with contrast shows a wedge-shaped perfusion defect.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Urinalysis</strong></td>
+<td>Hematuria (≥3 RBC/hpf), pH (low in uric acid stones, high in struvite/calcium phosphate), crystals, WBCs (infection), nitrites, specific gravity</td>
+<td>Every patient — first-line, cheap, fast</td>
+</tr>
+<tr>
+<td><strong>Non-contrast CT scan (CT KUB)</strong></td>
+<td>Stone location, size (mm), density (HU), number of stones, secondary signs (hydronephrosis, perinephric stranding). Sensitivity ~97%, specificity ~96%. Detects radiolucent stones (uric acid).</td>
+<td>Gold standard for acute renal colic — highest sensitivity and specificity</td>
+</tr>
+<tr>
+<td><strong>Kidney ultrasound</strong></td>
+<td>Hydronephrosis, large stones (>5 mm) in the kidney, ureteral jets (asymmetry suggests obstruction). Less sensitive for small stones and mid-ureter stones.</td>
+<td>First-line in pregnancy, children, or to reduce radiation exposure. Use with plain abdominal X-ray (KUB) to improve detection</td>
+</tr>
+<tr>
+<td><strong>Plain abdominal X-ray (KUB)</strong></td>
+<td>Radiopaque stones (calcium-based, struvite, cystine). Radiolucent stones (uric acid) are invisible. ~50–60% sensitivity. Useful for follow-up of known radiopaque stones.</td>
+<td>Monitoring stone burden over time in known calcium stones. Poor sensitivity as a stand-alone test for acute colic</td>
+</tr>
+<tr>
+<td><strong>CT IVP (CT urogram)</strong></td>
+<td>Detailed renal anatomy, stone location, and collecting system opacification. Better for surgical planning (PCNL access) and suspected anatomical abnormalities</td>
+<td>Pre-surgical planning, suspected ureteropelvic junction obstruction, medullary sponge kidney</td>
+</tr>
+<tr>
+<td><strong>Serum creatinine</strong></td>
+<td>Baseline renal function. Elevated in obstruction (especially bilateral or solitary kidney), or pre-existing CKD</td>
+<td>Every patient — essential before IV contrast or surgery</td>
+</tr>
+<tr>
+<td><strong>Serum calcium + PTH</strong></td>
+<td>Primary hyperparathyroidism (↑Ca²⁺, ↑PTH, ↓PO₄). Found in ~5–8% of calcium stone formers. Corrected calcium >10.5 mg/dL or ionized calcium elevated</td>
+<td>First-time calcium stone former or recurrent stones</td>
+</tr>
+<tr>
+<td><strong>24-hour urine collection</strong></td>
+<td>Volume, calcium, oxalate, citrate, uric acid, sodium, magnesium, phosphate, pH, supersaturation profiles. Best test for identifying metabolic risk factors</td>
+<td>Recurrent stone formers, high-risk first-time formers (children, solitary kidney, family history), all patients after a second stone</td>
+</tr>
+<tr>
+<td><strong>Stone analysis (infrared spectroscopy or X-ray diffraction)</strong></td>
+<td>Composition — determines medical management (e.g., uric acid → alkalinization; struvite → antibiotics)</td>
+<td>Every patient who passes or has a stone removed — this is essential</td>
+</tr>
+<tr>
+<td><strong>CT stone density (Hounsfield units)</strong></td>
+<td>Predicts ESWL success: <500 HU = good fragmentation; >1000 HU = ESWL-resistant (better with ureteroscopy/laser). Uric acid stones are ~300–500 HU</td>
+<td>Planning treatment for stones >5 mm that may need intervention</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> The prevalence of kidney stones in the US is ~8.8% (10.6% men, 7.2% women), according to the 2007–2010 NHANES analysis by Scales et al. (2012). Prevalence has increased nearly 3-fold since the 1970s, driven by rising obesity, diabetes, and dietary changes (higher sodium, lower calcium intake). Lifetime risk: ~12% in men, ~6% in women. Recurrence rate without prevention: ~50% at 5 years, ~80% lifetime.</p>
+<p><strong>Medical expulsive therapy (MET):</strong> The Cochrane review by Campschroer et al. (2018), including 55 RCTs (n=6,606), found that alpha-blockers (tamsulosin) increased stone passage rate compared to controls (RR 1.44, 95% CI 1.23–1.69) and reduced time to passage by ~3.4 days. The effect was strongest for stones >5 mm in the distal ureter (RR 1.57). For stones <5 mm, benefit was marginal (RR 1.16, 95% CI 0.95–1.40). The 2020 UK multicentre trial (SUSPEND, n=1,167) found no benefit of tamsulosin over placebo for all-comers — but subgroup analysis confirmed benefit for larger distal stones. Current EAU guidelines recommend MET for distal ureteral stones >5 mm.</p>
+<p><strong>ESWL vs ureteroscopy:</strong> The Cochrane review by Srisubat et al. (2014) found that ureteroscopy achieved a higher stone-free rate for distal ureteral stones than ESWL (stone-free rate 93% vs 84%; RR 1.08, 95% CI 1.01–1.15) but had a higher complication rate (mostly minor: ureteral perforation, stricture). For renal stones <2 cm, ESWL remains first-line in many guidelines due to its non-invasive nature. Stone-free rates for ESWL are 70–90% depending on stone density and location.</p>
+<p><strong>Prevention — fluid intake:</strong> A landmark prospective study (Curhan et al., 1998) of the Health Professionals Follow-up Study (n=45,821) found that men who drank the most fluid (≥2.5 L/day) had a 29% lower risk of stone formation compared to those drinking the least (<1.3 L/day) (RR 0.71, 95% CI 0.57–0.88). The effect was dose-dependent: each 200 mL increase in fluid intake reduced risk by ~5%.</p>
+<p><strong>Prevention — dietary calcium and oxalate:</strong> Contrary to historical belief, dietary calcium <em>reduces</em> stone risk. Curhan et al. (1993) showed in the Nurses' Health Study (n=91,731) that dietary calcium intake was inversely associated with stone risk (RR 0.65 for highest vs lowest quintile). The mechanism: calcium binds oxalate in the gut, reducing oxalate absorption and urinary oxalate excretion. High supplemental calcium (>1,000 mg/day) without food, however, increased risk (RR 1.20).</p>
+<p><strong>Uric acid stones:</strong> Urine alkalinization with potassium citrate (30–60 mEq/day) dissolves existing uric acid stones (success rate ~80%) and prevents recurrence. Target urine pH 6.5–7.2. Urinary pH <5.5 is the single strongest risk factor. A 2022 meta-analysis confirmed that allopurinol reduces uric acid stone recurrence but only when urine pH is simultaneously corrected.</p>
+<p><strong>Shock wave lithotripsy safety:</strong> A 2021 systematic review found that ESWL carries a small risk of perinephric hematoma (<1%) and may be associated with a long-term increase in new-onset hypertension in some cohorts, though causality remains debated. The risk of diabetes mellitus after ESWL (from pancreatic injury) has been suggested but not consistently replicated.</p>
+<p><strong>Struvite stones:</strong> Management requires complete stone clearance (PCNL is the treatment of choice) combined with eradication of the causative organism. Without complete removal, recurrence rates exceed 50% at 1 year. Acetohydroxamic acid (a urease inhibitor) may reduce growth but has significant side effects (headache, tremor, thrombosis).</p>
+<h4>Surgical options</h4>
+<ul>
+<li><strong>ESWL (Extracorporeal Shock Wave Lithotripsy):</strong> Non-invasive. Shock waves generated by an electromagnetic or piezoelectric source fragment stones into passable debris. Best for stones <2 cm, in the kidney or upper ureter, with HU <1000. Typically outpatient. Limitations: obesity (BMI >35 increases distance from skin to stone, reduces efficacy), cystine stones (ESWL-resistant), distal ureteral stones (poor acoustic window).</li>
+<li><strong>Ureteroscopy (URS) with holmium laser lithotripsy:</strong> A 7.5–11 Fr semi-rigid or flexible ureteroscope advanced to the stone. The holmium:YAG laser (2100 nm) fragments stones by photothermal ablation, producing dust (<1 mm) or fragments for basket retrieval. Success rate >90% for stones <2 cm. Requires ureteral stent in ~60% of cases (for 3–14 days). Complications: ureteral perforation (~2%), stricture (~1%), infection (~2%).</li>
+<li><strong>PCNL (Percutaneous Nephrolithotomy):</strong> A 1 cm flank incision; percutaneous renal access under fluoroscopic or ultrasound guidance; tract dilation to 24–30 Fr; stone fragmentation with ultrasound, pneumatic, or laser lithotripsy. Treatment of choice for stones >2 cm, staghorn calculi, and cystine stones. Complete stone-free rate for staghorn stones ~75–85% with a single procedure (up to 95% with staged procedures or second-look nephroscopy). Hospital stay 1–2 days. Complications: bleeding (transfusion rate 3–5%), pleural injury (if supracostal access, 5–10%), infection/sepsis (~3%).</li>
+<li><strong>Laparoscopic/open ureterolithotomy:</strong> Rarely needed. Reserved for very large impacted stones (>2 cm) in the proximal ureter, or when ESWL and URS have failed. Rare in the endourology era.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal medical prevention protocol for recurrent calcium oxalate stone formers? The role of thiazide diuretics, citrate supplementation, and dietary modification alone vs in combination is debated.</li>
+<li>Can gut microbiome manipulation (Oxalobacter formigenes) reduce oxalate absorption and stone risk? O. formigenes colonizes the gut of ~60% of the population and degrades dietary oxalate; its absence is a risk factor, but recolonization trials have been disappointing.</li>
+<li>What is the role of high-intensity focused ultrasound (HIFU) or burst-wave lithotripsy as a non-invasive alternative to ESWL? Early human studies show promising fragmentation with less tissue injury.</li>
+<li>Does the growing use of GLP-1 receptor agonists (semaglutide, tirzepatide) affect kidney stone risk? The rapid weight loss and gut dysmotility may alter oxalate absorption, potentially increasing risk.</li>
+<li>Can artificial intelligence interpretation of CT KUB predict stone composition (uric acid vs calcium) from Hounsfield units and texture analysis? Proof-of-concept studies show >85% accuracy, but prospective validation is needed.</li>
+<li>Does the "obesity epidemic" shift stone composition toward uric acid stones? The strong association of metabolic syndrome with uric acid stones may drive a compositional shift.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Scales Jr CD, Smith AC, Hanley JM, Saigal CS; Urologic Diseases in America Project. "Prevalence of kidney stones in the United States." <em>Eur Urol</em> 2012;62(1):160–165. PMID: 22498635. (NHANES 2007–2010 data: US prevalence 8.8%.)</li>
+<li>Curhan GC, Willett WC, Rimm EB, et al. "A prospective study of dietary calcium and other nutrients and the risk of symptomatic kidney stones." <em>N Engl J Med</em> 1993;328(12):833–838. (Dietary calcium reduces stone risk; supplemental calcium may increase it.)</li>
+<li>Curhan GC, Willett WC, Speizer FE, et al. "Comparison of dietary calcium with supplemental calcium and other nutrients as factors affecting the risk of kidney stones in women." <em>Ann Intern Med</em> 1997;126(7):497–504. (Confirms dietary calcium protective in women.)</li>
+<li>Curhan GC, Willett WC, Rimm EB, et al. "A prospective study of fluid intake and the risk of kidney stones in men." <em>Am J Epidemiol</em> 1998;148(3):275–281. (High fluid intake reduces stone incidence dose-dependently.)</li>
+<li>Campschroer T, Zhu Y, Duijvesz D, et al. "Alpha-blockers as medical expulsive therapy for ureteral stones." <em>Cochrane Database Syst Rev</em> 2018;(5):CD008841. DOI: 10.1002/14651858.CD008841.pub4. (55 RCTs, n=6,606 — tamsulosin improves passage in distal stones >5 mm.)</li>
+<li>Srisubat A, Potisat S, Lojanapiwat B, et al. "Extracorporeal shock wave lithotripsy (ESWL) versus percutaneous nephrolithotomy (PCNL) or retrograde intrarenal surgery (RIRS) for kidney stones." <em>Cochrane Database Syst Rev</em> 2014;(11):CD009044.</li>
+<li>Turk C, Petrik A, Sarica K, et al. "EAU Guidelines on Diagnosis and Conservative Management of Urolithiasis." <em>Eur Urol</em> 2016;69(3):468–474. (European Association of Urology clinical guidelines.)</li>
+<li>Pearle MS, Goldfarb DS, Assimos DG, et al. "Medical management of kidney stones: AUA guideline." <em>J Urol</em> 2014;192(2):316–324. (American Urological Association guideline.)</li>
+<li>Evan AP, Coe FL, Lingeman JE, et al. "Mechanism of formation of human calcium oxalate renal stones on Randall's plaque." <em>Anat Rec</em> 2007;290(10):1315–1323. (Definitive histological description of Randall's plaque as the nidus for calcium oxalate stones.)</li>
+<li>Worcester EM, Coe FL. "Nephrolithiasis." <em>Prim Care</em> 2008;35(2):369–391. (Comprehensive review of pathophysiology.)</li>
+<li>Rule AD, Lieske JC, Pais VM Jr, et al. "Kidney stones and the risk of chronic kidney disease." <em>Clin J Am Soc Nephrol</em> 2009;4(12):1927–1933. (Large cohort showing elevated risk of CKD in recurrent stone formers.)</li>
+<li>Lipkin ME, Preminger GM. "Demystifying the medical management of urolithiasis." <em>Urology</em> 2016;93:9–17. (Evidence-based prevention strategies.)</li>
+<li>Preminger GM, Tiselius HG, Assimos DG, et al. "2007 Guideline for the management of ureteral calculi." <em>J Urol</em> 2007;178(6):2418–2434.</li>
+<li>Smith-Bindman R, Aubin C, Bailitz J, et al. "Ultrasonography versus computed tomography for suspected nephrolithiasis." <em>N Engl J Med</em> 2014;371(12):1100–1110. (CT vs ultrasound in the emergency setting — ultrasound as a first-line alternative reduces radiation.)</li>
+<li>Taylor EN, Curhan GC. "Dietary calcium from dairy and nondairy sources and the risk of symptomatic kidney stones in women." <em>J Am Soc Nephrol</em> 2013;24(7):1152–1159. (Differential effects of dairy vs non-dairy calcium sources on stone risk.)</li>
+<li>Ordon M, Andonian S, Blew B, et al. "CUA Guideline: Management of ureteral calculi." <em>Can Urol Assoc J</em> 2015;9(11–12):E837–E846. (Canadian Urological Association guidelines.)</li>
+<li>Johnson CM, Wilson DM, O'Fallon WM, et al. "Renal stone epidemiology: a 25-year study in Rochester, Minnesota." <em>Kidney Int</em> 1979;16(5):624–631. (Classic epidemiology study — lifetime risk ~10%.)</li>
+<li>Daudon M, Donsimoni R, Hennequin C, et al. "Sex- and age-related composition of 10,617 calculi analyzed by infrared spectroscopy." <em>Urol Res</em> 1995;23(5):319–326. (Large compositional analysis of stones.)</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

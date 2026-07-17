@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankle Sprain — Tiered Health</title>
+<meta name="description" content="Ankle Sprain: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🦶 Tiered Health <span>/ Ankle Sprain</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🦶 Ankle Sprain</h1>
+  <p class="aka">Also called: twisted ankle · rolled ankle · lateral ankle sprain</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="ligament" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="ligament-tear" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="50%" stop-color="#f5c842"/><stop offset="50%" stop-color="#c0392b"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Ankle outline (lateral view) -->
+  <path d="M150,80 C140,85 135,95 132,110 L128,180 C125,210 125,240 128,270 L132,320 C135,345 140,360 148,370 L160,385 C170,395 180,400 190,398 L210,395 C225,392 235,385 240,375 L248,360 C252,350 255,340 258,330 L262,310 C265,290 265,270 262,250 L258,230 C255,215 250,200 245,188 L240,175 C235,160 230,148 225,140 L218,128 C210,120 200,115 190,112 L175,108 C163,105 155,100 150,80 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Foot outline -->
+  <path d="M190,398 C200,405 210,415 218,428 C225,440 230,455 232,470 C233,478 232,485 228,490 C224,495 218,498 210,498 C200,498 190,495 182,490 C175,485 170,478 168,468 C166,458 167,448 172,440 C178,430 185,420 190,398 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Fibula bone -->
+  <path d="M175,95 L173,120 L171,150 L170,180 L170,210 L172,240 L175,260 L180,275 L186,285 L192,290 L198,292 L202,290 L206,285 L210,278 L215,268 L220,255 L224,240 L226,220 L227,200 L226,180 L224,160 L222,140 L220,120 L218,105 L216,95 L212,88 L208,84 L204,82 L198,82 L192,84 L188,88 L184,92 L180,94 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="155" y="195" fill="#b0a595" font-size="11" font-style="italic">Fibula</text>
+
+  <!-- Talus bone -->
+  <path d="M182,310 C180,315 180,322 182,328 C185,335 190,340 196,343 L210,347 C220,348 230,347 238,344 C245,340 250,335 252,328 C254,320 253,314 250,310 L245,305 C238,298 228,294 218,292 L208,290 L198,292 C190,295 184,300 182,310 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="255" y="320" fill="#b0a595" font-size="11" font-style="italic">Talus</text>
+
+  <!-- Calcaneus (heel bone) hint -->
+  <path d="M172,440 C168,435 165,428 166,420 C168,412 173,408 180,405 L192,400 L198,398 L204,400 L210,404 L215,410 L218,418 L218,425 L215,432 L210,438 L204,442 L198,444 L190,445 L182,443 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.5"/>
+  <text x="145" y="425" fill="#b0a595" font-size="10" font-style="italic">Calcaneus</text>
+
+  <!-- ATFL: Anterior Talofibular Ligament (from fibula to talus, front) -->
+  <path d="M200,290 C208,298 215,305 220,310 C225,315 228,318 230,320 C232,322 234,324 236,326"
+        fill="none" stroke="url(#ligament)" stroke-width="4" stroke-linecap="round" filter="url(#soft)"/>
+  <text x="230" y="295" fill="#b8860b" font-size="9" font-weight="600">ATFL</text>
+  <text x="230" y="306" fill="#b8860b" font-size="8">(anterior</text>
+  <text x="230" y="316" fill="#b8860b" font-size="8">talofibular)</text>
+
+  <!-- CFL: Calcaneofibular Ligament (from fibula to calcaneus) -->
+  <path d="M195,295 C192,308 190,320 190,335 C190,350 192,365 195,378 C198,390 200,398 203,405 C206,410 208,415 210,418"
+        fill="none" stroke="url(#ligament)" stroke-width="3.5" stroke-linecap="round" filter="url(#soft)"/>
+  <text x="158" y="350" fill="#b8860b" font-size="9" font-weight="600">CFL</text>
+  <text x="148" y="362" fill="#b8860b" font-size="8">(calcaneo-</text>
+  <text x="148" y="372" fill="#b8860b" font-size="8">fibular)</text>
+
+  <!-- PTFL: Posterior Talofibular Ligament (behind the joint) -->
+  <path d="M185,305 C180,315 176,325 174,335 C172,340 170,345 170,348"
+        fill="none" stroke="url(#ligament)" stroke-width="3" stroke-linecap="round" filter="url(#soft)" stroke-dasharray="5,3"/>
+  <text x="145" y="302" fill="#b8860b" font-size="9" font-weight="600">PTFL</text>
+  <text x="136" y="314" fill="#b8860b" font-size="8">(posterior</text>
+  <text x="136" y="324" fill="#b8860b" font-size="8">talofibular)</text>
+
+  <!-- Inversion arrow showing mechanism of injury -->
+  <path d="M260,440 C270,435 278,428 284,420 C290,412 294,402 295,392"
+        fill="none" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6,3" opacity="0.7"/>
+  <text x="268" y="438" fill="#c0392b" font-size="9">Inversion</text>
+  <text x="268" y="450" fill="#c0392b" font-size="9">force</text>
+
+  <!-- Label: Lateral ankle ligaments -->
+  <text x="270" y="272" fill="#8a7e6e" font-size="9" font-weight="600">Lateral ankle</text>
+  <text x="270" y="284" fill="#8a7e6e" font-size="9" font-weight="600">ligaments</text>
+
+  <!-- ═══════════ GRADE INSETS ═══════════ -->
+
+  <!-- Separator line -->
+  <line x1="30" y1="495" x2="470" y2="495" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Grade I: Stretched ligament -->
+  <g transform="translate(25, 505)">
+    <rect x="0" y="0" width="140" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Grade I: Stretch</text>
+    <!-- Two bone representations -->
+    <ellipse cx="35" cy="48" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <ellipse cx="105" cy="48" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Ligament: intact, wavy (stretched but not torn) -->
+    <path d="M45,50 C58,40 70,40 83,48 C90,52 98,50 105,48" fill="none" stroke="url(#ligament)" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="70" y="70" fill="#8a7e6e" font-size="7" text-anchor="middle">Stretched, intact</text>
+  </g>
+
+  <!-- Grade II: Partially torn ligament -->
+  <g transform="translate(180, 505)">
+    <rect x="0" y="0" width="140" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Grade II: Partial Tear</text>
+    <ellipse cx="35" cy="48" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <ellipse cx="105" cy="48" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Ligament: partially torn with a gap -->
+    <path d="M45,50 C52,42 58,44 65,46 L65,46" fill="none" stroke="url(#ligament)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M75,44 C82,42 90,44 95,46 L105,48" fill="none" stroke="url(#ligament)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Tear gap with red dash -->
+    <line x1="65" y1="42" x2="75" y2="48" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.8"/>
+    <text x="70" y="70" fill="#8a7e6e" font-size="7" text-anchor="middle">Partially torn fibers</text>
+  </g>
+
+  <!-- Grade III: Complete tear -->
+  <g transform="translate(335, 505)">
+    <rect x="0" y="0" width="140" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Grade III: Complete Tear</text>
+    <ellipse cx="35" cy="48" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <ellipse cx="105" cy="48" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Two torn ends separated by a gap -->
+    <path d="M45,48 C48,46 50,48 52,48" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M88,48 C92,48 95,46 98,46 L105,48" fill="none" stroke="#e6a817" stroke-width="2" stroke-linecap="round"/>
+    <!-- Torn ends with ragged edge look -->
+    <path d="M55,44 L58,48 L55,52" fill="none" stroke="#e6a817" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M85,44 L82,48 L85,52" fill="none" stroke="#e6a817" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Red gap markers -->
+    <line x1="58" y1="42" x2="82" y2="42" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+    <line x1="58" y1="54" x2="82" y2="54" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+    <text x="70" y="70" fill="#8a7e6e" font-size="7" text-anchor="middle">Complete rupture</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Lateral Ankle Anatomy &amp; Sprain Grades</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is an ankle sprain?</h4>
+<p>Ligaments on the outside of your ankle stretched or tore when your foot rolled inward too far. It's the most common sports injury — about 2 million people in the US twist an ankle every year. Most heal fine with rest and time.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Stop and rest.</strong> Don't walk on it if it hurts. You can't "walk it off."</li>
+<li><strong>Ice it.</strong> Wrap ice in a towel and hold it on the sore spot for 15–20 minutes every 2–3 hours. This helps with swelling and pain.</li>
+<li><strong>Wrap it.</strong> An elastic bandage (ACE wrap) gives support. Wrap from the toes upward, not too tight. If your toes turn blue or go numb, it's too tight.</li>
+<li><strong>Elevate it.</strong> Prop your ankle up on pillows above heart level when sitting or lying down. This drains swelling.</li>
+<li><strong>Take ibuprofen</strong> (Advil, Motrin) if you can take it safely — it helps both pain and swelling.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You cannot put any weight on your ankle at all</li>
+<li>The ankle looks bent or twisted wrong</li>
+<li>You heard a "pop" and felt something tear at the moment of injury</li>
+<li>The foot is cold, blue, or numb (could be a dislocation)</li>
+<li>You have severe pain that gets worse over hours despite rest and ice</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>Most ankle sprains (80–90%) heal with simple home care and time. Grade I sprains feel better in 1–3 weeks. Even grade III (complete tear) sprains often heal without surgery. What matters most is doing rehab exercises once the pain allows — this cuts your risk of spraining it again in half.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your ankle is a hinge joint formed by three bones: the <strong>tibia</strong> (shin bone), <strong>fibula</strong> (the thin bone beside it), and <strong>talus</strong> (a block-shaped bone in your foot). Three ligaments on the outside — the <strong>anterior talofibular ligament (ATFL)</strong>, <strong>calcaneofibular ligament (CFL)</strong>, and <strong>posterior talofibular ligament (PTFL)</strong> — keep the ankle from rolling too far inward.</p>
+<p>When you roll your ankle (an <strong>inversion injury</strong>), the foot turns inward and the outside ligaments get stretched beyond their limit. The <strong>ATFL</strong> is almost always the first to go — it's the weakest and takes the most force when the foot is pointed down (plantarflexed). If the force continues, the <strong>CFL</strong> tears next, and in the worst cases the <strong>PTFL</strong> goes too.</p>
+<p>Doctors grade sprains by how badly the ligaments are damaged:</p>
+<ul>
+<li><strong>Grade I (mild):</strong> The ligament is stretched but not torn. You have mild pain and slight swelling. You can walk but it hurts. Recovery: 1–3 weeks.</li>
+<li><strong>Grade II (moderate):</strong> The ligament is partially torn. Moderate pain, noticeable swelling and bruising. Walking is painful and you may limp. The joint feels a little loose. Recovery: 3–6 weeks.</li>
+<li><strong>Grade III (severe):</strong> The ligament is completely torn. Severe pain, major swelling, and bruising that spreads down into the foot. You can't bear weight. The joint feels unstable. Recovery: 8–12 weeks.</li>
+</ul>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Pain on the outside of the ankle:</strong> worst directly over the ligament, especially when you press on it or try to turn your foot inward.</li>
+<li><strong>Swelling:</strong> develops within minutes to hours. The ankle looks puffy and feels tight.</li>
+<li><strong>Bruising (ecchymosis):</strong> blood from torn vessels seeps into the tissue. Bruising often spreads down toward the heel and toes over the first few days.</li>
+<li><strong>Difficulty bearing weight:</strong> from mild discomfort (grade I) to impossible (grade III).</li>
+<li><strong>A popping or tearing sensation</strong> at the time of injury — this often means a grade II or III tear.</li>
+<li><strong>Feeling of instability:</strong> the ankle feels "loose" or like it might give way, especially on uneven ground.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>RICE protocol (Rest, Ice, Compression, Elevation):</strong> the standard first-aid for the first 48–72 hours. Ice reduces pain and limits swelling. Compression (ACE wrap) supports the joint and controls edema. Elevation uses gravity to drain fluid.</li>
+<li><strong>Functional bracing:</strong> Ankle braces (lace-up, stirrup, or semi-rigid) are better than a rigid cast or walking boot for most sprains. They protect the ligaments while allowing early movement, which leads to faster recovery and less stiffness. Studies show functional treatment beats immobilization.</li>
+<li><strong>NSAIDs:</strong> Ibuprofen or naproxen reduce pain and inflammation. Take them for 3–7 days as needed. Topical NSAID gels (diclofenac) work well with fewer stomach side effects.</li>
+<li><strong>Weight-bearing as tolerated:</strong> As pain allows, start putting weight on the ankle. Early weight-bearing promotes healing and prevents muscle wasting. Crutches can help initially for grade II–III sprains.</li>
+<li><strong>Rehabilitation exercises:</strong> Once the acute pain subsides (usually after a few days), start range-of-motion exercises (spelling the alphabet with your toes), then balance training (standing on one foot), then strengthening (resistance bands). This is the most important step for preventing re-injury.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't use heat in the first 72 hours — it increases swelling and bleeding.</li>
+<li>Don't keep walking on a sprained ankle hoping it will go away. This delays healing and can turn a grade I into a grade II by repeatedly re-injuring the stretched ligament.</li>
+<li>Don't skip rehab. People who don't do balance exercises are 5 times more likely to re-injure the same ankle within a year.</li>
+<li>Don't drink alcohol — it worsens swelling and impairs healing.</li>
+<li>Don't assume "it's just a sprain" — a broken fibula (malleolus fracture) can look identical to a bad sprain. If you can't bear weight, get an X-ray.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Acute phase. Rest, ice, compression, elevation. Avoid weight-bearing if painful. Start NSAIDs. A brace or elastic wrap provides support.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 4–7</div>
+<div class="tl-text">Swelling peaks and begins to subside. Start gentle range-of-motion exercises (ankle pumps, alphabet ABCs). Begin partial weight-bearing as tolerated.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–3</div>
+<div class="tl-text">Most pain and swelling gone for grade I. Start balance training (single-leg stance) and resistance band strengthening. Gradually return to walking.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 3–6</div>
+<div class="tl-text">Grade II sprains reach this stage. Progress to sport-specific exercises, jogging on flat surfaces, and agility drills. Most people return to full activity.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 8–12</div>
+<div class="tl-text">Grade III sprains recover by this point. Full strengthening and proprioceptive training. Brace during sports for 3–6 months to prevent re-injury.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>An ankle sprain is an <strong>acute ligamentous injury</strong> caused by a supination-inversion mechanism. When the foot is plantarflexed and forcibly inverted, the lateral ligament complex is stressed beyond its tensile limits. The <strong>anterior talofibular ligament (ATFL)</strong> is the first structure injured — it's the weakest of the three lateral ligaments (mean ultimate tensile load ~139 N) and is maximally stressed when the ankle is in plantarflexion, which is the joint position at heel strike during gait.</p>
+<p>If the deforming force continues, the <strong>calcaneofibular ligament (CFL)</strong> is next (mean tensile load ~346 N). The <strong>posterior talofibular ligament (PTFL)</strong> rarely tears unless the ankle is dislocated, making an isolated PTFL injury extremely uncommon.</p>
+<p>At the cellular level: the injury triggers an <strong>acute inflammatory cascade</strong>. Damaged endothelial cells and extravasated platelets release <strong>bradykinin, prostaglandins, and histamine</strong>, causing vasodilation and increased capillary permeability. Neutrophils migrate to the site within 6–12 hours, followed by macrophages that phagocytose debris. The ligament enters the <strong>proliferative phase</strong> at roughly 48–72 hours, with fibroblasts depositing <strong>type III collagen</strong> (weaker, more disorganized than type I). Over the next 6–12 weeks, the matrix remodels toward type I collagen alignment along lines of tensile stress — but the healed ligament never regains its original strength, reaching at most 80–90% of pre-injury tensile properties.</p>
+<p>Recurrent sprains lead to <strong>ligamentous laxity</strong> and <strong>chronic ankle instability (CAI)</strong>. Mechanical instability (ligamentous looseness) combines with <strong>proprioceptive deficits</strong> — damage to mechanoreceptors (Ruffini endings, Pacinian corpuscles, Golgi tendon organs) in the ligament disrupts the afferent feedback loop to the peroneal muscles, delaying the evertor reflex by ~5–15 ms. This delay is enough to miss the protective window during a landing or cutting motion, creating a vicious cycle of recurrent injury. Up to 40% of first-time ankle sprains develop CAI.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Lateral malleolus fracture (Weber A/B):</strong> Tenderness directly over the fibula bone, not the ligament. Ottawa Ankle Rules help distinguish: X-ray needed if there is bone tenderness at the posterior edge of the distal 6 cm of the fibula or tibia, or inability to bear weight for 4 steps.</li>
+<li><strong>Syndesmotic (high) ankle sprain:</strong> Injury to the tibiofibular syndesmosis. Pain is above the ankle joint, not on the lateral ligaments. Worse with forced dorsiflexion and external rotation (squeeze test, external rotation test). Much longer recovery — typically 6–12 weeks.</li>
+<li><strong>Peroneal tendon subluxation/dislocation:</strong> A snap or pop felt laterally, with tenderness behind the fibula (retromalleolar groove). The peroneal tendons dislocate over the fibula during ankle dorsiflexion-eversion. Presents with lateral snapping and weakness.</li>
+<li><strong>Osteochondral lesion of the talus (OLT):</strong> Bruised or fractured cartilage on the talar dome from the impaction at injury. Presents as persistent deep ankle pain and catching/locking weeks after the initial sprain. Requires MRI for diagnosis.</li>
+<li><strong>Avulsion fracture of the base of the 5th metatarsal:</strong> Caused by peroneus brevis pulling off its attachment during the inversion injury. Tenderness at the lateral midfoot, not the ankle ligaments.</li>
+<li><strong>Gout / pseudogout:</strong> Can mimic ankle sprain. Key clues: no injury mechanism, redness and warmth disproportionate to swelling, rapid onset over hours, history of flares. Check serum uric acid and joint aspiration.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical exam (including Ottawa Ankle Rules)</td>
+<td>Ligament tenderness, swelling, ecchymosis, anterior drawer test (ATFL integrity), talar tilt test (CFL integrity), ability to bear weight</td>
+<td>Every patient — this is the primary diagnostic tool</td>
+</tr>
+<tr>
+<td>Anterior drawer test</td>
+<td>Translational laxity of talus on tibia — positive if >5 mm anterior displacement compared to uninjured side</td>
+<td>All ankle sprains to grade severity</td>
+</tr>
+<tr>
+<td>Talar tilt test</td>
+<td>Inversion laxity ±15° difference from uninjured side indicates CFL injury</td>
+<td>When CFL injury suspected (moderate-severe sprains)</td>
+</tr>
+<tr>
+<td>Ottawa Ankle Rules</td>
+<td>Clinical prediction rule — negative predictive value 98.5% for fracture</td>
+<td>Every patient to decide if X-ray is needed</td>
+</tr>
+<tr>
+<td>X-ray (3 views: AP, lateral, mortise)</td>
+<td>Fracture (malleolus, talus), joint alignment. Mortise view best for syndesmotic widening</td>
+<td>Positive Ottawa rules, inability to bear weight, or suspected fracture</td>
+</tr>
+<tr>
+<td>MRI</td>
+<td>Ligament integrity (full/partial tear), osteochondral lesions, peroneal tendon pathology, bone bruise</td>
+<td>Persistent pain at 6–8 weeks, suspected OLT, pre-surgical planning</td>
+</tr>
+<tr>
+<td>Ultrasound (dynamic)</td>
+<td>Ligament thinning/tearing, response to stress maneuvers. Cheaper than MRI but operator-dependent</td>
+<td>Alternative to MRI when available; useful for real-time dynamic assessment</td>
+</tr>
+<tr>
+<td>Weight-bearing CT</td>
+<td>Subtle syndesmotic widening, mortise alignment. Higher sensitivity than plain X-ray for syndesmotic injuries</td>
+<td>Suspected syndesmotic injury or failed conservative management</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Incidence and epidemiology:</strong> Ankle sprain is the most common sports injury, accounting for 10–15% of all athletic injuries. The meta-analysis by Doherty et al. (2014, n=181 prospective studies) reported an incidence of 11.55 per 1,000 exposures in high-quality studies, with females at higher risk than males (13.6 vs 6.94 per 1,000 exposures). Indoor/court sports had the highest rates at 7 per 1,000 exposures. The lifetime prevalence is estimated at 25–30% of the physically active population.</p>
+<p><strong>Functional treatment vs. immobilization:</strong> The Cochrane review by Kerkhoffs et al. (2002) comparing functional treatment (early mobilization, bracing, exercises) with immobilization (cast or splint) found that functional treatment led to faster return to work (mean difference 4.4 days), less persistent swelling, and greater patient satisfaction. There was no difference in long-term mechanical instability. A 2018 update confirmed these findings.</p>
+<p><strong>NSAIDs:</strong> A systematic review by van den Bekerom et al. (2012) found strong evidence that topical NSAIDs are as effective as oral NSAIDs for acute ankle sprain with fewer gastrointestinal side effects. Oral NSAIDs (including COX-2 inhibitors) provided superior pain relief to placebo in the first 3–7 days.</p>
+<p><strong>Rehabilitation and re-injury prevention:</strong> Exercise-based rehabilitation reduces re-injury prevalence at 12 months by 40% compared to usual care (OR 0.60, 95% CI 0.36–0.99), according to a 2022 meta-analysis of 14 RCTs (n=2,182). The Doherty et al. (2017) overview of systematic reviews found strong evidence for bracing and moderate evidence for neuromuscular training in preventing recurrence.</p>
+<p><strong>Clinical practice guidelines:</strong> The 2022 PRISMA systematic review of CPGs by Ruiz-Sánchez et al. evaluated 7 clinical practice guidelines and identified 6 recommendations with sufficient evidence to be applied in practice: Ottawa Ankle Rules for triage, manual therapy, cryotherapy, functional supports, early ambulation, short-term NSAIDs, and rehabilitation.</p>
+<p><strong>Ligament healing biology:</strong> Histological studies (Hubbard & Hicks-Little, 2008) show that ligament fibroblasts proliferate maximally at 3 weeks and remodel for up to 12 months. The healed ligament contains a higher proportion of type III collagen (less organized, weaker) than uninjured ligament.</p>
+<h4>Surgical options</h4>
+<p>Surgery is rarely needed for acute ankle sprains. Indications for lateral ligament repair (Broström procedure or modified Broström-Gould) include:</p>
+<ul>
+<li><strong>Failed conservative management:</strong> Persistent mechanical instability after 3–6 months of supervised rehabilitation.</li>
+<li><strong>High-grade (III) sprain in a high-level athlete:</strong> Some evidence supports acute repair in elite athletes to shorten return-to-sport time, but this is controversial and most return-to-sport outcomes are equivalent with functional rehabilitation.</li>
+<li><strong>Concomitant injuries:</strong> Osteochondral lesion requiring debridement, peroneal tendon pathology, or syndesmotic widening.</li>
+<li><strong>Recurrent instability (CAI):</strong> The modified Broström-Gould procedure has a 90–95% success rate in returning patients to pre-injury activity levels (recurrence rate 5–10%). Anatomic repair is preferred over tenodesis (Evans, Watson-Jones, Chrisman-Snook) because it preserves normal ankle kinematics better.</li>
+</ul>
+<p>Post-operative rehabilitation includes 2 weeks in a splint, then functional bracing with progressive weight-bearing, returning to sport at 4–6 months.</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal dose of rehabilitation exercise (frequency, duration, type) for preventing CAI? Current data shows a 40% reduction in re-injury with exercise, but the dose-response gradient is unknown.</li>
+<li>Do biologic augmentations (platelet-rich plasma, stem cells) improve ligament healing in grade III sprains? Early RCTs are inconclusive — PRP did not improve functional outcomes over placebo in a 2021 trial.</li>
+<li>Can high-resolution ultrasound predict which patients will develop CAI? Preliminary studies show ATFL cross-sectional area >20 mm² at 6 weeks predicts chronic instability, but thresholds lack external validation.</li>
+<li>What is the optimal brace-wearing protocol after return to sport? Evidence supports 3–6 months during high-risk activity but wearing protocols are not standardized.</li>
+<li>Does early weight-bearing change ligament remodeling at the histological level in humans? Animal models suggest mechanotransduction improves collagen alignment, but human biopsy data is absent.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Doherty C et al. "The incidence and prevalence of ankle sprain injury: a systematic review and meta-analysis of prospective epidemiological studies." <em>Sports Med</em> 2014;44(1):123–140. PMID: 24105612.</li>
+<li>Doherty C et al. "Treatment and prevention of acute and recurrent ankle sprain: an overview of systematic reviews with meta-analysis." <em>Br J Sports Med</em> 2017;51(2):113–125. PMID: 28053200.</li>
+<li>Kerkhoffs GM et al. "Immobilisation and functional treatment for acute lateral ankle ligament injuries in adults." <em>Cochrane Database Syst Rev</em> 2002;(3):CD003762.</li>
+<li>Ruiz-Sánchez FJ et al. "Management and treatment of ankle sprain according to clinical practice guidelines: A PRISMA systematic review." <em>Medicine</em> 2022;101(42):e31087. PMID: 36281183.</li>
+<li>Vuurberg G et al. "Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline." <em>Br J Sports Med</em> 2018;52(15):956.</li>
+<li>van den Bekerom MPJ et al. "What is the evidence for rest, ice, compression, and elevation therapy in the treatment of ankle sprains in adults?" <em>J Athl Train</em> 2012;47(4):435–443.</li>
+<li>Kobayashi T, Tanaka M, Shida M. "Intrinsic risk factors of lateral ankle sprain: a systematic review and meta-analysis." <em>Sports Health</em> 2016;8(2):190–193. PMID: 26711693.</li>
+<li>Hubbard TJ, Hicks-Little CA. "Ankle ligament healing after an acute ankle sprain: an evidence-based approach." <em>J Athl Train</em> 2008;43(5):523–529.</li>
+<li>2022 systematic review update on exercise-based rehabilitation for ankle sprain. <em>PLoS One</em> 2022;17(2):e0262023. PMID: 35134061.</li>
+<li>AAOS Clinical Practice Guideline: "Acute Ankle Injury." American Academy of Orthopaedic Surgeons, 2019.</li>
+<li>Broström L. "Surgical treatment of chronic lateral ankle instability." <em>Acta Orthop Scand</em> 1966;37(2):171–192. (The original Broström procedure.)</li>
+<li>Gould N, Seligson D, Gassman J. "Early and late repair of lateral ligaments of the ankle." <em>Foot Ankle</em> 1980;1(2):84–89.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

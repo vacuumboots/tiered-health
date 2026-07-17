@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GERD — Tiered Health</title>
+<meta name="description" content="GERD: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🔥 Tiered Health <span>/ GERD</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🔥 GERD</h1>
+  <p class="aka">Also called: acid reflux · heartburn · gastroesophageal reflux disease</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tissue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8b4b8"/><stop offset="100%" stop-color="#d9a0a4"/></linearGradient>
+    <linearGradient id="stomach-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5d5c4"/><stop offset="100%" stop-color="#e8bfa8"/></linearGradient>
+    <linearGradient id="acid" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="esophageal-lining" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f2e3d4"/><stop offset="100%" stop-color="#e8ceb8"/></linearGradient>
+    <linearGradient id="acid-reflux" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#e6a817"/><stop offset="100%" stop-color="#d4870a"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow-up" viewBox="0 0 10 10" refX="5" refY="0" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,10 L5,0 L10,10 Z" fill="#c0392b" opacity="0.7"/>
+    </marker>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L5,10 L10,0 Z" fill="#8a7e6e" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ DIAPHRAGM ═══════════ -->
+  <path d="M60,165 C100,145 150,130 200,125 L250,122 L300,125 C350,130 400,145 440,165"
+        fill="none" stroke="#d9a0a4" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+  <path d="M60,165 C100,175 150,182 200,185 L250,188 L300,185 C350,182 400,175 440,165"
+        fill="none" stroke="#d9a0a4" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <text x="450" y="148" fill="#b8860b" font-size="10" font-weight="600">Diaphragm</text>
+  <text x="450" y="160" fill="#b8860b" font-size="9">(crural sling)</text>
+
+  <!-- ═══════════ ESOPHAGUS ═══════════ -->
+  <!-- Esophagus outer wall -->
+  <path d="M225,30 L223,60 L220,90 L218,120 L216,150 L215,175 C214,190 214,200 216,210 L218,220"
+        fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.7"/>
+  <path d="M270,30 L272,60 L275,90 L277,120 L279,150 L280,175 C281,190 281,200 279,210 L277,220"
+        fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.7"/>
+  <!-- Esophageal lining -->
+  <path d="M230,30 L228,60 L226,90 L224,120 L222,150 L221,175 C220,190 220,200 222,210 L224,220"
+        fill="url(#esophageal-lining)" stroke="none" opacity="0.5"/>
+  <path d="M265,30 L267,60 L269,90 L271,120 L273,150 L274,175 C275,190 275,200 273,210 L271,220"
+        fill="url(#esophageal-lining)" stroke="none" opacity="0.5"/>
+  <!-- Central esophageal column (lumen) -->
+  <path d="M236,30 L234,60 L232,90 L230,120 L228,150 L227,175 L226,190 L226,200 L228,210"
+        fill="none" stroke="#e8ceb8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <path d="M260,30 L262,60 L264,90 L266,120 L268,150 L269,175 L270,190 L270,200 L268,210"
+        fill="none" stroke="#e8ceb8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- Label: Esophagus -->
+  <text x="220" y="75" fill="#8a7e6e" font-size="11" font-weight="600">Esophagus</text>
+
+  <!-- ═══════════ LOWER ESOPHAGEAL SPHINCTER ═══════════ -->
+  <!-- LES muscle band -->
+  <ellipse cx="248" cy="218" rx="34" ry="14" fill="none" stroke="#c0392b" stroke-width="3" stroke-dasharray="none" opacity="0.8"/>
+  <ellipse cx="248" cy="218" rx="34" ry="14" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+  <text x="290" y="215" fill="#c0392b" font-size="10" font-weight="600">LES</text>
+  <text x="290" y="227" fill="#c0392b" font-size="9">(Lower Esophageal</text>
+  <text x="290" y="238" fill="#c0392b" font-size="9">Sphincter)</text>
+
+  <!-- ═══════════ STOMACH ═══════════ -->
+  <!-- Stomach outline (dome/body shape below the LES) -->
+  <path d="M200,225 C195,230 190,240 188,255 C185,270 184,290 186,310 C188,330 192,350 198,365 C205,380 215,390 228,395 C240,398 255,396 268,390 C282,382 295,370 305,355 C312,342 316,328 318,312 C320,295 320,280 318,268 C316,258 312,250 308,245 L305,240 C300,235 295,230 290,228 C280,224 270,222 260,222 L248,222 L235,222 C225,222 215,224 208,226 Z"
+        fill="url(#stomach-grad)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.75"/>
+
+  <!-- Fundus (top of stomach) label -->
+  <text x="175" y="268" fill="#b0a595" font-size="9" font-style="italic">Fundus</text>
+
+  <!-- Stomach contents: acid pool -->
+  <ellipse cx="245" cy="320" rx="45" ry="20" fill="url(#acid)" opacity="0.25"/>
+  <ellipse cx="248" cy="315" rx="35" ry="12" fill="url(#acid)" opacity="0.15"/>
+  <text x="270" y="330" fill="#b8860b" font-size="9" font-weight="600">Gastric acid</text>
+  <text x="270" y="342" fill="#b8860b" font-size="8">(pH 1–2)</text>
+
+  <!-- Label: Stomach -->
+  <text x="305" y="365" fill="#8a7e6e" font-size="11" font-weight="600">Stomach</text>
+
+  <!-- ═══════════ HIATAL HERNIA HINT ═══════════ -->
+  <!-- Dotted line showing where diaphragm normally sits -->
+  <line x1="60" y1="175" x2="440" y2="175" stroke="#d9a0a4" stroke-width="1" stroke-dasharray="3,4" opacity="0.4"/>
+
+  <!-- ═══════════ ACID REFLUX ARROWS ═══════════ -->
+  <!-- Reflux path: stomach up through LES into esophagus -->
+  <path d="M240,240 C238,230 237,220 237,210 C237,200 238,190 239,180"
+        fill="none" stroke="url(#acid-reflux)" stroke-width="3" stroke-dasharray="5,3"
+        marker-end="url(#arrow-up)" opacity="0.6"/>
+  <path d="M252,240 C250,228 249,218 249,208 C249,198 248,188 248,180"
+        fill="none" stroke="url(#acid-reflux)" stroke-width="2.5" stroke-dasharray="4,3"
+        marker-end="url(#arrow-up)" opacity="0.5"/>
+  <path d="M265,238 C264,226 263,216 262,206 C261,196 260,186 260,178"
+        fill="none" stroke="url(#acid-reflux)" stroke-width="2" stroke-dasharray="4,3"
+        marker-end="url(#arrow-up)" opacity="0.4"/>
+
+  <!-- Acid reflux label -->
+  <text x="180" y="155" fill="#c0392b" font-size="10" font-weight="600">Acid reflux</text>
+  <text x="180" y="167" fill="#c0392b" font-size="9">(retrograde flow)</text>
+
+  <!-- ═══════════ SWALLOWED BOLUS (down arrow) ═══════════ -->
+  <path d="M250,40 L250,100" fill="none" stroke="#8a7e6e" stroke-width="2"
+        marker-end="url(#arrow-down)" opacity="0.5"/>
+  <text x="258" y="75" fill="#8a7e6e" font-size="9" font-style="italic">Food</text>
+
+  <!-- ═══════════ ESOPHAGEAL LINING INFLAMMATION ═══════════ -->
+  <!-- Highlight strip showing irritated area -->
+  <path d="M229,120 L227,150 L226,175 C225,190 225,200 227,210"
+        fill="none" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" opacity="0.2"/>
+  <path d="M266,120 L268,150 L269,175 C270,190 270,200 268,210"
+        fill="none" stroke="#e74c3c" stroke-width="4" stroke-linecap="round" opacity="0.2"/>
+
+  <text x="150" y="118" fill="#c0392b" font-size="8">Inflamed</text>
+  <text x="150" y="130" fill="#c0392b" font-size="8">lining</text>
+
+  <!-- ═══════════ GRADE INSETS ═══════════ -->
+  <!-- Separator -->
+  <line x1="20" y1="415" x2="480" y2="415" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="250" y="20" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">GERD — Anatomy &amp; Mechanism of Reflux</text>
+
+  <!-- Glandular vs squamous junction -->
+  <text x="310" y="195" fill="#8a7e6e" font-size="8">Squamocolumnar</text>
+  <text x="310" y="206" fill="#8a7e6e" font-size="8">junction (Z-line)</text>
+
+  <!-- Panel: Normal LES -->
+  <g transform="translate(25, 425)">
+    <rect x="0" y="0" width="145" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="72" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Normal LES (closed)</text>
+    <!-- Esophagus tube -->
+    <path d="M55,22 L54,35 L53,45 L52,55 L52,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M90,22 L91,35 L92,45 L93,55 L93,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <!-- LES - tightly closed -->
+    <ellipse cx="72" cy="60" rx="22" ry="8" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+    <text x="72" y="38" fill="#c0392b" font-size="7" text-anchor="middle">LES contracted</text>
+    <!-- No reflux symbol -->
+    <line x1="60" y1="55" x2="84" y2="55" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="72" y="76" fill="#27ae60" font-size="7" text-anchor="middle">No reflux</text>
+  </g>
+
+  <!-- Panel: Weak / relaxed LES -->
+  <g transform="translate(177, 425)">
+    <rect x="0" y="0" width="145" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="72" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Weak LES (open)</text>
+    <!-- Esophagus tube -->
+    <path d="M55,22 L54,35 L53,45 L52,55 L52,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M90,22 L91,35 L92,45 L93,55 L93,65" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <!-- LES - open/gaping -->
+    <ellipse cx="72" cy="55" rx="22" ry="12" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <!-- Acid going up -->
+    <path d="M68,62 L67,70 L66,78" fill="none" stroke="#e6a817" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrow-up)" opacity="0.7"/>
+    <path d="M76,62 L77,70 L78,78" fill="none" stroke="#e6a817" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrow-up)" opacity="0.7"/>
+    <text x="72" y="42" fill="#c0392b" font-size="7" text-anchor="middle">LES relaxed</text>
+    <text x="72" y="76" fill="#c0392b" font-size="7" text-anchor="middle">Reflux of acid</text>
+  </g>
+
+  <!-- Panel: Hiatal hernia -->
+  <g transform="translate(330, 425)">
+    <rect x="0" y="0" width="145" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="72" y="18" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Hiatal Hernia</text>
+    <!-- Diaphragm line -->
+    <line x1="10" y1="35" x2="135" y2="35" stroke="#d9a0a4" stroke-width="2.5"/>
+    <!-- Esophagus / stomach herniated up -->
+    <ellipse cx="72" cy="40" rx="20" ry="8" fill="url(#stomach-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+    <path d="M55,22 L54,32 L55,40 L56,55 L55,70" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M90,22 L91,32 L90,40 L89,55 L90,70" fill="none" stroke="#c4b5a0" stroke-width="1.5"/>
+    <path d="M72,60 L71,70" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#arrow-up)" opacity="0.6"/>
+    <text x="72" y="55" fill="#c0392b" font-size="6" text-anchor="middle">Stomach above</text>
+    <text x="72" y="76" fill="#c0392b" font-size="6" text-anchor="middle">diaphragm level</text>
+  </g>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is GERD?</h4>
+<p>Stomach acid keeps splashing up into your esophagus because the valve between them (the lower esophageal sphincter) isn't closing properly. Occasional heartburn is normal, but when it happens twice a week or more — that's GERD.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Don't lie down after eating.</strong> Stay upright for at least 2–3 hours after meals. Gravity is your friend here.</li>
+<li><strong>Avoid trigger foods.</strong> Coffee, alcohol, chocolate, spicy food, citrus, tomatoes, and fatty meals are common culprits. Keep a food diary to find yours.</li>
+<li><strong>Elevate your bed.</strong> Put blocks under the headboard or use a wedge pillow so your head is 6–8 inches higher than your stomach. Extra pillows alone don't work — they just bend you at the waist.</li>
+<li><strong>Try an over-the-counter antacid</strong> (Tums, Rolaids) for quick relief, or an H2 blocker (famotidine/Pepcid) for longer coverage.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have trouble swallowing (dysphagia) — food feels stuck in your chest</li>
+<li>It hurts to swallow (odynophagia)</li>
+<li>You're losing weight without trying</li>
+<li>You vomit blood or pass black/tarry stools</li>
+<li>You have chest pain that feels like pressure or squeezing — this could be a heart attack, not reflux</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Key fact</h5>
+<p>GERD is incredibly common — about 20% of adults in the US have it. Lifestyle changes and simple medications control it well. The complications (Barrett's esophagus, esophageal cancer) are rare and take many years to develop, so there's no need to panic.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your esophagus meets your stomach at the <strong>gastroesophageal junction</strong>. Wrapped around it is a ring of muscle called the <strong>lower esophageal sphincter (LES)</strong> — a one-way valve that opens to let food in and closes to keep stomach contents where they belong.</p>
+<p>In GERD, this valve is weak or relaxes at the wrong times (transient LES relaxations). Stomach acid, bile, and digestive enzymes flow backward into the esophagus. Unlike the stomach, which is lined with protective mucous and can handle a pH of 1–2, the esophagus has a thin, delicate lining. Even brief contact with acid (as little as 3 minutes of cumulative exposure per day) can cause inflammation — erosive esophagitis.</p>
+<p>The hallmark symptom is <strong>heartburn</strong>: a burning retrosternal pain that often comes after meals, gets worse when you lie down or bend over, and may wake you at night. It's called heartburn but has nothing to do with the heart — the pain comes from acid irritating the esophageal lining.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Heartburn (pyrosis):</strong> burning sensation behind the breastbone, often rising toward the throat. Typically comes 30–60 minutes after eating.</li>
+<li><strong>Regurgitation:</strong> sour or bitter liquid backing up into the mouth or throat. You may feel it as "water brash" — a sudden rush of watery saliva mixed with stomach contents.</li>
+<li><strong>Dyspepsia:</strong> feeling of fullness, belching, nausea after meals.</li>
+<li><strong>Chronic cough:</strong> acid micro-aspiration irritates the larynx and airways. GERD is a common hidden cause of chronic cough and hoarseness.</li>
+<li><strong>Globus sensation:</strong> a feeling of a lump in your throat that doesn't go away with swallowing.</li>
+<li><strong>Chest pain:</strong> non-cardiac chest pain that mimics angina. Can be hard to distinguish — always get chest pain checked first.</li>
+</ul>
+<h4>Treatment</h4>
+<p>The treatment ladder is stepwise and usually effective:</p>
+<ul>
+<li><strong>Lifestyle modification:</strong> First line for everyone. Elevate the head of bed (6–8 inches with blocks, not pillows), avoid meals within 3 hours of bedtime, lose weight if overweight or obese (weight loss reduces intra-abdominal pressure), stop smoking (nicotine relaxes the LES). Avoid tight clothing around the abdomen.</li>
+<li><strong>Antacids (Tums, Rolaids, Maalox):</strong> Neutralize acid already in the esophagus. Fast relief (seconds to minutes) but short-acting (30–60 minutes). Good for occasional symptoms only.</li>
+<li><strong>H2 receptor antagonists (famotidine/Pepcid, cimetidine/Tagamet):</strong> Reduce acid production by blocking histamine at the parietal cell. Take 30–60 minutes before a trigger meal for best effect. Effect lasts 6–12 hours. Tolerance can develop with daily use (tachyphylaxis).</li>
+<li><strong>Proton pump inhibitors (omeprazole/Prilosec OTC, esomeprazole/Nexium, pantoprazole/Protonix):</strong> The most effective medical therapy. Block the H⁺/K⁺-ATPase pump — the final common pathway of acid secretion. Take 30–60 minutes before the first meal of the day for maximal effect. Heals erosive esophagitis in 80–90% of patients within 8 weeks.</li>
+<li><strong>Prokinetic agents (metoclopramide):</strong> Increase LES tone and gastric emptying. Rarely used due to side effects (tardive dyskinesia risk). Reserved for refractory cases after objective testing.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't lie down within 3 hours of eating — this is the single most common reason lifestyle measures fail.</li>
+<li>Don't take PPIs at the wrong time. They must be taken 30–60 minutes before a meal to work. Taken on an empty stomach or with dinner, they're substantially less effective.</li>
+<li>Don't stop a PPI abruptly after months of use — you can get rebound acid hypersecretion. Taper down slowly.</li>
+<li>Don't ignore alarm symptoms (trouble swallowing, weight loss, anemia) — these need an endoscopy, not just more antacids.</li>
+<li>Don't assume chest pain is heartburn without seeing a doctor first. Cardiac chest pain can feel identical.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1</div>
+<div class="tl-text">Start lifestyle measures (elevate head of bed, avoid late meals, identify triggers). Begin OTC antacids or H2 blocker for symptom relief.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 1–2</div>
+<div class="tl-text">If no response to lifestyle + H2 blocker, start a PPI (omeprazole 20 mg daily before breakfast). Most people feel improvement within 2–3 days of starting PPI therapy.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 4–8</div>
+<div class="tl-text">Full healing of erosive esophagitis takes 4–8 weeks of PPI therapy. If symptoms are controlled, continue the lowest effective dose. If not, consider doubling the dose or switching PPIs.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 2–3</div>
+<div class="tl-text">Step down if possible. Try every-other-day PPI, then H2 blocker as needed. Not everyone can step down — some need maintenance therapy.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">3+ months with alarm symptoms</div>
+<div class="tl-text">If dysphagia, weight loss, or anemia are present or develop, an upper endoscopy (EGD) is mandatory to rule out Barrett's esophagus, stricture, or malignancy.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>GERD is fundamentally a disorder of the <strong>anti-reflux barrier</strong> at the gastroesophageal junction. The primary barrier is the LES — a 3–4 cm segment of tonically contracted smooth muscle at the distal esophagus. In health, the LES maintains a resting pressure of 10–30 mmHg relative to intragastric pressure. This barrier is augmented by the <strong>crural diaphragm</strong>, which creates an external pinch that increases pressure by 5–10 mmHg during inspiration. The two structures together form an intrinsic-extrinsic valve complex.</p>
+<p>The dominant mechanism of reflux in most patients (60–70%) is <strong>transient LES relaxations (TLESRs)</strong> — spontaneous, vagally mediated relaxations of the LES that are not triggered by swallowing. These are normal in small numbers (2–6 per hour postprandially), but in GERD they occur more frequently and with a longer duration, allowing acid to escape. A smaller subset of patients (20–30%) have a <strong>chronically hypotensive LES</strong> (resting pressure < 6 mmHg), often associated with a hiatal hernia. In these patients, the LES is structurally incompetent and reflux occurs during any increase in intra-abdominal pressure (bending, coughing, Valsalva).</p>
+<p>When gastric juice (pH 1–3 containing hydrochloric acid and pepsin) contacts the esophageal squamous epithelium, it initiates a chemical burn. Acid diffuses through the intercellular tight junctions (dilated by pepsin-mediated proteolysis), reaching the basolateral membrane where it triggers pain fibers and cytokine release. The result is a histologic spectrum ranging from <strong>reactive epithelial hyperplasia</strong> (basal cell hyperplasia, papillary elongation) to <strong>erosive esophagitis</strong> (disrupted mucosa with ulceration) and eventually <strong>columnar metaplasia</strong> (Barrett's esophagus) in a minority of patients.</p>
+<p>Protective factors include <strong>salivary bicarbonate</strong> (swallowing neutralizes acid, but at a rate of only ~1 swallow per 60–90 seconds during sleep — acid clearance is 5–10 times slower supine than upright), <strong>esophageal peristalsis</strong> (primary and secondary peristaltic waves clear volume), and <strong>mucosal bicarbonate secretion</strong> from submucosal glands.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Coronary artery disease / acute coronary syndrome:</strong> Chest pain can be identical. Key clues: exertional onset, radiation to left arm/jaw, dyspnea, diaphoresis. Always check ECG and troponin when cardiac is a possibility.</li>
+<li><strong>Eosinophilic esophagitis (EoE):</strong> Dysphagia and food impaction in younger patients (20–40 years). Atopic history (asthma, allergies, eczema). Endoscopy shows rings, furrows, and white plaques. Biopsy shows ≥15 eosinophils per high-power field. Does not respond to PPIs alone (though PPI-responsive esophageal eosinophilia exists).</li>
+<li><strong>Achalasia:</strong> Dysphagia to both solids and liquids from the start. Regurgitation of undigested food (not sour liquid). Esophageal manometry shows failed LES relaxation and absent peristalsis. Barium swallow shows a dilated esophagus with a "bird's beak" narrowing.</li>
+<li><strong>Gastroparesis:</strong> Postprandial fullness, nausea, vomiting (of undigested food hours after eating), early satiety. Often in diabetic patients (vagal neuropathy). Gastric emptying study confirms.</li>
+<li><strong>Functional heartburn:</strong> Heartburn symptoms with normal endoscopy and normal acid exposure on pH monitoring. The pain is due to visceral hypersensitivity, not acid. Do not respond to PPIs. Management is neuromodulators (low-dose tricyclic antidepressants, SSRIs) and psychological approaches.</li>
+<li><strong>Peptic ulcer disease (PUD):</strong> Epigastric pain (not retrosternal burning). Can be associated with H. pylori or NSAID use. Diagnosed on endoscopy.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical history + symptom questionnaire</td>
+<td>Typical heartburn + regurgitation, symptom frequency, alarm features (dysphagia, weight loss, anemia, early satiety, hematemesis, melena)</td>
+<td>Every patient — GERD can often be diagnosed and treated empirically without testing</td>
+</tr>
+<tr>
+<td>Empiric PPI trial</td>
+<td>Symptom response to 4–8 weeks of standard-dose PPI. Positive predictive value ~75% for GERD when symptoms resolve</td>
+<td>First test if no alarm features and typical symptoms. A negative response does not rule out GERD (20–25% of true GERD patients fail empiric PPI)</td>
+</tr>
+<tr>
+<td>Upper endoscopy (EGD)</td>
+<td>Erosive esophagitis (LA classification A–D), hiatal hernia, Barrett's esophagus, peptic stricture, malignancy. Biopsy rules out EoE and H. pylori</td>
+<td>Indicated for alarm symptoms, screening after 5 years of PPI use (Barrett's surveillance), non-response to empiric PPI, pre-operative planning</td>
+</tr>
+<tr>
+<td>Ambulatory pH monitoring (wireless Bravo capsule or catheter-based)</td>
+<td>Acid exposure time (AET) — percent of 24-hour period with pH < 4. Normal < 4.5%. DeMeester score > 14.7 is abnormal. Correlates symptoms with reflux events (symptom index > 50%)</td>
+<td>Gold standard for diagnosis. Needed when endoscopy is normal but symptoms persist (to distinguish GERD from functional heartburn), or before anti-reflux surgery</td>
+</tr>
+<tr>
+<td>Esophageal manometry (high-resolution)</td>
+<td>LES resting pressure, LES relaxation, peristaltic wave amplitude. Identifies hypotensive LES, achalasia, ineffective esophageal motility</td>
+<td>Required before anti-reflux surgery (to rule out achalasia/scleroderma). Useful in suspected motility disorders</td>
+</tr>
+<tr>
+<td>Barium esophagram</td>
+<td>Hiatal hernia, stricture, esophageal dilation, "bird's beak" in achalasia. Also shows spontaneous reflux in some cases (low sensitivity ~40%)</td>
+<td>When structural abnormality suspected or before surgery. Does NOT replace endoscopy for mucosal assessment</td>
+</tr>
+<tr>
+<td>Impedance-pH monitoring</td>
+<td>Detects both acid and non-acid (weakly acidic, bile) reflux. Adds detection of liquid and gas reflux events</td>
+<td>Refractory GERD despite adequate PPI therapy — identifies persistent non-acid reflux as a cause of ongoing symptoms</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> GERD affects 18–28% of the adult population in North America (El-Serag et al., 2014, systematic review of 15 population-based studies). Prevalence is rising globally, with a parallel increase in obesity — a strong dose-dependent risk factor (BMI > 30 confers an OR of 2.5–3.0 for GERD symptoms). The economic burden in the US alone exceeds $15 billion annually in direct costs and $50 billion in indirect costs (lost productivity).</p>
+<p><strong>PPI efficacy:</strong> The Cochrane review by Sigterman et al. (2013) analyzed 134 RCTs and found PPIs superior to H2RAs for healing erosive esophagitis at 4–8 weeks (RR 1.24, 95% CI 1.18–1.30). PPIs also provided superior symptom relief in NERD (non-erosive reflux disease). All PPIs are roughly equivalent in efficacy when dosed appropriately; the main differences are cost and drug interactions (esomeprazole and omeprazole inhibit CYP2C19 most strongly, affecting clopidogrel metabolism).</p>
+<p><strong>PPI safety:</strong> Long-term PPI use is generally safe but associated with several risks in observational studies. A 2017 systematic review (Freedberg et al.) found: 1.2–1.5× increased risk of C. difficile infection (mechanism: reduced gastric acid barrier), 1.2–1.5× increased risk of chronic kidney disease (dose-dependent, possible tubulointerstitial nephritis), 1.2–1.3× increased risk of osteoporosis-related fracture (mechanism: reduced calcium absorption, uncertain clinical significance), and 1.2× increased risk of vitamin B12 deficiency. Importantly, all associations are from observational data with risk differences of <1% absolute, and no RCT has confirmed any of these risks as causal. The number needed to harm for PPI-related CKD per year of use is estimated at ~500. These risks should not prevent PPI use when indicated, but should inform deprescribing when no longer needed.</p>
+<p><strong>Fundoplication:</strong> The LOTUS trial (Galmiche et al., 2011), a 5-year European RCT comparing laparoscopic fundoplication with esomeprazole 20–40 mg daily, found that both were effective and safe with similar remission rates at 5 years (92% for surgery vs. 93% for PPI). Surgery was more effective at controlling regurgitation and atypical symptoms. However, 10–15% of fundoplication patients develop new or worsening dysphagia, gas-bloat syndrome (inability to belch or vomit, leading to abdominal distension), and diarrhea (from vagal nerve handling). The need for re-operation is ~3–5% at 5 years. The REFLUX trial (Grant et al., 2013, UK RCT, n=810) showed better disease-specific quality of life in the surgery arm at 1 year, but by 5 years the benefit narrowed.</p>
+<p><strong>Lifestyle evidence:</strong> A 2022 systematic review (Ness-Jensen et al.) confirmed that weight loss (≥5% body weight) significantly reduces GERD symptoms (OR 0.55, 95% CI 0.42–0.72) and normalizes esophageal pH in overweight patients. Smoking cessation improves LES pressure by ~30% within weeks. Head-of-bed elevation reduces supine acid exposure time by a weighted mean of 16% in pooled analysis (7 RCTs, n=271). The evidence for eliminating individual dietary triggers is weaker — most data comes from symptom diaries rather than RCTs — but patient-directed elimination is widely used in practice.</p>
+<h4>Surgical options (if indicated)</h4>
+<p>Anti-reflux surgery is indicated for patients with proven GERD who have persistent symptoms despite optimal PPI therapy, who cannot tolerate PPIs (e.g., side effects, cost), or who have large hiatal hernias. Surgery is NOT appropriate for functional heartburn or for patients who have not undergone objective testing (pH monitoring + manometry).</p>
+<ul>
+<li><strong>Laparoscopic Nissen fundoplication (360° wrap):</strong> The gold standard. The gastric fundus is wrapped completely around the distal esophagus (360°), reinforcing the LES. Success rate 85–93% in appropriately selected patients. Complications include gas-bloat syndrome (10–15%), dysphagia (5–10%), and wrap failure/slippage requiring re-operation (3–5%).</li>
+<li><strong>Partial fundoplication (Toupet 270°, Dor 180°):</strong> Lower rates of postoperative dysphagia and gas-bloat compared to Nissen. Preferred in patients with preoperative ineffective esophageal motility. Toupet is a posterior 270° wrap; Dor is an anterior 180° wrap. Slightly higher recurrence rates of reflux (5–10% absolute difference) but better side-effect profile.</li>
+<li><strong>LINX device (magnetic sphincter augmentation):</strong> A ring of titanium beads with magnetic cores is placed laparoscopically around the gastroesophageal junction. The magnetic attraction augments LES closure but allows the ring to expand with swallowing. Less gas-bloat and no ability to vomit disruption compared to fundoplication. The MAHSA study (Ganz et al., 2023, 5-year follow-up) showed 85% symptom control at 5 years with a 0.1% device erosion rate. Not approved for patients with prior radiation or metal implants.</li>
+<li><strong>Transoral incisionless fundoplication (TIF):</strong> Endoscopic procedure using the EsophyX device to create a gastroesophageal valve from within the stomach. Less invasive than laparoscopic surgery. RFS (Remission of Symptoms) at 5 years is approximately 50–60%, lower than Nissen, but with a very low complication rate.</li>
+<li><strong>Roux-en-Y gastric bypass:</strong> For GERD patients with class II–III obesity (BMI > 35). Effective as both a weight-loss and anti-reflux procedure. The Roux limb's small gastric pouch produces very little acid. This is increasingly recognized as the best option for patients who qualify for bariatric surgery and have severe GERD.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What defines the optimal PPI trial duration for NERD patients? Current guidelines say 8 weeks, but many patients have a delayed symptomatic response. Can earlier pH-impedance monitoring identify non-GERD treatable causes more efficiently?</li>
+<li>Does PPI use increase the risk of gastric cancer after H. pylori eradication? Observational data from Hong Kong (Cheung et al., 2018) showed a hazard ratio of 2.1 (95% CI 1.6–3.0) for gastric cancer after H. pylori treatment in PPI users vs. H2RA users. The mechanism is unclear — possible hypochlorhydria-induced bacterial overgrowth with nitrosamine production. Causal relationship not established.</li>
+<li>What is the optimal PPI deprescribing protocol? Most patients are on higher-than-necessary doses for longer than needed. Step-down, on-demand, and intermittent strategies all have evidence, but no consensus algorithm exists.</li>
+<li>Can the microbiome predict PPI response? Emerging evidence that certain bacterial profiles in the esophagus and stomach correlate with GERD severity and PPI response. Clinical utility not yet established.</li>
+<li>Does magnetic sphincter augmentation (LINX) have better long-term (>10 year) outcomes than fundoplication? The LINX registry has 5-year data; 10-year and comparative RCT data are pending.</li>
+<li>What role do bile salts play in PPI-refractory GERD? Bile reflux is increasingly recognized but difficult to measure clinically — no widely available test exists for non-acid reflux components in routine practice.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>El-Serag HB, Sweet S, Winchester CC, Dent J. "Update on the epidemiology of gastro-oesophageal reflux disease: a systematic review." <em>Gut</em> 2014;63(6):871–880. PMID: 23853213.</li>
+<li>Sigterman KE, van Pinxteren B, Bonis PA, Lau J, Numans ME. "Short-term treatment with proton pump inhibitors, H2-receptor antagonists and prokinetics for gastro-oesophageal reflux disease-like symptoms and endoscopy negative reflux disease." <em>Cochrane Database Syst Rev</em> 2013;(5):CD002095. PMID: 23728637.</li>
+<li>Freedberg DE, Kim LS, Yang YX. "The Risks and Benefits of Long-term Use of Proton Pump Inhibitors: Expert Review and Best Practice Advice From the American Gastroenterological Association." <em>Gastroenterology</em> 2017;152(4):706–715. PMID: 28257716.</li>
+<li>Galmiche JP, Hatlebakk J, Attwood S, et al. "Laparoscopic antireflux surgery vs esomeprazole treatment for chronic GERD: the LOTUS randomized clinical trial." <em>JAMA</em> 2011;305(19):1969–1977. PMID: 21586712.</li>
+<li>Grant AM, Boachie C, Cotton SC, et al. "Clinical and economic evaluation of laparoscopic surgery compared with medical management for gastro-oesophageal reflux disease: 5-year follow-up of the REFLUX trial." <em>Health Technol Assess</em> 2013;17(22):1–167. PMID: 23742835.</li>
+<li>Ness-Jensen E, Hveem K, El-Serag H, Lagergren J. "Lifestyle Intervention in Gastroesophageal Reflux Disease." <em>Clin Gastroenterol Hepatol</em> 2022;20(10):2153–2165. PMID: 35123024.</li>
+<li>Ganz RA, Edmundowicz SA, Taiganides PA, et al. "Long-term outcomes of magnetic sphincter augmentation for gastroesophageal reflux: 5-year follow-up from the MAHSA study." <em>Surg Endosc</em> 2023;37(2):1337–1345. PMID: 35965246.</li>
+<li>Cheung KS, Chan EW, Wong AYS, et al. "Long-term proton pump inhibitors and risk of gastric cancer development after treatment for Helicobacter pylori: a population-based study." <em>Gut</em> 2018;67(1):28–35. PMID: 29089382.</li>
+<li>Katz PO, Dunbar KB, Schnoll-Sussman FH, Greer KB, Yadlapati R, Spechler SJ. "ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease." <em>Am J Gastroenterol</em> 2022;117(1):27–56. PMID: 34907007.</li>
+<li>Roman S, Gyawali CP, Savarino E, et al. "Ambulatory reflux monitoring for diagnosis of gastro-esophageal reflux disease: Update of the Porto consensus and recommendations from an international consensus group." <em>Neurogastroenterol Motil</em> 2017;29(10):1–15. PMID: 28653535.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

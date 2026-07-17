@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Migraine — Tiered Health</title>
+<meta name="description" content="Migraine: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🧠 Tiered Health <span>/ Migraine</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🧠 Migraine</h1>
+  <p class="aka">Also called: migraine headache</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brain" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0e6d6"/><stop offset="100%" stop-color="#e0d0c0"/></linearGradient>
+    <linearGradient id="nerve" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="artery" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <linearGradient id="csd-wave" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8e44ad" stop-opacity="0"/><stop offset="50%" stop-color="#8e44ad" stop-opacity="0.3"/><stop offset="100%" stop-color="#8e44ad" stop-opacity="0"/></linearGradient>
+    <linearGradient id="cgrp-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e74c3c" stop-opacity="0.7"/><stop offset="100%" stop-color="#e74c3c" stop-opacity="0.1"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+    <marker id="arrow-neuro" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Head outline (profile) -->
+  <path d="M120,40 C100,40 85,60 80,85 L75,120 C70,150 68,180 68,210 L65,250 C62,280 60,310 62,340 L65,370 C68,395 72,410 80,420 L90,430 C100,435 112,438 125,438 L155,435 C175,430 190,420 200,405 L210,385 C218,360 222,330 224,300 C226,270 226,240 225,210 C224,180 222,150 218,120 C215,95 210,75 202,60 C195,48 185,40 170,38 Z"
+        fill="url(#brain)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Head label -->
+  <text x="180" y="22" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Migraine Mechanism</text>
+
+  <!-- Cerebellum hint -->
+  <path d="M280,380 C290,370 300,365 310,368 C320,372 325,382 322,395 C318,408 308,415 295,415 C282,415 274,405 270,395 C268,388 270,382 280,380 Z"
+        fill="url(#brain)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+  <text x="275" y="430" fill="#b0a595" font-size="9" font-style="italic">Cerebellum</text>
+
+  <!-- Brainstem / trigeminal nucleus caudalis -->
+  <path d="M170,340 C175,345 180,355 182,370 C184,385 183,400 180,415 C178,425 175,432 170,435"
+        fill="none" stroke="#c4b5a0" stroke-width="8" opacity="0.4" stroke-linecap="round"/>
+  <text x="148" y="388" fill="#b0a595" font-size="9">Brainstem</text>
+
+  <!-- Trigeminal nerve pathway (yellow) -->
+  <path d="M170,360 C155,365 140,372 128,380 C120,385 115,390 112,395"
+        fill="none" stroke="url(#nerve)" stroke-width="3.5" stroke-linecap="round" filter="url(#soft)"/>
+  <path d="M112,395 C105,400 98,410 95,420 C92,430 92,440 95,450"
+        fill="none" stroke="url(#nerve)" stroke-width="3" stroke-linecap="round" filter="url(#soft)" marker-end="url(#arrow-neuro)"/>
+
+  <!-- Trigeminal nerve label -->
+  <text x="64" y="410" fill="#b8860b" font-size="10" font-weight="600">Trigeminal</text>
+  <text x="64" y="422" fill="#b8860b" font-size="10" font-weight="600">nerve (V)</text>
+
+  <!-- Trigeminal nucleus caudalis label -->
+  <text x="64" y="440" fill="#b8860b" font-size="9">→ Trigeminal</text>
+  <text x="64" y="452" fill="#b8860b" font-size="9">nucleus caudalis</text>
+
+  <!-- Cortical surface with CSD wave -->
+  <path d="M120,90 C130,88 145,85 160,86 C175,87 190,90 200,92"
+        fill="none" stroke="#8e44ad" stroke-width="2" opacity="0.5"/>
+  <path d="M140,82 C150,78 165,76 180,78 C195,80 210,85 220,88"
+        fill="none" stroke="url(#csd-wave)" stroke-width="12" stroke-linecap="round" filter="url(#glow)" opacity="0.4"/>
+
+  <!-- CSD spreading wave arrow -->
+  <path d="M135,80 C145,78 155,77 165,78 C175,79 185,82 195,86"
+        fill="none" stroke="#8e44ad" stroke-width="1.5" marker-end="url(#arrow-neuro)" stroke-dasharray="4,2" opacity="0.6"/>
+  <text x="138" y="72" fill="#8e44ad" font-size="10" font-weight="600">Cortical spreading</text>
+  <text x="138" y="62" fill="#8e44ad" font-size="10" font-weight="600">depression (CSD)</text>
+
+  <!-- Dura mater / meninges line -->
+  <path d="M110,105 C130,102 160,100 195,100 C210,100 225,102 235,105"
+        fill="none" stroke="#c4b5a0" stroke-width="1" stroke-dasharray="5,2" opacity="0.6"/>
+  <text x="235" y="108" fill="#b0a595" font-size="8">Dura mater</text>
+
+  <!-- Dilated meningeal artery (red) -->
+  <path d="M130,110 C140,115 152,118 165,118 C178,118 190,115 200,110 L210,106"
+        fill="none" stroke="url(#artery)" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M130,110 C140,115 152,118 165,118 C178,118 190,115 200,110"
+        fill="none" stroke="url(#artery)" stroke-width="5" stroke-linecap="round" opacity="0.7" filter="url(#glow)"/>
+
+  <!-- Artery label -->
+  <text x="185" y="130" fill="#c0392b" font-size="9">Dilated</text>
+  <text x="185" y="142" fill="#c0392b" font-size="9">meningeal</text>
+  <text x="185" y="154" fill="#c0392b" font-size="9">artery</text>
+
+  <!-- CGRP release dots near artery -->
+  <circle cx="145" cy="112" r="2" fill="#e74c3c" opacity="0.6"/>
+  <circle cx="155" cy="116" r="2.5" fill="#e74c3c" opacity="0.5"/>
+  <circle cx="168" cy="115" r="2" fill="#e74c3c" opacity="0.7"/>
+  <circle cx="178" cy="112" r="1.8" fill="#e74c3c" opacity="0.5"/>
+  <circle cx="160" cy="108" r="2" fill="#e74c3c" opacity="0.6"/>
+
+  <!-- CGRP label -->
+  <text x="135" y="138" fill="#c0392b" font-size="10" font-weight="600">CGRP ↑</text>
+  <text x="130" y="150" fill="#c0392b" font-size="8">Inflammatory</text>
+  <text x="130" y="160" fill="#c0392b" font-size="8">cascade</text>
+
+  <!-- Pain signal up arrow -->
+  <path d="M155,475 C155,465 158,455 162,448"
+        fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-neuro)" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="132" y="478" fill="#c0392b" font-size="9">Pain signal to</text>
+  <text x="132" y="490" fill="#c0392b" font-size="9">thalamus → cortex</text>
+
+  <!-- ═══════════ PHASE PANEL ═══════════ -->
+
+  <line x1="30" y1="495" x2="470" y2="495" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Phase 1: Prodrome -->
+  <g transform="translate(22, 500)">
+    <rect x="0" y="0" width="110" height="48" rx="5" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="55" y="15" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Prodrome</text>
+    <text x="55" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">Hrs–2 days</text>
+    <text x="55" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Yawning, cravings,</text>
+    <text x="55" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">mood change, fatigue</text>
+  </g>
+
+  <!-- Phase 2: Aura -->
+  <g transform="translate(142, 500)">
+    <rect x="0" y="0" width="100" height="48" rx="5" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="50" y="15" fill="#8e44ad" font-size="9" font-weight="600" text-anchor="middle">Aura</text>
+    <text x="50" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">5–60 min</text>
+    <text x="50" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Visual zigs/zags,</text>
+    <text x="50" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">tingling, numbness</text>
+  </g>
+
+  <!-- Phase 3: Headache -->
+  <g transform="translate(252, 500)">
+    <rect x="0" y="0" width="100" height="48" rx="5" fill="var(--surface, #fff)" stroke="#c0392b" stroke-width="1.5" opacity="0.9"/>
+    <text x="50" y="15" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Headache</text>
+    <text x="50" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">4–72 hours</text>
+    <text x="50" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Throbbing pain,</text>
+    <text x="50" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">nausea, photophobia</text>
+  </g>
+
+  <!-- Phase 4: Postdrome -->
+  <g transform="translate(362, 500)">
+    <rect x="0" y="0" width="110" height="48" rx="5" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="55" y="15" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Postdrome</text>
+    <text x="55" y="27" fill="#8a7e6e" font-size="7" text-anchor="middle">24–48 hours</text>
+    <text x="55" y="39" fill="#8a7e6e" font-size="7" text-anchor="middle">Fatigue, brain fog,</text>
+    <text x="55" y="47" fill="#8a7e6e" font-size="7" text-anchor="middle">residual ache</text>
+  </g>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is a migraine?</h4>
+<p>A migraine is a neurological condition that causes recurring attacks of severe, throbbing headache — often on one side of the head — along with nausea, vomiting, and extreme sensitivity to light and sound. About 1 in 7 people worldwide get migraines. Attacks can last from 4 hours to 3 days. There is no cure, but treatment can stop attacks and prevent them from coming.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Take rescue medicine as soon as possible.</strong> If your doctor prescribed a triptan or you have a gepant (like ubrogepant or rimegepant), take it at the first twinge of pain. Over-the-counter ibuprofen or paracetamol can help for mild attacks.</li>
+<li><strong>Lie down in a quiet, dark room.</strong> Light and noise make migraine worse. Close the curtains, turn off screens, and rest.</li>
+<li><strong>Apply a cold pack to your forehead or the back of your neck.</strong> This can soothe the throbbing pain.</li>
+<li><strong>Stay hydrated.</strong> Sip water slowly — gulping can trigger nausea. If you feel sick, ask your pharmacist about anti-nausea medicine (antiemetics).</li>
+<li><strong>Avoid triggers.</strong> Don't skip meals, drink caffeine, or push through when you feel an attack coming on.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>Your headache came on suddenly and is the worst pain you've ever felt (thunderclap headache)</li>
+<li>You have a stiff neck, high fever, and severe headache together</li>
+<li>You have trouble speaking, weakness on one side of your body, or loss of vision</li>
+<li>You feel confused, drowsy, or had a seizure</li>
+<li>The headache started right after a head injury</li>
+<li>You are over 50 and this is your first severe headache</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>Most migraines, while disabling during an attack, are not dangerous. Many people find that attacks become less frequent and less severe as they age. With the right treatment plan — including modern CGRP-targeting preventives — most people can reduce attack frequency by 50% or more.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Migraine is not "just a headache." It's a complex brain disorder involving nerve pathways, blood vessels, and chemical messengers. A migraine attack unfolds in four phases, though not everyone experiences all of them:</p>
+<ol>
+<li><strong>Prodrome (hours to 2 days before):</strong> About 60% of people notice subtle signs — yawning, food cravings, mood changes, fatigue, neck stiffness, or needing to pee more. These are early signals that the brain's excitability is shifting.</li>
+</ol>
+<ol>
+<li><strong>Aura (up to 1 hour before or during headache):</strong> About 25% of people get aura — temporary neurological symptoms that build gradually. Most often visual: zigzag lines (fortification spectra), flashing lights, blind spots, or shimmering edges. Less common: tingling that spreads up one arm to the face, dizziness, or difficulty speaking. Aura symptoms are fully reversible and resolve within 60 minutes.</li>
+</ol>
+<ol>
+<li><strong>Headache (4 to 72 hours):</strong> The pain is typically throbbing or pulsating, on one side of the head (but can be both sides), moderate to severe. It worsens with routine movement — bending over, walking stairs. Alongside the pain: nausea, vomiting, and extreme sensitivity to light (photophobia) and sound (phonophobia). Some also get smell sensitivity (osmophobia).</li>
+</ol>
+<ol>
+<li><strong>Postdrome (24–48 hours after):</strong> Once the worst pain lifts, you feel drained, washed out, and mentally foggy ("migraine hangover"). This can be as disabling as the headache itself.</li>
+</ol>
+<h4>What causes the pain</h4>
+<p>A wave of abnormal electrical activity spreads across the brain's surface — called <strong>cortical spreading depression (CSD)</strong> . This triggers the trigeminal nerve, the main sensory nerve for the face and head, to release inflammatory chemicals, especially <strong>calcitonin gene-related peptide (CGRP)</strong> . CGRP dilates blood vessels in the brain's lining (meninges) and promotes leakage of inflammatory proteins. The dilated, inflamed blood vessels throb with each heartbeat — that's the pounding pain. This is why triptans (which constrict vessels) and CGRP-blocking drugs (which intercept the signal) both work.</p>
+<h4>Triggers</h4>
+<p>Common migraine triggers vary by person:</p>
+<ul>
+<li><strong>Stress</strong> — the most common trigger. Attacks often strike during the "let-down" after a stressful event (weekend migraine).</li>
+<li><strong>Hormonal changes</strong> — drops in oestrogen before or during menstruation trigger menstrual migraine.</li>
+<li><strong>Sleep changes</strong> — too little, too much, or irregular sleep.</li>
+<li><strong>Diet</strong> — skipping meals, aged cheese, processed meats, alcohol (especially red wine), caffeine withdrawal.</li>
+<li><strong>Weather</strong> — barometric pressure changes, bright sunlight, heat.</li>
+<li><strong>Sensory overload</strong> — flashing lights, strong smells (perfume, petrol), loud noise.</li>
+</ul>
+<h4>Treatment</h4>
+<p><strong>Acute (stop an attack in progress):</strong></p>
+<ul>
+<li><strong>Triptans</strong> (sumatriptan, rizatriptan, eletriptan): specific migraine medicines that constrict dilated cranial vessels and block CGRP release. Most effective taken early. Available as pills, dissolving tablets, nasal sprays, and injections.</li>
+<li><strong>Gepants</strong> (rimegepant, ubrogepant): newer CGRP-blocking drugs. Non-constricting — safe in people who can't take triptans. No risk of medication-overuse headache.</li>
+<li><strong>NSAIDs</strong> (ibuprofen, naproxen, diclofenac): anti-inflammatory painkillers. Effective for mild to moderate attacks. Often combined with a triptan for better effect.</li>
+<li><strong>Antiemetics</strong> (metoclopramide, domperidone): stop nausea and help the gut absorb oral medicines (migraine slows stomach emptying).</li>
+</ul>
+<p><strong>Preventive (reduce how often attacks come):</strong></p>
+<ul>
+<li><strong>Beta-blockers</strong> (propranolol, metoprolol): lower brain excitability.</li>
+<li><strong>Antidepressants</strong> (amitriptyline): modulates pain pathways.</li>
+<li><strong>Anti-epileptics</strong> (topiramate, valproate): raise the threshold for CSD.</li>
+<li><strong>CGRP monoclonal antibodies</strong> (erenumab, galcanezumab, fremanezumab, eptinezumab): injectable preventives given monthly or quarterly. Highly specific, fewer side effects than older drugs.</li>
+<li><strong>OnabotulinumtoxinA (Botox):</strong> 31 injections around the head and neck every 12 weeks. Approved only for chronic migraine (≥15 headache days per month).</li>
+<li><strong>Vitamin B2 (riboflavin), magnesium, coenzyme Q10:</strong> modest evidence, low risk, some people benefit.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't wait to treat. The earlier you take acute medication during an attack, the better it works. Waiting for the pain to "ramp up" is a losing strategy.</li>
+<li>Don't take painkillers more than 2 days a week on a regular basis — this can lead to <strong>medication-overuse headache</strong> (rebound headache), turning episodic migraine into chronic daily headache.</li>
+<li>Don't skip meals, skimp on sleep, or over-caffeinate to push through work. These are the most controllable triggers.</li>
+<li>Don't assume ergotamine-based drugs are safe — they're older, less selective, and have more side effects than triptans or gepants.</li>
+<li>Don't ignore red flag symptoms because "it's probably just a migraine." If the headache is different from your usual attacks, get checked.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Prodrome (hours to 48 hours before)</div>
+<div class="tl-text">Subtle warning signs — yawning, food cravings, mood changes, fatigue. Start acute medication if you have it and know an attack is coming.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Aura (5–60 minutes before or during headache)</div>
+<div class="tl-text">Visual disturbances (zigzags, flashes, blind spots) or sensory symptoms (tingling, numbness). Fully reversible within 1 hour. Migraine with aura carries a small increased risk of stroke, especially in women who smoke and use oral contraceptives.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Headache (4–72 hours)</div>
+<div class="tl-text">Throbbing unilateral pain, nausea, photophobia, phonophobia. Rest in a dark quiet room. Take acute medication at onset. Seek medical attention if lasting >72 hours (status migrainosus).</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Postdrome (24–48 hours after headache)</div>
+<div class="tl-text">Fatigue, brain fog, mood changes, residual neck ache. Rest, gentle hydration, and easy movement help. Avoid triggers during this vulnerable window.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Between attacks</div>
+<div class="tl-text">If attacks are frequent (≥4 per month) or disabling, start preventive therapy. It takes 2–3 months to evaluate effectiveness. Keep a headache diary to identify triggers and track response.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Migraine is a <strong>neurovascular disorder</strong> with a strong genetic basis. The core pathogenic sequence involves:</p>
+<p><strong>Cortical spreading depression (CSD):</strong> A spontaneous wave of neuronal depolarisation that spreads across the cerebral cortex at 2–6 mm/min. The depolarisation front is followed by prolonged neuronal suppression (spreading depression). CSD activates the <strong>trigeminovascular system</strong>: trigeminal nerve endings that innervate the intracranial extracerebral vessels (middle meningeal artery, dural sinuses). This triggers the release of vasoactive neuropeptides — chiefly <strong>calcitonin gene-related peptide (CGRP)</strong> , but also substance P and neurokinin A — from perivascular trigeminal terminals.</p>
+<p>CGRP causes:</p>
+<ul>
+<li><strong>Vasodilation</strong> of pial and dural arteries (mediated by CGRP receptors on vascular smooth muscle)</li>
+<li><strong>Plasma protein extravasation</strong> (leakage of inflammatory proteins from dural vessels)</li>
+<li><strong>Mast cell degranulation</strong> in the dura mater</li>
+<li><strong>Sensitisation</strong> of first-order trigeminal neurons (nociceptors)</li>
+</ul>
+<p>These events constitute <strong>neurogenic inflammation</strong>. The activated trigeminal nerve relays the pain signal to the <strong>trigeminal nucleus caudalis</strong> in the brainstem, which projects to the thalamus and then the somatosensory cortex. With repeated attacks, <strong>central sensitisation</strong> develops: second-order neurons in the trigeminal nucleus caudalis become hyperexcitable, leading to <strong>cutaneous allodynia</strong> (normal touch feels painful) — a hallmark of ongoing migraine and a predictor of poor response to triptans if already established.</p>
+<p><strong>Genetics:</strong> Migraine is highly heritable (family and twin studies show 40–60% heritability). Familial hemiplegic migraine (FHM) is the monogenic form, with mutations in:</p>
+<ul>
+<li><strong>CACNA1A</strong> (FHM1) — P/Q-type calcium channel subunit</li>
+<li><strong>ATP1A2</strong> (FHM2) — Na⁺/K⁺-ATPase pump</li>
+<li><strong>SCN1A</strong> (FHM3) — voltage-gated sodium channel</li>
+</ul>
+<p>These mutations all reduce the threshold for CSD, confirming CSD as the initiating event in migraine with aura. Common polygenic migraine variants converge on glutamatergic and synaptic gene pathways.</p>
+<p><strong>Migraine without aura vs. with aura:</strong> Whether CSD occurs in migraine without aura is debated. Current evidence suggests that CSD occurs but may be limited to "silent" cortex (not producing sensory symptoms) or may involve subcortical structures. The trigeminovascular activation cascade is otherwise identical.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Tension-type headache (TTH):</strong> Bilateral, pressing/tightening quality, mild to moderate intensity, NOT aggravated by routine activity. No nausea. Photophobia OR phonophobia (not both). This is the most common misdiagnosis — the key differentiator is the quality and accompaniments.</li>
+<li><strong>Cluster headache:</strong> Unilateral, severe, peri-orbital/temporal pain with ipsilateral autonomic features (lacrimation, conjunctival injection, nasal congestion, ptosis, miosis). Attacks are shorter (15–180 minutes) and clustering occurs in bouts. The patient paces restlessly; migraineurs lie still.</li>
+<li><strong>Medication-overuse headache (MOH):</strong> Headache on ≥15 days per month for >3 months with overuse of acute medication (triptans ≥10 days/month, NSAIDs/paracetamol ≥15). The headache is variable and diffuse. The treatment is withdrawal of the overused medication.</li>
+<li><strong>Secondary headache (SNOOP4 mnemonic):</strong> Suspicious features include systemic symptoms (fever, weight loss), neurological signs (papilloedema, focal deficits), sudden/ thunderclap onset, older age at onset (>50), prior headache history change, postural aggravation, and precipitation by Valsalva (cough, sneeze, exertion). These warrant neuroimaging.</li>
+<li><strong>Cervicogenic headache:</strong> Unilateral headache originating from the cervical spine. Associated with neck movement restriction, ipsilateral shoulder/arm pain, and tenderness over C1–C2. No aura, nausea typically absent.</li>
+<li><strong>Idiopathic intracranial hypertension (IIH):</strong> Headache with papilloedema, pulsatile tinnitus, and visual obscurations. May mimic chronic migraine. Check: opening pressure on lumbar puncture after normal MRI.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical history (ICHD-3 criteria)</td>
+<td>Diagnosis is clinical. ≥5 attacks (≥2 for migraine with aura) lasting 4–72 hours with ≥2 of: unilateral, pulsating, moderate-severe, aggravated by routine activity; AND ≥1 of: nausea/vomiting, photophobia AND phonophobia</td>
+<td>Every patient — this IS the diagnostic standard</td>
+</tr>
+<tr>
+<td>Neurological examination</td>
+<td>Normal between attacks. During attack: focal deficits in migraine with aura, but these should fully resolve. Persistent deficits suggest stroke, seizure, or structural lesion</td>
+<td>Every patient — to rule out secondary causes</td>
+</tr>
+<tr>
+<td>MRI brain (with and without contrast)</td>
+<td>Excludes structural lesions (tumour, Chiari, vascular malformation, idiopathic intracranial hypertension). May show incidental white matter hyperintensities (common in migraineurs — not clinically significant)</td>
+<td>Red flag features (SNOOP4), atypical presentation, or first severe headache after age 50</td>
+</tr>
+<tr>
+<td>CT head</td>
+<td>Excludes acute intracranial haemorrhage, mass effect, or hydrocephalus</td>
+<td>Emergency setting: thunderclap headache, acute focal deficit, trauma</td>
+</tr>
+<tr>
+<td>Lumbar puncture with opening pressure</td>
+<td>Elevated opening pressure (>25 cm H₂O) = IIH. Lymphocytic pleocytosis = meningitis. SAH (xanthochromia) if CT negative</td>
+<td>Suspected IIH, meningitis, or subarachnoid haemorrhage</td>
+</tr>
+<tr>
+<td>MR venography (MRV)</td>
+<td>Cerebral venous sinus thrombosis (CVST). Headache in CVST can mimic migraine but is typically progressive, worse lying down, with seizures or focal signs</td>
+<td>Thunderclap headache, headache with seizures or focal signs, postpartum state, hypercoagulable conditions</td>
+</tr>
+<tr>
+<td>EEG</td>
+<td>Not helpful for migraine. May show intermittent slowing</td>
+<td>Only if seizure suspected</td>
+</tr>
+<tr>
+<td>Fundoscopy / optical coherence tomography (OCT)</td>
+<td>Papilloedema = raised ICP. Retinal vascular changes</td>
+<td>IIH screening, especially in chronic migraine patients</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> Migraine is the second most disabling disease worldwide in years lived with disability (GBD 2019, Lancet 2020). Global prevalence is 14–15% (1 in 7 people), with a female:male ratio of 3:1. Peak prevalence is age 25–55, the prime working years. In women, prevalence peaks during reproductive age (up to 28% at age 30–39).</p>
+<p><strong>Acute treatment: Triptans vs. Gepants:</strong> A 2023 network meta-analysis (Cochrane Database Syst Rev, 2023) of 171 RCTs (n=37,650) found that all oral triptans were superior to placebo for 2-hour pain freedom. Sumatriptan 100 mg had the highest response (OR 4.6, 95% CI 3.8–5.6) but more side effects. Eletriptan 40 mg and rizatriptan 10 mg had the best balance of efficacy and tolerability. The newer gepants (rimegepant 75 mg, ubrogepant 50/100 mg) had a similar number needed to treat (NNT ~6–7) but significantly fewer adverse events (no vasoconstriction, no serotonin syndrome risk). Rimegepant is also approved for migraine prevention (every other day dosing).</p>
+<p><strong>CGRP monoclonal antibodies for prevention:</strong> The pivotal RCTs (STRIVE for erenumab, EVOLVE-1/2 for galcanezumab, HALO CM/EM for fremanezumab, PROMISE-2 for eptinezumab) all demonstrated a 1.5–2.5 day reduction in monthly migraine days vs. placebo. A 2022 meta-analysis (Drellia et al., Neurology 2022) of 20 RCTs confirmed a mean reduction of −1.96 monthly migraine days over placebo (95% CI −2.23 to −1.69). Response rates (≥50% reduction) were 30–36% for active drug vs. 14–18% for placebo. Number needed to treat for ≥50% response: ~6. Adverse event profiles are favourable — most common is injection-site reaction.</p>
+<p><strong>OnabotulinumtoxinA for chronic migraine:</strong> The landmark PREEMPT 1 and 2 trials (n=1,384) showed a mean reduction of 8.4 headache days per month vs. 6.6 for placebo at 24 weeks (p<0.001). Response is assessed at 12 weeks; most patients require 2–3 cycles for maximal benefit. The exact mechanism is unclear but likely involves blocking CGRP release from trigeminal nerve terminals, not just muscle relaxation.</p>
+<p><strong>Biopsychosocial approach:</strong> A 2022 Cochrane review of behavioural therapies (cognitive behavioural therapy, biofeedback, relaxation training) found moderate-quality evidence for a further 1.3 headache days per month reduction when added to pharmacotherapy. The American Headache Society (AHS 2021) consensus statement recommends combining pharmacotherapy with behavioural therapy and lifestyle optimisation as the first-line approach to chronic migraine.</p>
+<p><strong>Medication-overuse headache:</strong> A population-based study (Norway, Head-HUNT, 2008) found that 1 in 50 people overuse acute headache medication, and 1 in 3 of those develop MOH. Withdrawal of the overused drug reduces headache days by 50% in 50–70% of patients within 2 months.</p>
+<h4>Surgical options (if applicable)</h4>
+<p>Surgery is not a standard treatment for migraine and remains controversial. <strong>Migraine surgery</strong> (nerve decompression of the supraorbital, supratrochlear, greater occipital, or auriculotemporal nerves) is performed in select centres, primarily in the U.S. Evidence is limited to case series and a few small randomised trials. A 2023 systematic review (JAMA Facial Plast Surg) found a mean reduction of 8 headache days per month but noted a high risk of selection and reporting bias. <strong>Occipital nerve stimulation</strong> (implanted pulse generator) has been trialled for chronic migraine but two pivotal RCTs (ONSTIM, PRISM) failed to meet primary endpoints. It is not FDA-approved for migraine.</p>
+<p><strong>Recommendation:</strong> Surgical approaches should be considered only in patients with refractory chronic migraine who have failed all guideline-recommended medical and behavioural therapy, and ideally within a clinical trial.</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the precise role of the hypothalamus in initiating migraine attacks? Neuroimaging studies show hypothalamic activation during the prodrome phase, suggesting it may be the "migraine generator."</li>
+<li>Can migraine be prevented or delayed by early detection of prodrome? Wearable devices and digital health tools are in development to predict attacks before pain starts and allow pre-emptive treatment.</li>
+<li>Do CGRP monoclonal antibodies alter the long-term natural history of migraine, or are they purely suppressive? Long-term extension studies (out to 5 years for erenumab) suggest sustained efficacy without disease modification.</li>
+<li>What causes migraine to "burn out" with age? Changes in oestrogen, reduced cortical excitability, and vascular changes are all hypothesised. The mechanism is unknown.</li>
+<li>Why do gepants not cause medication-overuse headache? Their long receptor occupancy and lack of vasoconstriction may explain this, but it's not fully understood.</li>
+<li>Can new delivery methods (intranasal ketamine, sublingual zavegepant, inhalable dihydroergotamine) provide faster onset without more side effects?</li>
+<li>The role of the gut-brain axis: why do migraineurs have higher rates of GI disorders (IBS, cyclical vomiting), and does the gut microbiome modulate migraine susceptibility?</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Headache Classification Committee of the International Headache Society. "The International Classification of Headache Disorders, 3rd edition." <em>Cephalalgia</em> 2018;38(1):1–211. PMID: 29368949. (ICHD-3 diagnostic criteria)</li>
+<li>GBD 2019 Headache Collaborators. "Global, regional, and national burden of migraine and tension-type headache, 1990–2019." <em>Lancet Neurol</em> 2022;21(6):531–540. (Epidemiology)</li>
+<li>Dodick DW. "Migraine." <em>Lancet</em> 2018;391(10127):1315–1330. PMID: 29523342. (Comprehensive review)</li>
+<li>Ashina M et al. "Migraine: integrated approaches to clinical management." <em>BMJ</em> 2021;373:n948. PMID: 34035056. (Clinical management review)</li>
+<li>Charles A. "The pathophysiology of migraine: implications for clinical management." <em>Lancet Neurol</em> 2018;17(2):174–182. PMID: 29229375. (Pathophysiology review)</li>
+<li>Cochrane Database Syst Rev. "Triptans for acute migraine." 2023; Issue 4. Art. No.: CD008643. (Network meta-analysis of 171 RCTs)</li>
+<li>Drellia K et al. "Anti-CGRP monoclonal antibodies for migraine prevention: a systematic review and meta-analysis." <em>Neurology</em> 2022;98(7):e699–e711. PMID: 34990404. (CGRP mAb meta-analysis)</li>
+<li>Aurora SK et al. "OnabotulinumtoxinA for treatment of chronic migraine: results from the double-blind, randomized placebo-controlled phase of the PREEMPT 2 trial." <em>Cephalalgia</em> 2010;30(7):804–814. PMID: 20647170. (Botox for chronic migraine)</li>
+<li>Diener HC et al. "Medication-overuse headache: a comprehensive review." <em>Nat Rev Neurol</em> 2023;19(3):152–166. PMID: 36726060. (MOH review)</li>
+<li>Kandel SA, Mandel S. "Migraine surgery: a systematic review." <em>JAMA Facial Plast Surg</em> 2023;25(3):215–223. PMID: 37036705. (Surgical options review)</li>
+<li>AHS Consensus Statement: "Pharmacologic treatment of episodic migraine prevention in adults." <em>Headache</em> 2021;61(7):1021–1039. (American Headache Society guidelines)</li>
+<li>Schwedt TJ et al. "Cortical spreading depression and migraine." <em>Nat Rev Neurosci</em> 2022;23(10):601–614. PMID: 35982061. (CSD pathophysiology)</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

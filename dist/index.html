@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiered Health — Common Injuries &amp; Ailments</title>
+<meta name="description" content="One page per injury/ailment with three reading levels: Gist (grade 6), Adult (grade 12), and Full (best current evidence).">
+<style>
+  :root {
+    --bg: #fafaf8; --surface: #ffffff; --text: #1a1a1a; --text-muted: #5c5c5c;
+    --accent: #2d6a6e; --accent-light: #e8f3f3; --border: #e0e0dc;
+    --radius: 8px; --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1a1a1a; --surface: #242424; --text: #e8e8e4;
+      --text-muted: #a0a0a0; --accent: #5cbcbf; --accent-light: #1e3030;
+      --border: #383838; }
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:17px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  header{background:var(--surface);border-bottom:1px solid var(--border);padding:1.5rem 1.25rem;text-align:center;box-shadow:var(--shadow)}
+  header h1{font-size:1.5rem;color:var(--accent)}
+  header p{color:var(--text-muted);margin-top:0.3rem;font-size:0.9rem}
+  .search-wrap{max-width:600px;margin:1rem auto 0}
+  .search-wrap input{width:100%;padding:0.6rem 1rem;border:1px solid var(--border);border-radius:24px;font-size:0.95rem;background:var(--bg);color:var(--text);outline:none}
+  .search-wrap input:focus{border-color:var(--accent)}
+  main{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-decoration:none;color:var(--text);transition:box-shadow 0.15s;display:flex;gap:0.75rem;align-items:flex-start}
+  .card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+  .card-icon{font-size:1.8rem;flex-shrink:0;width:2.5rem;text-align:center}
+  .card-body h3{font-size:1rem;color:var(--accent);margin-bottom:0.2rem}
+  .card-aka{font-size:0.75rem;color:var(--text-muted);margin-bottom:0.3rem}
+  .card-preview{font-size:0.82rem;color:var(--text-muted);line-height:1.45}
+  .empty{text-align:center;color:var(--text-muted);padding:2rem;display:none}
+  .count{font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem}
+  footer{text-align:center;padding:2rem;color:var(--text-muted);font-size:0.8rem;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🩺 Tiered Health</h1>
+  <p>One page per injury or ailment — three reading levels, visual anatomy, current evidence.</p>
+  <div class="search-wrap"><input type="search" id="search" placeholder="Search conditions…" autofocus></div>
+</header>
+<main>
+  <p class="count" id="count">12 conditions</p>
+  <div class="grid" id="grid">
+    <a href="ankle-sprain.html" class="card" data-search="ankle sprain twisted ankle · rolled ankle · lateral ankle sprain musculoskeletal">
+      <div class="card-icon">🦶</div>
+      <div class="card-body">
+        <h3>Ankle Sprain</h3>
+        <p class="card-aka">twisted ankle · rolled ankle · lateral ankle sprain</p>
+        <p class="card-preview">Ligaments on the outside of your ankle stretched or tore when your foot rolled inward too far. It&#x27;s the most common sports injury — about 2 million people in th</p>
+      </div>
+    </a>
+    <a href="carpal-tunnel-syndrome.html" class="card" data-search="carpal tunnel syndrome cts, median nerve compression neurological">
+      <div class="card-icon">🖐️</div>
+      <div class="card-body">
+        <h3>Carpal Tunnel Syndrome</h3>
+        <p class="card-aka">CTS, median nerve compression</p>
+        <p class="card-preview">Your median nerve — which controls feeling in your thumb and first three fingers and powers your thumb muscles — is getting squeezed where it passes through a n</p>
+      </div>
+    </a>
+    <a href="gerd.html" class="card" data-search="gerd acid reflux · heartburn · gastroesophageal reflux disease gastrointestinal">
+      <div class="card-icon">🔥</div>
+      <div class="card-body">
+        <h3>GERD</h3>
+        <p class="card-aka">acid reflux · heartburn · gastroesophageal reflux disease</p>
+        <p class="card-preview">Stomach acid keeps splashing up into your esophagus because the valve between them (the lower esophageal sphincter) isn&#x27;t closing properly. Occasional heartburn</p>
+      </div>
+    </a>
+    <a href="gout.html" class="card" data-search="gout gouty arthritis · podagra musculoskeletal">
+      <div class="card-icon">🦶</div>
+      <div class="card-body">
+        <h3>Gout</h3>
+        <p class="card-aka">gouty arthritis · podagra</p>
+        <p class="card-preview">Gout is a form of arthritis where tiny needle-shaped uric acid crystals build up in your joints — most often the big toe — causing sudden, intense pain, redness</p>
+      </div>
+    </a>
+    <a href="herniated-disc.html" class="card" data-search="herniated disc slipped disc, disc herniation, ruptured disc musculoskeletal">
+      <div class="card-icon">🦴</div>
+      <div class="card-body">
+        <h3>Herniated Disc</h3>
+        <p class="card-aka">slipped disc, disc herniation, ruptured disc</p>
+        <p class="card-preview">A disc in your spine developed a crack in its tough outer layer, and the jelly-like center pushed out — pressing on a nearby nerve. It&#x27;s most common in the lowe</p>
+      </div>
+    </a>
+    <a href="kidney-stones.html" class="card" data-search="kidney stones nephrolithiasis · renal calculi · urolithiasis urological">
+      <div class="card-icon">🩨</div>
+      <div class="card-body">
+        <h3>Kidney Stones</h3>
+        <p class="card-aka">nephrolithiasis · renal calculi · urolithiasis</p>
+        <p class="card-preview">A kidney stone is a hard crystal that forms in your urine. It can sit quietly in your kidney or — when it moves into the narrow tube (ureter) that drains your k</p>
+      </div>
+    </a>
+    <a href="migraine.html" class="card" data-search="migraine migraine headache neurological">
+      <div class="card-icon">🧠</div>
+      <div class="card-body">
+        <h3>Migraine</h3>
+        <p class="card-aka">migraine headache</p>
+        <p class="card-preview">A migraine is a neurological condition that causes recurring attacks of severe, throbbing headache — often on one side of the head — along with nausea, vomiting</p>
+      </div>
+    </a>
+    <a href="plantar-fasciitis.html" class="card" data-search="plantar fasciitis heel pain · plantar fasciopathy musculoskeletal">
+      <div class="card-icon">🦶</div>
+      <div class="card-body">
+        <h3>Plantar Fasciitis</h3>
+        <p class="card-aka">heel pain · plantar fasciopathy</p>
+        <p class="card-preview">Your plantar fascia — a thick band of tissue running from your heel bone to the base of your toes — has developed tiny tears and degeneration where it attaches </p>
+      </div>
+    </a>
+    <a href="radial-nerve-palsy.html" class="card" data-search="radial nerve palsy saturday night palsy · honeymoon palsy · wrist drop · crutch palsy neurological">
+      <div class="card-icon">🦾</div>
+      <div class="card-body">
+        <h3>Radial Nerve Palsy</h3>
+        <p class="card-aka">Saturday night palsy · Honeymoon palsy · Wrist drop · Crutch palsy</p>
+        <p class="card-preview">You pressed on a nerve in your arm for too long. Now you can&#x27;t lift your wrist or straighten your fingers. People call this &quot;Saturday night palsy&quot; because it of</p>
+      </div>
+    </a>
+    <a href="sciatica.html" class="card" data-search="sciatica lumbar radiculopathy · pinched nerve musculoskeletal">
+      <div class="card-icon">🦵</div>
+      <div class="card-body">
+        <h3>Sciatica</h3>
+        <p class="card-aka">lumbar radiculopathy · pinched nerve</p>
+        <p class="card-preview">A herniated disc or bone spur is pressing on a nerve root in your lower back (usually L4-L5 or L5-S1). This sends shooting pain, numbness, or tingling from your</p>
+      </div>
+    </a>
+    <a href="sinusitis.html" class="card" data-search="sinusitis sinus infection · rhinosinusitis respiratory">
+      <div class="card-icon">👃</div>
+      <div class="card-body">
+        <h3>Sinusitis</h3>
+        <p class="card-aka">sinus infection · rhinosinusitis</p>
+        <p class="card-preview">The air-filled pockets in your face — your sinuses — are swollen and inflamed. This traps mucus, making your face feel full and sore. Sinusitis usually starts f</p>
+      </div>
+    </a>
+    <a href="urinary-tract-infection.html" class="card" data-search="urinary tract infection uti, bladder infection, cystitis urological">
+      <div class="card-icon">🚽</div>
+      <div class="card-body">
+        <h3>Urinary Tract Infection</h3>
+        <p class="card-aka">UTI, bladder infection, cystitis</p>
+        <p class="card-preview">Bacteria (usually E. coli from your gut) get into your bladder and cause inflammation. It burns when you pee, you feel like you need to go all the time, and you</p>
+      </div>
+    </a>
+  </div>
+  <p class="empty" id="empty">No conditions match your search.</p>
+</main>
+<footer>
+  <p>Last built: July 15, 2026</p>
+  <p><strong>Disclaimer:</strong> Educational purposes only. Not medical advice.</p>
+</footer>
+<script>
+const DATA = [{"slug": "ankle-sprain", "title": "Ankle Sprain", "aka": ["twisted ankle", "rolled ankle", "lateral ankle sprain"], "category": "musculoskeletal", "body_region": "lower-limb", "icon": "\ud83e\uddb6"}, {"slug": "carpal-tunnel-syndrome", "title": "Carpal Tunnel Syndrome", "aka": ["CTS, median nerve compression"], "category": "neurological", "body_region": "upper-limb", "icon": "\ud83d\udd90\ufe0f"}, {"slug": "gerd", "title": "GERD", "aka": ["acid reflux", "heartburn", "gastroesophageal reflux disease"], "category": "gastrointestinal", "body_region": "torso", "icon": "\ud83d\udd25"}, {"slug": "gout", "title": "Gout", "aka": ["gouty arthritis", "podagra"], "category": "musculoskeletal", "body_region": "lower-limb", "icon": "\ud83e\uddb6"}, {"slug": "herniated-disc", "title": "Herniated Disc", "aka": ["slipped disc, disc herniation, ruptured disc"], "category": "musculoskeletal", "body_region": "torso", "icon": "\ud83e\uddb4"}, {"slug": "kidney-stones", "title": "Kidney Stones", "aka": ["nephrolithiasis", "renal calculi", "urolithiasis"], "category": "urological", "body_region": "torso", "icon": "\ud83e\ude68"}, {"slug": "migraine", "title": "Migraine", "aka": ["migraine headache"], "category": "neurological", "body_region": "head-neck", "icon": "\ud83e\udde0"}, {"slug": "plantar-fasciitis", "title": "Plantar Fasciitis", "aka": ["heel pain", "plantar fasciopathy"], "category": "musculoskeletal", "body_region": "lower-limb", "icon": "\ud83e\uddb6"}, {"slug": "radial-nerve-palsy", "title": "Radial Nerve Palsy", "aka": ["Saturday night palsy", "Honeymoon palsy", "Wrist drop", "Crutch palsy"], "category": "neurological", "body_region": "upper-limb", "icon": "\ud83e\uddbe"}, {"slug": "sciatica", "title": "Sciatica", "aka": ["lumbar radiculopathy", "pinched nerve"], "category": "musculoskeletal", "body_region": "lower-limb", "icon": "\ud83e\uddb5"}, {"slug": "sinusitis", "title": "Sinusitis", "aka": ["sinus infection", "rhinosinusitis"], "category": "respiratory", "body_region": "head-neck", "icon": "\ud83d\udc43"}, {"slug": "urinary-tract-infection", "title": "Urinary Tract Infection", "aka": ["UTI, bladder infection, cystitis"], "category": "urological", "body_region": "torso", "icon": "\ud83d\udebd"}];
+const grid = document.getElementById('grid');
+const empty = document.getElementById('empty');
+const count = document.getElementById('count');
+const cards = grid.querySelectorAll('.card');
+document.getElementById('search').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  let visible = 0;
+  cards.forEach(c => {
+    const match = !q || c.dataset.search.includes(q);
+    c.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  count.textContent = (q ? visible + ' of ' : '') + '12 conditions';
+  empty.style.display = visible ? 'none' : 'block';
+});
+</script>
+</body>
+</html>
