@@ -1,0 +1,167 @@
+<svg class="anatomy-svg" viewBox="0 0 500 580" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tissue" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="stomach-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5d5c4"/><stop offset="100%" stop-color="#e8bfa8"/></linearGradient>
+    <linearGradient id="mucosa" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f2dcc8"/><stop offset="100%" stop-color="#e8ceb8"/></linearGradient>
+    <linearGradient id="acid" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8b4b8"/><stop offset="100%" stop-color="#d9a0a4"/></linearGradient>
+    <linearGradient id="ulcer-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="h-pylori" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5cbcbf"/><stop offset="100%" stop-color="#2d6a6e"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#c0392b" opacity="0.7"/>
+    </marker>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L5,10 L10,0 Z" fill="#8a7e6e" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ ESOPHAGUS ═══════════ -->
+  <path d="M225,20 L222,50 L220,80 L218,110 L216,135 L215,155 C214,168 214,175 216,185 L218,195"
+        fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.7"/>
+  <path d="M270,20 L272,50 L275,80 L277,110 L279,135 L280,155 C281,168 281,175 279,185 L277,195"
+        fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.7"/>
+  <!-- Esophageal lining -->
+  <path d="M230,20 L228,50 L226,80 L224,110 L222,135 L221,155 C220,168 220,175 222,185 L224,195"
+        fill="url(#mucosa)" stroke="none" opacity="0.4"/>
+  <path d="M265,20 L267,50 L269,80 L271,110 L273,135 L274,155 C275,168 275,175 273,185 L271,195"
+        fill="url(#mucosa)" stroke="none" opacity="0.4"/>
+  <text x="215" y="70" fill="#8a7e6e" font-size="10" font-weight="600">Esophagus</text>
+
+  <!-- ═══════════ DIAPHRAGM ═══════════ -->
+  <path d="M60,145 C100,130 150,120 200,116 L250,114 L300,116 C350,120 400,130 440,145"
+        fill="none" stroke="#d9a0a4" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M60,145 C100,153 150,159 200,162 L250,164 L300,162 C350,159 400,153 440,145"
+        fill="none" stroke="#d9a0a4" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+  <text x="448" y="142" fill="#b8860b" font-size="9" font-weight="600">Diaphragm</text>
+
+  <!-- ═══════════ STOMACH ═══════════ -->
+  <!-- Stomach body -->
+  <path d="M200,195 C195,202 188,215 184,230 C180,245 178,265 180,285 C182,305 188,325 196,345 C204,362 216,376 230,385 C245,393 262,396 278,392 C295,386 310,375 322,360 C332,345 338,328 340,310 C342,290 340,270 335,252 C330,238 322,228 315,222 C305,215 295,210 285,208 L275,206 L262,204 L248,202 L235,200 C225,198 215,196 208,196 Z"
+        fill="url(#stomach-wall)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.75"/>
+
+  <!-- Fundus -->
+  <path d="M200,195 C198,188 200,180 208,175 C218,170 228,168 238,170 L248,172 C258,174 265,178 270,184 C275,190 277,196 278,200"
+        fill="url(#stomach-wall)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.6"/>
+  <text x="162" y="188" fill="#b0a595" font-size="9" font-style="italic">Fundus</text>
+
+  <!-- Antrum (lower stomach) -->
+  <path d="M196,345 C192,360 190,375 192,390 C194,402 200,410 210,415 L222,418 L235,418 L245,415 L250,410 C255,404 258,395 258,385"
+        fill="url(#stomach-wall)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.65"/>
+  <text x="148" y="395" fill="#b0a595" font-size="9" font-style="italic">Antrum</text>
+
+  <!-- Pylorus -->
+  <ellipse cx="250" cy="418" rx="15" ry="10" fill="none" stroke="#c0392b" stroke-width="2.5" opacity="0.8"/>
+  <text x="268" y="422" fill="#c0392b" font-size="9" font-weight="600">Pylorus</text>
+
+  <!-- ═══════════ DUODENUM ═══════════ -->
+  <path d="M265,418 C275,420 285,425 292,432 C300,440 305,450 308,462 C310,474 308,485 302,494 C295,502 286,506 275,506 C268,506 262,504 258,498"
+        fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.6"/>
+  <path d="M268,418 L270,432 L272,445 L275,458 L278,468 L280,478 L280,490 L278,498"
+        fill="url(#mucosa)" stroke="none" opacity="0.3"/>
+  <text x="295" y="495" fill="#8a7e6e" font-size="9" font-weight="600">Duodenum</text>
+
+  <!-- ═══════════ GASTRIC ACID POOL ═══════════ -->
+  <ellipse cx="240" cy="280" rx="38" ry="16" fill="url(#acid)" opacity="0.2"/>
+  <ellipse cx="242" cy="275" rx="28" ry="10" fill="url(#acid)" opacity="0.12"/>
+  <text x="270" y="290" fill="#b8860b" font-size="9" font-weight="600">Gastric acid</text>
+  <text x="270" y="302" fill="#b8860b" font-size="8">(pH 1–2)</text>
+
+  <!-- ═══════════ GASTRIC ULCER (stomach body) ═══════════ -->
+  <ellipse cx="232" cy="310" rx="14" ry="6" fill="url(#ulcer-grad)" opacity="0.7" stroke="#c0392b" stroke-width="1.5"/>
+  <!-- Crater edges -->
+  <path d="M218,310 C220,305 225,303 232,303 C239,303 244,305 246,310" fill="none" stroke="#a93226" stroke-width="1"/>
+  <path d="M218,310 C220,315 225,317 232,317 C239,317 244,315 246,310" fill="none" stroke="#a93226" stroke-width="1"/>
+  <line x1="246" y1="310" x2="310" y2="310" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="314" y="306" fill="#c0392b" font-size="9" font-weight="600">Gastric ulcer</text>
+  <text x="314" y="318" fill="#c0392b" font-size="8">(stomach wall)</text>
+
+  <!-- ═══════════ DUODENAL ULCER (duodenal bulb) ═══════════ -->
+  <ellipse cx="282" cy="455" rx="10" ry="5" fill="url(#ulcer-grad)" opacity="0.7" stroke="#c0392b" stroke-width="1.5"/>
+  <line x1="292" y1="455" x2="340" y2="455" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="344" y="451" fill="#c0392b" font-size="9" font-weight="600">Duodenal ulcer</text>
+  <text x="344" y="463" fill="#c0392b" font-size="8">(duodenal bulb)</text>
+
+  <!-- ═══════════ H. PYLORI LABELS ═══════════ -->
+  <!-- H. pylori in the antrum -->
+  <g transform="translate(210, 370)">
+    <!-- Spiral bacteria -->
+    <path d="M0,0 C3,-3 6,0 9,-3 C12,-6 15,-3 18,-6" fill="none" stroke="url(#h-pylori)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M0,5 C3,2 6,5 9,2 C12,-1 15,2 18,-1" fill="none" stroke="url(#h-pylori)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M0,10 C3,7 6,10 9,7 C12,4 15,7 18,4" fill="none" stroke="url(#h-pylori)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- Label with leader -->
+  <line x1="228" y1="368" x2="315" y2="360" stroke="#2d6a6e" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="318" y="356" fill="#2d6a6e" font-size="9" font-weight="600">H. pylori</text>
+  <text x="318" y="368" fill="#2d6a6e" font-size="8">(antral colonization)</text>
+
+  <!-- Urease mechanism note -->
+  <text x="318" y="380" fill="#5cbcbf" font-size="7">Urease → NH₃ neutralizes acid</text>
+
+  <!-- ═══════════ STOMACH WALL CROSS-SECTION INSET ═══════════ -->
+  <line x1="20" y1="415" x2="480" y2="415" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="250" y="22" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Peptic Ulcer Disease — Anatomy &amp; Pathophysiology</text>
+
+  <!-- Panel 1: Normal stomach wall -->
+  <g transform="translate(18, 428)">
+    <rect x="0" y="0" width="150" height="90" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="16" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Normal Stomach Wall</text>
+    <!-- Mucus layer -->
+    <path d="M10,28 C30,25 50,28 70,26 C90,24 110,27 130,25 L140,28" fill="none" stroke="#27ae60" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <text x="75" y="40" fill="#27ae60" font-size="7" text-anchor="middle">Mucus barrier</text>
+    <!-- Epithelial layer -->
+    <rect x="20" y="45" width="110" height="10" rx="2" fill="#f2dcc8" stroke="#c4b5a0" stroke-width="0.5" opacity="0.7"/>
+    <text x="75" y="58" fill="#b0a595" font-size="7" text-anchor="middle">Epithelial cells</text>
+    <!-- Blood vessels -->
+    <path d="M30,68 C40,65 50,70 60,67 C70,64 80,69 90,66 C100,63 110,68 120,65" fill="none" stroke="#e74c3c" stroke-width="1.5" opacity="0.5"/>
+    <text x="75" y="80" fill="#e74c3c" font-size="7" text-anchor="middle">Good blood flow</text>
+  </g>
+
+  <!-- Panel 2: H. pylori ulcer mechanism -->
+  <g transform="translate(175, 428)">
+    <rect x="0" y="0" width="150" height="90" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="16" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">H. pylori Ulcer</text>
+    <!-- Damaged mucus -->
+    <path d="M10,28 C30,26 50,30 70,27 C90,24 110,29 130,26 L140,28" fill="none" stroke="#27ae60" stroke-width="3" stroke-linecap="round" opacity="0.3" stroke-dasharray="4,2"/>
+    <!-- H. pylori bacteria -->
+    <path d="M25,32 C28,29 31,32 34,29" fill="none" stroke="#2d6a6e" stroke-width="1.5"/>
+    <path d="M35,30 C38,27 41,30 44,27" fill="none" stroke="#2d6a6e" stroke-width="1.5"/>
+    <path d="M45,31 C48,28 51,31 54,28" fill="none" stroke="#2d6a6e" stroke-width="1.5"/>
+    <text x="55" y="36" fill="#2d6a6e" font-size="6">Hp</text>
+    <!-- Ulcer crater in epithelium -->
+    <ellipse cx="75" cy="55" rx="12" ry="5" fill="url(#ulcer-grad)" opacity="0.6" stroke="#c0392b" stroke-width="1"/>
+    <!-- Inflammatory cells -->
+    <circle cx="105" cy="48" r="2" fill="#e74c3c" opacity="0.5"/>
+    <circle cx="112" cy="50" r="1.5" fill="#e74c3c" opacity="0.4"/>
+    <circle cx="108" cy="56" r="1.5" fill="#e74c3c" opacity="0.4"/>
+    <text x="108" y="68" fill="#c0392b" font-size="6">Inflammation</text>
+    <!-- Broken barrier label -->
+    <text x="48" y="82" fill="#c0392b" font-size="6" text-anchor="middle">Broken mucus barrier</text>
+  </g>
+
+  <!-- Panel 3: NSAID ulcer mechanism -->
+  <g transform="translate(332, 428)">
+    <rect x="0" y="0" width="150" height="90" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="16" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">NSAID Ulcer</text>
+    <!-- COX-1 blockade -->
+    <text x="75" y="32" fill="#c0392b" font-size="7" font-weight="600" text-anchor="middle">NSAID blocks COX-1</text>
+    <!-- Arrow down -->
+    <path d="M75,36 L75,42" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+    <!-- Decreased prostaglandins -->
+    <text x="75" y="52" fill="#8a7e6e" font-size="7" text-anchor="middle">↓ Prostaglandins</text>
+    <!-- Effects -->
+    <text x="75" y="66" fill="#c0392b" font-size="6" text-anchor="middle">↓ Mucus protection</text>
+    <text x="75" y="74" fill="#c0392b" font-size="6" text-anchor="middle">↓ Blood flow</text>
+    <text x="75" y="82" fill="#c0392b" font-size="6" text-anchor="middle">↑ Acid damage to lining</text>
+  </g>
+
+  <!-- ═══════════ Stomach body label ═══════════ -->
+  <text x="302" y="248" fill="#8a7e6e" font-size="10" font-weight="600">Stomach body</text>
+  <text x="302" y="260" fill="#b0a595" font-size="8">(corpus)</text>
+
+  <!-- ═══════════ Pain reference ═══════════ -->
+  <!-- Epigastric pain star -->
+  <text x="270" y="175" fill="#c0392b" font-size="8">★ Epigastric pain</text>
+</svg>

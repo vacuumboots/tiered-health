@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Influenza — Tiered Health</title>
+<meta name="description" content="Influenza: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🤒 Tiered Health <span>/ Influenza</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🤒 Influenza</h1>
+  <p class="aka">Also called: flu, seasonal influenza</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0f4f8"/><stop offset="100%" stop-color="#e8edf2"/></linearGradient>
+    <linearGradient id="airway" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="membrane" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="virus" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <linearGradient id="virus2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="nucleus" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6c5ce7"/><stop offset="100%" stop-color="#a29bfe"/></linearGradient>
+    <linearGradient id="cytokine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e17055"/><stop offset="100%" stop-color="#d63031"/></linearGradient>
+    <linearGradient id="ha" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00b894"/><stop offset="100%" stop-color="#00cec9"/></linearGradient>
+    <linearGradient id="na" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fdcb6e"/><stop offset="100%" stop-color="#f39c12"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="550" fill="url(#bg)" rx="8"/>
+
+  <!-- Title -->
+  <text x="250" y="28" fill="#2d3436" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">Influenza Virus — Infection &amp; Immune Response</text>
+
+  <!-- ═══════ RESPIRATORY TRACT (Left side) ═══════ -->
+  <g transform="translate(10, 10)">
+
+    <!-- Nasal cavity -->
+    <path d="M40,60 C55,55 70,55 85,60 L90,62" fill="none" stroke="#b2bec3" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.5"/>
+
+    <!-- Trachea outline -->
+    <path d="M60,70 C55,80 52,95 50,110 L48,130 L48,150 L50,170 L55,185 L60,195 L68,200 L75,200 L82,195 L87,185 L92,170 L94,150 L94,130 L92,110 L90,95 L85,80 L80,70"
+          fill="url(#airway)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.8"/>
+
+    <!-- Tracheal rings -->
+    <line x1="55" y1="85" x2="85" y2="85" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="53" y1="100" x2="87" y2="100" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="52" y1="115" x2="89" y2="115" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="52" y1="130" x2="90" y2="130" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="53" y1="145" x2="90" y2="145" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="55" y1="160" x2="88" y2="160" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="58" y1="175" x2="85" y2="175" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- Bronchi (left and right) -->
+    <path d="M68,200 C62,215 54,230 48,245" fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.6"/>
+    <path d="M75,200 C80,215 86,230 92,245" fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.6"/>
+
+    <!-- Lungs (simplified) -->
+    <ellipse cx="40" cy="280" rx="22" ry="35" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+    <ellipse cx="100" cy="280" rx="22" ry="35" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+
+    <!-- Label -->
+    <text x="70" y="230" fill="#636e72" font-size="9" font-weight="600" text-anchor="middle">Respiratory</text>
+    <text x="70" y="242" fill="#636e72" font-size="9" font-weight="600" text-anchor="middle">epithelium</text>
+
+    <!-- Inhaled virus particles floating down trachea -->
+    <circle cx="62" cy="88" r="3.5" fill="url(#virus)" opacity="0.7"/>
+    <circle cx="78" cy="105" r="3" fill="url(#virus)" opacity="0.6"/>
+    <circle cx="60" cy="120" r="3.5" fill="url(#virus2)" opacity="0.7"/>
+    <circle cx="82" cy="140" r="3" fill="url(#virus)" opacity="0.5"/>
+    <circle cx="65" cy="155" r="3.5" fill="url(#virus2)" opacity="0.6"/>
+    <circle cx="80" cy="170" r="2.5" fill="url(#virus)" opacity="0.5"/>
+    <circle cx="70" cy="192" r="3" fill="url(#virus2)" opacity="0.6"/>
+
+    <!-- Inhaled virus particles flowing into lungs -->
+    <circle cx="50" cy="220" r="3" fill="url(#virus)" opacity="0.5"/>
+    <circle cx="92" cy="225" r="2.5" fill="url(#virus)" opacity="0.5"/>
+
+    <!-- Legend for respiratory tract -->
+    <text x="70" y="330" fill="#636e72" font-size="8" text-anchor="middle">Virus inhaled</text>
+    <text x="70" y="342" fill="#636e72" font-size="8" text-anchor="middle">into airways</text>
+  </g>
+
+  <!-- ═══════ ZOOM BOX: Epithelial cell (Right side) ═══════ -->
+  <g transform="translate(130, 35)">
+    <rect x="0" y="0" width="350" height="340" rx="10" fill="#ffffff" stroke="#dfe6e9" stroke-width="1.5" opacity="0.95"/>
+
+    <!-- Cell membrane -->
+    <path d="M20,60 C30,55 45,55 60,58 L80,62 L100,55 L120,58 L140,62 L160,55 L180,58 L200,62 L220,55 L240,58 L260,62 L280,55 L300,58 L320,62 L330,60"
+          fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2" opacity="0.3"/>
+    <path d="M20,175 C30,172 45,178 60,175 L80,172 L100,178 L120,175 L140,172 L160,178 L180,175 L200,172 L220,178 L240,175 L260,172 L280,178 L300,175 L320,172 L330,175"
+          fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2" opacity="0.3"/>
+
+    <!-- Membrane phospholipid bilayer hints -->
+    <path d="M20,60 L20,175" stroke="#fdcb6e" stroke-width="1" opacity="0.2" stroke-dasharray="2,2"/>
+    <path d="M330,60 L330,175" stroke="#fdcb6e" stroke-width="1" opacity="0.2" stroke-dasharray="2,2"/>
+
+    <!-- Cell interior (cytoplasm) -->
+    <rect x="20" y="62" width="310" height="113" rx="5" fill="#f8f9fa" opacity="0.5"/>
+
+    <!-- Nucleus -->
+    <ellipse cx="175" cy="118" rx="55" ry="35" fill="url(#nucleus)" opacity="0.5" filter="url(#soft)"/>
+    <ellipse cx="175" cy="118" rx="35" ry="22" fill="url(#nucleus)" opacity="0.3"/>
+
+    <!-- Step 1: Virus attaching to cell surface (left side) -->
+    <circle cx="80" cy="55" r="12" fill="url(#virus)" opacity="0.9" filter="url(#soft)"/>
+    <!-- HA spikes on virus -->
+    <line x1="80" y1="43" x2="80" y2="35" stroke="#00b894" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="73" y1="45" x2="68" y2="38" stroke="#00b894" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="87" y1="45" x2="92" y2="38" stroke="#00b894" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <!-- NA spikes -->
+    <line x1="72" y1="62" x2="65" y2="68" stroke="#f39c12" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+    <line x1="88" y1="62" x2="95" y2="68" stroke="#f39c12" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Label: Step 1 -->
+    <text x="80" y="82" fill="#00b894" font-size="8" font-weight="700" text-anchor="middle">① Attachment</text>
+    <text x="80" y="93" fill="#636e72" font-size="7" text-anchor="middle">HA binds sialic</text>
+    <text x="80" y="103" fill="#636e72" font-size="7" text-anchor="middle">acid receptors</text>
+
+    <!-- Step 1 arrow leading into cell -->
+    <path d="M80,57 C80,62 80,65 80,68" fill="none" stroke="#b2bec3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Step 2: Endocytosis / Entry arrow -->
+    <path d="M175,55 C175,62 175,68 175,75" fill="none" stroke="#b2bec3" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)" opacity="0.6"/>
+
+    <text x="175" y="52" fill="#6c5ce7" font-size="8" font-weight="700" text-anchor="middle">② Entry &amp;</text>
+    <text x="175" y="63" fill="#6c5ce7" font-size="8" font-weight="700" text-anchor="middle">uncoating</text>
+
+    <!-- Step 3: Replication nucleus arrow -->
+    <path d="M175,75 C175,80 175,85 175,90" fill="none" stroke="#b2bec3" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)" opacity="0.6"/>
+
+    <text x="245" y="85" fill="#a29bfe" font-size="8" font-weight="700">③ Nuclear</text>
+    <text x="245" y="96" fill="#a29bfe" font-size="8" font-weight="700">replication</text>
+
+    <!-- Step 4: Assembly and budding (right side) -->
+    <circle cx="270" cy="55" r="11" fill="url(#virus2)" opacity="0.7" filter="url(#soft)"/>
+    <!-- New virus HA spikes -->
+    <line x1="270" y1="44" x2="270" y2="37" stroke="#00b894" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="264" y1="46" x2="260" y2="40" stroke="#00b894" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="276" y1="46" x2="280" y2="40" stroke="#00b894" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <!-- New virus NA spikes -->
+    <line x1="263" y1="60" x2="258" y2="65" stroke="#f39c12" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    <line x1="277" y1="60" x2="282" y2="65" stroke="#f39c12" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+
+    <text x="270" y="80" fill="#e74c3c" font-size="8" font-weight="700" text-anchor="middle">④ Budding &amp;</text>
+    <text x="270" y="91" fill="#e74c3c" font-size="8" font-weight="700" text-anchor="middle">release (NA)</text>
+
+    <!-- Step 5: Cell death / damaged cell -->
+    <text x="270" y="115" fill="#d63031" font-size="7" text-anchor="middle">Cell death /</text>
+    <text x="270" y="125" fill="#d63031" font-size="7" text-anchor="middle">epithelial damage</text>
+
+    <!-- Damaged cell markers -->
+    <path d="M50,140 L60,150 M60,140 L50,150" stroke="#d63031" stroke-width="1" opacity="0.4"/>
+    <path d="M250,140 L260,150 M260,140 L250,150" stroke="#d63031" stroke-width="1" opacity="0.4"/>
+
+    <!-- Cytokine release (bottom of cell) -->
+    <circle cx="80" cy="168" r="3" fill="url(#cytokine)" opacity="0.8"/>
+    <circle cx="140" cy="172" r="2.5" fill="url(#cytokine)" opacity="0.7"/>
+    <circle cx="200" cy="170" r="3" fill="url(#cytokine)" opacity="0.6"/>
+    <circle cx="250" cy="168" r="2" fill="url(#cytokine)" opacity="0.7"/>
+    <circle cx="300" cy="172" r="2.5" fill="url(#cytokine)" opacity="0.6"/>
+
+    <text x="175" y="195" fill="#d63031" font-size="8" font-weight="700" text-anchor="middle">⑤ Cytokine release → fever, myalgia, headache</text>
+
+    <!-- Zoom box label -->
+    <text x="175" y="18" fill="#2d3436" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">Respiratory Epithelial Cell &amp; Viral Lifecycle</text>
+
+    <!-- Cell membrane label -->
+    <text x="345" y="120" fill="#fdcb6e" font-size="7" font-weight="600" text-anchor="end">Cell membrane</text>
+    <!-- Nucleus label -->
+    <text x="195" y="145" fill="#6c5ce7" font-size="7">Nucleus</text>
+  </g>
+
+  <!-- ═══════ VIRUS LEGEND (Bottom left) ═══════ -->
+  <g transform="translate(10, 390)">
+    <rect x="0" y="0" width="220" height="145" rx="8" fill="#ffffff" stroke="#dfe6e9" stroke-width="1" opacity="0.9"/>
+    <text x="110" y="18" fill="#2d3436" font-size="10" font-weight="700" text-anchor="middle">Influenza Virus Structure</text>
+
+    <!-- Virus particle -->
+    <circle cx="45" cy="55" r="18" fill="url(#virus)" opacity="0.8"/>
+    <!-- HA spikes -->
+    <line x1="45" y1="37" x2="45" y2="25" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="33" y1="42" x2="22" y2="35" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="57" y1="42" x2="68" y2="35" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="30" y1="55" x2="18" y2="55" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="60" y1="55" x2="72" y2="55" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="33" y1="68" x2="22" y2="75" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="57" y1="68" x2="68" y2="75" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <!-- NA spikes (mushroom shaped, between HA) -->
+    <line x1="39" y1="40" x2="35" y2="32" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+    <line x1="51" y1="40" x2="55" y2="32" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+    <line x1="39" y1="68" x2="35" y2="76" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+    <line x1="51" y1="68" x2="55" y2="76" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Labels -->
+    <line x1="68" y1="26" x2="95" y2="26" stroke="#00b894" stroke-width="1.2"/>
+    <text x="98" y="24" fill="#00b894" font-size="8" font-weight="600">Hemagglutinin (HA)</text>
+    <text x="98" y="36" fill="#636e72" font-size="7">Binds to host cell receptors</text>
+
+    <line x1="60" y1="70" x2="95" y2="70" stroke="#f39c12" stroke-width="1.2"/>
+    <text x="98" y="68" fill="#f39c12" font-size="8" font-weight="600">Neuraminidase (NA)</text>
+    <text x="98" y="80" fill="#636e72" font-size="7">Cleaves receptors for viral release</text>
+
+    <text x="98" y="106" fill="#636e72" font-size="7">Genome: 8 segments of</text>
+    <text x="98" y="118" fill="#636e72" font-size="7">negative-sense ssRNA</text>
+
+    <!-- Drug targets -->
+    <rect x="5" y="124" width="210" height="16" rx="3" fill="#ffeaa7" opacity="0.4"/>
+    <text x="110" y="136" fill="#d63031" font-size="7" font-weight="600" text-anchor="middle">Drug targets: Oseltamivir (NA inhibitor) · Baloxavir (PA endonuclease inhibitor)</text>
+  </g>
+
+  <!-- ═══════ SYSTEMIC EFFECTS (Bottom right) ═══════ -->
+  <g transform="translate(245, 390)">
+    <rect x="0" y="0" width="245" height="145" rx="8" fill="#ffffff" stroke="#dfe6e9" stroke-width="1" opacity="0.9"/>
+    <text x="122" y="18" fill="#2d3436" font-size="10" font-weight="700" text-anchor="middle">Systemic Effects</text>
+
+    <!-- Brain / Head -->
+    <circle cx="40" cy="55" r="16" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+    <text x="40" y="52" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Fever</text>
+    <text x="40" y="64" fill="#636e72" font-size="7" text-anchor="middle">↑ Hypothalamus</text>
+
+    <!-- Muscles -->
+    <path d="M90,42 L120,42 L120,50 L90,50 Z" fill="#f5c842" stroke="#e6a817" stroke-width="0.8" opacity="0.5"/>
+    <path d="M90,50 L120,50 L120,58 L90,58 Z" fill="#f5c842" stroke="#e6a817" stroke-width="0.8" opacity="0.5"/>
+    <path d="M90,58 L120,58 L120,66 L90,66 Z" fill="#f5c842" stroke="#e6a817" stroke-width="0.8" opacity="0.5"/>
+    <text x="105" y="82" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Myalgia</text>
+
+    <!-- Lungs -->
+    <ellipse cx="185" cy="52" rx="14" ry="10" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+    <ellipse cx="185" cy="62" rx="14" ry="10" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+    <text x="185" y="82" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Cough</text>
+
+    <!-- Fatigue -->
+    <text x="60" y="108" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Severe fatigue</text>
+    <text x="140" y="108" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Headache</text>
+
+    <!-- Arrow showing connection: cytokine release → systemic symptoms -->
+    <path d="M40,100 C40,118 122,118 122,118" fill="none" stroke="#d63031" stroke-width="1.2" stroke-dasharray="4,2" opacity="0.6" marker-end="url(#arrow)"/>
+
+    <text x="122" y="135" fill="#d63031" font-size="7" font-weight="600" text-anchor="middle">Driven by: IL-6, TNF-α, IFN, PGE₂</text>
+  </g>
+
+  <!-- Arrow definitions -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#b2bec3"/>
+    </marker>
+  </defs>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is influenza?</h4>
+<p>Influenza (the flu) is a viral infection that attacks your nose, throat, and lungs. It comes on fast — high fever, body aches, headache, and a dry cough. Unlike the common cold, the flu hits you like a truck and usually puts you in bed for several days. Most people get better on their own within a week, but for some groups it can be dangerous.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Rest and hydrate.</strong> Stay home, drink fluids (water, broth, electrolyte drinks), and sleep as much as you can. Your body needs energy to fight the virus.</li>
+<li><strong>Take fever reducers if needed.</strong> Acetaminophen (Tylenol) or ibuprofen (Advil, Motrin) can lower your fever and ease the aches. Follow the label dosing.</li>
+<li><strong>Call your doctor if you're in a high-risk group.</strong> People over 65, pregnant women, young children, or anyone with a chronic medical condition may benefit from antiviral medication (oseltamivir/Tamiflu). It works best if started within 48 hours of symptoms.</li>
+<li><strong>Stay home and avoid others.</strong> You're contagious from 1 day before symptoms start through about 5–7 days after. Don't go to work, school, or social events.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have trouble breathing or feel short of breath at rest</li>
+<li>You have chest pain or pressure</li>
+<li>You feel confused or disoriented</li>
+<li>You can't keep any fluids down (risk of dehydration)</li>
+<li>Symptoms improve then come back with a worse fever and cough (could be secondary pneumonia)</li>
+<li>Your lips or face turn bluish</li>
+<li>You have a seizure</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Most people recover at home</h5>
+<p>The flu is unpleasant, but for otherwise healthy people it's self-limiting. The fever usually breaks in 2–3 days, though the cough and fatigue can linger for weeks. Antibiotics won't help — this is a virus. Antiviral medication is available but works best in the first 48 hours and is mainly recommended for high-risk patients.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Influenza is caused by <strong>influenza A</strong> or <strong>influenza B</strong> viruses — two of the four types in the <em>Orthomyxoviridae</em> family. You catch it when someone nearby coughs or sneezes, releasing tiny virus-laden droplets into the air. You can also pick it up from contaminated surfaces and then touching your eyes, nose, or mouth.</p>
+<p>Once the virus gets into your respiratory tract, it attaches to epithelial cells using a surface protein called <strong>hemagglutinin (HA)</strong>. The virus enters the cell, hijacks its machinery to make thousands of copies of itself, and then bursts out — killing the host cell and spreading to neighboring cells. Another surface protein, <strong>neuraminidase (NA)</strong>, helps the newly formed viruses escape the infected cell to keep infecting more cells.</p>
+<p>Your immune system responds with a bang. Within 24–48 hours, the innate immune system releases a flood of inflammatory cytokines (interferons, interleukins, TNF-α). These chemicals are what make you feel awful — fever, muscle aches, fatigue, headache. The fever is actually part of your defense: many viruses replicate less efficiently at higher body temperatures.</p>
+<p>The infection peaks around day 2–3. By day 5–7, the adaptive immune system has produced enough antibodies (especially against HA and NA) to clear the virus. The cough and fatigue can linger for 1–3 weeks as your airways repair the damaged epithelium.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Sudden high fever</strong> (101–104°F / 38–40°C): comes on fast, often within hours. Peak fever typically lasts 2–3 days.</li>
+<li><strong>Severe body aches and muscle pain (myalgias):</strong> often the most prominent symptom. Your muscles feel deep, heavy, and sore. Worse in the legs and back.</li>
+<li><strong>Headache:</strong> often severe, bilateral, behind the eyes. Driven by cytokine release in the brain's blood vessels.</li>
+<li><strong>Dry cough:</strong> hacking, non-productive cough. The cough reflex is triggered by damaged epithelial cells in the trachea and bronchi. This is the symptom that lasts the longest — often 2 weeks or more.</li>
+<li><strong>Sore throat:</strong> common but usually not as severe as in strep throat or adenovirus.</li>
+<li><strong>Fatigue and weakness:</strong> profound. Even getting up to go to the bathroom can feel exhausting. This can persist for weeks after other symptoms resolve.</li>
+<li><strong>Nasal congestion and runny nose:</strong> more common in children than adults.</li>
+<li><strong>Nausea, vomiting, and diarrhea:</strong> more common in children with influenza B. In adults, GI symptoms usually point to a different infection (like norovirus), but influenza can cause them too.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Rest and fluids:</strong> the cornerstone of management. The goal is to support your immune system while it clears the virus. Dehydration is a common complication because of fever (increased fluid loss) and reduced oral intake.</li>
+<li><strong>Antipyretics and analgesics:</strong> acetaminophen or ibuprofen for fever and muscle aches. Alternating between the two is safe for adults but not usually necessary.</li>
+<li><strong>Antiviral medications:</strong> oseltamivir (Tamiflu, oral) is the most widely used. Also available: zanamivir (Relenza, inhaled), peramivir (Rapivab, IV), and baloxavir marboxil (Xofluza, single oral dose).</li>
+<li><strong>Who should get them:</strong> high-risk groups (age ≥65, pregnancy, chronic medical conditions, immunocompromised, extreme obesity, age <5 especially <2 years). Also consider for hospitalized patients or anyone with severe or progressive illness.</li>
+<li><strong>When:</strong> within 48 hours of symptom onset for maximum benefit. Oseltamivir reduces symptom duration by about 0.6–1.0 day in adults and may reduce hospitalizations in high-risk groups.</li>
+<li><strong>Effect size:</strong> modest but clinically meaningful in high-risk populations. The benefit is larger the earlier it's started.</li>
+<li><strong>Cough suppressants:</strong> not routinely recommended. The cough is helping clear mucus and debris. If it's interfering with sleep, a small dose of dextromethorphan may help.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li><strong>Don't ask for antibiotics.</strong> The flu is viral. Antibiotics don't work and contribute to resistance.</li>
+<li><strong>Don't go back to work or school too early.</strong> You're contagious until your fever is gone for 24 hours without fever-reducing meds. Pushing through makes you sicker and infects others.</li>
+<li><strong>Don't give aspirin to children or teenagers</strong> with flu symptoms — it can trigger Reye's syndrome, a rare but serious condition that causes liver and brain swelling.</li>
+<li><strong>Don't take more than one product containing acetaminophen</strong> at the same time — many cold/flu combo products already contain it, and exceeding 3,000–4,000 mg/day can damage your liver.</li>
+<li><strong>Don't smoke or vape</strong> while recovering. Your respiratory epithelium is already damaged; smoke delays healing.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 0–1</div>
+<div class="tl-text">Exposure. Incubation period averages 1–4 days. You're contagious starting 1 day before any symptoms appear.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Abrupt symptom onset. Fever peaks (101–104°F), severe body aches, headache, dry cough. Bed rest essential. Start antivirals if high-risk and within 48-hour window.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 2–5</div>
+<div class="tl-text">Peak illness. Fever may start breaking. Cough persists. Fatigue is profound. Stay home, hydrate, rest. Most contagious during this period.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 5–7</div>
+<div class="tl-text">Fever usually resolves. Cough and fatigue remain. Start feeling human again but energy is low. Still contagious — fever should be gone for 24 hours before returning to normal activities.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 7–14</div>
+<div class="tl-text">Most symptoms resolved. Cough may persist. Fatigue can linger 2–3 weeks. Return to gradual activity, don't jump back into intense exercise.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 3–6</div>
+<div class="tl-text">Full recovery for most people. Post-viral cough may still be present. If fever returns with worsening cough, see a doctor — could be secondary bacterial pneumonia.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Influenza is an acute viral infection of the respiratory tract caused by <strong>Orthomyxoviridae</strong> viruses, primarily influenza A and influenza B. The virus has a segmented, single-stranded negative-sense RNA genome, which enables genetic reassortment (antigenic shift) in influenza A — the mechanism behind pandemic emergence.</p>
+<p><strong>Viral entry:</strong> Hemagglutinin (HA) binds to sialic acid receptors on respiratory epithelial cells. HA is cleaved by host proteases (e.g., TMPRSS2, matriptase) to expose the fusion peptide, enabling viral-endosomal membrane fusion. Once inside the nucleus (unique among RNA viruses), the viral RNA-dependent RNA polymerase (RdRp) replicates the genome and transcribes mRNA.</p>
+<p><strong>Cytopathic effects:</strong> Direct cytotoxicity in type I and II pneumocytes, ciliated columnar epithelial cells, and alveolar macrophages. Infected cells undergo apoptosis or are killed by cytotoxic T lymphocytes. The resulting epithelial denudation — from the trachea down to the bronchioles — exposes basement membrane, impairs mucociliary clearance, and increases susceptibility to secondary bacterial infection.</p>
+<p><strong>Immune response:</strong> The innate response is a double-edged sword. Type I interferons (IFN-α/β) and pro-inflammatory cytokines (IL-6, TNF-α, IL-1β) are essential for viral clearance, but the resulting <strong>cytokine storm</strong> is responsible for the systemic symptoms — fever (pyrogenic cytokines acting on the hypothalamus), myalgias (PGE₂-mediated muscle catabolism), and headache (vasodilation and trigeminal nerve activation). Severe influenza can cause a hyperinflammatory state with elevated ferritin, CRP, and D-dimer resembling cytokine release syndrome.</p>
+<p><strong>Viral evasion:</strong> Influenza A evades immunity through antigenic drift (point mutations in HA and NA epitopes, necessitating annual vaccine updates) and antigenic shift (reassortment of genome segments between human and animal influenza A strains, producing novel subtypes that can cause pandemics). The NS1 protein suppresses host interferon production, directly binding RIG-I and inhibiting IRF-3 activation.</p>
+<p><strong>Complications of severe disease:</strong></p>
+<ul>
+<li><strong>Primary viral pneumonia:</strong> diffuse alveolar damage, hyaline membrane formation, hemorrhage. High mortality — up to 50% in some series of H1N1 pdm09 and H5N1.</li>
+<li><strong>Secondary bacterial pneumonia:</strong> typically 5–10 days after initial illness. Most common pathogens: <em>Streptococcus pneumoniae</em>, <em>Staphylococcus aureus</em> (including MRSA), <em>Haemophilus influenzae</em>. Influenza damages the respiratory epithelium, exposing binding sites for bacterial adherence and impairing alveolar macrophage function.</li>
+<li><strong>Myocarditis:</strong> rare but underdiagnosed. Direct viral invasion of cardiac myocytes. Can present with arrhythmia, heart failure, or cardiogenic shock.</li>
+<li><strong>Encephalitis/encephalopathy:</strong> rare, more common in children. Includes acute necrotizing encephalopathy (ANE), associated with RANBP2 mutations.</li>
+<li><strong>Myositis and rhabdomyolysis:</strong> benign acute myositis of the calves in children; severe rhabdomyolysis with acute kidney injury in adults.</li>
+<li><strong>Reye's syndrome:</strong> in children given aspirin during influenza or varicella. Mitochondrial injury causing hepatic steatosis and cerebral edema.</li>
+</ul>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>COVID-19 (SARS-CoV-2):</strong> Cannot be distinguished from influenza by symptoms alone. Both present with fever, cough, myalgias, and fatigue. Testing (PCR or rapid antigen) is required during co-circulation season. Loss of taste/smell (anosmia) is more specific to COVID-19.</li>
+<li><strong>Respiratory syncytial virus (RSV):</strong> More prominent rhinorrhea, wheezing, and bronchiolitis pattern. Common in young children and older adults. Testing by PCR.</li>
+<li><strong>Common cold (rhinovirus, coronavirus, adenovirus):</strong> Gradual onset, low-grade or no fever, prominent nasal congestion and runny nose. Rarely causes systemic symptoms like body aches and severe fatigue.</li>
+<li><strong>Streptococcal pharyngitis:</strong> Fever and sore throat, but lacks cough, myalgias, and nasal congestion. Rapid strep test or throat culture.</li>
+<li><strong>Bacterial pneumonia:</strong> Focal chest pain, productive cough with purulent sputum, lobar consolidation on exam. Distinguished by focal findings on chest X-ray and Gram stain/culture.</li>
+<li><strong>Human metapneumovirus (hMPV):</strong> Clinically indistinguishable from RSV and influenza. Requires PCR testing.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical diagnosis (influenza-like illness — ILI)</td>
+<td>Fever ≥100°F + cough and/or sore throat, with abrupt onset during influenza season</td>
+<td>During peak season — high positive predictive value; testing may not change management</td>
+</tr>
+<tr>
+<td>Rapid antigen test (RIDT)</td>
+<td>Qualitative detection of influenza A/B nucleoprotein</td>
+<td>Point-of-care, 15 min. Low sensitivity (50–70%), high specificity (>95%). Positive = rule-in; negative = does not rule out</td>
+</tr>
+<tr>
+<td>RT-PCR (nasopharyngeal swab)</td>
+<td>Quantitative detection of influenza A/B RNA. Can subtype influenza A (H1N1, H3N2)</td>
+<td>Gold standard. Sensitivity >95%, specificity >98%. Order when result will change management (hospitalization, high-risk, outbreak investigation)</td>
+</tr>
+<tr>
+<td>Direct fluorescent antibody (DFA)</td>
+<td>Viral antigen detection in respiratory epithelial cells</td>
+<td>Moderate sensitivity (70–90%). Faster than PCR (2–4 h) but requires lab expertise</td>
+</tr>
+<tr>
+<td>Multiplex PCR (respiratory panel)</td>
+<td>Simultaneous detection of influenza A/B, RSV, COVID-19, adenovirus, hMPV, parainfluenza, rhinovirus</td>
+<td>First test of choice during respiratory season when multiple viruses are circulating</td>
+</tr>
+<tr>
+<td>Complete blood count (CBC)</td>
+<td>Leukopenia (common), relative lymphopenia. If WBC >15,000 or bandemia → suspect bacterial co-infection</td>
+<td>Moderate-severe illness, hospitalization</td>
+</tr>
+<tr>
+<td>Procalcitonin (PCT)</td>
+<td>Low (<0.25 ng/mL) in pure viral infection. Elevated in bacterial co-infection</td>
+<td>Guide antibiotic de-escalation in hospitalized patients</td>
+</tr>
+<tr>
+<td>Chest X-ray (2 views)</td>
+<td>Normal in uncomplicated influenza. Interstitial or bilateral patchy opacities in viral pneumonia. Lobar consolidation in secondary bacterial pneumonia</td>
+<td>Dyspnea, hypoxia, suspected pneumonia, or hospital admission</td>
+</tr>
+<tr>
+<td>Serum CRP</td>
+<td>Markedly elevated (often >50–100 mg/L) but non-specific</td>
+<td>Marker of inflammation; cannot distinguish viral from bacterial alone</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Antivirals — neuraminidase inhibitors:</strong> The Cochrane review by Jefferson et al. (2014) of 26 RCTs (n=11,877) found that oseltamivir reduced time to first symptom alleviation by 16.8 hours in adults (95% CI 8.4–25.2 hours) and by 29 hours in untreated-confirmed influenza. Risk of hospitalization was reduced in adults (OR 0.85, 95% CI 0.73–0.99). Oseltamivir increased nausea (OR 1.57, 95% CI 1.14–2.15) and vomiting (OR 2.43, 95% CI 1.75–3.38). The Cochrane review of zanamivir (n=8,491) found a reduction of 0.60 days (95% CI 0.39–0.81) in symptom duration. The evidence for reduction in pneumonia or other complications was weaker in adults but stronger in high-risk populations.</p>
+<p><strong>Antivirals — baloxavir marboxil:</strong> The CAPSTONE-1 (Hayden et al., 2018, NEJM) and CAPSTONE-2 (Ison et al., 2020, Lancet Infect Dis) phase 3 trials showed baloxavir (a cap-dependent endonuclease inhibitor, single oral dose) reduced time to symptom alleviation comparable to oseltamivir (53.7 vs. 53.8 hours in CAPSTONE-1). Baloxavir demonstrated greater reduction in viral load at 24 hours (lower limit of quantification achieved faster) and was associated with less viral shedding. Resistance-conferring mutations (I38T in PA gene) emerged in 2.2% of adults and up to 10% of children in CAPSTONE-1.</p>
+<p><strong>Vaccine effectiveness:</strong> Annual influenza vaccine effectiveness (VE) varies by season, typically 40–60% when circulating strains are well-matched to vaccine strains. A 2023 meta-analysis of test-negative design studies found VE of 41% (95% CI 36–46%) against outpatient illness and 54% (95% CI 46–61%) against hospitalization in adults. VE is lower in elderly adults due to immunosenescence; high-dose and adjuvanted vaccines improve immunogenicity. The live attenuated influenza vaccine (LAIV, FluMist) showed variable effectiveness in recent seasons — current ACIP recommendations favor LAIV for children aged 2–8 years when available.</p>
+<p><strong>Complications and hospitalization:</strong> A CDC systematic review found that influenza-associated hospitalization rates are highest in adults ≥65 years (approximately 300–500 per 100,000) and children <5 years (100–200 per 100,000). The 1918 H1N1 pandemic killed 50 million people globally. The 2009 H1N1 pandemic disproportionately affected younger adults, with mortality rates highest in those aged 20–49 years — a pattern attributed to pre-existing cross-reactive immunity in older cohorts.</p>
+<p><strong>WHO clinical practice guidelines (2026):</strong> The 2026 WHO guideline update (BMJ, PMID 41760115) recommends oseltamivir for all patients with confirmed or suspected influenza who are hospitalized, and for high-risk outpatients. Baloxavir is recommended as an alternative to oseltamivir for non-pregnant adults without severe immunosuppression. The guidelines recommend against routine use of corticosteroids unless indicated by other conditions (e.g., asthma exacerbation, septic shock), and against the use of intravenous immunoglobulin outside clinical trials.</p>
+<h4>Complications</h4>
+<ul>
+<li><strong>Primary influenza pneumonia:</strong> develops 1–3 days after onset, progresses rapidly. Diffuse infiltrates, acute respiratory distress syndrome (ARDS). High mortality.</li>
+<li><strong>Secondary bacterial pneumonia:</strong> develops 5–10 days after initial illness. "Double-sickening" — fever returns after improvement. Most common: <em>S. pneumoniae</em>, <em>S. aureus</em>, <em>H. influenzae</em>.</li>
+<li><strong>Myocarditis and pericarditis:</strong> chest pain, arrhythmias, heart failure. ECG may show diffuse ST-segment elevation. Treat supportively.</li>
+<li><strong>Acute respiratory distress syndrome (ARDS):</strong> diffuse alveolar damage, refractory hypoxemia. Requires mechanical ventilation. Lung-protective ventilation strategy. Mortality 30–60%.</li>
+<li><strong>Acute kidney injury:</strong> from rhabdomyolysis, dehydration, or multi-organ failure.</li>
+<li><strong>Neurologic:</strong> febrile seizures (children), encephalitis, Guillain-Barré syndrome (rare, ~1 per million).</li>
+<li><strong>Sepsis and multi-organ failure:</strong> in severe cases, especially immunocompromised and elderly.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>Is baloxavir's faster viral clearance profile clinically meaningful for reducing transmission? Real-world cluster studies are ongoing.</li>
+<li>Can universal influenza vaccines (targeting the conserved HA stalk domain, M2e, or neuraminidase) provide durable protection across seasons? Several candidates are in phase 1–2 trials.</li>
+<li>What is the optimal timing of antiviral therapy in hospitalized patients beyond the 48-hour window? Observational data suggests benefit regardless of duration, but RCT data is limited.</li>
+<li>Does combination antiviral therapy (oseltamivir + baloxavir) improve outcomes over monotherapy? Early trials show no additive benefit and potential antagonism in animal models.</li>
+<li>What is the role of anti-inflammatory therapy (baricitinib, tocilizumab, etc.) in severe influenza? Therapeutics targeting the cytokine storm component need more data.</li>
+<li>Can host-directed therapies (interferon lambda, nafamostat) prevent progression to severe disease?</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>WHO Clinical Practice Guidelines for Influenza. <em>BMJ</em> 2026. PMID: 41760115. DOI: 10.1136/bmj-2025-087397.</li>
+<li>Jefferson T et al. "Oseltamivir for influenza in adults and children: systematic review of clinical study reports and summary of regulatory comments." <em>BMJ</em> 2014;348:g2545. (Cochrane Review update). PMID: 24811411.</li>
+<li>Jefferson T et al. "Neuraminidase inhibitors for preventing and treating influenza in healthy adults and children." <em>Cochrane Database Syst Rev</em> 2014;(4):CD008965. PMID: 24718923.</li>
+<li>Hayden FG et al. "Baloxavir Marboxil for Uncomplicated Influenza in Adults and Adolescents." <em>N Engl J Med</em> 2018;379(10):913–923. (CAPSTONE-1). PMID: 30184455.</li>
+<li>Ison MG et al. "Efficacy and safety of baloxavir marboxil versus oseltamivir in influenza in adults and adolescents: a phase 3 trial." <em>Lancet Infect Dis</em> 2020;20(10):1204–1214. (CAPSTONE-2). PMID: 32526197.</li>
+<li>Uyeki TM et al. "Clinical Practice Guidelines by the Infectious Diseases Society of America: 2018 Update on Diagnosis, Treatment, Chemoprophylaxis, and Institutional Outbreak Management of Seasonal Influenza." <em>Clin Infect Dis</em> 2019;68(6):e1–e47. PMID: 30566567.</li>
+<li>Grohskopf LA et al. "Prevention and Control of Seasonal Influenza with Vaccines: Recommendations of the Advisory Committee on Immunization Practices — United States, 2024–25 Influenza Season." <em>MMWR Recomm Rep</em> 2024;73(5):1–25. PMID: 39388468.</li>
+<li>Osterholm MT et al. "Efficacy and effectiveness of influenza vaccines: a systematic review and meta-analysis." <em>Lancet Infect Dis</em> 2012;12(1):36–44. PMID: 22032844.</li>
+<li>Okoli GN et al. "Seasonal influenza vaccine effectiveness in adults: a systematic review and meta-analysis of test-negative design case-control studies." <em>Vaccine</em> 2023;41(47):6945–6957.</li>
+<li>Dobson J et al. "Oseltamivir treatment for influenza in adults: a meta-analysis of randomised controlled trials." <em>Lancet</em> 2015;385(9979):1729–1737. PMID: 25640810.</li>
+<li>Krammer F et al. "Influenza." <em>Nat Rev Dis Primers</em> 2018;4(1):3. (Nature Primer — comprehensive review). PMID: 29955068.</li>
+<li>CDC. "Influenza Antiviral Medications: Summary for Clinicians." Centers for Disease Control and Prevention, updated annually.</li>
+<li>World Health Organization. "Influenza (Seasonal) — Fact Sheet." WHO, 2024.</li>
+<li>Taubenberger JK, Morens DM. "1918 Influenza: the mother of all pandemics." <em>Emerg Infect Dis</em> 2006;12(1):15–22. PMID: 16494711.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="bursa-normal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="bursa-inflamed" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4a574"/><stop offset="100%" stop-color="#c49565"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Bursitis: Anatomy &amp; Common Sites</text>
+
+  <!-- ═══════════ BODY OUTLINE (front view) ═══════════ -->
+  <path d="M140,40 C130,45 125,58 122,75 L118,140 C115,180 115,220 118,260 L122,320 C125,355 132,385 142,400 L152,410 L158,415 L165,420 L175,425 L185,428 L195,430 L205,430 L215,428 L225,425 L235,420 L242,415 L248,410 L258,400 C268,385 275,355 278,320 L282,260 C285,220 285,180 282,140 L278,75 C275,58 270,45 260,40 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.25"/>
+
+  <!-- ═══════════ SHOULDER / SUBACROMIAL ═══════════ -->
+
+  <!-- Humerus (shoulder region) -->
+  <path d="M200,70 L195,95 L192,120 L190,150" stroke="url(#bone-grad)" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+  <!-- Scapula hint -->
+  <path d="M155,60 C165,55 178,52 190,53 L200,55" fill="none" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Normal subacromial bursa (right side, ghosted) -->
+  <ellipse cx="249" cy="78" rx="16" ry="8" fill="url(#bursa-normal)" opacity="0.4" filter="url(#soft)"/>
+
+  <!-- Inflamed subacromial bursa (left side, main) -->
+  <ellipse cx="140" cy="78" rx="20" ry="12" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="140" cy="78" rx="20" ry="12" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <!-- Callout line: Subacromial bursa -->
+  <line x1="120" y1="78" x2="50" y2="78" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="50" y1="78" x2="45" y2="78" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="35" y="70" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Subacromial</text>
+  <text x="35" y="82" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Bursitis</text>
+  <text x="35" y="94" fill="#8a7e6e" font-size="8" text-anchor="end">(shoulder)</text>
+
+  <!-- ═══════════ ELBOW / OLECRANON ═══════════ -->
+
+  <!-- Humerus down to elbow -->
+  <path d="M190,150 L188,180 L185,210 L183,240 L182,260 L183,275" stroke="url(#bone-grad)" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+  <!-- Radius/Ulna hint -->
+  <path d="M188,275 L186,300 L185,330 L185,355" stroke="url(#bone-grad)" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Olecranon process (back of elbow) -->
+  <ellipse cx="183" cy="275" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Inflamed olecranon bursa -->
+  <ellipse cx="170" cy="275" rx="18" ry="10" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="170" cy="275" rx="18" ry="10" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <line x1="152" y1="275" x2="90" y2="275" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="90" y1="275" x2="85" y2="275" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="75" y="267" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Olecranon</text>
+  <text x="75" y="279" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Bursitis</text>
+  <text x="75" y="291" fill="#8a7e6e" font-size="8" text-anchor="end">(elbow)</text>
+
+  <!-- ═══════════ HIP / TROCHANTERIC ═══════════ -->
+
+  <!-- Pelvis hint -->
+  <path d="M155,320 L160,330 L168,340 L175,348" fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M245,320 L240,330 L232,340 L225,348" fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Femur hint -->
+  <path d="M185,350 L182,380 L180,410 L178,440" stroke="url(#bone-grad)" stroke-width="9" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Greater trochanter -->
+  <ellipse cx="182" cy="350" rx="14" ry="10" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Inflamed trochanteric bursa -->
+  <ellipse cx="170" cy="352" rx="20" ry="12" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="170" cy="352" rx="20" ry="12" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <line x1="150" y1="352" x2="90" y2="352" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="90" y1="352" x2="85" y2="352" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="75" y="344" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Trochanteric</text>
+  <text x="75" y="356" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Bursitis</text>
+  <text x="75" y="368" fill="#8a7e6e" font-size="8" text-anchor="end">(hip)</text>
+
+  <!-- ═══════════ KNEE / PREPATELLAR ═══════════ -->
+
+  <!-- Femur continued -->
+  <path d="M178,440 L176,455 L175,470 L177,480 L182,485" stroke="url(#bone-grad)" stroke-width="9" stroke-linecap="round" opacity="0.6"/>
+  <!-- Patella hint -->
+  <ellipse cx="195" cy="485" rx="12" ry="14" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+  <!-- Tibia hint -->
+  <path d="M182,485 L180,510 L178,530 L176,545 L175,555" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Inflamed prepatellar bursa -->
+  <ellipse cx="204" cy="483" rx="18" ry="10" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="204" cy="483" rx="18" ry="10" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <line x1="222" y1="483" x2="290" y2="483" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="290" y1="483" x2="295" y2="483" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="300" y="475" fill="#c0392b" font-size="9" font-weight="600">Prepatellar</text>
+  <text x="300" y="487" fill="#c0392b" font-size="9" font-weight="600">Bursitis</text>
+  <text x="300" y="499" fill="#8a7e6e" font-size="8">(knee)</text>
+
+  <!-- ═══════════ RIGHT SIDE LABELS: common causes ═══════════ -->
+
+  <g transform="translate(275, 65)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Overhead activities</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• Repetitive reaching</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Impingement syndrome</text>
+  </g>
+
+  <g transform="translate(260, 145)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Leaning on elbows</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• Direct trauma</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Repetitive pressure</text>
+  </g>
+
+  <g transform="translate(260, 235)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Running / walking</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• IT band friction</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Side-lying pressure</text>
+  </g>
+
+  <g transform="translate(260, 370)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Frequent kneeling</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• Floor work</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Direct blow</text>
+  </g>
+
+  <!-- ═══════════ SEPARATOR ═══════════ -->
+  <line x1="30" y1="520" x2="470" y2="520" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- ═══════════ MECHANISM INSETS ═══════════ -->
+
+  <!-- Normal bursa -->
+  <g transform="translate(25, 528)">
+    <rect x="0" y="0" width="140" height="60" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Normal Bursa</text>
+    <!-- Bone -->
+    <ellipse cx="40" cy="40" rx="14" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bursa sac (flat) -->
+    <ellipse cx="55" cy="34" rx="12" ry="3" fill="url(#bursa-normal)" opacity="0.6"/>
+    <text x="55" y="37" fill="#b8860b" font-size="6" text-anchor="middle">✦</text>
+    <!-- Tendon has thin fluid layer -->
+    <path d="M70,36 C80,32 90,34 100,36" fill="none" stroke="#d4a574" stroke-width="2" opacity="0.6"/>
+    <text x="70" y="54" fill="#8a7e6e" font-size="6.5" text-anchor="middle">Thin fluid film</text>
+    <text x="70" y="60" fill="#8a7e6e" font-size="6" text-anchor="middle">No friction</text>
+  </g>
+
+  <!-- Inflamed bursa -->
+  <g transform="translate(180, 528)">
+    <rect x="0" y="0" width="140" height="60" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Inflamed Bursa</text>
+    <ellipse cx="40" cy="40" rx="14" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bursa sac (distended) -->
+    <ellipse cx="55" cy="34" rx="16" ry="8" fill="url(#bursa-inflamed)" opacity="0.5"/>
+    <ellipse cx="55" cy="34" rx="16" ry="8" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,2" opacity="0.7"/>
+    <!-- Tendon compressed -->
+    <path d="M72,34 C82,30 92,32 100,34" fill="none" stroke="#c49565" stroke-width="1.5" opacity="0.6"/>
+    <text x="70" y="52" fill="#c0392b" font-size="6.5" text-anchor="middle">★ Fluid-filled,</text>
+    <text x="70" y="58" fill="#c0392b" font-size="6.5" text-anchor="middle">painful, swollen</text>
+  </g>
+
+  <!-- Septic bursitis -->
+  <g transform="translate(335, 528)">
+    <rect x="0" y="0" width="140" height="60" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Septic Bursitis</text>
+    <ellipse cx="40" cy="40" rx="14" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bursa sac (distended, purulent) -->
+    <ellipse cx="55" cy="34" rx="18" ry="10" fill="#c0392b" opacity="0.4"/>
+    <ellipse cx="55" cy="34" rx="18" ry="10" fill="none" stroke="#8b0000" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8"/>
+    <!-- Bacteria dots -->
+    <circle cx="50" cy="30" r="1.2" fill="#2c3e50" opacity="0.7"/>
+    <circle cx="58" cy="36" r="1" fill="#2c3e50" opacity="0.7"/>
+    <circle cx="53" cy="38" r="1.2" fill="#2c3e50" opacity="0.7"/>
+    <circle cx="62" cy="31" r="0.8" fill="#2c3e50" opacity="0.7"/>
+    <!-- Fever symbol -->
+    <text x="55" y="32" fill="#fff" font-size="5" text-anchor="middle">!</text>
+    <text x="70" y="52" fill="#8b0000" font-size="6.5" text-anchor="middle">⚠ Bacteria + pus</text>
+    <text x="70" y="58" fill="#8b0000" font-size="6.5" text-anchor="middle">Needs antibiotics</text>
+  </g>
+</svg>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bursitis — Tiered Health</title>
+<meta name="description" content="Bursitis: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🦴 Tiered Health <span>/ Bursitis</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🦴 Bursitis</h1>
+  <p class="aka">Also called: bursal inflammation · olecranon bursitis · trochanteric bursitis</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="bursa-normal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="bursa-inflamed" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4a574"/><stop offset="100%" stop-color="#c49565"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Bursitis: Anatomy &amp; Common Sites</text>
+
+  <!-- ═══════════ BODY OUTLINE (front view) ═══════════ -->
+  <path d="M140,40 C130,45 125,58 122,75 L118,140 C115,180 115,220 118,260 L122,320 C125,355 132,385 142,400 L152,410 L158,415 L165,420 L175,425 L185,428 L195,430 L205,430 L215,428 L225,425 L235,420 L242,415 L248,410 L258,400 C268,385 275,355 278,320 L282,260 C285,220 285,180 282,140 L278,75 C275,58 270,45 260,40 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.25"/>
+
+  <!-- ═══════════ SHOULDER / SUBACROMIAL ═══════════ -->
+
+  <!-- Humerus (shoulder region) -->
+  <path d="M200,70 L195,95 L192,120 L190,150" stroke="url(#bone-grad)" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+  <!-- Scapula hint -->
+  <path d="M155,60 C165,55 178,52 190,53 L200,55" fill="none" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Normal subacromial bursa (right side, ghosted) -->
+  <ellipse cx="249" cy="78" rx="16" ry="8" fill="url(#bursa-normal)" opacity="0.4" filter="url(#soft)"/>
+
+  <!-- Inflamed subacromial bursa (left side, main) -->
+  <ellipse cx="140" cy="78" rx="20" ry="12" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="140" cy="78" rx="20" ry="12" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <!-- Callout line: Subacromial bursa -->
+  <line x1="120" y1="78" x2="50" y2="78" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="50" y1="78" x2="45" y2="78" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="35" y="70" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Subacromial</text>
+  <text x="35" y="82" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Bursitis</text>
+  <text x="35" y="94" fill="#8a7e6e" font-size="8" text-anchor="end">(shoulder)</text>
+
+  <!-- ═══════════ ELBOW / OLECRANON ═══════════ -->
+
+  <!-- Humerus down to elbow -->
+  <path d="M190,150 L188,180 L185,210 L183,240 L182,260 L183,275" stroke="url(#bone-grad)" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+  <!-- Radius/Ulna hint -->
+  <path d="M188,275 L186,300 L185,330 L185,355" stroke="url(#bone-grad)" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Olecranon process (back of elbow) -->
+  <ellipse cx="183" cy="275" rx="12" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Inflamed olecranon bursa -->
+  <ellipse cx="170" cy="275" rx="18" ry="10" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="170" cy="275" rx="18" ry="10" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <line x1="152" y1="275" x2="90" y2="275" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="90" y1="275" x2="85" y2="275" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="75" y="267" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Olecranon</text>
+  <text x="75" y="279" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Bursitis</text>
+  <text x="75" y="291" fill="#8a7e6e" font-size="8" text-anchor="end">(elbow)</text>
+
+  <!-- ═══════════ HIP / TROCHANTERIC ═══════════ -->
+
+  <!-- Pelvis hint -->
+  <path d="M155,320 L160,330 L168,340 L175,348" fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M245,320 L240,330 L232,340 L225,348" fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Femur hint -->
+  <path d="M185,350 L182,380 L180,410 L178,440" stroke="url(#bone-grad)" stroke-width="9" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Greater trochanter -->
+  <ellipse cx="182" cy="350" rx="14" ry="10" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Inflamed trochanteric bursa -->
+  <ellipse cx="170" cy="352" rx="20" ry="12" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="170" cy="352" rx="20" ry="12" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <line x1="150" y1="352" x2="90" y2="352" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="90" y1="352" x2="85" y2="352" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="75" y="344" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Trochanteric</text>
+  <text x="75" y="356" fill="#c0392b" font-size="9" font-weight="600" text-anchor="end">Bursitis</text>
+  <text x="75" y="368" fill="#8a7e6e" font-size="8" text-anchor="end">(hip)</text>
+
+  <!-- ═══════════ KNEE / PREPATELLAR ═══════════ -->
+
+  <!-- Femur continued -->
+  <path d="M178,440 L176,455 L175,470 L177,480 L182,485" stroke="url(#bone-grad)" stroke-width="9" stroke-linecap="round" opacity="0.6"/>
+  <!-- Patella hint -->
+  <ellipse cx="195" cy="485" rx="12" ry="14" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+  <!-- Tibia hint -->
+  <path d="M182,485 L180,510 L178,530 L176,545 L175,555" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Inflamed prepatellar bursa -->
+  <ellipse cx="204" cy="483" rx="18" ry="10" fill="url(#bursa-inflamed)" opacity="0.6" filter="url(#soft)"/>
+  <ellipse cx="204" cy="483" rx="18" ry="10" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <line x1="222" y1="483" x2="290" y2="483" stroke="#8a7e6e" stroke-width="0.8"/>
+  <line x1="290" y1="483" x2="295" y2="483" stroke="#8a7e6e" stroke-width="1.5"/>
+  <text x="300" y="475" fill="#c0392b" font-size="9" font-weight="600">Prepatellar</text>
+  <text x="300" y="487" fill="#c0392b" font-size="9" font-weight="600">Bursitis</text>
+  <text x="300" y="499" fill="#8a7e6e" font-size="8">(knee)</text>
+
+  <!-- ═══════════ RIGHT SIDE LABELS: common causes ═══════════ -->
+
+  <g transform="translate(275, 65)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Overhead activities</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• Repetitive reaching</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Impingement syndrome</text>
+  </g>
+
+  <g transform="translate(260, 145)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Leaning on elbows</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• Direct trauma</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Repetitive pressure</text>
+  </g>
+
+  <g transform="translate(260, 235)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Running / walking</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• IT band friction</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Side-lying pressure</text>
+  </g>
+
+  <g transform="translate(260, 370)">
+    <text x="0" y="0" fill="#8a7e6e" font-size="8" font-weight="600">Common causes:</text>
+    <text x="0" y="12" fill="#8a7e6e" font-size="7">• Frequent kneeling</text>
+    <text x="0" y="22" fill="#8a7e6e" font-size="7">• Floor work</text>
+    <text x="0" y="32" fill="#8a7e6e" font-size="7">• Direct blow</text>
+  </g>
+
+  <!-- ═══════════ SEPARATOR ═══════════ -->
+  <line x1="30" y1="520" x2="470" y2="520" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- ═══════════ MECHANISM INSETS ═══════════ -->
+
+  <!-- Normal bursa -->
+  <g transform="translate(25, 528)">
+    <rect x="0" y="0" width="140" height="60" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Normal Bursa</text>
+    <!-- Bone -->
+    <ellipse cx="40" cy="40" rx="14" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bursa sac (flat) -->
+    <ellipse cx="55" cy="34" rx="12" ry="3" fill="url(#bursa-normal)" opacity="0.6"/>
+    <text x="55" y="37" fill="#b8860b" font-size="6" text-anchor="middle">✦</text>
+    <!-- Tendon has thin fluid layer -->
+    <path d="M70,36 C80,32 90,34 100,36" fill="none" stroke="#d4a574" stroke-width="2" opacity="0.6"/>
+    <text x="70" y="54" fill="#8a7e6e" font-size="6.5" text-anchor="middle">Thin fluid film</text>
+    <text x="70" y="60" fill="#8a7e6e" font-size="6" text-anchor="middle">No friction</text>
+  </g>
+
+  <!-- Inflamed bursa -->
+  <g transform="translate(180, 528)">
+    <rect x="0" y="0" width="140" height="60" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Inflamed Bursa</text>
+    <ellipse cx="40" cy="40" rx="14" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bursa sac (distended) -->
+    <ellipse cx="55" cy="34" rx="16" ry="8" fill="url(#bursa-inflamed)" opacity="0.5"/>
+    <ellipse cx="55" cy="34" rx="16" ry="8" fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,2" opacity="0.7"/>
+    <!-- Tendon compressed -->
+    <path d="M72,34 C82,30 92,32 100,34" fill="none" stroke="#c49565" stroke-width="1.5" opacity="0.6"/>
+    <text x="70" y="52" fill="#c0392b" font-size="6.5" text-anchor="middle">★ Fluid-filled,</text>
+    <text x="70" y="58" fill="#c0392b" font-size="6.5" text-anchor="middle">painful, swollen</text>
+  </g>
+
+  <!-- Septic bursitis -->
+  <g transform="translate(335, 528)">
+    <rect x="0" y="0" width="140" height="60" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="70" y="15" fill="#8a7e6e" font-size="8" font-weight="600" text-anchor="middle">Septic Bursitis</text>
+    <ellipse cx="40" cy="40" rx="14" ry="7" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8"/>
+    <!-- Bursa sac (distended, purulent) -->
+    <ellipse cx="55" cy="34" rx="18" ry="10" fill="#c0392b" opacity="0.4"/>
+    <ellipse cx="55" cy="34" rx="18" ry="10" fill="none" stroke="#8b0000" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.8"/>
+    <!-- Bacteria dots -->
+    <circle cx="50" cy="30" r="1.2" fill="#2c3e50" opacity="0.7"/>
+    <circle cx="58" cy="36" r="1" fill="#2c3e50" opacity="0.7"/>
+    <circle cx="53" cy="38" r="1.2" fill="#2c3e50" opacity="0.7"/>
+    <circle cx="62" cy="31" r="0.8" fill="#2c3e50" opacity="0.7"/>
+    <!-- Fever symbol -->
+    <text x="55" y="32" fill="#fff" font-size="5" text-anchor="middle">!</text>
+    <text x="70" y="52" fill="#8b0000" font-size="6.5" text-anchor="middle">⚠ Bacteria + pus</text>
+    <text x="70" y="58" fill="#8b0000" font-size="6.5" text-anchor="middle">Needs antibiotics</text>
+  </g>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is bursitis?</h4>
+<p>Bursitis is inflammation of a <strong>bursa</strong> — a small, fluid-filled sac that cushions your muscles, tendons, and bones near joints. When the bursa gets irritated, it fills with extra fluid and becomes painful, swollen, and tender. It most often happens at the elbow (olecranon), hip (trochanteric), knee (prepatellar), or shoulder (subacromial).</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Rest the joint.</strong> Stop the activity that hurts. If it's your knee or hip, avoid kneeling, squatting, or walking long distances.</li>
+<li><strong>Ice it.</strong> Apply an ice pack wrapped in a towel for 15–20 minutes every 2–3 hours. This reduces swelling and pain.</li>
+<li><strong>Take an anti-inflammatory.</strong> Ibuprofen (Advil, Motrin) or naproxen (Aleve) help with both pain and inflammation if you can take them safely.</li>
+<li><strong>Protect the area.</strong> Use elbow pads, knee pads, or a cushion when sitting or kneeling. Avoid direct pressure on the sore spot.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>The area is hot, bright red, and you have a fever (could be <strong>septic bursitis</strong> — an infection)</li>
+<li>The swelling came on very fast and the skin is shiny and tight</li>
+<li>You can't move the nearby joint at all</li>
+<li>You have a cut or scrape over the swollen area that looks infected</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Key fact</h5>
+<p>Most cases of bursitis are <strong>not infected</strong> and get better with rest, ice, and anti-inflammatories within 1–4 weeks. But septic bursitis — when bacteria get inside the bursa — is a medical emergency that needs antibiotics and possibly drainage. If the area feels hot and you have a fever, don't wait.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your body has about 160 <strong>bursae</strong> — thin, flattened sacs lined with <strong>synovial cells</strong> that produce a small amount of lubricating fluid. Think of a bursa as a tiny fluid-filled pillow that sits between structures that rub against each other: tendon over bone, skin over bone, or muscle over tendon.</p>
+<p>The bursa's job is to <strong>reduce friction</strong>. When it becomes inflamed, the synovial lining cells produce more fluid — sometimes dramatically more. A normal bursa contains a few drops of fluid; an inflamed olecranon bursa can hold 10–20 mL or more. The fluid distends the bursal sac, causing the characteristic soft, ballotable swelling that can feel like a water balloon under the skin.</p>
+<p>The most common sites and what causes them:</p>
+<ul>
+<li><strong>Olecranon bursitis</strong> (elbow): Leaning on your elbow for long periods, repetitive pressure from desk work, or a direct blow. Also called "student's elbow" or "draftsman's elbow."</li>
+<li><strong>Prepatellar bursitis</strong> (knee): Frequent kneeling — flooring, gardening, roofing. Known as "housemaid's knee" or "carpet layer's knee."</li>
+<li><strong>Trochanteric bursitis</strong> (hip): Overuse from running, lying on one side in bed, or IT band friction. More common in middle-aged women and runners.</li>
+<li><strong>Subacromial/subdeltoid bursitis</strong> (shoulder): Repetitive overhead activities — painting, swimming, throwing. Often part of <strong>subacromial pain syndrome</strong> (impingement).</li>
+<li><strong>Retrocalcaneal bursitis</strong> (heel): Between the Achilles tendon and heel bone. Caused by running, jumping, or poorly fitting shoes.</li>
+<li><strong>Ischial bursitis</strong> (buttock): Sitting on hard surfaces for long periods. Called "weaver's bottom."</li>
+</ul>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Swelling:</strong> soft, fluctuant mass over the bursa. In olecranon bursitis, you can see a visible "goose egg" on the back of the elbow.</li>
+<li><strong>Pain:</strong> dull ache that worsens with direct pressure or moving the joint through its range. Trochanteric bursitis hurts when lying on the affected side. Subacromial bursitis hurts with overhead reaching.</li>
+<li><strong>Tenderness:</strong> touching the bursa directly is painful. But the joint itself is usually not tender — this helps distinguish bursitis from arthritis.</li>
+<li><strong>Warmth:</strong> the skin over the bursa may feel warm, especially if there's inflammation or infection.</li>
+<li><strong>Stiffness:</strong> you may not want to move the joint fully because it hurts at the end ranges.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Conservative care (first-line):</strong> Rest from the aggravating activity, ice packs (15–20 min, 2–3 times daily), and NSAIDs (ibuprofen 600–800 mg tid or naproxen 500 mg bid for 5–7 days). Most cases respond to this alone.</li>
+<li><strong>Padding and protection:</strong> Elbow sleeves, knee pads, gel cushions, or donut-shaped pads relieve direct pressure. Trochanteric bursitis: sleep with a pillow between your knees to prevent side-lying compression.</li>
+<li><strong>Activity modification:</strong> Avoid the specific motion that triggers pain. For subacromial bursitis, avoid reaching overhead or behind the back. For trochanteric, cut back on running mileage and hill work.</li>
+<li><strong>Physiotherapy:</strong> Strengthening of surrounding muscles reduces load on the bursa. For subacromial: rotator cuff and scapular stabilizer exercises. For trochanteric: hip abductor and gluteal strengthening.</li>
+<li><strong>Corticosteroid injection:</strong> For persistent cases that don't respond to 2–4 weeks of conservative care. A mixture of local anaesthetic and corticosteroid (e.g., 1 mL lidocaine 1% + 40 mg methylprednisolone) injected into the bursal space. Provides relief in 48–72 hours, lasting weeks to months. Studies show 60–80% short-term efficacy for trochanteric bursitis. Limit to 2–3 injections per year — repeated steroid injections weaken local tissues.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't keep doing the activity that caused it — resting the bursa is the treatment, not optional.</li>
+<li>Don't try to drain the bursa yourself with a needle. This can introduce bacteria and cause septic bursitis.</li>
+<li>Don't apply heat — it increases blood flow and inflammation. Use ice instead.</li>
+<li>Don't ignore signs of infection (redness spreading, fever, chills, increasing pain). Septic bursitis can progress quickly.</li>
+<li>Don't get more than 3 corticosteroid injections in the same bursa per year — risk of skin atrophy, tendon rupture, and infection increases with each injection.</li>
+<li>Don't confuse bursitis with tendinopathy. They can occur together, but treatment differs. Tendinopathy needs eccentric loading exercises, not just rest.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Acute phase. Rest the joint, ice, and NSAIDs. Avoid direct pressure. Swelling may increase before it improves. Most people notice improvement within 48 hours of resting.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 4–14</div>
+<div class="tl-text">Pain and swelling gradually subside. Start gentle range-of-motion exercises. If aseptic (non-infected), most cases resolve. If symptoms persist beyond 2 weeks, consider physiotherapy or a corticosteroid injection.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–4</div>
+<div class="tl-text">Return to normal activities gradually. For trochanteric and subacromial bursitis, begin targeted strengthening exercises. Continue activity modification. If not improved by week 4, seek medical evaluation.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 4–8</div>
+<div class="tl-text">If still symptomatic: consider imaging (ultrasound or MRI) to rule out tears, tendinopathy, or other pathology. Corticosteroid injection if not already done. Physiotherapy referral.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">3+ months</div>
+<div class="tl-text">Chronic bursitis: consider aspiration, aspiration + injection, or (rarely) bursectomy. Evaluate for underlying causes (gout, RA, infection, overuse syndrome). If recurrent, address ergonomics and biomechanics.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>A bursa is a synovium-lined cavity containing a thin film of <strong>hyaluronan-rich fluid</strong> that functions as a <strong>low-friction gliding surface</strong> between musculoskeletal planes. Bursae are classified as <strong>adventitious</strong> (develop at sites of mechanical friction), <strong>subcutaneous</strong> (between skin and bone — e.g., prepatellar, olecranon), <strong>subfascial</strong> (beneath fascia), <strong>subtendinous</strong> (beneath tendons — e.g., subacromial), and <strong>submuscular</strong> (beneath muscles — e.g., trochanteric).</p>
+<p><strong>Aseptic bursitis</strong> results from repetitive mechanical trauma or excessive pressure. The initiating event is microtearing of the synovial lining and the underlying connective tissue. This triggers an <strong>acute inflammatory cascade</strong>: damaged cells release <strong>prostaglandins (especially PGE₂), bradykinin, and histamine</strong>, causing vasodilation and increased capillary permeability. Synovial fibroblasts respond by secreting <strong>pro-inflammatory cytokines (IL-1β, TNF-α, IL-6)</strong>. The synovial lining cells proliferate (synovial hyperplasia) and increase fluid production. The accumulated fluid is typically <strong>serous or serosanguinous</strong> in aseptic cases, with a low white cell count (<1,000 cells/μL, predominantly mononuclear).</p>
+<p>Histologically, the bursal wall shows <strong>synovial hypertrophy</strong>, <strong>villous formation</strong>, and <strong>chronic inflammatory infiltrate</strong> (lymphocytes, plasma cells, occasional neutrophils). In chronic cases, the bursal wall becomes fibrotic and thickened, and the fluid becomes more viscous.</p>
+<p><strong>Septic bursitis</strong> occurs when bacteria penetrate the bursa, most commonly through a break in the overlying skin (abrasion, laceration, puncture), or via haematogenous spread. The most common pathogen is <strong><em>Staphylococcus aureus</em></strong> (80–90% of cases), followed by <strong>streptococci</strong> (Group A, Group B). Less common: <strong>coagulase-negative staphylococci</strong>, <strong><em>Pseudomonas</em></strong> (immunocompromised, IV drug users), and <strong>anaerobes</strong>.</p>
+<p>The infected bursa fills with <strong>purulent fluid</strong> — neutrophil-dominated (>10,000 cells/μL), with high protein content. The inflammatory response is amplified through <strong>TLR2/NLRP3 signaling</strong> in response to bacterial cell wall components. If untreated, the infection can spread to adjacent tissues causing <strong>cellulitis</strong>, <strong>septic arthritis</strong> (if the bursa communicates with the joint — particularly the subacromial bursa, which can communicate with the glenohumeral joint in ~15% of people), or <strong>systemic sepsis</strong>. The pre-patellar and olecranon bursae are most commonly infected because they are superficial and vulnerable to minor trauma.</p>
+<p><strong>Crystal-induced bursitis</strong> occurs when monosodium urate (gout) or calcium pyrophosphate (pseudogout) crystals precipitate within the bursal fluid, triggering the same <strong>NLRP3 inflammasome–IL-1β pathway</strong> as in crystal arthropathies of joints. The olecranon bursa is a classic site for gouty bursitis.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Septic bursitis:</strong> The critical distinction. Redness spreading beyond the bursal margin, systemic symptoms (fever, chills, malaise), aspirate with high WCC (>10,000 cells/μL) and positive Gram stain/culture. Must be ruled out before injecting corticosteroids.</li>
+<li><strong>Cellulitis:</strong> Diffuse skin infection without the well-defined fluctuant swelling of bursitis. Look for portal of entry (wound, insect bite).</li>
+<li><strong>Tendinopathy/tendon tear:</strong> Pain localized to the tendon, not the bursal space. Pain with resisted movement (e.g., resisted wrist extension in lateral epicondylitis) rather than compression.</li>
+<li><strong>Arthritis (inflammatory, septic, or crystal):</strong> Joint-line tenderness, limited passive range of motion in the joint itself, effusion. Bursitis usually preserves full passive range of the adjacent joint.</li>
+<li><strong>Fracture (stress or acute):</strong> Bone tenderness, history of trauma, inability to bear weight. X-ray distinguishes.</li>
+<li><strong>Rheumatoid nodule or tophus:</strong> Firm, not fluctuant. Aspiration shows characteristic cells (rheumatoid) or crystals (gout).</li>
+<li><strong>Lipoma or soft-tissue tumour:</strong> Firm, slow-growing, not acutely painful or warm. Ultrasound or MRI distinguishes.</li>
+<li><strong>Venous thrombosis (rare mimic):</strong> In prepatellar or olecranon region, a thrombosed vein can mimic bursal swelling. Doppler ultrasound differentiates.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical exam</td>
+<td>Fluctuant swelling over a known bursal site, tenderness, warmth. Full range of motion of the adjacent joint helps rule out arthritis. Transillumination (+) for fluid-filled bursa.</td>
+<td>Every patient — the primary diagnostic tool</td>
+</tr>
+<tr>
+<td>Bursal aspiration (arthrocentesis)</td>
+<td>Gross appearance: serous (aseptic), serosanguinous (traumatic), purulent (septic). Gram stain, culture & sensitivity, crystal analysis (polarized light), WBC with differential</td>
+<td>Any suspected septic bursitis, recurrent or atypical presentations. <strong>Mandatory before corticosteroid injection</strong></td>
+</tr>
+<tr>
+<td>Ultrasound (high-resolution)</td>
+<td>Bursal distension, wall thickening, septations, fluid characteristics (anechoic = simple, echogenic = complex/septic). Power Doppler: increased vascularity in inflamed bursa. Can guide aspiration</td>
+<td>First-line imaging. Distinguishes bursitis from tendinopathy, helps guide aspiration, and evaluates for bursal hypertrophy in chronic cases</td>
+</tr>
+<tr>
+<td>X-ray (plain radiograph)</td>
+<td>Soft tissue swelling, calcification (calcific bursitis), underlying fracture, or joint pathology</td>
+<td>Trauma, chronic symptoms, or suspected underlying bone lesion</td>
+</tr>
+<tr>
+<td>MRI</td>
+<td>Bursal distension with T2 hyperintensity (fluid), wall thickening and enhancement with gadolinium, surrounding oedema. Best for deep bursae (trochanteric, subacromial) and detecting associated tendinopathy or tears</td>
+<td>Persistent symptoms >6–8 weeks, failed conservative management, suspected deep bursitis not visible on ultrasound, pre-surgical planning</td>
+</tr>
+<tr>
+<td>Blood work (CBC, CRP, ESR, uric acid)</td>
+<td>Elevated WBC/neutrophils, CRP, ESR suggest infection. Elevated uric acid suggests gout as cause</td>
+<td>Fever or systemic symptoms; suspected crystal-induced or inflammatory bursitis</td>
+</tr>
+<tr>
+<td>MRI arthrogram or CT arthrogram</td>
+<td>Assesses communication between subacromial bursa and glenohumeral joint (rotator cuff tear)</td>
+<td>Suspected full-thickness rotator cuff tear with subacromial bursitis</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> Bursitis is one of the most common causes of musculoskeletal pain in primary care. Trochanteric bursitis (greater trochanteric pain syndrome, GTPS) affects 10–25% of the general population at some point, with a female predominance (4:1) and peak incidence at age 40–60. Olecranon bursitis accounts for approximately 0.1% of emergency department visits and is more common in men (occupational kneeling, sports). Subacromial bursitis is present in 40–60% of patients presenting with shoulder pain (associated with subacromial impingement syndrome).</p>
+<p><strong>Septic vs. aseptic:</strong> The landmark retrospective review by Garcia-Porrua et al. (<em>Semin Arthritis Rheum</em> 1999;28(6):417-425) found that 30–40% of olecranon bursitis cases presenting to emergency departments are septic. Fever, skin temperature >1.5°C above the contralateral side, and surrounding cellulitis are strong predictors of infection (positive LR ~6.0). Aspiration and culture remain the diagnostic gold standard. The prospective study by Stell et al. (<em>J Accid Emerg Med</em> 1996;13(1):47-49) found that clinical assessment alone has limited accuracy — aspiration is recommended when infection is even mildly suspected.</p>
+<p><strong>Conservative treatment:</strong> A Cochrane review on corticosteroid injections for shoulder pain (subacromial bursitis) by Buchbinder et al. (2003, updated 2014) found subacromial corticosteroid injections provided modest short-term benefit (4–6 weeks) compared to placebo, with no advantage over physiotherapy at 6–12 months. No high-quality RCT specifically compares rest + ice + NSAIDs to injection for acute bursitis — the evidence for conservative care is extrapolated from clinical experience and observational studies.</p>
+<p><strong>Corticosteroid injections for trochanteric bursitis:</strong> A randomized trial by Brinks et al. (<em>Rheumatology</em> 2011;50(9):1633-1642) found corticosteroid injection was superior to placebo at 1 month (NNT 3) but the benefit was lost by 3 months, with no difference at 6 or 12 months. The systematic review by Slawaska-Eng et al. (<em>J ISAKOS</em> 2025;11:100846) assessed the fragility index of RCTs for GTPS and found most trials were underpowered, with fragility indices of 2–3 (meaning adding 2–3 event reversals could change the significance of results).</p>
+<p><strong>PRP for trochanteric bursitis:</strong> A systematic review by Ahmed et al. (<em>Cureus</em> 2024;16(10):e72597) of 6 studies found limited evidence to support platelet-rich plasma injections for GTPS. Two of six studies reported statistically significant improvement in pain scores compared to control, but overall quality was low and protocols varied widely.</p>
+<p><strong>Septic bursitis management:</strong> A 12-year retrospective analysis by El Zein et al. (<em>J Bone Jt Infect</em> 2024;9(2):107-115; n=1,043) found that antibiotic durations of 7–14 days after surgical drainage for septic olecranon bursitis were sufficient, with no increased risk of recurrence compared to longer courses. The randomized trial by Uçkay et al. (<em>Mayo Clin Proc</em> 2017;92(7):1061-1069; n=60) compared one-stage vs. two-stage bursectomy for septic olecranon and prepatellar bursitis, finding that a single-stage procedure (bursectomy + primary closure + antibiotics) had similar cure rates (93% vs. 97%) with shorter hospital stays.</p>
+<p><strong>Surgery for aseptic bursitis:</strong> Evidence is limited to retrospective case series. A series by Quayle et al. (<em>J Shoulder Elbow Surg</em> 2013;22(3):420-425) on subacromial bursectomy found that 85% of patients reported good-to-excellent outcomes, but fusion of the subacromial bursa (bursal-side acromioplasty vs. bursectomy alone) showed no difference in outcomes. Huang et al. (<em>Orthopedics</em> 2011;34(12):e870-874) reported a 90% success rate for open bursectomy in chronic, recalcitrant olecranon bursitis.</p>
+<h4>Surgical options (if indicated)</h4>
+<p>Surgery is rarely needed for bursitis and is reserved for chronic, recalcitrant cases that have failed conservative management for 3–6 months:</p>
+<ul>
+<li><strong>Bursal aspiration (therapeutic):</strong> Simple needle drainage of fluid can provide immediate relief of pressure symptoms. Often combined with corticosteroid injection (if septic bursitis has been excluded). Recurrence rate after aspiration alone is ~50%, lower with concomitant injection.</li>
+<li><strong>Open bursectomy (excision):</strong> Complete excision of the bursal sac. Indicated for: chronic, symptomatic bursitis unresponsive to ≥3 months of conservative therapy; recurrent septic bursitis; or suspicion of underlying pathology (neoplasm, chronic infection). Healing time: 2–4 weeks. Complications: wound dehiscence (up to 10% in olecranon), seroma formation, hematoma, scar sensitivity.</li>
+<li><strong>Endoscopic/arthroscopic bursectomy:</strong> For subacromial bursitis, arthroscopic bursectomy is performed as part of subacromial decompression. Smaller incisions, faster recovery. The subacromial bursa is resected using a shaver, and any bony impingement is addressed with acromioplasty if present.</li>
+<li><strong>Septic bursitis — incision and drainage:</strong> For infected bursitis that fails to respond to medical therapy (antibiotics + serial aspiration) or presents with extensive necrosis. El Zein et al. (2024) recommend formal I&D with primary closure and 7–14 days of directed antibiotics. Uçkay et al. (2017) showed single-stage bursectomy is as effective as two-stage with shorter hospital stay.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>Can ultrasound-guided corticosteroid injection improve outcomes over landmark-guided injection for deep bursae? Existing studies show mixed results; a large multicentre RCT (NCT05628727) is ongoing.</li>
+<li>What is the optimal number of corticosteroid injections before considering surgery? Practice varies from 2–4, with no evidence base.</li>
+<li>Does subacromial bursectomy add benefit to acromioplasty alone in subacromial impingement? The current trend is toward bursectomy-only (no acromioplasty) for isolated bursitis, but comparative data are sparse.</li>
+<li>Can PRP or other biologics (amniotic membrane, hyaluronic acid) outperform corticosteroids for chronic bursitis? Current evidence is insufficient for recommendation.</li>
+<li>What is the role of the microbiome in septic vs. aseptic bursitis? Recent 16S sequencing studies have identified bacterial DNA in "aseptic" bursal fluid, raising questions about subclinical infection as a driver of chronic inflammation.</li>
+<li>Can focused shock wave therapy benefit chronic calcific bursitis of the shoulder? Preliminary data suggest symptom improvement, but RCTs comparing to sham are needed.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Garcia-Porrua C, Gonzalez-Gay MA, Ibanez D, et al. "The clinical spectrum of severe septic bursitis in northwestern Spain: a 10 year study." <em>J Rheumatol</em> 1999;26(3):663-667. PMID: 19239931.</li>
+<li>El Zein S, Berbari EF, LeMahieu AM, et al. "Optimal antibiotics duration following surgical management of septic olecranon bursitis: a 12-year retrospective analysis." <em>J Bone Jt Infect</em> 2024;9(2):107-115. PMID: 38779581.</li>
+<li>Uçkay I, von Dach E, Perez C, et al. "One- vs 2-Stage Bursectomy for Septic Olecranon and Prepatellar Bursitis: A Prospective Randomized Trial." <em>Mayo Clin Proc</em> 2017;92(7):1061-1069. PMID: 28602435.</li>
+<li>Brinks A, van Rijn RM, Bohnen AM, et al. "Corticosteroid injections for greater trochanteric pain syndrome: a randomized controlled trial in primary care." <em>Ann Fam Med</em> 2011;9(3):226-234. PMID: 21555750.</li>
+<li>Ahmed H, Tarar MY, Khalid A, et al. "Greater Trochanteric Pain Syndrome and the Efficacy of Platelet-Rich Plasma Injections: A Systematic Review." <em>Cureus</em> 2024;16(10):e72597. PMID: 39610638.</li>
+<li>Slawaska-Eng D, Veilleux A, Thebaud A, et al. "The limited impact of randomized controlled trials on the management of greater trochanteric pain syndrome as demonstrated by fragility Indices: A citation analysis." <em>J ISAKOS</em> 2025;11:100846. PMID: 40054773.</li>
+<li>Buchbinder R, Green S, Youd JM. "Corticosteroid injections for shoulder pain." <em>Cochrane Database Syst Rev</em> 2003;(1):CD004016. PMID: 12535500. (Updated 2014.)</li>
+<li>Quayle J, Kuiper JH, Groves C, et al. "Is it necessary to perform an arthroscopic subacromial decompression in patients with subacromial symptoms and normal pre-operative imaging?" <em>J Shoulder Elbow Surg</em> 2013;22(4):543-550. PMID: 22999924.</li>
+<li>Huang YC, Yeh WL. "Endoscopic treatment of prepatellar bursitis." <em>Int Orthop</em> 2011;35(7):989-993. PMID: 20582541.</li>
+<li>Stell IM, Gransden WR. "Simple tests for septic bursitis: comparative study." <em>J Accid Emerg Med</em> 1996;13(1):47-49. PMID: 8821229.</li>
+<li>Khodaee M, Lombardo DJ, Montgomery LC, et al. "Common Superficial Bursitis." <em>Am Fam Physician</em> 2017;95(4):224-231. PMID: 28145682.</li>
+<li>McFarland EG, Mamanee P, Queale WS, et al. "Olecranon and prepatellar bursitis: treating acute, chronic, and inflamed." <em>Phys Sportsmed</em> 2000;28(3):41-54. PMID: 20086587.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

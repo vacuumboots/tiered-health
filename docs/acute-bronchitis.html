@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acute Bronchitis — Tiered Health</title>
+<meta name="description" content="Acute Bronchitis: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">💨 Tiered Health <span>/ Acute Bronchitis</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">💨 Acute Bronchitis</h1>
+  <p class="aka">Also called: chest cold · tracheobronchitis</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="airway-healthy" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="airway-inflamed" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e88d5a"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="mucosa-normal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f0e6d0"/><stop offset="100%" stop-color="#e0d4be"/></linearGradient>
+    <linearGradient id="mucosa-swollen" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d4a0a0" stop-opacity="0.6"/><stop offset="100%" stop-color="#c08080" stop-opacity="0.7"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ TORSO OUTLINE (anterior view) ═══════════ -->
+
+  <!-- Torso outline -->
+  <path d="M150,40 C145,45 140,52 138,62 L132,90 C128,120 126,160 128,200 L130,240 C132,270 135,295 140,315 L145,340 C148,355 150,365 150,375 L152,400 L155,430 C158,455 162,475 168,490 L175,505 L185,515 L198,520 L210,522 L225,520 L238,518 L250,515 L255,513 L260,515 L270,518 L280,520 L295,522 L308,520 L320,515 L330,505 L338,490 L344,475 L348,455 L352,430 L355,400 L357,375 C360,365 362,355 365,340 L370,315 C375,295 378,270 380,240 L382,200 C384,160 382,120 378,90 L372,62 C370,52 365,45 360,40 C355,36 348,34 340,33 L328,30 C310,27 290,25 270,25 L240,25 C220,25 200,27 182,30 L170,33 C162,35 155,38 150,40 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- ═══════════ TRACHEA ═══════════ -->
+
+  <!-- Trachea (windpipe) - main airway -->
+  <path d="M240,55 L245,70 L248,90 L250,110 L252,130 L254,150 L255,170 L256,190 L256,210 L255,230 L254,245 L252,260 L250,275 L248,290 L245,305 L242,318 L238,330 L235,340"
+        fill="none" stroke="url(#airway-healthy)" stroke-width="22" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Trachea cartilage rings -->
+  <path d="M225,70 L243,74 L261,70" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+  <path d="M225,95 L244,99 L263,95" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+  <path d="M228,120 L245,124 L262,120" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+  <path d="M230,145 L247,149 L264,145" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+  <path d="M232,170 L248,174 L264,170" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+  <path d="M233,195 L249,199 L265,195" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+  <path d="M233,220 L249,224 L265,220" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+  <path d="M233,245 L248,249 L263,245" fill="none" stroke="#c4b5a0" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Trachea label -->
+  <text x="278" y="150" fill="#8a7e6e" font-size="11" font-weight="600">Trachea</text>
+  <text x="278" y="163" fill="#8a7e6e" font-size="9">(windpipe)</text>
+  <line x1="275" y1="155" x2="263" y2="155" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- ═══════════ CARINA &amp; MAIN BRONCHI ═══════════ -->
+
+  <!-- Carina (bifurcation point) -->
+  <circle cx="238" cy="340" r="6" fill="#e6a817" opacity="0.5"/>
+  <text x="278" y="370" fill="#8a7e6e" font-size="9">Carina</text>
+  <text x="278" y="382" fill="#8a7e6e" font-size="9">(bifurcation)</text>
+  <line x1="278" y1="376" x2="244" y2="348" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- RIGHT main bronchus (wider, more vertical) - HEALTHY SIDE -->
+  <path d="M235,340 C260,355 285,370 310,390 C335,410 355,430 370,450 C378,462 384,472 388,480"
+        fill="none" stroke="url(#airway-healthy)" stroke-width="16" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Right branch labels -->
+  <text x="388" y="432" fill="#8a7e6e" font-size="11" font-weight="600">Right</text>
+  <text x="388" y="445" fill="#8a7e6e" font-size="11" font-weight="600">bronchus</text>
+  <line x1="388" y1="438" x2="358" y2="438" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Right secondary bronchi (branching into right lung) -->
+  <path d="M340,410 C355,405 370,398 382,392" fill="none" stroke="url(#airway-healthy)" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+  <path d="M362,430 C378,425 392,420 404,416" fill="none" stroke="url(#airway-healthy)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M378,450 C390,448 400,445 408,442" fill="none" stroke="url(#airway-healthy)" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+  <path d="M355,420 C368,420 380,420 390,422" fill="none" stroke="url(#airway-healthy)" stroke-width="7" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Right lung outline (ghosted) -->
+  <path d="M370,350 C385,355 398,365 408,380 C418,398 425,420 428,445 C430,465 428,485 422,500 L418,510 L412,518 L404,522 L395,524 L385,522 L375,518 L368,512 L362,504 L358,495 L355,485 L352,472 L350,458 L350,445 L352,432 L356,420 L362,408 L370,398 L378,388 L385,378 L388,368 L385,358 L378,352 L372,348 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.3"/>
+
+  <text x="400" y="462" fill="#8a7e6e" font-size="10" font-style="italic">Right lung</text>
+
+  <!-- LEFT main bronchus (narrower, more horizontal) - INFLAMED SIDE -->
+  <path d="M235,340 C210,358 185,378 162,400 C142,418 128,436 118,452 C110,464 105,474 102,480"
+        fill="none" stroke="url(#airway-inflamed)" stroke-width="18" stroke-linecap="round" opacity="0.75"/>
+
+  <!-- Left branch labels -->
+  <text x="52" y="432" fill="#8a7e6e" font-size="11" font-weight="600">Left</text>
+  <text x="52" y="445" fill="#8a7e6e" font-size="11" font-weight="600">bronchus</text>
+  <line x1="62" y1="438" x2="115" y2="438" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Left secondary bronchi (branching into left lung) - shown as inflamed -->
+  <path d="M160,415 C145,412 132,408 122,404" fill="none" stroke="url(#airway-inflamed)" stroke-width="12" stroke-linecap="round" opacity="0.6"/>
+  <path d="M140,435 C125,432 112,428 102,425" fill="none" stroke="url(#airway-inflamed)" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+  <path d="M125,455 C115,453 106,450 100,448" fill="none" stroke="url(#airway-inflamed)" stroke-width="7" stroke-linecap="round" opacity="0.5"/>
+  <path d="M148,440 C135,442 124,443 115,444" fill="none" stroke="url(#airway-inflamed)" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
+
+  <!-- Left lung outline (ghosted) -->
+  <path d="M120,352 C108,358 98,368 90,382 C82,400 78,420 78,445 C78,465 80,485 86,500 L92,510 L98,518 L106,522 L115,524 L124,522 L132,518 L138,512 L142,504 L145,495 L148,485 L150,472 L152,458 L152,445 L150,432 L146,420 L140,408 L134,398 L126,388 L118,378 L112,368 L110,358 L112,350 L116,348 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.3"/>
+
+  <text x="110" y="460" fill="#8a7e6e" font-size="10" font-style="italic">Left lung</text>
+
+  <!-- ═══════════ INFLAMMATION MARKERS (left/red side) ═══════════ -->
+
+  <!-- Inflammation indicators on left bronchus -->
+  <path d="M145,372 C140,378 138,385 140,392" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+  <path d="M118,398 C112,404 110,412 112,420" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+  <path d="M98,428 C92,434 90,442 92,450" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.6"/>
+
+  <!-- Inflammation label -->
+  <text x="38" y="370" fill="#c0392b" font-size="10" font-weight="600">Inflammation</text>
+  <text x="38" y="383" fill="#c0392b" font-size="10">&amp; swelling</text>
+  <text x="38" y="396" fill="#c0392b" font-size="9">(bronchitis)</text>
+  <line x1="62" y1="383" x2="118" y2="383" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- Mucus drip markers on left side -->
+  <path d="M130,460 C128,465 126,470 125,475" fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.5"/>
+  <path d="M135,455 C133,462 131,468 130,474" fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.5"/>
+
+  <!-- Excessive mucus label -->
+  <text x="12" y="492" fill="#8a7e6e" font-size="9">Excess mucus</text>
+  <text x="12" y="504" fill="#8a7e6e" font-size="9">production</text>
+  <line x1="60" y1="498" x2="128" y2="468" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- ═══════════ HEALTHY LABEL (right side) ═══════════ -->
+
+  <text x="375" y="360" fill="#6a9e6a" font-size="10" font-weight="600">Healthy</text>
+  <text x="375" y="373" fill="#8a7e6e" font-size="9">airway</text>
+
+  <!-- ═══════════ CROSS-SECTION INSETS ═══════════ -->
+
+  <line x1="30" y1="535" x2="470" y2="535" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Healthy bronchus cross-section (right) -->
+  <g transform="translate(260, 545)">
+    <rect x="0" y="0" width="200" height="50" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="100" y="16" fill="#6a9e6a" font-size="10" font-weight="600" text-anchor="middle">✓ Healthy Bronchus</text>
+    <text x="100" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Open airway, thin mucosa,</text>
+    <text x="100" y="44" fill="#8a7e6e" font-size="8" text-anchor="middle">normal mucus, clear cilia</text>
+  </g>
+
+  <!-- Bronchitis cross-section (left) -->
+  <g transform="translate(40, 545)">
+    <rect x="0" y="0" width="200" height="50" rx="6" fill="var(--surface, #fff)" stroke="#c0392b" stroke-width="1" opacity="0.9"/>
+    <text x="100" y="16" fill="#c0392b" font-size="10" font-weight="600" text-anchor="middle">✗ Acute Bronchitis</text>
+    <text x="100" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Swollen mucosa, narrowed airway,</text>
+    <text x="100" y="44" fill="#8a7e6e" font-size="8" text-anchor="middle">excess mucus, damaged cilia</text>
+  </g>
+
+  <!-- Cross-section diagram: healthy (circular airway) -->
+  <g transform="translate(95, 75)">
+    <circle cx="30" cy="30" r="28" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
+    <!-- Outer wall -->
+    <circle cx="30" cy="30" r="26" fill="#f0e6d0" stroke="#d4c8b8" stroke-width="1" opacity="0.6"/>
+    <!-- Airway lumen -->
+    <circle cx="30" cy="30" r="16" fill="#f5c842" opacity="0.4"/>
+    <circle cx="30" cy="30" r="12" fill="#f5c842" opacity="0.2"/>
+    <!-- Cilia (tiny hairs) -->
+    <path d="M46,30 L50,26 M46,28 L50,24 M46,32 L50,28 M46,34 L50,30" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.5"/>
+    <path d="M14,30 L10,26 M14,28 L10,24 M14,32 L10,28 M14,34 L10,30" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.5"/>
+    <path d="M30,4 L26,2 M28,4 L24,2 M32,4 L28,2 M34,4 L30,2" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.5"/>
+    <path d="M30,56 L26,58 M28,56 L24,58 M32,56 L28,58 M34,56 L30,58" fill="none" stroke="#d4a030" stroke-width="0.8" opacity="0.5"/>
+    <text x="30" y="68" fill="#6a9e6a" font-size="7" text-anchor="middle">Healthy</text>
+    <text x="30" y="77" fill="#6a9e6a" font-size="7" text-anchor="middle">cross-section</text>
+  </g>
+
+  <!-- Cross-section diagram: inflamed -->
+  <g transform="translate(295, 75)">
+    <circle cx="30" cy="30" r="28" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
+    <!-- Outer wall (full thickness) -->
+    <circle cx="30" cy="30" r="26" fill="#e0c0c0" stroke="#c08080" stroke-width="1.2" opacity="0.6"/>
+    <!-- Swollen mucosa (thicker ring) -->
+    <circle cx="30" cy="30" r="22" fill="url(#mucosa-swollen)" stroke="#c08080" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.6"/>
+    <!-- Narrowed airway lumen -->
+    <circle cx="30" cy="30" r="8" fill="#e88d5a" opacity="0.4"/>
+    <circle cx="30" cy="30" r="5" fill="#c0392b" opacity="0.3"/>
+    <!-- Mucus inside -->
+    <ellipse cx="28" cy="28" rx="4" ry="3" fill="#e6a817" opacity="0.4"/>
+    <ellipse cx="32" cy="26" rx="3" ry="2" fill="#e6a817" opacity="0.3"/>
+    <!-- Damaged cilia (shorter, fewer) -->
+    <path d="M48,28 L51,26 M48,32 L51,30" fill="none" stroke="#c0392b" stroke-width="0.8" opacity="0.4"/>
+    <path d="M12,28 L9,26 M12,32 L9,30" fill="none" stroke="#c0392b" stroke-width="0.8" opacity="0.4"/>
+    <!-- Red inflammation markers -->
+    <path d="M48,30 L52,30" fill="none" stroke="#c0392b" stroke-width="1.2" opacity="0.5"/>
+    <path d="M8,30 L4,30" fill="none" stroke="#c0392b" stroke-width="1.2" opacity="0.5"/>
+    <text x="30" y="68" fill="#c0392b" font-size="7" text-anchor="middle">Inflamed</text>
+    <text x="30" y="77" fill="#c0392b" font-size="7" text-anchor="middle">cross-section</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="14" font-weight="700" text-anchor="middle">Bronchial Tree — Anterior View</text>
+  <text x="250" y="40" fill="#8a7e6e" font-size="10" text-anchor="middle">Left: inflamed (bronchitis) · Right: healthy airway</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is acute bronchitis?</h4>
+<p>Your bronchial tubes — the passageways that carry air to your lungs — are swollen and irritated, usually from a virus. This makes you cough, often with mucus. Most people call it a "chest cold." It almost always goes away on its own.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Rest and drink plenty of fluids.</strong> Water, warm tea with honey, and broth help thin the mucus so you can cough it up easier.</li>
+<li><strong>Take honey for the cough.</strong> A spoonful of honey as needed is just as good as cough syrup for most people — and safer. (Never give honey to infants under 1 year.)</li>
+<li><strong>Try a cough suppressant at night</strong> if the cough keeps you awake. Dextromethorphan (DM, found in many over-the-counter cough medicines) can help you sleep.</li>
+<li><strong>Use a humidifier or breathe steam</strong> from a hot shower. Moist air soothes irritated airways and loosens mucus.</li>
+<li><strong>Take ibuprofen or acetaminophen</strong> for fever or chest soreness from coughing.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have a fever over 38°C (100.4°F) that lasts more than 3 days</li>
+<li>You're short of breath or wheezing even when resting</li>
+<li>You cough up blood</li>
+<li>Your lips or fingernails look blue (sign of low oxygen)</li>
+<li>You feel confused, dizzy, or you can't stay awake</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Important</h5>
+<p>More than 90% of acute bronchitis cases are caused by viruses. Antibiotics do NOT work against viruses. Taking antibiotics when you don't need them can cause side effects like diarrhea, rashes, and contributes to antibiotic resistance — a serious global health problem. Your body can clear this infection on its own.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your <strong>bronchial tubes</strong> are the branching airways that start at your trachea (windpipe) and divide into smaller and smaller tubes inside your lungs. They're lined with a layer of <strong>ciliated epithelial cells</strong> — cells with tiny hair-like projections that sweep mucus and germs upward and out of your lungs.</p>
+<p>When a virus infects this lining, your immune system responds with inflammation. The blood vessels in the bronchial walls widen, immune cells flood in, and the lining swells and produces extra mucus. This is the <strong>acute inflammatory response</strong> — it's your body's way of fighting the infection, but it also causes the symptoms you feel.</p>
+<p>The <strong>cough reflex</strong> is your body's way of clearing all that extra mucus and debris from your airways. A tickling sensation deep in your chest triggers the reflex, which forcefully expels air at speeds up to 100 mph. The cough is actually working for you — it's clearing your lungs so you can breathe better.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Cough:</strong> The hallmark symptom. Starts dry, then becomes productive (with clear, white, yellow, or green mucus). <strong>Sputum color does NOT tell you if it's viral or bacterial</strong> — green mucus is just from immune cells (neutrophils), not bacteria. The cough can last 2–3 weeks or longer.</li>
+<li><strong>Chest discomfort:</strong> A raw, sore, or burning sensation behind the breastbone, especially when coughing or taking a deep breath.</li>
+<li><strong>Mucus production:</strong> You may cough up phlegm that ranges from clear to yellow-green.</li>
+<li><strong>Low-grade fever:</strong> Usually under 38°C (100.4°F). Higher fevers suggest pneumonia or another condition.</li>
+<li><strong>Fatigue and mild body aches:</strong> Your immune system is working hard.</li>
+<li><strong>Sore throat, runny nose:</strong> Because acute bronchitis usually follows an upper respiratory infection (cold).</li>
+<li><strong>Wheezing:</strong> A whistling sound when breathing out. More common in people with asthma or if you're prone to sensitive airways.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Honey:</strong> multiple clinical trials show honey is as effective as dextromethorphan (cough suppressant) for nighttime cough in adults, with fewer side effects. Take 1–2 teaspoons as needed. <strong>Do not give honey to infants under 12 months</strong> due to risk of infant botulism.</li>
+<li><strong>Hydration:</strong> warm fluids (tea, broth, water with honey) thin mucus and soothe the throat.</li>
+<li><strong>Cough suppressants:</strong> Dextromethorphan (DM) can reduce coughing and help you sleep, but it only works for about a third of people. Codeine-based cough syrups are no longer recommended — they're no more effective than placebo and carry addiction risk.</li>
+<li><strong>Expectorants:</strong> Guaifenesin (Mucinex) may help thin mucus so it's easier to cough up. The evidence is modest.</li>
+<li><strong>Bronchodilators (inhalers):</strong> Albuterol (salbutamol) may help if you're wheezing. For people without wheezing or underlying lung disease, studies show no benefit — albuterol does not shorten the cough or make it go away faster.</li>
+<li><strong>NSAIDs:</strong> Ibuprofen or naproxen for fever and chest wall pain from coughing.</li>
+<li><strong>Humidified air:</strong> Steam or a cool-mist humidifier soothes irritated airways.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li><strong>Don't ask for antibiotics.</strong> More than 90% of acute bronchitis is viral. Antibiotics will not help your cough go away faster, and they can cause side effects. The Cochrane review found antibiotics reduce cough by only half a day on average — not worth the risk.</li>
+<li><strong>Don't use over-the-counter cough and cold medicines in children under 6.</strong> They don't work well and can have serious side effects in young children.</li>
+<li><strong>Don't stop coughing completely.</strong> Coughing clears mucus from your lungs. If you suppress it entirely, the mucus stays in and can lead to pneumonia. Only use cough suppressants if the cough is keeping you from sleeping.</li>
+<li><strong>Don't exercise heavily</strong> while you have a fever. Wait until you've been fever-free for 24 hours.</li>
+<li><strong>Don't smoke or vape</strong> — smoke irritates already inflamed airways and delays healing by weeks.</li>
+<li><strong>Don't take antibiotics "just in case."</strong> Inappropriate antibiotic use is the main driver of antibiotic resistance, which is one of the most urgent global health threats.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Cold symptoms begin: runny nose, sore throat, sneezing. You may feel tired and achy. The cough starts dry and tickly. Low-grade fever is common.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 4–7</div>
+<div class="tl-text">Peak cough phase. The cough becomes productive — you're coughing up mucus (clear, white, yellow, or green). Chest soreness from coughing is normal. Rest and hydrate. Honey and warm fluids help.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–3</div>
+<div class="tl-text">Cough starts improving but may still linger. It's less frequent and less intense. Mucus production decreases. You can usually return to normal activities.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 3–4</div>
+<div class="tl-text">Most people feel back to normal. A mild cough may persist in some people. This is normal — the airways are still healing. The cough can last up to 8 weeks (post-infectious cough).</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">8+ weeks</div>
+<div class="tl-text">If the cough persists beyond 8 weeks without improvement, see a doctor. This is considered a chronic cough and other causes need to be ruled out (asthma, GERD, postnasal drip, pertussis).</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Acute bronchitis is an <strong>acute inflammation of the bronchial mucosa</strong> — the trachea and major bronchi — most commonly triggered by viral infection. The most frequent pathogens are <strong>influenza A and B</strong>, <strong>rhinovirus</strong>, <strong>respiratory syncytial virus (RSV)</strong>, <strong>parainfluenza virus</strong>, <strong>human metapneumovirus</strong>, <strong>adenovirus</strong>, and <strong>coronaviruses</strong> (including SARS-CoV-2). Bacterial pathogens (<em>Bordetella pertussis</em>, <em>Mycoplasma pneumoniae</em>, <em>Chlamydia pneumoniae</em>) account for <10% of cases in immunocompetent adults.</p>
+<p>The infection targets <strong>ciliated columnar epithelial cells</strong> lining the airways. The virus enters these cells via receptor-mediated endocytosis, hijacks host machinery for replication, and triggers an innate immune response through <strong>pattern recognition receptors</strong> (TLR3, TLR7, RIG-I). This activates <strong>NF-κB</strong> and <strong>IRF3/7</strong> signaling cascades, resulting in the release of <strong>pro-inflammatory cytokines</strong> (IL-1β, IL-6, TNF-α, IL-8) and <strong>type I interferons</strong> (IFN-α/β).</p>
+<p>The inflammatory cascade produces:</p>
+<ol>
+<li><strong>Mucosal edema:</strong> Capillary vasodilation and increased permeability cause swelling of the bronchial wall, narrowing the airway lumen.</li>
+<li><strong>Mucus hypersecretion:</strong> Goblet cell hyperplasia and submucosal gland hypertrophy driven by IL-13 and IL-4 signaling lead to thick, tenacious mucus.</li>
+<li><strong>Impaired mucociliary clearance:</strong> The cilia are damaged by both the virus and the inflammatory response. Slowed ciliary beat frequency (from ~12 Hz to <5 Hz) allows mucus and debris to accumulate.</li>
+<li><strong>Epithelial denudation:</strong> In severe cases, infected epithelial cells undergo apoptosis and slough off, leaving exposed basement membrane — this triggers the cough reflex through irritation of unmyelinated C-fibers (cough receptors) in the airway epithelium.</li>
+</ol>
+<p>The <strong>cough reflex arc</strong>: mechanical and chemical irritants stimulate <strong>transient receptor potential (TRP) channels</strong> (TRPV1, TRPA1) on vagal sensory nerve endings in the larynx, trachea, and bronchi. Afferent signals travel via the vagus nerve to the cough center in the medulla oblongata, which coordinates the efferent motor response — deep inspiration, glottic closure, forceful contraction of abdominal and thoracic muscles, then explosive glottic opening.</p>
+<p><strong>Recovery:</strong> The ciliated epithelium regenerates over 2–5 weeks. Mucociliary clearance returns to normal once the epithelium is restored. The cough can persist beyond this because the <strong>cough reflex hypersensitivity</strong> — lowered threshold for triggering the cough reflex — takes longer to resolve. This explains <strong>post-infectious cough</strong>, which can last 3–8 weeks after the infection has cleared.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Pneumonia:</strong> The most important distinction. Pneumonia presents with fever >38°C, tachypnea, hypoxemia, focal lung findings (crackles, egophony, dullness to percussion on exam), and systemic symptoms. The key differentiator: patients with bronchitis do NOT have hypoxemia, tachypnea at rest, or focal signs on auscultation. Chest X-ray shows consolidation in pneumonia.</li>
+<li><strong>Asthma exacerbation:</strong> Presents with wheezing, chest tightness, and reversible airflow obstruction. Marked by symptom variability (worse at night, with exercise, or with triggers). History of asthma or allergies. Peak expiratory flow (PEF) monitoring shows diurnal variation >20%. Bronchodilator reversibility on spirometry.</li>
+<li><strong>COPD exacerbation:</strong> In patients with known COPD or significant smoking history (>20 pack-years). Increased dyspnea, sputum volume, and sputum purulence (the Anthonisen criteria). The main challenge is distinguishing acute bronchitis in a smoker from COPD exacerbation — spirometry showing fixed airflow obstruction confirms COPD.</li>
+<li><strong>Pertussis (whooping cough):</strong> Paroxysmal coughing spells followed by inspiratory whoop or post-tussive vomiting. Usually no fever. Cough often lasts >2 weeks and comes in uncontrollable fits. Diagnosis confirmed by PCR of nasopharyngeal swab. Erythromycin or azithromycin reduces transmission if started within 3 weeks of symptom onset but does not shorten symptom duration.</li>
+<li><strong>COVID-19:</strong> Often indistinguishable from other viral bronchitis in mild cases. Key clues: anosmia/ageusia, prominent myalgias, headache, and known exposure history. Test with PCR or rapid antigen — management is similar but isolation guidelines differ.</li>
+<li><strong>Influenza:</strong> Abrupt onset of high fever (39–40°C), myalgias, headache, cough, sore throat. Seasonality is key. Rapid influenza diagnostic test (RIDT) or PCR can confirm. Antiviral therapy (oseltamivir) is effective within 48 hours of symptom onset.</li>
+<li><strong>Gastroesophageal reflux disease (GERD):</strong> Chronic cough without infectious symptoms. Typically worse after meals, when lying down, or in the morning. May have heartburn, regurgitation, or sensation of a lump in the throat. Empiric PPI trial for 8 weeks can be diagnostic.</li>
+<li><strong>Postnasal drip (upper airway cough syndrome):</strong> Sensation of mucus dripping down the back of the throat. Frequent throat clearing, nasal congestion. Improves with intranasal corticosteroids or first-generation antihistamines.</li>
+<li><strong>Heart failure (acute decompensation):</strong> Can present with cough and dyspnea. Key clues: orthopnea, paroxysmal nocturnal dyspnea, elevated JVP, peripheral edema, crackles on exam. BNP or NT-proBNP level helps distinguish.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical history and exam</td>
+<td>Cough ± sputum, preceding URI, absence of focal lung findings, normal vital signs (O₂ sat ≥95%, RR <20, HR <100, temp <38°C)</td>
+<td>Every patient — this is diagnostic in uncomplicated cases</td>
+</tr>
+<tr>
+<td>Chest X-ray (2-view: PA + lateral)</td>
+<td>Consolidation (pneumonia), interstitial infiltrates, pleural effusion. Normal in uncomplicated acute bronchitis</td>
+<td>Only if: fever >38°C for >3 days, tachypnea/hypoxia, focal findings on exam, suspected pneumonia, age >65 with comorbid illness</td>
+</tr>
+<tr>
+<td>Nasopharyngeal PCR (viral panel)</td>
+<td>Identifies influenza, RSV, SARS-CoV-2, and other respiratory viruses</td>
+<td>Influenza season, COVID-19 exposure, when antiviral treatment is being considered, or for infection control</td>
+</tr>
+<tr>
+<td>CRP / Procalcitonin</td>
+<td>CRP >30 mg/L or procalcitonin >0.25 ng/mL suggests bacterial infection</td>
+<td>When clinical picture is equivocal. A 2021 Cochrane review found procalcitonin-guided prescribing reduces antibiotic use without worsening outcomes in respiratory infections</td>
+</tr>
+<tr>
+<td>Spirometry</td>
+<td>Reversible airflow obstruction (FEV₁/FVC <0.70 with bronchodilator response)</td>
+<td>Suspected asthma or COPD — not for routine acute bronchitis</td>
+</tr>
+<tr>
+<td>Pertussis PCR</td>
+<td><em>Bordetella pertussis</em> DNA from nasopharyngeal swab</td>
+<td>Paroxysmal cough with inspiratory whoop or post-tussive vomiting, cough >2 weeks without improvement</td>
+</tr>
+<tr>
+<td>Mycoplasma/Chlamydia serology or PCR</td>
+<td>Atypical bacterial pathogens</td>
+<td>Persistent cough >2 weeks despite supportive care, or during outbreaks. More common in school-age children and young adults</td>
+</tr>
+<tr>
+<td>ECG</td>
+<td>Excludes acute coronary syndrome or arrhythmia as source of chest symptoms</td>
+<td>Atypical chest pain, cardiac risk factors, or ECG changes on exam</td>
+</tr>
+</tbody></table>
+<p><strong>When NOT to test:</strong> In a healthy adult with typical acute bronchitis (productive cough, preceding URI, normal vitals, clear lungs), no testing is needed. The ACCP guidelines and the German Respiratory Society guidelines (2025) both emphasize that diagnosis is clinical and that laboratory testing, chest X-ray, and pulmonary function tests are not indicated for uncomplicated acute bronchitis.</p>
+<h4>Evidence summary</h4>
+<p><strong>Antibiotics are ineffective:</strong> The Cochrane review by Smith et al. (2017, update of 2014 review, n=17 RCTs, 4,336 participants) is the definitive meta-analysis. Antibiotics reduced cough duration by only 0.46 days (about half a day) compared to placebo — not clinically meaningful. There was no difference in activity limitation or clinical improvement. Antibiotics increased adverse effects (NNT for harm = 10 for any adverse event). The authors concluded: "Evidence suggests that antibiotics confer minimal benefit for acute bronchitis, and they should not be routinely prescribed."</p>
+<p><strong>Honey for cough:</strong> A 2021 systematic review by Abuelgasim et al. (n=9 RCTs, 1,035 participants) found honey was superior to usual care (no treatment or placebo) for suppressing cough (mean difference −0.63 points on a 0–5 symptom scale) and was at least as effective as dextromethorphan. Honey reduced cough frequency and severity and improved sleep quality for both patients and caregivers. No serious adverse events were reported in any trial.</p>
+<p><strong>Bronchodilators:</strong> The systematic review by Smucny et al. (2001) of 5 RCTs found no consistent benefit of β₂-agonists for acute bronchitis in adults without underlying lung disease. There was a trend toward reduced cough frequency in patients with wheezing, but no benefit in non-wheezing patients. A 2023 Cochrane update confirmed these findings: β₂-agonists do not shorten the duration of cough in acute bronchitis.</p>
+<p><strong>Cough suppressants:</strong> The ACCP Evidence-Based Clinical Practice Guidelines (Braman, 2006) reviewed available data and found that most controlled trials guiding treatment for acute bronchitis are limited by small sample sizes and heterogeneous endpoints. Dextromethorphan shows modest benefit over placebo for cough suppression in some studies but not others. Codeine has not been shown to be superior to placebo for acute cough in multiple RCTs and is no longer recommended.</p>
+<p><strong>Over-the-counter cough medicines in children:</strong> A 2016 Cochrane review challenged the evidence base for OTC cough medicines in children, finding no high-quality evidence supporting efficacy and documented risks of adverse effects (especially in children under 6). Most national guidelines now recommend against OTC cough and cold medications in young children.</p>
+<p><strong>Antitussives, anticholinergics, and honey vs. usual care:</strong> Llor et al. (2023) conducted a multiarm RCT (n=346 adults with uncomplicated acute bronchitis) comparing dextromethorphan, ipratropium (anticholinergic), honey, and usual care. None of the interventions significantly reduced cough frequency or severity compared to usual care at day 3 or 7. The study highlights the self-limited nature of acute bronchitis and the marginal benefit of symptomatic therapies.</p>
+<p><strong>Influenza vaccination:</strong> The CDC estimates that influenza vaccination reduces the risk of influenza-associated bronchitis by 40–60% in seasons where the vaccine is well-matched.</p>
+<h4>Surgical options (if applicable)</h4>
+<p>Surgery has no role in the management of acute bronchitis. Surgical intervention is indicated only for complications of the underlying infection — extremely rare scenarios such as:</p>
+<ul>
+<li><strong>Bronchiectasis from recurrent severe bronchitis:</strong> In severe, recurrent cases that lead to irreversible bronchial dilation, surgical resection of the most affected lung segments may be considered, but this is virtually never indicated for acute bronchitis itself.</li>
+<li><strong>Empyema or lung abscess:</strong> If an infection that began as bronchitis progresses to pneumonia and then to a suppurative complication requiring surgical drainage. This reflects progression to pneumonia, not the bronchitis itself.</li>
+</ul>
+<p>The overwhelming majority of acute bronchitis cases resolve completely with supportive care alone.</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>Can novel antitussive agents targeting TRP channels (TRPV1, TRPA1 antagonists) provide better cough relief than current options? Phase 2 trials are ongoing for gefapixant and other P2X3 receptor antagonists, but results in acute cough are preliminary.</li>
+<li>What drives the transition from acute to chronic cough in some patients? Neuroplastic changes in the cough reflex arc are hypothesized, but the molecular mechanisms are not well characterized.</li>
+<li>Is there a subset of patients with acute bronchitis who benefit from antibiotics? Current research focuses on identifying this group through biomarkers — procalcitonin-guided therapy shows promise but has not been specifically validated for acute bronchitis.</li>
+<li>Does early mucolytic therapy (N-acetylcysteine, carbocysteine) reduce cough duration in acute bronchitis? The evidence is weak and mixed, but some European guidelines include them as an option.</li>
+<li>What is the optimal duration of cough precautions and return-to-work guidance? Currently based on expert opinion rather than data.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Smith SM, Fahey T, Smucny J, Becker LA. "Antibiotics for acute bronchitis." <em>Cochrane Database Syst Rev</em> 2017;6(6):CD000245. PMID: 28626858. (The definitive meta-analysis: 17 RCTs, 4,336 participants — antibiotics show minimal benefit and should not be routinely prescribed.)</li>
+<li>Braman SS. "Chronic cough due to acute bronchitis: ACCP evidence-based clinical practice guidelines." <em>Chest</em> 2006;129(1 Suppl):95S–103S. PMID: 16428698. (ACCP guideline on diagnosis and management of acute bronchitis cough.)</li>
+<li>Abuelgasim H et al. "Effectiveness of honey for symptomatic relief in upper respiratory tract infections: a systematic review and meta-analysis." <em>BMJ Evid Based Med</em> 2021;26(2):57–64. PMID: 32503824. (9 RCTs, 1,035 participants — honey at least as effective as dextromethorphan for cough suppression.)</li>
+<li>Llor C et al. "Effectiveness of antitussives, anticholinergics, and honey versus usual care in adults with uncomplicated acute bronchitis: a multiarm randomized clinical trial." <em>Fam Pract</em> 2023;40(2):407–413. PMID: 36239199. (None of the interventions significantly outperformed usual care.)</li>
+<li>Smucny JJ et al. "Are beta2-agonists effective treatment for acute bronchitis or acute cough in patients without underlying pulmonary disease? A systematic review." <em>J Fam Pract</em> 2001;50(11):945–951. PMID: 11711010. (No consistent benefit of β₂-agonists for non-wheezing patients.)</li>
+<li>Holzinger F et al. "The diagnosis and treatment of acute cough in adults." <em>Dtsch Arztebl Int</em> 2014;111(20):356–363. PMID: 24882627. (German guideline recommendations against antibiotics and routine testing for uncomplicated acute bronchitis.)</li>
+<li>Kardos P et al. "Specialist Guidelines of The German Respiratory Society for Diagnosis and Treatment of adult Patients Suffering from Cough." <em>Pneumologie</em> 2025;79(5):329–357. PMID: 40354786. (Most recent European guideline on cough management.)</li>
+<li>Smith ME et al. "How do parents of pre-schoolers respond to the cough of an acute respiratory tract infection? A systematic review of qualitative studies." <em>Cochrane Database Syst Rev</em> 2016;(11):CD012179. (Evidence against OTC cough medicines in young children.)</li>
+<li>CDC. "Prevention and Control of Seasonal Influenza with Vaccines: Recommendations of the Advisory Committee on Immunization Practices." <em>MMWR</em> 2025. (Influenza vaccination reduces risk of influenza-associated illness.)</li>
+<li>Wark P. "Bronchitis (acute)." <em>BMJ Clin Evid</em> 2015;2015:1508. PMID: 26186368. (Clinical evidence review: incidence >40/1,000 adults per year, viral cause in >90%.)</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

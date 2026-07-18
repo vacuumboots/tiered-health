@@ -1,0 +1,188 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="capsule-normal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a8d8ea"/><stop offset="100%" stop-color="#7ec8de"/></linearGradient>
+    <linearGradient id="capsule-contracted" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8a0a0"/><stop offset="100%" stop-color="#d47070"/></linearGradient>
+    <linearGradient id="ligament" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="cartilage" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c8e6c9"/><stop offset="100%" stop-color="#a5d6a7"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- Shoulder/upper torso outline (anterior view, right shoulder) -->
+  <path d="M60,60 C55,80 55,110 60,140 L65,180 C68,210 72,230 75,245 L65,270 L55,300 L50,330 L52,360 L60,390 L75,420 L90,440 L110,455 L130,462 L150,465 L170,460 L190,450 L210,435 L225,415 L235,395 L240,375 L242,355 L240,335 L235,315 L228,298 L220,285 L215,275 L210,260 L205,240 L200,215 L195,190 L190,165 L185,145 L180,130 L175,118 L170,108 L165,100 L158,92 L150,88 L140,86 L128,88 L118,92 L108,100 L98,110 L90,120 L82,105 L78,90 L75,80 L72,68 L68,62 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Clavicle -->
+  <path d="M60,120 C72,112 88,106 108,104 L140,102 L175,105 L210,110 L240,118 L260,125 C265,127 268,130 270,132"
+        fill="none" stroke="url(#bone-grad)" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+  <text x="250" y="115" fill="#b0a595" font-size="10" font-style="italic">Clavicle</text>
+
+  <!-- Acromion -->
+  <path d="M260,125 C268,120 278,118 288,120 L298,124 L305,130 L308,138 L306,145 L302,150 L296,152 L288,150 L280,146 L272,140 L268,134 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="300" y="142" fill="#b0a595" font-size="10" font-style="italic">Acromion</text>
+
+  <!-- Coracoid process -->
+  <path d="M230,180 C235,175 242,172 248,174 L254,178 L258,184 L258,190 L254,195 L248,197 L242,196 L236,192 L232,188 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="242" y="208" fill="#b0a595" font-size="9" font-style="italic">Coracoid</text>
+  <text x="242" y="218" fill="#b0a595" font-size="9" font-style="italic">process</text>
+
+  <!-- Glenoid (scapula glenoid cavity) -->
+  <path d="M255,200 C258,195 262,192 268,192 L275,194 L282,200 L286,208 L286,216 L282,224 L276,228 L270,228 L264,226 L258,220 L254,214 L254,208 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Glenoid labrum (cartilage rim) -->
+  <path d="M256,202 C260,197 265,194 270,194 L276,196 L282,202 L284,210 L284,216 L280,222 L274,226 L268,226 L262,224 L257,218 L255,212 L255,208 Z"
+        fill="url(#cartilage)" stroke="#81c784" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Humeral head -->
+  <path d="M290,185 C295,178 302,174 310,174 L320,175 L330,180 L340,188 L348,198 L354,210 L358,224 L360,238 L358,252 L354,264 L348,274 L340,282 L330,288 L320,290 L310,288 L302,284 L296,278 L292,270 L290,260 L290,248 L292,236 L294,224 L296,210 L298,198 Z"
+        fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- Humeral head articular surface (cartilage) -->
+  <path d="M296,188 C302,180 310,178 318,178 L326,180 L334,186 L340,194 L344,204 L346,214 L346,224 L344,234 L340,244 L334,252 L326,258 L318,260 L310,258 L304,254 L300,248 L298,240 L296,230 L296,218 L296,206 L296,196 Z"
+        fill="url(#cartilage)" stroke="#81c784" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Humerus shaft -->
+  <path d="M318,290 L316,310 L314,340 L312,370 L310,400 L310,420 L312,440 L315,460 L320,475"
+        fill="none" stroke="url(#bone-grad)" stroke-width="12" stroke-linecap="round" opacity="0.7"/>
+  <text x="335" y="380" fill="#b0a595" font-size="10" font-style="italic">Humerus</text>
+
+  <!-- Scapula body (ghosted partial) -->
+  <path d="M255,200 L240,220 L225,245 L215,270 L210,295 L212,320 L218,340 L228,355 L240,365 L250,370 L258,368 L264,362 L270,352 L274,340 L276,328 L275,315"
+        fill="none" stroke="#d4c8b8" stroke-width="2" opacity="0.3"/>
+  <text x="175" y="310" fill="#b0a595" font-size="10" font-style="italic" opacity="0.5">Scapula</text>
+
+  <!-- ═══════════ JOINT CAPSULE (contracted/thickened - the key pathology) ═══════════ -->
+
+  <!-- Capsule - normal outer boundary (ghosted for comparison) -->
+  <path d="M258,190 C250,182 248,175 250,168 L255,160 L265,155 L280,152 L298,152 L315,155 L330,162 L340,172 L345,185 L346,198 L344,212 L340,225 L334,236 L326,244 L316,248 L306,248 L298,246 L290,242 L282,236 L276,228 L270,218 L264,208 L260,198 Z"
+        fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+  <text x="260" y="162" fill="#a8d8ea" font-size="7" opacity="0.5">Normal capsule (reference)</text>
+
+  <!-- Capsule - contracted/thickened (the actual pathology) -->
+  <path d="M262,192 C255,186 252,180 254,174 L258,168 L266,163 L278,158 L294,156 L310,158 L324,164 L334,174 L338,186 L338,200 L334,214 L328,226 L320,235 L310,240 L300,240 L290,238 L282,232 L274,224 L268,214 L264,204 Z"
+        fill="none" stroke="url(#capsule-contracted)" stroke-width="4" stroke-linecap="round" filter="url(#soft)" opacity="0.8"/>
+
+  <!-- Inflammatory dots within capsule -->
+  <circle cx="280" cy="190" r="2" fill="#e74c3c" opacity="0.6"/>
+  <circle cx="295" cy="185" r="1.5" fill="#e74c3c" opacity="0.5"/>
+  <circle cx="310" cy="192" r="2" fill="#e74c3c" opacity="0.6"/>
+  <circle cx="288" cy="205" r="1.5" fill="#e74c3c" opacity="0.5"/>
+  <circle cx="302" cy="215" r="2" fill="#e74c3c" opacity="0.4"/>
+  <circle cx="292" cy="195" r="1.2" fill="#e74c3c" opacity="0.7"/>
+
+  <!-- Capsule label -->
+  <text x="295" y="150" fill="#d47070" font-size="11" font-weight="600">Thickened</text>
+  <text x="295" y="163" fill="#d47070" font-size="11" font-weight="600">contracted capsule</text>
+
+  <!-- ═══════════ CORACOHUMERAL LIGAMENT (thickened) ═══════════ -->
+
+  <!-- Normal CHL (ghosted) -->
+  <path d="M248,178 L260,172 L275,168 L290,166 L300,168"
+        fill="none" stroke="#a8d8ea" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.3"/>
+
+  <!-- Thickened CHL -->
+  <path d="M250,182 L262,176 L278,172 L294,170 L306,172"
+        fill="none" stroke="url(#ligament)" stroke-width="5" stroke-linecap="round" filter="url(#soft)" opacity="0.85"/>
+
+  <!-- CHL label -->
+  <text x="303" y="168" fill="#b8860b" font-size="9" font-weight="600">Coracohumeral</text>
+  <text x="303" y="180" fill="#b8860b" font-size="9" font-weight="600">ligament (thickened)</text>
+
+  <!-- ═══════════ ROTATOR INTERVAL ═══════════ -->
+
+  <!-- Rotator interval area (between supraspinatus and subscapularis) -->
+  <path d="M260,165 L270,158 L284,155 L298,156 L310,160 L318,168 L322,178 L320,188 L314,196 L304,200 L294,200 L286,196 L280,190 L276,182 L272,174 L266,168 Z"
+        fill="#fce4ec" stroke="#e8a0a0" stroke-width="1" opacity="0.4"/>
+
+  <text x="274" y="175" fill="#c0392b" font-size="7" font-weight="600">Rotator</text>
+  <text x="274" y="184" fill="#c0392b" font-size="7" font-weight="600">interval</text>
+  <text x="274" y="193" fill="#c0392b" font-size="7" font-weight="600">(contracted)</text>
+
+  <!-- ═══════════ CONTRACTURE ARROW ═══════════ -->
+
+  <!-- Contracture force arrows (pointing inward) -->
+  <path d="M265,210 L272,210" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.6"/>
+  <path d="M330,210 L323,210" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.6"/>
+  <path d="M298,250 L298,243" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.6"/>
+  <text x="310" y="240" fill="#c0392b" font-size="8">Capsular</text>
+  <text x="310" y="250" fill="#c0392b" font-size="8">contracture</text>
+
+  <!-- ═══════════ LABELS ═══════════ -->
+
+  <!-- Glenoid label -->
+  <text x="150" y="215" fill="#8a7e6e" font-size="10">Glenoid</text>
+  <line x1="175" y1="215" x2="255" y2="208" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- Humeral head label -->
+  <text x="355" y="218" fill="#8a7e6e" font-size="10">Humeral head</text>
+  <line x1="362" y1="218" x2="350" y2="210" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- Joint space label -->
+  <text x="150" y="243" fill="#8a7e6e" font-size="10">Joint space</text>
+  <line x1="185" y1="243" x2="295" y2="230" stroke="#8a7e6e" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- ═══════════ PHASE INSETS ═══════════ -->
+
+  <!-- Separator line -->
+  <line x1="30" y1="480" x2="470" y2="480" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Phase 1: Freezing (Pain) -->
+  <g transform="translate(15, 488)">
+    <rect x="0" y="0" width="150" height="100" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#c0392b" font-size="10" font-weight="600" text-anchor="middle">Phase 1: Freezing</text>
+    <text x="75" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Pain-predominant</text>
+    <!-- Capsule with inflammation markers -->
+    <ellipse cx="75" cy="60" rx="30" ry="18" fill="none" stroke="#d47070" stroke-width="3" opacity="0.7"/>
+    <circle cx="62" cy="56" r="2.5" fill="#e74c3c" opacity="0.6"/>
+    <circle cx="80" cy="52" r="2" fill="#e74c3c" opacity="0.5"/>
+    <circle cx="70" cy="68" r="2.5" fill="#e74c3c" opacity="0.6"/>
+    <circle cx="88" cy="65" r="1.5" fill="#e74c3c" opacity="0.4"/>
+    <text x="75" y="90" fill="#8a7e6e" font-size="7" text-anchor="middle">Synovitis, pain,</text>
+    <text x="75" y="99" fill="#8a7e6e" font-size="7" text-anchor="middle">night waking</text>
+    <text x="75" y="108" fill="#c0392b" font-size="6" text-anchor="middle" opacity="0.6">2–9 months</text>
+  </g>
+
+  <!-- Phase 2: Frozen (Stiffness) -->
+  <g transform="translate(175, 488)">
+    <rect x="0" y="0" width="150" height="100" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#d47070" font-size="10" font-weight="600" text-anchor="middle">Phase 2: Frozen</text>
+    <text x="75" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Stiffness-predominant</text>
+    <!-- Contracted capsule -->
+    <ellipse cx="75" cy="60" rx="22" ry="14" fill="none" stroke="#d47070" stroke-width="3.5" opacity="0.8"/>
+    <!-- Inward arrows showing contracture -->
+    <path d="M50,60 L58,60" fill="none" stroke="#c0392b" stroke-width="1.2" marker-end="url(#arrow-red)" opacity="0.5"/>
+    <path d="M100,60 L92,60" fill="none" stroke="#c0392b" stroke-width="1.2" marker-end="url(#arrow-red)" opacity="0.5"/>
+    <path d="M75,78 L75,70" fill="none" stroke="#c0392b" stroke-width="1.2" marker-end="url(#arrow-red)" opacity="0.5"/>
+    <text x="75" y="90" fill="#8a7e6e" font-size="7" text-anchor="middle">Capsular contracture,</text>
+    <text x="75" y="99" fill="#8a7e6e" font-size="7" text-anchor="middle">severe ROM loss</text>
+    <text x="75" y="108" fill="#d47070" font-size="6" text-anchor="middle" opacity="0.6">4–12 months</text>
+  </g>
+
+  <!-- Phase 3: Thawing (Recovery) -->
+  <g transform="translate(335, 488)">
+    <rect x="0" y="0" width="150" height="100" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#2e7d32" font-size="10" font-weight="600" text-anchor="middle">Phase 3: Thawing</text>
+    <text x="75" y="32" fill="#8a7e6e" font-size="8" text-anchor="middle">Recovery-predominant</text>
+    <!-- Partially expanded capsule -->
+    <ellipse cx="75" cy="60" rx="30" ry="18" fill="none" stroke="#81c784" stroke-width="2.5" stroke-dasharray="4,2" opacity="0.7"/>
+    <!-- Outward arrows -->
+    <path d="M55,56 L47,52" fill="none" stroke="#2e7d32" stroke-width="1.2" marker-end="url(#arrow)" opacity="0.5"/>
+    <path d="M95,56 L103,52" fill="none" stroke="#2e7d32" stroke-width="1.2" marker-end="url(#arrow)" opacity="0.5"/>
+    <text x="75" y="90" fill="#8a7e6e" font-size="7" text-anchor="middle">Gradual ROM return,</text>
+    <text x="75" y="99" fill="#8a7e6e" font-size="7" text-anchor="middle">capsular remodelling</text>
+    <text x="75" y="108" fill="#2e7d32" font-size="6" text-anchor="middle" opacity="0.6">5–24 months</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Shoulder Joint Anatomy &amp; Frozen Shoulder Phases</text>
+</svg>

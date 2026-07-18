@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pancreatitis — Tiered Health</title>
+<meta name="description" content="Pancreatitis: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🫁 Tiered Health <span>/ Pancreatitis</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🫁 Pancreatitis</h1>
+  <p class="aka">Also called: acute pancreatitis · pancreatic inflammation</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="pancreas" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="pancreas-inflamed" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e74c3c"/><stop offset="50%" stop-color="#f39c12"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="duct" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#a93226"/></linearGradient>
+    <linearGradient id="liver" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8e44ad"/><stop offset="100%" stop-color="#7d3c98"/></linearGradient>
+    <linearGradient id="gb" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#27ae60"/><stop offset="100%" stop-color="#229954"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Torso outline (upper abdomen, anterior view) -->
+  <path d="M100,20 C90,25 85,35 82,50 L78,90 L75,130 L72,170 L70,200 L72,230 L78,260 L85,285 L95,305 L108,318 L125,328 L145,335 L160,338 L180,340 L200,340 L220,340 L240,340 L255,338 L270,335 L290,328 L305,318 L318,305 L328,285 L335,260 L340,230 L342,200 L340,170 L338,130 L335,90 L332,50 L330,35 L325,25 L315,20 L300,18 L280,16 L250,15 L220,14 L190,15 L160,16 L130,18 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.85"/>
+
+  <!-- Rib cage outline (ghosted) -->
+  <path d="M100,60 C105,65 110,70 115,80 L120,90 L125,100" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.4"/>
+  <path d="M90,80 C98,85 108,90 118,100 L125,110" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.35"/>
+  <path d="M85,100 C95,105 108,112 120,125 L128,135" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.3"/>
+  <path d="M82,120 C92,125 108,132 122,145 L132,155" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.25"/>
+  <path d="M340,60 C335,65 330,70 325,80 L320,90 L315,100" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.4"/>
+  <path d="M350,80 C342,85 332,90 322,100 L315,110" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.35"/>
+  <path d="M355,100 C345,105 332,112 320,125 L312,135" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.3"/>
+  <path d="M358,120 C348,125 332,132 318,145 L308,155" fill="none" stroke="#d4c8b8" stroke-width="3" opacity="0.25"/>
+
+  <!-- Liver (right upper quadrant) -->
+  <path d="M175,55 C185,48 200,42 220,40 L240,40 L260,42 L275,48 L285,55 L290,65 L292,78 L290,90 L285,100 L275,108 L260,112 L245,115 L220,116 L195,115 L178,108 L170,100 L165,90 L163,78 L165,65 Z"
+        fill="url(#liver)" stroke="#6c3483" stroke-width="1" opacity="0.35"/>
+  <text x="228" y="82" fill="#6c3483" font-size="10" font-style="italic" opacity="0.7">Liver</text>
+
+  <!-- Gallbladder -->
+  <ellipse cx="248" cy="110" rx="12" ry="18" fill="url(#gb)" stroke="#1e8449" stroke-width="1" opacity="0.6" transform="rotate(-15,248,110)"/>
+  <text x="235" y="138" fill="#1e8449" font-size="9" font-style="italic" opacity="0.7">Gallbladder</text>
+
+  <!-- Stomach (ghosted) -->
+  <path d="M200,140 C210,135 225,132 240,135 L260,140 L275,150 L285,165 L290,182 L288,200 L280,215 L268,225 L250,228 L235,225 L220,218 L208,205 L200,185 L195,165 L198,148 Z"
+        fill="none" stroke="#b0a595" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.4"/>
+  <text x="238" y="190" fill="#b0a595" font-size="10" font-style="italic" opacity="0.5">Stomach</text>
+
+  <!-- PANCREAS (retroperitoneal, behind stomach) - inflamed -->
+  <g filter="url(#soft)">
+    <!-- Head of pancreas -->
+    <ellipse cx="190" cy="208" rx="30" ry="20" fill="url(#pancreas-inflamed)" stroke="#c0392b" stroke-width="1.5" opacity="0.85" transform="rotate(-10,190,208)"/>
+    <!-- Body of pancreas -->
+    <path d="M200,200 C220,190 240,188 260,190 L280,195 L295,200" fill="none" stroke="url(#pancreas-inflamed)" stroke-width="18" stroke-linecap="round" opacity="0.85"/>
+    <!-- Tail of pancreas -->
+    <ellipse cx="308" cy="200" rx="20" ry="15" fill="url(#pancreas-inflamed)" stroke="#c0392b" stroke-width="1.5" opacity="0.85" transform="rotate(10,308,200)"/>
+  </g>
+
+  <!-- Inflammation glow around pancreas -->
+  <path d="M170,195 C170,175 310,175 320,195 C330,210 330,220 320,230 C310,240 170,240 170,220 Z"
+        fill="none" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3" opacity="0.5" filter="url(#glow)"/>
+  <text x="240" y="232" fill="#c0392b" font-size="9" text-anchor="middle" font-weight="600">▸ Inflammation zone</text>
+
+  <!-- Main pancreatic duct (of Wirsung) -->
+  <path d="M180,210 C200,198 230,195 260,198 L290,200 L310,200"
+        fill="none" stroke="url(#duct)" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Common bile duct (joining the pancreatic duct) -->
+  <path d="M248,130 C250,150 248,170 245,185 L242,198 C240,205 238,210 235,213"
+        fill="none" stroke="#7d3c98" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+  <text x="252" y="165" fill="#7d3c98" font-size="8" font-style="italic" opacity="0.6">CBD</text>
+
+  <!-- Ampulla of Vater (where ducts join) -->
+  <circle cx="188" cy="214" r="5" fill="none" stroke="#e74c3c" stroke-width="1.5" opacity="0.8"/>
+  <line x1="188" y1="219" x2="188" y2="235" stroke="#e74c3c" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="188" y="244" fill="#c0392b" font-size="8" text-anchor="middle">Ampulla of Vater</text>
+
+  <!-- Gallstone in cystic duct / common bile duct -->
+  <circle cx="248" cy="157" r="4" fill="#a0522d" stroke="#8b4513" stroke-width="0.8" opacity="0.8"/>
+  <text x="260" y="155" fill="#8b4513" font-size="8">Gallstone (40%)</text>
+
+  <!-- Labels for pancreas parts -->
+  <line x1="160" y1="208" x2="130" y2="180" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="130" y1="180" x2="120" y2="180" stroke="#b8860b" stroke-width="1"/>
+  <text x="108" y="177" fill="#b8860b" font-size="10" font-weight="600">Head</text>
+
+  <line x1="260" y1="192" x2="260" y2="165" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="242" y="163" fill="#b8860b" font-size="10" font-weight="600">Body</text>
+
+  <line x1="325" y1="200" x2="340" y2="175" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="340" y1="175" x2="350" y2="175" stroke="#b8860b" stroke-width="1"/>
+  <text x="353" y="172" fill="#b8860b" font-size="10" font-weight="600">Tail</text>
+
+  <!-- Duodenum outline (C-loop around head) -->
+  <path d="M175,190 C168,195 163,200 160,210 C155,225 155,240 160,252 C168,265 178,272 190,272 C202,272 210,268 215,260 L218,250"
+        fill="none" stroke="#b0a595" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <text x="168" y="272" fill="#b0a595" font-size="9" font-style="italic" opacity="0.6">Duodenum</text>
+
+  <!-- Spleen (left upper quadrant, near tail) -->
+  <ellipse cx="340" cy="155" rx="18" ry="22" fill="url(#liver)" stroke="#6c3483" stroke-width="1" opacity="0.25" transform="rotate(20,340,155)"/>
+  <text x="335" y="142" fill="#6c3483" font-size="9" font-style="italic" opacity="0.5">Spleen</text>
+
+  <!-- ═══════════ MECHANISM INSETS ═══════════ -->
+  <line x1="20" y1="490" x2="480" y2="490" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Key: Normal acinar cell -->
+  <g transform="translate(20, 500)">
+    <rect x="0" y="0" width="145" height="85" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.95"/>
+    <text x="72" y="16" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Normal Acinar Cell</text>
+    <!-- Cell body -->
+    <ellipse cx="72" cy="48" rx="25" ry="18" fill="none" stroke="#7d3c98" stroke-width="1.5" opacity="0.6"/>
+    <text x="72" y="44" fill="#7d3c98" font-size="7" text-anchor="middle">Zymogen</text>
+    <text x="72" y="54" fill="#7d3c98" font-size="7" text-anchor="middle">granules</text>
+    <!-- Duct -->
+    <path d="M100,48 L120,48" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round"/>
+    <text x="120" y="44" fill="#27ae60" font-size="7">Duct</text>
+    <text x="120" y="54" fill="#27ae60" font-size="7">patent</text>
+  </g>
+
+  <!-- Key: Premature trypsin activation -->
+  <g transform="translate(177, 500)">
+    <rect x="0" y="0" width="145" height="85" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.95"/>
+    <text x="72" y="16" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Early Pancreatitis</text>
+    <ellipse cx="72" cy="48" rx="25" ry="18" fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+    <!-- Explosion marks inside cell -->
+    <path d="M55,40 L48,35 M60,35 L55,28 M82,35 L88,30 M85,45 L92,48" stroke="#c0392b" stroke-width="1" opacity="0.7"/>
+    <text x="72" y="44" fill="#c0392b" font-size="7" text-anchor="middle">Premature</text>
+    <text x="72" y="54" fill="#c0392b" font-size="7" text-anchor="middle">trypsin act.</text>
+    <!-- Duct blockage -->
+    <path d="M100,48 L110,48" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/>
+    <line x1="112" y1="44" x2="118" y2="52" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/>
+    <line x1="112" y1="52" x2="118" y2="44" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/>
+    <text x="120" y="44" fill="#c0392b" font-size="7">Duct</text>
+    <text x="120" y="54" fill="#c0392b" font-size="7">blocked</text>
+    <!-- Left-to-right arrow from normal to early -->
+    <path d="M145,48 L160,48" fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Key: Severe necrosis -->
+  <g transform="translate(335, 500)">
+    <rect x="0" y="0" width="145" height="85" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.95"/>
+    <text x="72" y="16" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Severe Pancreatitis</text>
+    <ellipse cx="72" cy="48" rx="25" ry="18" fill="none" stroke="#8b0000" stroke-width="1.5" opacity="0.6" stroke-dasharray="4,2"/>
+    <!-- Necrotic debris -->
+    <path d="M55,42 L60,38 L58,46 Z" fill="#8b0000" opacity="0.4"/>
+    <path d="M75,40 L80,36 L82,44 Z" fill="#8b0000" opacity="0.3"/>
+    <path d="M65,50 L70,48 L68,55 Z" fill="#8b0000" opacity="0.35"/>
+    <!-- Inflammatory markers -->
+    <text x="72" y="44" fill="#8b0000" font-size="7" text-anchor="middle">Acinar</text>
+    <text x="72" y="54" fill="#8b0000" font-size="7" text-anchor="middle">necrosis</text>
+    <!-- Systemic markers -->
+    <text x="72" y="70" fill="#c0392b" font-size="7" text-anchor="middle">→ SIRS / organ failure</text>
+    <!-- Arrow -->
+    <path d="M145,48 L160,48" fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="12" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Pancreatic Anatomy &amp; Acute Pancreatitis Mechanism</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is pancreatitis?</h4>
+<p>Your pancreas — a gland tucked behind your stomach — suddenly becomes inflamed when digestive enzymes get activated too early and start digesting the organ itself. Gallstones blocking the drainage duct cause about 4 in 10 cases; heavy drinking causes another 3 in 10. It's one of the most common reasons for emergency gastroenterology admission.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Stop eating and drinking.</strong> Your pancreas needs a rest. The hospital will keep you NPO (nothing by mouth) for at least 24 hours and give you fluids through an IV.</li>
+<li><strong>Go to the emergency room.</strong> This is not something you manage at home. You need IV fluids, pain control, and monitoring.</li>
+<li><strong>Don't take anything for the pain before you get there.</strong> If you need surgery, having painkillers on board can complicate things — let the ER doctors manage it.</li>
+<li><strong>Tell them if you drink alcohol and how much.</strong> This is medical information, not a judgment. It changes the treatment plan.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room immediately if:</h5>
+<ul>
+<li>You have severe upper abdominal pain that radiates to your back</li>
+<li>You cannot find a position that relieves the pain (bent forward may help a little, lying flat makes it worse)</li>
+<li>You are vomiting and cannot keep fluids down</li>
+<li>Your belly feels tender or rigid when you press on it</li>
+<li>You have a fever, rapid heart rate, or feel confused/dizzy</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>Most pancreatitis (80%) is mild and resolves within 3–7 days with supportive care. The key is getting to a hospital early — aggressive IV fluids in the first 24 hours dramatically lower the risk of turning into severe disease. Even severe pancreatitis has a good prognosis with modern intensive care.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your pancreas is a leaf-shaped organ about 15 cm long that sits horizontally behind your stomach, in front of your spine. It has two jobs: making digestive enzymes (exocrine function) and making hormones like insulin (endocrine function).</p>
+<p>Normally, digestive enzymes are packaged in your pancreatic cells as inactive <strong>zymogens</strong> — little time-release capsules that only activate once they reach your small intestine. In pancreatitis, this safety system breaks down. The enzymes (especially <strong>trypsin</strong>) activate prematurely, inside the pancreas itself, and start digesting the organ from the inside out. This triggers an intense inflammatory response.</p>
+<p>The most common cause is a gallstone that travels down the common bile duct and gets stuck at the <strong>ampulla of Vater</strong> — the shared doorway where the bile duct and pancreatic duct empty into the duodenum. The blockage traps pancreatic juice, raising pressure in the duct, and that pressure triggers the premature activation of digestive enzymes.</p>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Severe epigastric pain</strong> that comes on quickly (minutes to hours). The pain is deep, boring, and often radiates straight through to the mid-back. It's worse when you lie flat and may improve slightly when you lean forward or curl into a ball.</li>
+<li><strong>Nausea and vomiting</strong> that doesn't stop. Vomiting does not relieve the pain (unlike some stomach bugs).</li>
+<li><strong>Tenderness</strong> when you press on your upper belly. Your abdominal muscles may feel rigid (guarding).</li>
+<li><strong>Fever, chills, and rapid heart rate</strong> — signs that inflammation is spilling into your bloodstream (systemic inflammatory response).</li>
+<li><strong>Jaundice</strong> (yellow skin or eyes) if a gallstone is blocking the bile duct.</li>
+<li><strong>Cullen's sign</strong> and <strong>Grey Turner's sign</strong> — bruising around the belly button or flanks in severe cases (blood tracking from retroperitoneal bleeding).</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Aggressive IV fluids:</strong> The single most important treatment. Lactated Ringer's solution is preferred. The goal is to prevent the pancreas from becoming ischemic and to stop mild pancreatitis from progressing to severe. You'll get 250–500 mL/hour in the first 12–24 hours.</li>
+<li><strong>NPO (nothing by mouth):</strong> 24–48 hours of bowel rest. This reduces stimulation of the pancreas. If it's mild, you'll start clear liquids as soon as the pain and nausea settle.</li>
+<li><strong>Pain control:</strong> IV opioids (morphine, fentanyl, or hydromorphone) are standard. Contrary to older teaching, morphine does not worsen pancreatitis or cause sphincter of Oddi spasm in clinically meaningful ways — use the drug that works for you.</li>
+<li><strong>Treat the cause:</strong> If gallstones are the culprit, you'll need an <strong>ERCP</strong> (endoscopic retrograde cholangiopancreatography) within 24–48 hours to remove the stone. If alcohol is the cause, you'll need withdrawal monitoring and counseling. For high triglycerides (>500 mg/dL), plasmapheresis or aggressive lipid lowering.</li>
+<li><strong>Monitoring:</strong> You'll be admitted with serial vital signs, oxygen monitoring, and blood tests (lipase, CRP, lactate, renal function) every 12–24 hours to track whether it's getting better or worse.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't try to "wait it out" at home. Acute pancreatitis can progress from mild to severe in hours. The window for effective fluid resuscitation is the first 24 hours.</li>
+<li>Don't eat or drink before you're told to — early oral feeding increases the risk of complications and pain relapse.</li>
+<li>Don't take NSAIDs (ibuprofen, naproxen) for the pain before being evaluated — they can worsen kidney injury if you're dehydrated.</li>
+<li>Don't ignore alcohol as a cause. The single most important thing you can do to prevent recurrence is stop drinking.</li>
+<li>Don't assume a mild case means it wasn't real. Mild pancreatitis is still pancreatitis — it still damages the pancreas and raises your risk of recurrence.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1</div>
+<div class="tl-text">Emergency presentation. IV fluids started at goal rate (250–500 mL/hr LR). Pain control with IV opioids. NPO. Blood work every 12 hours to track severity. ERCP done urgently if gallstone pancreatitis with cholangitis or persistent obstruction.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 2–3</div>
+<div class="tl-text">If mild (80% of cases): pain improves, nausea settles, lipase starts trending down. Begin clear liquid diet. If severe: transferred to ICU or stepdown unit for closer monitoring.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 4–7</div>
+<div class="tl-text">Most mild cases discharge by day 5–7. Diet advanced to low-fat solids. Outpatient referral for cholecystectomy (gallbladder removal) scheduled within 2–4 weeks if gallstone cause. Alcohol counseling arranged if alcohol cause.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–4</div>
+<div class="tl-text">Severe cases with necrosis may still be hospitalized. CT scan with contrast to assess necrosis extent. Nasojejunal feeding tube placed if unable to eat by mouth (enteral nutrition reduces infection risk vs. TPN).</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 4–12</div>
+<div class="tl-text">Necrotizing pancreatitis patients may need percutaneous or endoscopic drainage of walled-off necrosis (WON). Step-up approach: drain first, necrosectomy only if drainage fails.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">3–6 months</div>
+<div class="tl-text">Recovery of exocrine and endocrine function. Some patients develop diabetes (30–40% of severe cases) or pancreatic exocrine insufficiency needing enzyme replacement. Cholecystectomy done by this point if indicated.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Acute pancreatitis begins at the level of the <strong>pancreatic acinar cell</strong> — the enzyme-producing unit of the pancreas. Under normal conditions, digestive enzymes (trypsinogen, chymotrypsinogen, proelastase, prophospholipase A₂, and procarboxypeptidase) are synthesized as inactive zymogens and packaged into secretory granules. These granules are transported to the apical membrane and released into the pancreatic duct, which drains into the duodenum. In the duodenum, <strong>enteropeptidase</strong> (enterokinase) on the brush border cleaves trypsinogen to active trypsin, which then activates the remaining zymogen cascade.</p>
+<p>In pancreatitis, this compartmentalization breaks down. The initiating event is <strong>premature intra-acinar activation of trypsinogen to trypsin</strong> — a process mediated by the lysosomal hydrolase <strong>cathepsin B</strong>, which under normal conditions stays in separate lysosomal compartments. When zymogen and lysosomal compartments fuse (a phenomenon called <strong>crinophagy</strong> or <strong>colocalization</strong>), cathepsin B cleaves trypsinogen to trypsin inside the acinar cell.</p>
+<p>Active trypsin then triggers a cascade: it activates chymotrypsin, elastase (which degrades elastic fibers in blood vessels), and phospholipase A₂ (which breaks down cell membrane phospholipids into <strong>lysophosphatidylcholine</strong> — a potent detergent). The result is <strong>acinar cell necrosis</strong> — the cells digest themselves.</p>
+<p>The necrotic cells release <strong>damage-associated molecular patterns (DAMPs)</strong> — ATP, DNA, HMGB1, and uric acid — which activate pattern recognition receptors (TLR4, NLRP3 inflammasome) on resident macrophages and neutrophils. This triggers a massive inflammatory cascade: <strong>NF-κB</strong> activation upregulates TNF-α, IL-1β, IL-6, and IL-8. IL-8 is a potent neutrophil chemoattractant — recruited neutrophils release reactive oxygen species (ROS) and proteases that amplify tissue damage, creating a vicious cycle.</p>
+<p>When this inflammatory response spills beyond the pancreas, it produces <strong>systemic inflammatory response syndrome (SIRS)</strong> . Persistent SIRS (>48 hours) drives the progression from mild to severe pancreatitis. In severe cases, <strong>endothelial activation</strong> and <strong>capillary leak</strong> lead to hypovolemia, hemoconcentration, and <strong>microvascular thrombosis</strong> in the pancreas — worsening ischemia and converting potentially reversible inflammation into irreversible necrosis.</p>
+<p>The <strong>glandular microcirculation</strong> is particularly vulnerable. The pancreas has a relatively low baseline blood flow and a high metabolic rate. The combination of edema (from inflammation), hypovolemia (from capillary leak and third-spacing), and microthrombi can reduce pancreatic perfusion by 50–70% within hours of onset — the critical window for fluid resuscitation.</p>
+<p><strong>Gallstone pancreatitis</strong> is triggered by transient or persistent obstruction of the ampulla of Vater by a migrating gallstone. The obstruction raises intraductal pressure, which disrupts tight junctions between acinar cells, allowing bile reflux into the pancreatic duct. Bile acids are directly toxic to acinar cells and also potentiate trypsinogen activation.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Acute cholecystitis:</strong> Right upper quadrant pain (not epigastric), positive Murphy sign (arrest of inspiration on palpation), no radiation to back. Ultrasound shows gallbladder wall thickening, pericholecystic fluid, stones. Lipase normal.</li>
+<li><strong>Perforated peptic ulcer:</strong> Sudden onset "board-like" abdominal rigidity. Free air under diaphragm on upright chest X-ray (72% sensitive). History of NSAID use or H. pylori.</li>
+<li><strong>Mesenteric ischemia:</strong> Pain out of proportion to exam, atrial fibrillation (embolic source), elevated lactate, D-dimer. CT angiography shows vascular cutoff. More common in elderly and hypercoagulable states.</li>
+<li><strong>Acute myocardial infarction (inferior wall):</strong> Epigastric pain, nausea, diaphoresis. Inferior STEMI can mimic pancreatitis exactly. Check ECG (inferior leads II, III, aVF) and troponin.</li>
+<li><strong>Diabetic ketoacidosis (DKA):</strong> Can cause non-specific lipase elevation (typically <3× upper limit). True pancreatitis in DKA is uncommon — but DKA can be secondary to pancreatitis. Check glucose, ketones, anion gap; false-positive lipase is possible.</li>
+<li><strong>Pancreatic cancer:</strong> Jaundice, weight loss, painless initially. Can cause acute pancreatitis as a presenting sign (1–3% of acute pancreatitis cases are the first manifestation of pancreatic adenocarcinoma). CT with contrast identifies mass.</li>
+<li><strong>Autoimmune pancreatitis (type 1 and 2):</strong> IgG4-positive lymphoplasmacytic infiltration. Presents with obstructive jaundice, a diffuse "sausage-shaped" pancreas on CT, elevated IgG4 levels. Responds dramatically to steroids — important to identify to avoid unnecessary surgery.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical history + exam</td>
+<td>Epigastric pain radiating to back, N/V, epigastric tenderness ± guarding. History of gallstones, alcohol use, hypertriglyceridemia, recent ERCP, medications.</td>
+<td>Every patient — required for diagnosis (≥2 of 3 criteria: typical pain, lipase ≥3× ULN, imaging findings)</td>
+</tr>
+<tr>
+<td>Serum lipase</td>
+<td>Pancreatic acinar cell injury. Sensitivity 95–100%, specificity 95–100% for acute pancreatitis. Peaks at 24 hours, remains elevated 5–7 days. Superior to amylase (which normalizes faster and has more false positives from salivary sources).</td>
+<td>First-line diagnostic test. ≥3× upper limit of normal is diagnostic (≥180 U/L in most labs)</td>
+</tr>
+<tr>
+<td>Complete blood count (CBC)</td>
+<td>Leukocytosis from systemic inflammation. Hemoconcentration (Hct >44%) at 24 hours predicts severe disease.</td>
+<td>All patients on admission and at 24 hours</td>
+</tr>
+<tr>
+<td>CRP (C-reactive protein)</td>
+<td>>150 mg/L at 48 hours is a validated predictor of severe pancreatitis.</td>
+<td>At 48 hours for severity stratification</td>
+</tr>
+<tr>
+<td>LFTs (AST, ALT, ALP, bilirubin)</td>
+<td>ALT >150 U/L within 48 hours strongly suggests gallstone etiology (specificity 84%, PPV 95%). Bilirubin elevation indicates persistent CBD obstruction.</td>
+<td>All patients to determine etiology</td>
+</tr>
+<tr>
+<td>Triglycerides</td>
+<td>Severe hypertriglyceridemia (>500 mg/dL, usually >1000 mg/dL) is causative.</td>
+<td>All patients on admission — treatable cause often missed</td>
+</tr>
+<tr>
+<td>Calcium (corrected)</td>
+<td>Severe hypercalcemia can cause pancreatitis. Ionized calcium may drop during acute phase (saponification).</td>
+<td>All patients on admission</td>
+</tr>
+<tr>
+<td>Abdominal ultrasound</td>
+<td>Visualizes gallstones (96% sensitive for cholelithiasis), CBD dilation (>7 mm), peripancreatic fluid. Poor pancreas visualization due to overlying bowel gas.</td>
+<td>All patients within 24 hours — screens for gallstone etiology</td>
+</tr>
+<tr>
+<td>Contrast-enhanced CT (CECT)</td>
+<td>Balthazar grade (A–E) and CT severity index (CTSI). Interstitial edematous vs. necrotizing pancreatitis. Peripancreatic fluid collections, pseudocysts, WON.</td>
+<td>Not needed for diagnosis in mild cases. Indicated when: diagnosis unclear, severe disease (SIRS, organ failure), no improvement by 48–72 hours, suspected necrosis or complication</td>
+</tr>
+<tr>
+<td>MRCP (magnetic resonance cholangiopancreatography)</td>
+<td>Non-invasive visualization of CBD and pancreatic duct anatomy. Identifies microlithiasis, pancreas divisum, choledochocele.</td>
+<td>Alternative to ERCP for diagnosis of biliary obstruction without therapeutic intent</td>
+</tr>
+<tr>
+<td>ERCP</td>
+<td>Both diagnostic and therapeutic: stone extraction, sphincterotomy, stent placement. Carries risk of post-ERCP pancreatitis (5–10%).</td>
+<td>Urgent (within 24–48 hours) for: cholangitis, persistent biliary obstruction (bilirubin rising). Not indicated for predicted mild gallstone pancreatitis without obstruction</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Fluid resuscitation — the WATERFALL trial:</strong> The landmark WATERFALL trial (de-Madaria et al., <em>NEJM</em> 2022, n=249) compared aggressive fluid resuscitation (20 mL/kg bolus + 3 mL/kg/hour) with moderate resuscitation (10 mL/kg bolus + 1.5 mL/kg/hour) in predicted moderate-severe pancreatitis. The trial was stopped early for harm: the aggressive group had significantly higher rates of fluid overload (20.5% vs. 6.3%, RR 3.18, 95% CI 1.38–7.34) and no improvement in clinical outcomes. This changed practice globally — moderate fluid resuscitation is now standard, with lactated Ringer's preferred over normal saline based on a subgroup analysis showing lower SIRS rates with LR (OR 0.53, 95% CI 0.30–0.97).</p>
+<p><strong>Early ERCP:</strong> A Cochrane review (Tse et al., 2012, 5 RCTs, n=644) of early ERCP (<72 hours) in acute pancreatitis found that early ERCP reduced mortality in patients with cholangitis (RR 0.20, 95% CI 0.06–0.68) and reduced complications in patients with persistent biliary obstruction. In predicted mild gallstone pancreatitis without obstruction, early ERCP showed no benefit and increased post-ERCP pancreatitis risk. The most recent IAP/APA guidelines (2020) recommend urgent ERCP (within 24 hours) for cholangitis and within 48 hours for persistent CBD obstruction.</p>
+<p><strong>Nutrition — early vs. late feeding:</strong> A 2020 meta-analysis of 11 RCTs (n=1,204) found that early oral feeding (within 24 hours of admission) in mild pancreatitis was safe and shortened hospital stay by a mean of 2.1 days (95% CI 0.9–3.3). In severe pancreatitis, nasojejunal enteral nutrition started within 24–48 hours reduced mortality (RR 0.50, 95% CI 0.28–0.91), pancreatic infections (RR 0.47, 95% CI 0.20–0.79), and multiorgan failure (RR 0.33, 95% CI 0.12–0.89) compared with total parenteral nutrition (TPN), per a 2019 Cochrane review.</p>
+<p><strong>The step-up approach (PANTER trial):</strong> The Dutch PANTER trial (van Santvoort et al., <em>NEJM</em> 2010, n=88) compared step-up management (percutaneous or endoscopic drainage first, then videoscopic-assisted retroperitoneal debridement [VARD] if needed) with primary open necrosectomy for necrotizing pancreatitis. The step-up group had fewer major complications (40% vs. 69%, P=0.006), less new-onset multiorgan failure (12% vs. 40%), and lower mortality (15% vs. 31%). This remains the standard of care for necrotizing pancreatitis.</p>
+<p><strong>Antibiotics — prophylactic:</strong> A Cochrane review (Villatoro et al., 2010, 7 RCTs, n=757) found no benefit of prophylactic antibiotics in reducing mortality (RR 0.71, 95% CI 0.44–1.13) or infected necrosis in predicted severe pancreatitis. The meta-analysis also showed increased risk of fungal superinfection with prophylactic antibiotics. Current guidelines recommend antibiotics only for documented infection (not for prophylaxis).</p>
+<p><strong>Severity prediction — the Ranson criteria:</strong> Developed in 1974, the Ranson criteria (11 variables measured at admission and 48 hours) remain historically important but have been superseded by simpler, more accurate scores. The <strong>Bedside Index for Severity in Acute Pancreatitis (BISAP)</strong> — five variables (BUN >25, impaired mental status, SIRS, age >60, pleural effusion) — performs comparably (AUROC 0.82 vs. 0.79 for Ranson) and can be calculated at admission. The <strong>harmless acute pancreatitis score (HAPS)</strong> — normal CRP, no rebound tenderness, normal Hct, no renal failure — identifies mild disease at presentation with 98% PPV.</p>
+<h4>Surgical options (if indicated)</h4>
+<p>Surgery in acute pancreatitis is generally avoided in the first 4 weeks unless absolutely necessary — operating in the acute inflammatory phase carries high morbidity. Indications evolve over time:</p>
+<ul>
+<li><strong>ERCP with sphincterotomy:</strong> First-line intervention for gallstone pancreatitis with cholangitis or persistent biliary obstruction. Successful stone extraction in >90% of cases. No need for pre-cut papillotomy unless anatomy is hostile.</li>
+<li><strong>Cholecystectomy:</strong> For gallstone pancreatitis, cholecystectomy during the index admission (after symptoms resolve) reduces recurrence rates from 20–30% to <2% compared with delayed surgery (>6 weeks). The PONCHO trial (da Costa et al., <em>Lancet</em> 2015, n=266) showed that same-admission cholecystectomy reduced recurrent biliary events (5% vs. 17%, P=0.002) with similar complication rates to delayed surgery.</li>
+<li><strong>Percutaneous or endoscopic drainage of walled-off necrosis (WON):</strong> When necrotizing pancreatitis develops, infected necrosis is managed with a step-up approach. CT- or EUS-guided transluminal (transgastric or transduodenal) drainage with or without endoscopic necrosectomy (DEN) has largely replaced open surgery. A 2023 meta-analysis of endoscopic vs. surgical necrosectomy found comparable mortality (8% vs. 10%) but shorter hospital stay (mean difference −15 days) and lower new-onset organ failure with the endoscopic approach.</li>
+<li><strong>Video-assisted retroperitoneal debridement (VARD):</strong> Minimally invasive alternative to open necrosectomy when percutaneous drainage is insufficient. Used in the step-up approach from the PANTER trial. Performed through a small flank incision with endoscopic guidance.</li>
+<li><strong>Open necrosectomy:</strong> Rarely needed now. Reserved for patients with extensive infected necrosis not amenable to endoscopic or minimally invasive approaches. Mortality of open necrosectomy is still 10–30% depending on case selection and center volume.</li>
+<li><strong>Pancreatic duct stenting:</strong> For disconnected pancreatic duct syndrome — a late complication of severe necrotizing pancreatitis where the duct is transected, causing persistent pancreatic fistula or recurrent pseudocysts. Endoscopic transpapillary stenting bridges the gap.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal type and volume of IV fluid? Lactated Ringer's is preferred over normal saline, but the ideal rate and whether goal-directed therapy using hemodynamic targets (stroke volume variation, lactate clearance) improves outcomes over fixed-rate protocols is unknown. The FLUID trial (ISRCTN pending) is testing this.</li>
+<li>Can targeted anti-inflammatory therapy (IL-1 receptor antagonists, IL-6 inhibitors) improve outcomes in predicted severe pancreatitis? Anakinra (IL-1RA) showed promise in a phase II trial (n=48) with reduced CRP at 72 hours. Larger trials are needed.</li>
+<li>Does early ERCP benefit all patients with gallstone pancreatitis and elevated bilirubin, or only those with documented cholangitis? Current guidelines restrict urgent ERCP to cholangitis cases, but some argue that subtle biliary obstruction without overt cholangitis still benefits.</li>
+<li>What defines the optimal timing for enteral nutrition in severe pancreatitis? Current guidelines recommend within 24–48 hours, but the exact threshold for when the gastrointestinal tract is "ready" is unclear — gastric feeding vs. post-pyloric vs. nasojejunal remains debated.</li>
+<li>Can serum biomarkers (procalcitonin, suPAR, microRNAs) replace CT in predicting necrosis extent? Procalcitonin >3.8 ng/mL at 48 hours predicts infected necrosis with 92% sensitivity in preliminary studies.</li>
+<li>What is the optimal management of asymptomatic pseudocysts? Most resolve spontaneously within 6 months. The threshold for intervention (size, wall maturity, growth trajectory) is poorly defined.</li>
+<li>Can antibiotics targeted against the gut microbiome (selective digestive decontamination) reduce infected necrosis? An old concept being revisited with modern microbiome analysis.</li>
+<li>Why does only a minority of heavy drinkers develop pancreatitis? Genetic susceptibility (PRSS1, SPINK1, CFTR mutations) explains some but not most cases. The "second hit" hypothesis — an environmental trigger on a permissive genetic background — remains incompletely understood.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>de-Madaria E, Buxbaum JL, Maisonneuve P, et al. "Aggressive or Moderate Fluid Resuscitation in Acute Pancreatitis (WATERFALL)." <em>N Engl J Med</em> 2022;387(11):989–1000. PMID: 36069872.</li>
+<li>van Santvoort HC, Besselink MG, Bakker OJ, et al. "A Step-up Approach or Open Necrosectomy for Necrotizing Pancreatitis (PANTER)." <em>N Engl J Med</em> 2010;362(16):1491–1502. PMID: 20410514.</li>
+<li>Banks PA, Bollen TL, Dervenis C, et al. "Classification of acute pancreatitis—2012: revision of the Atlanta classification and definitions by international consensus." <em>Gut</em> 2013;62(1):102–111. PMID: 23100216.</li>
+<li>Tse F, Yuan Y. "Early routine endoscopic retrograde cholangiopancreatography strategy versus early conservative management strategy in acute gallstone pancreatitis." <em>Cochrane Database Syst Rev</em> 2012;(5):CD009779. PMID: 22592743.</li>
+<li>Villatoro E, Mulla M, Larvin M. "Antibiotic therapy for prophylaxis against infection of pancreatic necrosis in acute pancreatitis." <em>Cochrane Database Syst Rev</em> 2010;(5):CD002941. PMID: 20464731.</li>
+<li>Beyer G, Hoffmeister A, Lorenz P, Lynen P, Lerch MM, Mayerle J. "Clinical Practice Guideline—Acute and Chronic Pancreatitis." <em>Dtsch Arztebl Int</em> 2022;119(29–30):495–501. PMID: 35945698.</li>
+<li>Tenner S, Baillie J, DeWitt J, Vege SS; American College of Gastroenterology. "American College of Gastroenterology Guideline: Management of Acute Pancreatitis." <em>Am J Gastroenterol</em> 2024;119(4):678–697. PMID: 38240456.</li>
+<li>da Costa DW, Bouwense SA, Schepers NJ, et al. "Same-admission versus interval cholecystectomy for mild gallstone pancreatitis (PONCHO): a multicentre randomised controlled trial." <em>Lancet</em> 2015;386(10000):1261–1268. PMID: 26260607.</li>
+<li>IAP/APA Working Group. "IAP/APA evidence-based guidelines for the management of acute pancreatitis." <em>Pancreatology</em> 2013;13(4 Suppl 2):e1–e15. Updated 2020 consensus.</li>
+<li>Crockett SD, Wani S, Gardner TB, Falck-Ytter Y, Barkun AN; American Gastroenterological Association. "American Gastroenterological Association Institute Guideline on Initial Management of Acute Pancreatitis." <em>Gastroenterology</em> 2018;154(4):1096–1101. PMID: 29409760.</li>
+<li>Fisher JM, Gardner TB. "The "golden hours" of management in acute pancreatitis." <em>Am J Gastroenterol</em> 2012;107(8):1146–1150. PMID: 22777342.</li>
+<li>Talathi S, Gupta R, Garg PK, et al. "Role of endoscopy in necrotizing pancreatitis: a meta-analysis." <em>Endoscopy</em> 2023;55(8):736–746.</li>
+<li>Al-Leswas D, Baxter N, Lim WB, et al. "The safety and efficacy of epidural anaesthesia in acute pancreatitis: a systematic review and meta-analysis." <em>HPB (Oxford)</em> 2023;25(2):162–171. PMID: 36593161.</li>
+<li>Nelson AD, Lugo-Fagundo NS, Mahapatra SJ, et al. "A Systematic Review and Meta-analysis of Opioids vs Nonopioids in Acute Pancreatitis." <em>Gastro Hep Adv</em> 2022;1(1):83–92. PMID: 39129925.</li>
+<li>Working Group IAP/APA Acute Pancreatitis Guidelines. "IAP/APA evidence-based guidelines for the management of acute pancreatitis." <em>Pancreatology</em> 2020 (update published as online consensus).</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

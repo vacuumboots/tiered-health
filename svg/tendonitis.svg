@@ -1,0 +1,207 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="tendon-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d4c8b8"/><stop offset="100%" stop-color="#c4b5a0"/></linearGradient>
+    <linearGradient id="tendon-degen" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4c8b8"/><stop offset="40%" stop-color="#c4b5a0"/><stop offset="60%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8c8b0"/><stop offset="100%" stop-color="#dcb89e"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ TITLE ═══════════ -->
+  <text x="250" y="22" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Lateral Elbow Anatomy &amp; Tendinopathy (Tennis Elbow)</text>
+
+  <!-- ═══════════ MAIN: Lateral (outer) view of the elbow ═══════════ -->
+
+  <!-- Upper arm (humerus) outline -->
+  <path d="M195,50 C185,52 178,60 175,72 L170,110 C168,140 168,170 170,195 L175,220 C178,235 182,245 188,250 L200,260 C210,265 218,265 225,260 L232,250 C236,242 238,230 240,215 L242,180 C243,145 242,115 240,90 L238,70 C235,58 228,52 220,50 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Forearm outline -->
+  <path d="M188,250 C180,258 175,270 172,285 L168,310 C165,335 163,360 162,380 L160,400 C158,415 155,425 152,430 L220,430 C217,425 215,415 214,400 L212,380 C210,360 208,335 205,310 L202,285 C198,270 193,258 188,250 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Humerus bone (ghosted) -->
+  <path d="M210,60 L208,80 L206,110 L205,140 L205,170 L208,200 L212,220 L216,235 L220,245"
+        fill="none" stroke="url(#bone-grad)" stroke-width="12" stroke-linecap="round" opacity="0.45"/>
+  <text x="230" y="110" fill="#b0a595" font-size="10" font-style="italic">Humerus</text>
+
+  <!-- Radius bone (ghosted) -->
+  <path d="M195,260 L192,290 L190,320 L190,350 L192,375 L195,395 L198,410"
+        fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
+  <text x="158" y="340" fill="#b0a595" font-size="10" font-style="italic">Radius</text>
+
+  <!-- Ulna bone (ghosted, partially visible) -->
+  <path d="M215,258 L218,290 L220,320 L221,350 L220,375 L218,395 L215,410"
+        fill="none" stroke="url(#bone-grad)" stroke-width="7" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Lateral epicondyle (bony prominence) -->
+  <ellipse cx="225" cy="240" rx="10" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.8"/>
+  <text x="258" y="240" fill="#b0a595" font-size="9" font-style="italic">Lateral</text>
+  <text x="258" y="250" fill="#b0a595" font-size="9" font-style="italic">epicondyle</text>
+  <line x1="235" y1="240" x2="256" y2="240" stroke="#b0a595" stroke-width="0.7" stroke-dasharray="2,2"/>
+
+  <!-- Common extensor tendon (origin at epicondyle, running down forearm) -->
+  <path d="M215,242 C210,248 205,258 200,270 C196,280 192,292 190,305 C188,315 186,325 185,335 L184,345"
+        fill="none" stroke="url(#tendon-grad)" stroke-width="6" stroke-linecap="round" filter="url(#soft)"/>
+  <path d="M225,245 C222,252 218,262 215,272 C212,282 208,294 206,305 C204,315 202,325 200,335 L198,345"
+        fill="none" stroke="url(#tendon-grad)" stroke-width="5" stroke-linecap="round" filter="url(#soft)"/>
+  <!-- Combined tendon below -->
+  <path d="M190,305 C188,315 186,325 185,335 L184,345"
+        fill="none" stroke="url(#tendon-grad)" stroke-width="10" stroke-linecap="round" filter="url(#soft)" opacity="0.7"/>
+
+  <text x="148" y="310" fill="#8a7e6e" font-size="9" font-weight="600">Common extensor</text>
+  <text x="148" y="322" fill="#8a7e6e" font-size="9" font-weight="600">tendon origin</text>
+
+  <!-- Degeneration zone at the enthesis (the sore spot) -->
+  <ellipse cx="215" cy="248" rx="16" ry="10" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2" opacity="0.85"/>
+  <line x1="231" y1="248" x2="258" y2="275" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="258" y="273" fill="#c0392b" font-size="10" font-weight="600">Degeneration</text>
+  <text x="258" y="285" fill="#c0392b" font-size="10">(tendinosis zone)</text>
+
+  <!-- Extensor muscle bellies (ghosted in forearm) -->
+  <path d="M178,300 C174,310 172,325 172,340 L170,360 L172,370 L178,375" fill="none" stroke="url(#muscle)" stroke-width="25" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Wrist extension arrow (mechanism of injury) -->
+  <path d="M120,380 C100,370 85,358 78,345 C72,332 72,320 78,312"
+        fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-start="url(#arrow)" stroke-dasharray="5,3" opacity="0.6"/>
+  <text x="48" y="355" fill="#8a7e6e" font-size="9">Repetitive wrist</text>
+  <text x="48" y="367" fill="#8a7e6e" font-size="9">extension →</text>
+
+  <!-- Pain indicator / inflammation marker -->
+  <g transform="translate(200, 238)">
+    <path d="M0,-6 C3,-8 8,-6 10,-2 C12,2 10,6 6,8 C2,10 -2,8 -4,4 C-6,0 -4,-4 0,-6 Z" fill="#e74c3c" opacity="0.35"/>
+  </g>
+
+  <!-- Label: Pain here -->
+  <text x="168" y="228" fill="#c0392b" font-size="8">☹ Pain here</text>
+  <line x1="195" y1="232" x2="200" y2="238" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="2,1"/>
+
+  <!-- ═══════════ MICROSCOPIC INSET: Normal vs. Degenerated Tendon ═══════════ -->
+  <g transform="translate(255, 55)">
+    <rect x="0" y="0" width="230" height="225" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1.2" opacity="0.95"/>
+    <text x="115" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Tendon microstructure</text>
+
+    <!-- Normal tendon (left half) -->
+    <text x="57" y="38" fill="#2e7d32" font-size="9" font-weight="600" text-anchor="middle">Normal tendon</text>
+    <!-- Parallel collagen fibers -->
+    <line x1="15" y1="50" x2="100" y2="50" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="55" x2="100" y2="55" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="60" x2="100" y2="60" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="65" x2="100" y2="65" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="70" x2="100" y2="70" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="75" x2="100" y2="75" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="80" x2="100" y2="80" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="85" x2="100" y2="85" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Tenocyte nuclei (thin spindle-shaped cells between fibers) -->
+    <ellipse cx="35" cy="53" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <ellipse cx="60" cy="63" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <ellipse cx="80" cy="73" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <ellipse cx="45" cy="83" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <!-- Label: Type I collagen -->
+    <text x="40" y="100" fill="#8a7e6e" font-size="7" text-anchor="middle">Type I collagen</text>
+    <text x="40" y="110" fill="#8a7e6e" font-size="7" text-anchor="middle">(parallel, strong)</text>
+
+    <!-- Separator -->
+    <line x1="115" y1="40" x2="115" y2="220" stroke="#e0e0dc" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- Degenerated tendon (right half) -->
+    <text x="172" y="38" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Degenerated tendon</text>
+    <!-- Disorganized, frayed collagen -->
+    <path d="M125,50 C140,48 150,55 160,52 C170,48 180,55 190,50 L215,50" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,55 C135,60 145,50 158,57 C168,62 178,52 195,55 L215,55" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,60 C142,65 148,58 160,65 C175,70 185,58 200,60 L215,60" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,65 C130,62 145,70 155,68 C170,62 180,72 192,65 L215,65" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,70 C138,75 148,68 155,75 C162,80 175,68 185,72 L200,70 L215,70" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,75 C140,72 150,80 160,78 C170,75 178,82 188,75 L215,75" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,80 C135,85 145,78 152,84 C162,90 172,80 180,85 L195,80 L215,80" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,85 C142,82 148,88 160,86 C172,82 178,90 190,85 L215,85" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Round tenocytes (chondroid metaplasia) -->
+    <circle cx="140" cy="52" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="170" cy="60" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="190" cy="72" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="150" cy="82" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="175" cy="82" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <!-- Neovascularization (tiny red blood vessels) -->
+    <path d="M145,90 C148,95 152,92 155,98 C158,105 160,110 162,115" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="1,2" opacity="0.7"/>
+    <path d="M165,90 C168,98 170,96 172,105 C174,112 176,118 178,125" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="1,2" opacity="0.7"/>
+    <path d="M185,90 C188,102 190,100 192,108" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="1,2" opacity="0.7"/>
+    <text x="170" y="140" fill="#c0392b" font-size="7" text-anchor="middle">Neovascularization</text>
+    <text x="170" y="150" fill="#c0392b" font-size="7" text-anchor="middle">(new blood vessels)</text>
+
+    <!-- Label: Type III collagen + ground substance -->
+    <text x="170" y="100" fill="#8a7e6e" font-size="7" text-anchor="middle" visibility="hidden"/>
+    <text x="170" y="173" fill="#8a7e6e" font-size="7" text-anchor="middle">Disorganized type III</text>
+    <text x="170" y="183" fill="#8a7e6e" font-size="7" text-anchor="middle">collagen + proteoglycans</text>
+
+    <!-- Enthesis (bone-tendon junction) at bottom -->
+    <rect x="10" y="195" width="210" height="22" rx="3" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.7"/>
+    <text x="115" y="210" fill="#8a7e6e" font-size="8" text-anchor="middle">Bone enthesis (attachment site)</text>
+  </g>
+
+  <!-- ═══════════ PAIN SEVERITY SCALE INSET ═══════════ -->
+  <g transform="translate(20, 300)">
+    <rect x="0" y="0" width="220" height="185" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="110" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Tendinopathy Continuum (Cook &amp; Purdam)</text>
+
+    <!-- Stage 1: Reactive -->
+    <rect x="10" y="28" width="200" height="42" rx="4" fill="#fff8e1" stroke="#f0d870" stroke-width="0.8"/>
+    <text x="15" y="42" fill="#8a7e6e" font-size="9" font-weight="600">1. Reactive tendinopathy</text>
+    <text x="15" y="54" fill="#8a7e6e" font-size="7">Tendon thickens — acute overload response</text>
+    <text x="15" y="64" fill="#2e7d32" font-size="7" font-weight="600">Reversible with load modification (days)</text>
+
+    <!-- Arrow 1→2 -->
+    <path d="M110,70 L110,78" fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Stage 2: Dysrepair -->
+    <rect x="10" y="80" width="200" height="42" rx="4" fill="#fff3e0" stroke="#e8a838" stroke-width="0.8"/>
+    <text x="15" y="94" fill="#8a7e6e" font-size="9" font-weight="600">2. Tendon dysrepair</text>
+    <text x="15" y="106" fill="#8a7e6e" font-size="7">Matrix breakdown, collagen separation</text>
+    <text x="15" y="116" fill="#e65100" font-size="7" font-weight="600">Partially reversible — most seek help here</text>
+
+    <!-- Arrow 2→3 -->
+    <path d="M110,122 L110,130" fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Stage 3: Degenerative -->
+    <rect x="10" y="132" width="200" height="42" rx="4" fill="#fbe9e7" stroke="#c0392b" stroke-width="0.8"/>
+    <text x="15" y="146" fill="#c0392b" font-size="9" font-weight="600">3. Degenerative tendinopathy</text>
+    <text x="15" y="158" fill="#8a7e6e" font-size="7">Advanced collagen disorganization, apoptosis</text>
+    <text x="15" y="168" fill="#c0392b" font-size="7" font-weight="600">Largely irreversible — at risk for rupture</text>
+  </g>
+
+  <!-- ═══════════ KEY ═══════════ -->
+  <g transform="translate(20, 505)">
+    <rect x="0" y="0" width="460" height="78" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="12" y="18" fill="#8a7e6e" font-size="9" font-weight="600">Key</text>
+
+    <!-- Bone -->
+    <line x1="12" y1="35" x2="32" y2="35" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round"/>
+    <text x="38" y="38" fill="#8a7e6e" font-size="8">Bone</text>
+
+    <!-- Tendon -->
+    <line x1="90" y1="35" x2="110" y2="35" stroke="#c4b5a0" stroke-width="4" stroke-linecap="round"/>
+    <text x="116" y="38" fill="#8a7e6e" font-size="8">Extensor tendon</text>
+
+    <!-- Degeneration zone -->
+    <line x1="210" y1="35" x2="228" y2="35" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="234" y="38" fill="#8a7e6e" font-size="8">Degeneration zone</text>
+
+    <!-- Neovascularization -->
+    <line x1="12" y1="57" x2="32" y2="57" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="1,2"/>
+    <text x="38" y="60" fill="#8a7e6e" font-size="8">Neovascularization</text>
+
+    <!-- Muscle -->
+    <line x1="170" y1="57" x2="190" y2="57" stroke="url(#muscle)" stroke-width="5" stroke-linecap="round"/>
+    <text x="196" y="60" fill="#8a7e6e" font-size="8">Extensor muscles</text>
+
+    <!-- Pain indicator -->
+    <circle cx="305" cy="53" r="4" fill="#e74c3c" opacity="0.35" stroke="#c0392b" stroke-width="0.5"/>
+    <text x="315" y="60" fill="#8a7e6e" font-size="8">Pain / tenderness</text>
+  </g>
+</svg>

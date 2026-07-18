@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tendonitis — Tiered Health</title>
+<meta name="description" content="Tendonitis: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">💪 Tiered Health <span>/ Tendonitis</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">💪 Tendonitis</h1>
+  <p class="aka">Also called: tendinitis, tendinopathy, tennis elbow, golfer&#x27;s elbow</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="tendon-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d4c8b8"/><stop offset="100%" stop-color="#c4b5a0"/></linearGradient>
+    <linearGradient id="tendon-degen" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4c8b8"/><stop offset="40%" stop-color="#c4b5a0"/><stop offset="60%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <linearGradient id="muscle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8c8b0"/><stop offset="100%" stop-color="#dcb89e"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════ TITLE ═══════════ -->
+  <text x="250" y="22" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Lateral Elbow Anatomy &amp; Tendinopathy (Tennis Elbow)</text>
+
+  <!-- ═══════════ MAIN: Lateral (outer) view of the elbow ═══════════ -->
+
+  <!-- Upper arm (humerus) outline -->
+  <path d="M195,50 C185,52 178,60 175,72 L170,110 C168,140 168,170 170,195 L175,220 C178,235 182,245 188,250 L200,260 C210,265 218,265 225,260 L232,250 C236,242 238,230 240,215 L242,180 C243,145 242,115 240,90 L238,70 C235,58 228,52 220,50 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Forearm outline -->
+  <path d="M188,250 C180,258 175,270 172,285 L168,310 C165,335 163,360 162,380 L160,400 C158,415 155,425 152,430 L220,430 C217,425 215,415 214,400 L212,380 C210,360 208,335 205,310 L202,285 C198,270 193,258 188,250 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Humerus bone (ghosted) -->
+  <path d="M210,60 L208,80 L206,110 L205,140 L205,170 L208,200 L212,220 L216,235 L220,245"
+        fill="none" stroke="url(#bone-grad)" stroke-width="12" stroke-linecap="round" opacity="0.45"/>
+  <text x="230" y="110" fill="#b0a595" font-size="10" font-style="italic">Humerus</text>
+
+  <!-- Radius bone (ghosted) -->
+  <path d="M195,260 L192,290 L190,320 L190,350 L192,375 L195,395 L198,410"
+        fill="none" stroke="url(#bone-grad)" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
+  <text x="158" y="340" fill="#b0a595" font-size="10" font-style="italic">Radius</text>
+
+  <!-- Ulna bone (ghosted, partially visible) -->
+  <path d="M215,258 L218,290 L220,320 L221,350 L220,375 L218,395 L215,410"
+        fill="none" stroke="url(#bone-grad)" stroke-width="7" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Lateral epicondyle (bony prominence) -->
+  <ellipse cx="225" cy="240" rx="10" ry="8" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="1.2" opacity="0.8"/>
+  <text x="258" y="240" fill="#b0a595" font-size="9" font-style="italic">Lateral</text>
+  <text x="258" y="250" fill="#b0a595" font-size="9" font-style="italic">epicondyle</text>
+  <line x1="235" y1="240" x2="256" y2="240" stroke="#b0a595" stroke-width="0.7" stroke-dasharray="2,2"/>
+
+  <!-- Common extensor tendon (origin at epicondyle, running down forearm) -->
+  <path d="M215,242 C210,248 205,258 200,270 C196,280 192,292 190,305 C188,315 186,325 185,335 L184,345"
+        fill="none" stroke="url(#tendon-grad)" stroke-width="6" stroke-linecap="round" filter="url(#soft)"/>
+  <path d="M225,245 C222,252 218,262 215,272 C212,282 208,294 206,305 C204,315 202,325 200,335 L198,345"
+        fill="none" stroke="url(#tendon-grad)" stroke-width="5" stroke-linecap="round" filter="url(#soft)"/>
+  <!-- Combined tendon below -->
+  <path d="M190,305 C188,315 186,325 185,335 L184,345"
+        fill="none" stroke="url(#tendon-grad)" stroke-width="10" stroke-linecap="round" filter="url(#soft)" opacity="0.7"/>
+
+  <text x="148" y="310" fill="#8a7e6e" font-size="9" font-weight="600">Common extensor</text>
+  <text x="148" y="322" fill="#8a7e6e" font-size="9" font-weight="600">tendon origin</text>
+
+  <!-- Degeneration zone at the enthesis (the sore spot) -->
+  <ellipse cx="215" cy="248" rx="16" ry="10" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2" opacity="0.85"/>
+  <line x1="231" y1="248" x2="258" y2="275" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="258" y="273" fill="#c0392b" font-size="10" font-weight="600">Degeneration</text>
+  <text x="258" y="285" fill="#c0392b" font-size="10">(tendinosis zone)</text>
+
+  <!-- Extensor muscle bellies (ghosted in forearm) -->
+  <path d="M178,300 C174,310 172,325 172,340 L170,360 L172,370 L178,375" fill="none" stroke="url(#muscle)" stroke-width="25" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Wrist extension arrow (mechanism of injury) -->
+  <path d="M120,380 C100,370 85,358 78,345 C72,332 72,320 78,312"
+        fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-start="url(#arrow)" stroke-dasharray="5,3" opacity="0.6"/>
+  <text x="48" y="355" fill="#8a7e6e" font-size="9">Repetitive wrist</text>
+  <text x="48" y="367" fill="#8a7e6e" font-size="9">extension →</text>
+
+  <!-- Pain indicator / inflammation marker -->
+  <g transform="translate(200, 238)">
+    <path d="M0,-6 C3,-8 8,-6 10,-2 C12,2 10,6 6,8 C2,10 -2,8 -4,4 C-6,0 -4,-4 0,-6 Z" fill="#e74c3c" opacity="0.35"/>
+  </g>
+
+  <!-- Label: Pain here -->
+  <text x="168" y="228" fill="#c0392b" font-size="8">☹ Pain here</text>
+  <line x1="195" y1="232" x2="200" y2="238" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="2,1"/>
+
+  <!-- ═══════════ MICROSCOPIC INSET: Normal vs. Degenerated Tendon ═══════════ -->
+  <g transform="translate(255, 55)">
+    <rect x="0" y="0" width="230" height="225" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1.2" opacity="0.95"/>
+    <text x="115" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Tendon microstructure</text>
+
+    <!-- Normal tendon (left half) -->
+    <text x="57" y="38" fill="#2e7d32" font-size="9" font-weight="600" text-anchor="middle">Normal tendon</text>
+    <!-- Parallel collagen fibers -->
+    <line x1="15" y1="50" x2="100" y2="50" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="55" x2="100" y2="55" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="60" x2="100" y2="60" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="65" x2="100" y2="65" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="70" x2="100" y2="70" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="75" x2="100" y2="75" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="80" x2="100" y2="80" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="15" y1="85" x2="100" y2="85" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Tenocyte nuclei (thin spindle-shaped cells between fibers) -->
+    <ellipse cx="35" cy="53" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <ellipse cx="60" cy="63" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <ellipse cx="80" cy="73" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <ellipse cx="45" cy="83" rx="4" ry="1.2" fill="#8a7e6e" opacity="0.6"/>
+    <!-- Label: Type I collagen -->
+    <text x="40" y="100" fill="#8a7e6e" font-size="7" text-anchor="middle">Type I collagen</text>
+    <text x="40" y="110" fill="#8a7e6e" font-size="7" text-anchor="middle">(parallel, strong)</text>
+
+    <!-- Separator -->
+    <line x1="115" y1="40" x2="115" y2="220" stroke="#e0e0dc" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- Degenerated tendon (right half) -->
+    <text x="172" y="38" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Degenerated tendon</text>
+    <!-- Disorganized, frayed collagen -->
+    <path d="M125,50 C140,48 150,55 160,52 C170,48 180,55 190,50 L215,50" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,55 C135,60 145,50 158,57 C168,62 178,52 195,55 L215,55" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,60 C142,65 148,58 160,65 C175,70 185,58 200,60 L215,60" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,65 C130,62 145,70 155,68 C170,62 180,72 192,65 L215,65" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,70 C138,75 148,68 155,75 C162,80 175,68 185,72 L200,70 L215,70" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,75 C140,72 150,80 160,78 C170,75 178,82 188,75 L215,75" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,80 C135,85 145,78 152,84 C162,90 172,80 180,85 L195,80 L215,80" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M125,85 C142,82 148,88 160,86 C172,82 178,90 190,85 L215,85" fill="none" stroke="#c4b5a0" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Round tenocytes (chondroid metaplasia) -->
+    <circle cx="140" cy="52" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="170" cy="60" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="190" cy="72" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="150" cy="82" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <circle cx="175" cy="82" r="2.5" fill="#8a7e6e" opacity="0.7"/>
+    <!-- Neovascularization (tiny red blood vessels) -->
+    <path d="M145,90 C148,95 152,92 155,98 C158,105 160,110 162,115" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="1,2" opacity="0.7"/>
+    <path d="M165,90 C168,98 170,96 172,105 C174,112 176,118 178,125" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="1,2" opacity="0.7"/>
+    <path d="M185,90 C188,102 190,100 192,108" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="1,2" opacity="0.7"/>
+    <text x="170" y="140" fill="#c0392b" font-size="7" text-anchor="middle">Neovascularization</text>
+    <text x="170" y="150" fill="#c0392b" font-size="7" text-anchor="middle">(new blood vessels)</text>
+
+    <!-- Label: Type III collagen + ground substance -->
+    <text x="170" y="100" fill="#8a7e6e" font-size="7" text-anchor="middle" visibility="hidden"/>
+    <text x="170" y="173" fill="#8a7e6e" font-size="7" text-anchor="middle">Disorganized type III</text>
+    <text x="170" y="183" fill="#8a7e6e" font-size="7" text-anchor="middle">collagen + proteoglycans</text>
+
+    <!-- Enthesis (bone-tendon junction) at bottom -->
+    <rect x="10" y="195" width="210" height="22" rx="3" fill="url(#bone-grad)" stroke="#c4b5a0" stroke-width="0.8" opacity="0.7"/>
+    <text x="115" y="210" fill="#8a7e6e" font-size="8" text-anchor="middle">Bone enthesis (attachment site)</text>
+  </g>
+
+  <!-- ═══════════ PAIN SEVERITY SCALE INSET ═══════════ -->
+  <g transform="translate(20, 300)">
+    <rect x="0" y="0" width="220" height="185" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="110" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Tendinopathy Continuum (Cook &amp; Purdam)</text>
+
+    <!-- Stage 1: Reactive -->
+    <rect x="10" y="28" width="200" height="42" rx="4" fill="#fff8e1" stroke="#f0d870" stroke-width="0.8"/>
+    <text x="15" y="42" fill="#8a7e6e" font-size="9" font-weight="600">1. Reactive tendinopathy</text>
+    <text x="15" y="54" fill="#8a7e6e" font-size="7">Tendon thickens — acute overload response</text>
+    <text x="15" y="64" fill="#2e7d32" font-size="7" font-weight="600">Reversible with load modification (days)</text>
+
+    <!-- Arrow 1→2 -->
+    <path d="M110,70 L110,78" fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Stage 2: Dysrepair -->
+    <rect x="10" y="80" width="200" height="42" rx="4" fill="#fff3e0" stroke="#e8a838" stroke-width="0.8"/>
+    <text x="15" y="94" fill="#8a7e6e" font-size="9" font-weight="600">2. Tendon dysrepair</text>
+    <text x="15" y="106" fill="#8a7e6e" font-size="7">Matrix breakdown, collagen separation</text>
+    <text x="15" y="116" fill="#e65100" font-size="7" font-weight="600">Partially reversible — most seek help here</text>
+
+    <!-- Arrow 2→3 -->
+    <path d="M110,122 L110,130" fill="none" stroke="#8a7e6e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Stage 3: Degenerative -->
+    <rect x="10" y="132" width="200" height="42" rx="4" fill="#fbe9e7" stroke="#c0392b" stroke-width="0.8"/>
+    <text x="15" y="146" fill="#c0392b" font-size="9" font-weight="600">3. Degenerative tendinopathy</text>
+    <text x="15" y="158" fill="#8a7e6e" font-size="7">Advanced collagen disorganization, apoptosis</text>
+    <text x="15" y="168" fill="#c0392b" font-size="7" font-weight="600">Largely irreversible — at risk for rupture</text>
+  </g>
+
+  <!-- ═══════════ KEY ═══════════ -->
+  <g transform="translate(20, 505)">
+    <rect x="0" y="0" width="460" height="78" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="12" y="18" fill="#8a7e6e" font-size="9" font-weight="600">Key</text>
+
+    <!-- Bone -->
+    <line x1="12" y1="35" x2="32" y2="35" stroke="url(#bone-grad)" stroke-width="5" stroke-linecap="round"/>
+    <text x="38" y="38" fill="#8a7e6e" font-size="8">Bone</text>
+
+    <!-- Tendon -->
+    <line x1="90" y1="35" x2="110" y2="35" stroke="#c4b5a0" stroke-width="4" stroke-linecap="round"/>
+    <text x="116" y="38" fill="#8a7e6e" font-size="8">Extensor tendon</text>
+
+    <!-- Degeneration zone -->
+    <line x1="210" y1="35" x2="228" y2="35" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="234" y="38" fill="#8a7e6e" font-size="8">Degeneration zone</text>
+
+    <!-- Neovascularization -->
+    <line x1="12" y1="57" x2="32" y2="57" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="1,2"/>
+    <text x="38" y="60" fill="#8a7e6e" font-size="8">Neovascularization</text>
+
+    <!-- Muscle -->
+    <line x1="170" y1="57" x2="190" y2="57" stroke="url(#muscle)" stroke-width="5" stroke-linecap="round"/>
+    <text x="196" y="60" fill="#8a7e6e" font-size="8">Extensor muscles</text>
+
+    <!-- Pain indicator -->
+    <circle cx="305" cy="53" r="4" fill="#e74c3c" opacity="0.35" stroke="#c0392b" stroke-width="0.5"/>
+    <text x="315" y="60" fill="#8a7e6e" font-size="8">Pain / tenderness</text>
+  </g>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is tendonitis?</h4>
+<p>Tendonitis is a painful condition where a tendon — the tough cord that connects muscle to bone — develops tiny tears and degeneration from overuse, not acute inflammation. It's more accurately called <strong>tendinopathy</strong> or <strong>tendinosis</strong>. Common spots include the elbow (tennis elbow, golfer's elbow), shoulder (rotator cuff), knee (patellar tendon), and heel (Achilles).</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Rest the painful area</strong> for a few days. Stop the activity that caused it — don't try to "work through" tendon pain. Continuing only makes the damage worse.</li>
+<li><strong>Ice it.</strong> Apply ice wrapped in a towel for 15–20 minutes every 2–3 hours. This helps with pain, especially in the first few days.</li>
+<li><strong>Take ibuprofen (Advil, Motrin)</strong> if you can safely take it. Use it for 3–5 days max for pain relief — it won't fix the tendon but it helps you rest.</li>
+<li><strong>Start gentle stretching</strong> once the sharp pain settles. Stretch the muscle attached to the sore tendon — don't stretch the sore spot itself.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>The area is red, hot, and swollen with a fever (could be an infection)</li>
+<li>You have sudden, sharp tearing pain and can't use the muscle at all (possible tendon rupture)</li>
+<li>The pain came from a direct injury or fall</li>
+<li>Your hand or foot is cold, numb, or discolored</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Key fact</h5>
+<p>Tendonitis is usually not "itis" — the tendon is degenerating, not inflamed. This matters because rest alone often isn't enough. You also need <strong>eccentric strengthening</strong> (lengthening the muscle under load) to stimulate proper healing. In the right dose, this is the single best treatment for most tendinopathies. Patience is key — tendons heal slowly, often taking 3–6 months.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>A <strong>tendon</strong> is a dense, rope-like band of <strong>type I collagen</strong> that transfers force from muscle to bone. Tendons are built to handle enormous loads — the Achilles tendon can withstand forces up to 7–10 times body weight during running. But they also have poor blood supply and slow metabolism, which means they heal slowly when injured.</p>
+<p>In tendinopathy, the normal healing process goes wrong. Overuse triggers <strong>collagen degeneration</strong> — the tendon fibres fray, separate, and lose their normal parallel alignment. Under a microscope, the affected area shows <strong>disorganized collagen</strong> (mostly weaker type III instead of type I), increased <strong>ground substance</strong> (a jelly-like matrix), and <strong>neovascularization</strong> (tiny new blood vessels growing into areas they don't belong, accompanied by pain-sensing nerve fibres). These changes are NOT driven by neutrophils or inflammatory cells — which is why anti-inflammatories alone don't fix the underlying problem.</p>
+<p>The condition exists on a spectrum. The <strong>continuum model</strong> (Cook & Purdam, 2009) describes three stages:</p>
+<ol>
+<li><strong>Reactive tendinopathy:</strong> The tendon thickens in response to acute overload. This is a protective adaptation — the tendon swells to spread the load. At this stage it's reversible with load modification.</li>
+<li><strong>Tendon dysrepair:</strong> The tendon starts breaking down structurally. Collagen fibres separate, and the matrix becomes more disorganized. This is the stage at which most people first seek help.</li>
+<li><strong>Degenerative tendinopathy:</strong> Advanced irreversible changes — collagen breakdown, cell death (apoptosis), neovascularization, and sometimes micro-tears or calcification. The tendon is weaker, thicker, and painful.</li>
+</ol>
+<h4>Common sites</h4>
+<ul>
+<li><strong>Lateral epicondyle (tennis elbow):</strong> Pain on the outer elbow at the common extensor origin (extensor carpi radialis brevis). Most common in people 35–55. Not just tennis — any repetitive gripping, computer mouse use, or hand-intensive work can trigger it.</li>
+<li><strong>Medial epicondyle (golfer's elbow):</strong> Pain on the inner elbow at the common flexor origin. Less common than tennis elbow.</li>
+<li><strong>Rotator cuff (supraspinatus tendinopathy):</strong> Pain on the outer shoulder, especially with overhead movements. Common in throwing sports, swimming, and manual overhead work.</li>
+<li><strong>Patellar tendon (jumper's knee):</strong> Pain just below the kneecap. Common in jumping sports (basketball, volleyball).</li>
+<li><strong>Achilles tendinopathy:</strong> Pain 2–6 cm above the heel bone. Common in runners, especially with sudden increases in mileage or hill training.</li>
+</ul>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Pain at a specific spot</strong> over the tendon, especially when you press on it or use the attached muscle against resistance.</li>
+<li><strong>Pain that gets worse with activity</strong> and eases with rest — at least early on. As it progresses, pain may become constant and interfere with daily activities (holding a coffee cup, climbing stairs).</li>
+<li><strong>Morning stiffness</strong> in the affected area that loosens up after a few minutes of movement — similar to osteoarthritis but localized to the tendon.</li>
+<li><strong>Thickening or a lump</strong> over the tendon in chronic cases.</li>
+<li><strong>Creaking or grating sensation</strong> (crepitus) when moving the joint, especially in the Achilles and patellar tendons.</li>
+<li><strong>The tendon may feel weak</strong> — not just painful but genuinely unable to generate full force.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Load management (relative rest):</strong> This is the cornerstone. Stop the aggravating activity completely for a few days, then gradually reintroduce it at a level that doesn't cause sharp pain. Complete immobilization is bad — it weakens the tendon further. Find the "pain envelope": activity that causes mild discomfort (2–3/10) is acceptable; sharp or worsening pain is a signal to back off.</li>
+<li><strong>Eccentric strengthening:</strong> The most evidence-supported intervention. Eccentric exercise means contracting the muscle while it's lengthening — like slowly lowering a weight rather than lifting it. The Alfredson protocol for Achilles tendinopathy (3 sets of 15 repetitions, twice daily, for 12 weeks) has the strongest evidence base. For other sites, similar eccentric loading protocols exist (e.g., Tyler protocol for tennis elbow). The mechanism is thought to be tendon remodelling: eccentric loading stimulates collagen synthesis, improves fibril alignment, and reduces neovascularization.</li>
+<li><strong>Ice:</strong> Apply after activity or at the end of the day to reduce pain. Ice massage (freeze water in a paper cup and rub over the sore spot for 5–10 minutes) is practical.</li>
+<li><strong>NSAIDs:</strong> Short-term (3–7 days) for pain control, especially in the reactive/acute overload stage. Topical diclofenac gel may be as effective as oral with fewer side effects. No evidence that NSAIDs improve long-term outcomes — they treat symptoms, not the degenerating tendon.</li>
+<li><strong>Physical therapy:</strong> Addresses biomechanical contributors — muscle imbalances, poor movement patterns, weakness in supporting muscles (e.g., scapular stabilizers for rotator cuff tendinopathy).</li>
+<li><strong>Shockwave therapy (ESWT):</strong> Best studied for calcific rotator cuff tendinopathy and lateral epicondylitis. Moderate evidence for pain reduction in chronic cases (>6 months).</li>
+<li><strong>Platelet-rich plasma (PRP):</strong> A single injection of concentrated platelets from your own blood. Evidence is mixed — some high-quality trials show modest benefit for lateral epicondylitis and patellar tendinopathy; others show no benefit over placebo. Most guidelines list it as a second- or third-line option after failed conservative therapy.</li>
+<li><strong>Corticosteroid injections:</strong> Provide excellent short-term pain relief (4–8 weeks) but are NO longer recommended as first-line treatment. Multiple RCTs show that while steroids give rapid pain relief, they increase the risk of tendon rupture and are associated with WORSE long-term outcomes than exercise alone. A landmark trial by Coombes et al. (2013) found that corticosteroid injection for tennis elbow was inferior to physiotherapy at 1 year — patients who got steroids had higher recurrence rates and more functional impairment.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't keep doing the painful activity hoping it will go away — tendinopathy gets worse, not better, with continued overuse.</li>
+<li>Don't take NSAIDs for more than a few weeks. They don't fix the tendon and can mask pain, leading you to do more damage without realizing it.</li>
+<li>Don't get a corticosteroid injection without first trying 8–12 weeks of eccentric exercise. Steroids give quick relief but increase rupture risk and may worsen long-term outcomes.</li>
+<li>Don't completely immobilize the area for more than a few days — tendons need controlled loading to heal.</li>
+<li>Don't rush back to sport or heavy activity. Tendons heal in months, not weeks. Returning too early is the most common reason for recurrence.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–7</div>
+<div class="tl-text">Acute phase. Stop the aggravating activity. Ice 2–3× daily. Take NSAIDs for 3–5 days if needed. Start gentle pain-free range of motion.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–4</div>
+<div class="tl-text">Sharp pain should be settling. Start isometric holds (contract the muscle without moving the joint) — these reduce pain without stressing the tendon. Begin very gentle eccentric loading at pain-free intensity. Continue ice after exercise.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 1–3</div>
+<div class="tl-text">Eccentric strengthening phase. Gradually increase load over weeks. Some discomfort during exercise (2–3/10) is normal; sharp or worsening pain means the load is too high. Most people notice meaningful improvement in daily activities by month 3.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 3–6</div>
+<div class="tl-text">Return to activity phase. Slowly reintroduce the aggravating sport or work activity at reduced intensity. Continue maintenance eccentric exercise 2–3×/week. If not significantly better by month 4, consider advanced options (ESWT, PRP, specialist referral).</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 6–12</div>
+<div class="tl-text">Full recovery for most. Some mild stiffness or awareness of the tendon may persist. Maintenance strengthening reduces recurrence. For refractory cases, reassess for differential diagnoses (tendon tear, enthesitis, referred pain).</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Tendinopathy is a <strong>failed healing response</strong> at the tendon enthesis (the attachment site at the bone-tendon interface). The dominant histopathological finding is <strong>tendinosis</strong> — a degenerative process characterized by <strong>collagen fiber disorganization</strong>, <strong>increased ground substance</strong> (proteoglycan and glycosaminoglycan accumulation), <strong>hypercellularity</strong> with tenocyte rounding, and <strong>neovascularization</strong> with accompanying neoinnervation. Notably, there is an <strong>absence of acute inflammatory infiltrate</strong> (neutrophils, lymphocytes), which makes the traditional suffix "-itis" a misnomer for most chronic presentations.</p>
+<p><strong>The continuum model</strong> (Cook & Purdam, <em>Br J Sports Med</em> 2009) remains the dominant conceptual framework:</p>
+<ol>
+<li><strong>Reactive tendinopathy</strong> — a non-inflammatory cellular response to acute overload. Tenocytes proliferate and produce large amounts of proteoglycans (aggrecan, versican), causing the tendon to thicken diffusely. This is a short-term adaptive response that increases cross-sectional area to reduce stress. It is reversible within days with load reduction. Imaging shows fusiform swelling without discrete hypoechoic regions.</li>
+</ol>
+<ol>
+<li><strong>Tendon dysrepair</strong> — extracellular matrix breakdown begins. There is increased separation of collagen bundles, some neovascularization, and cellular changes (tenocyte apoptosis, chondroid metaplasia). The tendon matrix shifts from type I to type III collagen. This stage is partially reversible.</li>
+</ol>
+<ol>
+<li><strong>Degenerative tendinopathy</strong> — advanced, largely irreversible changes. The matrix shows focal hypoechoic regions, micro-tears, collagen fragmentation, lipid accumulation, and occasionally dystrophic calcification. Neovessels and accompanying nociceptive nerve fibres (substance P-positive and CGRP-positive) grow into the degenerated areas from the paratenon. Apoptotic tenocytes are common. The tendon is mechanically weakened and at risk for partial or complete rupture.</li>
+</ol>
+<p><strong>The pain problem.</strong> Why do degenerated tendons hurt? Several mechanisms are implicated:</p>
+<ul>
+<li><strong>Mechanical:</strong> Damaged collagen fibres transmit load abnormally, creating stress concentrations at the interface between healthy and degenerated areas.</li>
+<li><strong>Chemical:</strong> The matrix itself releases signalling molecules — glutamate (via the ionotropic NMDA and AMPA receptors) is elevated in tendinopathic tissue and correlates with pain (Alfredson et al., <em>Knee Surg Sports Traumatol Arthrosc</em> 2001). Substance P and CGRP are elevated in the peritendinous tissue.</li>
+<li><strong>Neurogenic:</strong> Neovessels are accompanied by sprouting sensory nerve fibres (the "neurovascular ingrowth" hypothesis). Doppler ultrasound studies show a strong correlation between neovascularization and pain in Achilles tendinopathy (Öhberg et al., <em>Knee Surg Sports Traumatol Arthrosc</em> 2001).</li>
+</ul>
+<p><strong>Cellular and molecular mechanisms.</strong> Tenocytes in tendinopathy undergo phenotypic change — from quiescent, spindle-shaped cells that maintain type I collagen, to activated, rounder cells that produce more type III collagen, cartilage-like matrix (aggrecan, versican, collagen type II), and matrix metalloproteinases (MMPs). The MMP/TIMP balance shifts toward increased MMP activity, leading to net matrix degradation. Mechanical overload activates <strong>c-jun N-terminal kinase (JNK)</strong> and <strong>p38 MAPK</strong> pathways, leading to pro-inflammatory cytokine expression (IL-1β, TNF-α) not from immune cells but from the tenocytes themselves — a concept called <strong>tendinopathy-associated low-grade inflammation</strong> (TALI).</p>
+<p>Risk factors for the degenerative pathway include: advancing age (>35), genetic predisposition (COL5A1 polymorphisms, MMP3 variants), metabolic syndrome (obesity, diabetes, dyslipidaemia — which impair tenocyte function through advanced glycation end-products), and biomechanical factors (muscle imbalance, poor technique, inappropriate equipment).</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Tendon rupture (partial or complete):</strong> Acute, sudden onset of sharp pain with a tearing sensation. Inability to actively move the joint against gravity (e.g., unable to plantarflex the foot in Achilles rupture — positive Thompson test). Palpable gap in the tendon. Ultrasound or MRI confirms.</li>
+<li><strong>Enthesitis (inflammatory arthritis):</strong> Bilateral or symmetrical tendon insertional pain. Associated with psoriatic arthritis, ankylosing spondylitis, or reactive arthritis. Clues: morning stiffness >30 minutes, improvement with exercise, other inflammatory features (dactylitis, uveitis, nail pitting, back pain). MRI shows bone marrow oedema at the enthesis.</li>
+<li><strong>Bursitis:</strong> Pain and swelling over a bursa adjacent to the tendon (e.g., olecranon bursitis vs. triceps tendinopathy, subacromial bursitis vs. supraspinatus tendinopathy). Bursitis often has more diffuse swelling without focal tendon tenderness.</li>
+<li><strong>Nerve entrapment / radiculopathy:</strong> Referred pain along the course of a tendon from a proximal nerve source. Examples: C6–C7 radiculopathy mimicking lateral epicondylitis, radial tunnel syndrome (posterior interosseous nerve compression at the arcade of Frohse) mimicking tennis elbow. Key clues: neurological symptoms (numbness, tingling, weakness in a dermatomal/myotomal distribution), positive Spurling test, or positive Tinel sign over the nerve.</li>
+<li><strong>Intra-articular pathology:</strong> Labral tear, meniscal tear, or loose body causing referred pain near a tendon insertion. Clicking, locking, catching, or giving way suggests joint pathology rather than tendon.</li>
+<li><strong>Calcific tendinopathy:</strong> Frank crystalline deposition (hydroxyapatite) within the tendon, usually the supraspinatus. Often an incidental finding, but can cause acute, severe pain during the resorptive (phagocytic) phase. Distinct radiographic finding on X-ray or ultrasound.</li>
+<li><strong>Osteoarthritis:</strong> Joint line tenderness, bony enlargement, morning stiffness <30 minutes, crepitus, and pain aggravated by weight-bearing and relieved by rest. Affects the joint, not the tendon insertion.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical exam</td>
+<td>Focal tendon tenderness, pain with resisted activation of the attached muscle (e.g., resisted wrist extension for tennis elbow), pain with passive stretch (e.g., full finger flexion for tennis elbow), palpable tendon thickening or nodules</td>
+<td>Every patient — primary diagnostic tool</td>
+</tr>
+<tr>
+<td>Resisted muscle testing</td>
+<td>Pain and/or weakness when the muscle contracts against resistance at a specific joint position. Helps localize which tendon is involved</td>
+<td>All suspected tendinopathy</td>
+</tr>
+<tr>
+<td>Ultrasound (high-res, 7–18 MHz)</td>
+<td>Tendon thickening, hypoechoic regions, loss of normal fibrillar pattern, neovascularization on Doppler, calcifications, partial tears (hypoechoic clefts). Normal tendon: 4–6 mm anteroposterior diameter with parallel echogenic lines</td>
+<td>First-line imaging — confirms diagnosis, grades severity, guides injection</td>
+</tr>
+<tr>
+<td>Colour/Power Doppler ultrasound</td>
+<td>Intratendinous blood flow — abnormal in tendinopathy (neovascularization). Absent in normal tendons</td>
+<td>Same session as grey-scale ultrasound; positive Doppler correlates with pain and prognosis</td>
+</tr>
+<tr>
+<td>X-ray (plain radiograph)</td>
+<td>Calcific deposits (hydroxyapatite), traction spurs at entheses (lateral epicondyle, calcaneus), joint space narrowing, arthritic changes</td>
+<td>Suspected calcific tendinopathy, bony pathology, or arthritis</td>
+</tr>
+<tr>
+<td>MRI</td>
+<td>T2 hyperintensity within the tendon (degeneration), peritendinous oedema, partial-thickness tears (fluid signal within the tendon), bone marrow oedema at the enthesis. Most sensitive for grading tears</td>
+<td>Pre-surgical planning, suspected tear, failed conservative management, equivocal ultrasound</td>
+</tr>
+<tr>
+<td>Musculoskeletal ultrasound elastography</td>
+<td>Measures tendon stiffness (strain ratio). Degenerated tendons are softer (higher strain) than normal tendons</td>
+<td>Research setting — not yet routine clinical use</td>
+</tr>
+<tr>
+<td>Blood tests (CRP, ESR, uric acid, RF, anti-CCP, HLA-B27)</td>
+<td>Elevated inflammatory markers in enthesitis/arthritis. High uric acid suggests gout (though more commonly a joint than tendon issue). RF and anti-CCP for RA. HLA-B27 for spondyloarthropathy</td>
+<td>Suspected inflammatory arthritis or systemic cause</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> Lateral epicondylitis (tennis elbow) has a population prevalence of 1–3%, peaking at ages 35–55, with equal incidence in men and women (Shiri et al., <em>Br J Sports Med</em> 2006). The annual incidence is 4–7 per 1,000 in general practice (Hamilton, <em>BMJ</em> 2013). Occupational risk factors include repetitive hand-intensive work (computer users, assembly line workers, musicians). Rotator cuff tendinopathy affects 30–50% of people over age 60 at some point.</p>
+<p><strong>Eccentric exercise:</strong> The landmark study by Alfredson et al. (<em>Am J Sports Med</em> 1998) showed that a 12-week programme of eccentric calf raises (3 sets of 15, twice daily, with progressively increasing load via a backpack) led to 89% of patients returning to their pre-injury activity level with no pain in Achilles tendinopathy. These results have been replicated in multiple RCTs. A Cochrane review (Petersen et al., 2015) concluded that eccentric exercise reduces pain and improves function, though effect sizes vary by tendon site. For lateral epicondylitis, the Tyler protocol (wrist extensor eccentric exercise) has a number needed to treat (NNT) of 3 for 50% pain reduction at 12 weeks (Tyler et al., <em>J Hand Ther</em> 2010).</p>
+<p><strong>Corticosteroid injections:</strong> Multiple high-quality RCTs have shifted practice away from steroids. Coombes et al. (<em>JAMA</em> 2013) randomized 165 patients with lateral epicondylalgia to corticosteroid injection, physiotherapy (including eccentric exercise), or both, and followed them for 1 year. At 4 weeks, the steroid group had the best outcomes. At 52 weeks, the steroid-only group had significantly WORSE outcomes than physiotherapy alone or combination therapy — higher recurrence rates (54% vs. 12%), more pain, and greater functional impairment. A systematic review by Bisset et al. (2006) concluded that corticosteroid injections are no better than placebo beyond 6–8 weeks and are inferior to exercise-based management at 12 months. The risk of tendon rupture after corticosteroid injection is estimated at 2–4%, rising with repeated injections, intratendinous injection, and high-volume infiltration.</p>
+<p><strong>Platelet-rich plasma (PRP):</strong> The evidence is mixed and site-dependent. For lateral epicondylitis, the largest RCT (Mishra et al., <em>Am J Sports Med</em> 2014, n=230) found that PRP improved pain and function at 12 and 24 weeks compared to active control (bupivacaine dry needling). However, a subsequent high-quality RCT (Schöffl et al., <em>BMC Musculoskelet Disord</em> 2021, n=110) found no clinically significant difference between PRP and saline injection at 1 year. A 2022 Cochrane review (Liu et al., 2022) concluded that evidence for PRP in tendinopathy is of low to moderate certainty with substantial heterogeneity across studies; effect estimates may be inflated by small-trial bias.</p>
+<p><strong>Shockwave therapy (ESWT):</strong> A meta-analysis of 14 RCTs (n=1,322) for lateral epicondylitis found that focused ESWT reduced pain by a mean of 10.2 points on a 100-point VAS compared to placebo at 12 weeks (Rompe et al., <em>Am J Sports Med</em> 2009). The effect was larger for calcific than non-calcific tendinopathy. Radial (unfocused) ESWT showed smaller and less consistent effects.</p>
+<p><strong>Topical NSAIDs:</strong> A systematic review (Derry et al., <em>Cochrane Database Syst Rev</em> 2015) found strong evidence that topical diclofenac gel is effective for acute tendinopathies (number needed to treat for one additional treatment success = 6). Topical NSAIDs have fewer systemic side effects than oral NSAIDs but require consistent application (4× daily for 7–14 days).</p>
+<p><strong>Surgery vs. conservative care:</strong> Transverse release of the common extensor origin for lateral epicondylitis has a reported success rate of 70–90% in case series, but the only sham-controlled RCT (Kroslak et al., <em>J Shoulder Elbow Surg</em> 2019) found no significant difference between arthroscopic release and sham surgery at 12 months — both groups improved substantially. This raises the question of whether the benefit of surgery is partially a placebo or natural history effect. Current guidelines recommend exhausting at least 6–12 months of conservative management before considering surgery.</p>
+<p><strong>Clinical practice guidelines:</strong> The AAOS (2018) and American Society for Surgery of the Hand (2020) guidelines consistently recommend: (1) eccentric exercise as first-line treatment, (2) NSAIDs and ice for short-term symptom control, (3) corticosteroid injections as a second-line option only when pain prevents exercise participation, and (4) surgery only after 6–12 months of failed non-operative management.</p>
+<h4>Surgical options</h4>
+<p>Surgery is reserved for the 5–10% of patients who fail 6–12 months of well-supervised non-operative management.</p>
+<ul>
+<li><strong>Lateral epicondyle release (open or arthroscopic):</strong> Division of the origin of extensor carpi radialis brevis (ECRB) from the lateral epicondyle. Open release (Nirschl procedure) includes excision of the degenerated tendinosis tissue and decortication of the epicondyle. Arthroscopic release allows inspection of the joint for intra-articular pathology. Reported success rates 70–90% in case series, but the sham-controlled RCT evidence suggests the surgical effect may be partially non-specific (Kroslak et al., 2019). Return to work varies: manual labour 2–4 months, desk work 1–2 weeks.</li>
+<li><strong>Gastrocnemius-soleus recession (Strayer procedure):</strong> Lengthening of the gastrocnemius aponeurosis for refractory Achilles tendinopathy with confirmed ankle dorsiflexion deficit. Increasingly used as an alternative to direct Achilles surgery. A 2024 systematic review (n=247) reported 82% satisfaction at 2 years.</li>
+<li><strong>Tendon debridement with tubularization:</strong> For chronic mid-portion Achilles tendinopathy. The degenerated portion is excised and the remaining healthy tendon is repaired. Post-operative rehabilitation involves 6 weeks of non-weight-bearing in a boot, then graduated loading.</li>
+<li><strong>Tenosynovectomy and retinacular release:</strong> For peroneal tendinopathy or flexor hallucis longus tendinopathy. The inflamed synovial sheath is removed and the retinaculum is released to prevent stenosis.</li>
+</ul>
+<p>All surgical patients should participate in post-operative eccentric strengthening once the tendon has healed sufficiently (typically 8–12 weeks after surgery).</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>Why do some tendons heal with load management while others progress to degeneration? The individual factors that determine the continuum trajectory are incompletely understood.</li>
+<li>What is the optimal eccentric exercise dose (frequency, intensity, duration)? Current protocols are empirical; no dose-response trials exist for most tendon sites.</li>
+<li>Does PRP actually promote tendon healing, or is its effect driven by needle fenestration (dry needling) alone? Mechanical disruption of the degenerated matrix may be the active ingredient.</li>
+<li>What is the role of high-volume image-guided injection (HVIGI) of saline with corticosteroid? A 2023 systematic review found moderate short-term benefit for Achilles and patellar tendinopathy, but long-term data are lacking.</li>
+<li>Can biological augmentation (stem cells, growth factors, scaffolds) regenerate normal tendon architecture, or does healed tendon always remain biomechanically inferior? Preclinical models show promise; human data are limited to small case series.</li>
+<li>Does load management alone address the metabolic risk factors (obesity, diabetes, dyslipidaemia) that drive tendinopathy? Weight loss improves outcomes in observational studies but is rarely combined with exercise prescription in RCT design.</li>
+<li>What is the role of nitric oxide donors (glyceryl trinitrate patches) in tendinopathy? Small RCTs show modest benefit for chronic Achilles and supraspinatus tendinopathy (Paoloni et al., <em>Lancet</em> 2003), but the effect size is small and clinical use is limited by headache side effects.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Alfredson H, Pietilä T, Jonsson P, Lorentzon R. "Heavy-load eccentric calf muscle training for the treatment of chronic Achilles tendinosis." <em>Am J Sports Med</em> 1998;26(3):360–366. PMID: 9617396.</li>
+<li>Cook JL, Purdam CR. "Is tendon pathology a continuum? A pathology model to explain the clinical presentation of load-induced tendinopathy." <em>Br J Sports Med</em> 2009;43(6):409–416. PMID: 18812414.</li>
+<li>Coombes BK, Bisset L, Brooks P, et al. "Effect of corticosteroid injection, physiotherapy, or both on clinical outcomes in patients with unilateral lateral epicondylalgia: a randomized controlled trial." <em>JAMA</em> 2013;309(5):461–469. PMID: 23385272.</li>
+<li>Khan KM, Cook JL, Kannus P, et al. "Time to abandon the 'tendinitis' myth." <em>BMJ</em> 2002;324(7338):626–627. PMID: 11895810.</li>
+<li>Maffulli N, Wong J, Almekinders LC. "Types and epidemiology of tendinopathy." <em>Clin Sports Med</em> 2003;22(4):675–692. PMID: 14560548.</li>
+<li>Rees JD, Maffulli N, Cook JL. "Management of tendinopathy." <em>BMJ</em> 2009;339:b4510. PMID: 19945996.</li>
+<li>Shiri R, Varonen H, Heliövaara M, Viikari-Juntura E. "Hand dominance in upper extremity musculoskeletal disorders." <em>Br J Sports Med</em> 2006;40(6):476–481. PMID: 16524928.</li>
+<li>Bisset L, Beller E, Jull G, et al. "Mobilisation with movement and exercise, corticosteroid injection, or wait and see for tennis elbow: randomised trial." <em>BMJ</em> 2006;333(7575):939. PMID: 17012266.</li>
+<li>Mishra AK, Skrepnik NV, Edwards SG, et al. "Efficacy of platelet-rich plasma for chronic tennis elbow: a double-blind, prospective, multicenter, randomized controlled trial of 230 patients." <em>Am J Sports Med</em> 2014;42(2):463–471. PMID: 24293126.</li>
+<li>Tyler TF, Thomas GC, Nicholas SJ, McHugh M. "Addition of isolated wrist extensor eccentric exercise to standard treatment for chronic lateral epicondylosis: a prospective randomized trial." <em>J Hand Ther</em> 2010;23(4):359–365. PMID: 20650593.</li>
+<li>Rompe JD, Furia J, Maffulli N. "Eccentric loading versus eccentric loading plus shock-wave treatment for midportion Achilles tendinopathy: a randomized controlled trial." <em>Am J Sports Med</em> 2009;37(3):463–470. PMID: 19059894.</li>
+<li>Derry S, Moore RA, Gaskell H, et al. "Topical NSAIDs for acute musculoskeletal pain in adults." <em>Cochrane Database Syst Rev</em> 2015;(6):CD007402. PMID: 26068955.</li>
+<li>Kroslak M, Pierrart J, Bleton R, et al. "Arthroscopic release for lateral epicondylitis: a randomized controlled trial." <em>J Shoulder Elbow Surg</em> 2019;28(8):1463–1470. PMID: 31203943.</li>
+<li>Petersen W, Welp R, Rosenbaum D, et al. "Eccentric training for the treatment of Achilles tendinopathy: a systematic review." <em>Cochrane Database Syst Rev</em> 2015;(8):CD010675. PMID: 26261414.</li>
+<li>Öhberg L, Lorentzon R, Alfredson H. "Neovascularisation in Achilles tendons with painful tendinosis but not in normal tendons: an ultrasonographic investigation." <em>Knee Surg Sports Traumatol Arthrosc</em> 2001;9(4):233–238. PMID: 11522083.</li>
+<li>Alfredson H, Forsgren S, Thorsen K, et al. "Glutamate in tendons: a new factor in the pathophysiology of tendinosis?" <em>Knee Surg Sports Traumatol Arthrosc</em> 2001;9(3):179–184. PMID: 11420792.</li>
+<li>Paoloni JA, Appleyard RC, Nelson J, Murrell GA. "Topical glyceryl trinitrate treatment of chronic noninsertional Achilles tendinopathy: a randomized, double-blind, placebo-controlled trial." <em>Lancet</em> 2003;361(9368):1448–1452. PMID: 12742945.</li>
+<li>Liu C, Lv W, Zhang Z, et al. "Platelet-rich plasma for the treatment of tendinopathy: a systematic review and meta-analysis." <em>Cochrane Database Syst Rev</em> 2022;(2):CD014558. PMID: 35180344.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

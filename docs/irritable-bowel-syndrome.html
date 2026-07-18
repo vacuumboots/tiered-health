@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irritable Bowel Syndrome — Tiered Health</title>
+<meta name="description" content="Irritable Bowel Syndrome: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🔁 Tiered Health <span>/ Irritable Bowel Syndrome</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🔁 Irritable Bowel Syndrome</h1>
+  <p class="aka">Also called: IBS · spastic colon</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 580" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="colon" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="colon-motile" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="nerve" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- Torso outline (simplified, abdominal region) -->
+  <path d="M100,40 C90,50 82,70 80,90 L75,170 C73,200 75,230 80,260 L85,300 C88,330 92,350 98,365 L105,380 C112,392 120,400 130,405 L145,410 C155,412 165,410 175,405 L190,398 C200,392 208,385 215,375 L225,360 C232,345 238,328 242,310 L248,280 C252,260 255,240 256,220 L258,195 C259,170 258,150 255,135 L250,110 C245,90 240,75 233,62 L225,50 C218,42 210,38 200,36 L185,34 L170,35 C155,36 140,38 125,40 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Ascending colon (right side) -->
+  <path d="M175,280 C178,310 180,340 178,360 C176,375 172,385 168,390"
+        fill="none" stroke="url(#colon)" stroke-width="16" stroke-linecap="round" opacity="0.7"/>
+  <text x="185" y="340" fill="#b0a595" font-size="9" font-style="italic">Ascending</text>
+  <text x="185" y="352" fill="#b0a595" font-size="9" font-style="italic">colon</text>
+
+  <!-- Cecum (bottom right) -->
+  <ellipse cx="165" cy="400" rx="16" ry="12" fill="url(#colon)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="116" y="408" fill="#b0a595" font-size="9" font-style="italic">Cecum</text>
+
+  <!-- Appendix -->
+  <path d="M152,408 C145,418 140,430 138,440 C137,445 138,448 140,448"
+        fill="none" stroke="#b0a595" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+  <text x="110" y="448" fill="#b0a595" font-size="8" font-style="italic">Appendix</text>
+
+  <!-- Transverse colon (top, with motility arrows) -->
+  <path d="M168,260 C185,248 210,240 238,235 C260,232 278,232 295,235 C315,240 335,248 348,260"
+        fill="none" stroke="url(#colon)" stroke-width="16" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Motility wave arrows on transverse colon -->
+  <path d="M195,245 L205,235" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.4"/>
+  <path d="M215,240 L225,230" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.4"/>
+  <path d="M235,237 L245,227" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.4"/>
+  <path d="M255,235 L265,225" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.4"/>
+  <path d="M275,235 L285,225" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.4"/>
+  <path d="M295,238 L305,228" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.4"/>
+  <path d="M315,243 L325,233" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrow-red)" opacity="0.4"/>
+
+  <text x="250" y="218" fill="#b0a595" font-size="9" font-style="italic" text-anchor="middle">Transverse colon</text>
+
+  <!-- Descending colon (left side) -->
+  <path d="M348,260 C350,290 348,320 342,345 C338,358 332,368 325,375"
+        fill="none" stroke="url(#colon)" stroke-width="16" stroke-linecap="round" opacity="0.7"/>
+  <text x="355" y="315" fill="#b0a595" font-size="9" font-style="italic">Descending</text>
+  <text x="355" y="327" fill="#b0a595" font-size="9" font-style="italic">colon</text>
+
+  <!-- Sigmoid colon -->
+  <path d="M320,380 C310,390 298,398 290,405 C278,415 270,422 268,430 C265,440 267,448 275,452 C282,455 290,452 298,448 C305,444 312,438 320,432 C328,425 335,420 342,418"
+        fill="none" stroke="url(#colon)" stroke-width="14" stroke-linecap="round" opacity="0.7"/>
+  <text x="350" y="430" fill="#b0a595" font-size="9" font-style="italic">Sigmoid</text>
+  <text x="350" y="442" fill="#b0a595" font-size="9" font-style="italic">colon</text>
+
+  <!-- Rectum -->
+  <rect x="320" y="448" width="22" height="30" rx="5" fill="url(#colon)" stroke="#c4b5a0" stroke-width="1" opacity="0.7"/>
+  <text x="348" y="470" fill="#b0a595" font-size="9" font-style="italic">Rectum</text>
+
+  <!-- ═══════════ BRAIN-GUT AXIS ═══════════ -->
+
+  <!-- Brain -->
+  <ellipse cx="250" cy="50" rx="36" ry="24" fill="#f0e6d3" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+  <path d="M230,45 C235,38 245,34 250,34 C255,34 265,38 270,45" fill="none" stroke="#c4b5a0" stroke-width="1"/>
+  <path d="M232,50 C238,46 245,45 250,45 C255,45 262,46 268,50" fill="none" stroke="#c4b5a0" stroke-width="1"/>
+  <path d="M235,55 C240,52 246,50 250,50 C254,50 260,52 265,55" fill="none" stroke="#c4b5a0" stroke-width="0.8"/>
+  <text x="250" y="44" fill="#8a7e6e" font-size="9" font-weight="600" text-anchor="middle">Brain</text>
+  <text x="250" y="56" fill="#8a7e6e" font-size="8" text-anchor="middle">(CNS)</text>
+
+  <!-- Brain-gut connection (vagus nerve) -->
+  <path d="M235,68 C220,80 208,95 200,115 C192,135 190,155 195,175 C198,190 205,200 215,208 C220,212 225,214 230,215"
+        fill="none" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow)" opacity="0.6"/>
+  <path d="M265,68 C278,80 288,95 296,115 C304,135 308,155 306,175 C303,195 296,208 286,218"
+        fill="none" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow)" opacity="0.6"/>
+  <text x="250" y="88" fill="#7f8c8d" font-size="8" text-anchor="middle">Vagus nerve</text>
+  <text x="250" y="98" fill="#7f8c8d" font-size="8" text-anchor="middle">(bidirectional)</text>
+
+  <!-- Enteric Nervous System label on the colon -->
+  <text x="250" y="282" fill="#7f8c8d" font-size="8" font-weight="600" text-anchor="middle">Enteric Nervous System</text>
+  <text x="250" y="293" fill="#7f8c8d" font-size="7" text-anchor="middle">"Second brain" ~500M neurons</text>
+
+  <!-- ═══════════ PATHOPHYSIOLOGY INSETS ═══════════ -->
+
+  <!-- Separator line -->
+  <line x1="30" y1="480" x2="470" y2="480" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Inset 1: Visceral hypersensitivity -->
+  <g transform="translate(15, 488)">
+    <rect x="0" y="0" width="150" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#c0392b" font-size="9" font-weight="600" text-anchor="middle">Visceral Hypersensitivity</text>
+    <!-- Colon segment -->
+    <path d="M30,50 C35,42 45,38 55,38 C65,38 72,42 75,45" fill="none" stroke="url(#colon)" stroke-width="6" stroke-linecap="round"/>
+    <!-- Nerve with zigzag (pain signal) -->
+    <path d="M55,48 C58,44 62,46 65,50 C68,54 70,50 72,52" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M72,52 L76,56 L73,59 L77,63" fill="none" stroke="#c0392b" stroke-width="1.2"/>
+    <!-- Normal gas bubble -->
+    <ellipse cx="55" cy="43" rx="4" ry="3" fill="#e6a817" opacity="0.4"/>
+    <text x="75" y="65" fill="#8a7e6e" font-size="7" text-anchor="middle">Normal gas → pain signal</text>
+    <text x="75" y="74" fill="#8a7e6e" font-size="7" text-anchor="middle">(allodynia)</text>
+  </g>
+
+  <!-- Inset 2: Altered motility -->
+  <g transform="translate(175, 488)">
+    <rect x="0" y="0" width="150" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#e6a817" font-size="9" font-weight="600" text-anchor="middle">Altered Motility</text>
+    <!-- Colon tube -->
+    <path d="M25,48 C35,38 50,42 60,48 C70,54 85,50 95,46 C105,42 115,44 125,48"
+          fill="none" stroke="url(#colon)" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+    <!-- Inconsistent contraction waves -->
+    <path d="M30,48 C35,36 42,34 48,48" fill="none" stroke="#c0392b" stroke-width="1" opacity="0.5"/>
+    <path d="M55,44 C60,34 65,34 70,44" fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+    <path d="M80,50 C85,40 90,40 95,50" fill="none" stroke="#c0392b" stroke-width="2" opacity="0.7"/>
+    <path d="M100,48 C105,38 110,38 115,48" fill="none" stroke="#c0392b" stroke-width="1" opacity="0.5"/>
+    <text x="75" y="65" fill="#8a7e6e" font-size="7" text-anchor="middle">Disorganized contractions</text>
+    <text x="75" y="74" fill="#8a7e6e" font-size="7" text-anchor="middle">(too fast, too slow, erratic)</text>
+  </g>
+
+  <!-- Inset 3: Brain-gut axis dysregulation -->
+  <g transform="translate(335, 488)">
+    <rect x="0" y="0" width="150" height="80" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="75" y="18" fill="#7f8c8d" font-size="9" font-weight="600" text-anchor="middle">Brain-Gut Axis Disruption</text>
+    <!-- Small brain -->
+    <ellipse cx="50" cy="40" rx="14" ry="10" fill="#f0e6d3" stroke="#c4b5a0" stroke-width="1"/>
+    <!-- Small gut -->
+    <path d="M85,38 C90,34 100,34 105,38 C110,42 105,46 100,46 C95,46 90,44 88,46"
+          fill="none" stroke="url(#colon)" stroke-width="4" stroke-linecap="round"/>
+    <!-- Broken connection line -->
+    <line x1="64" y1="38" x2="80" y2="42" stroke="#c0392b" stroke-width="2" stroke-dasharray="2,2"/>
+    <line x1="64" y1="48" x2="80" y2="44" stroke="#c0392b" stroke-width="2" stroke-dasharray="2,2"/>
+    <text x="75" y="65" fill="#8a7e6e" font-size="7" text-anchor="middle">Impaired signaling</text>
+    <text x="75" y="74" fill="#8a7e6e" font-size="7" text-anchor="middle">Pain amplification / stress</text>
+  </g>
+
+  <!-- ═══════════ SUBTYPE LABELS ═══════════ -->
+
+  <!-- IBS-C label on descending colon -->
+  <rect x="346" y="350" width="90" height="20" rx="4" fill="var(--surface, #fff)" stroke="#2d6a6e" stroke-width="0.8" opacity="0.85"/>
+  <text x="391" y="363" fill="#2d6a6e" font-size="8" font-weight="600" text-anchor="middle">IBS-C: constipation</text>
+
+  <!-- IBS-D label on ascending colon -->
+  <rect x="94" y="355" width="82" height="20" rx="4" fill="var(--surface, #fff)" stroke="#2d6a6e" stroke-width="0.8" opacity="0.85"/>
+  <text x="135" y="368" fill="#2d6a6e" font-size="8" font-weight="600" text-anchor="middle">IBS-D: diarrhea</text>
+
+  <!-- Title -->
+  <text x="250" y="18" fill="var(--text, #1a1a1a)" font-size="13" font-weight="700" text-anchor="middle">Irritable Bowel Syndrome — Gut Anatomy &amp; Mechanisms</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is irritable bowel syndrome?</h4>
+<p>Your gut and your brain are sending mixed signals to each other. The intestines squeeze too hard or too gently, causing cramps, bloating, diarrhea, or constipation — sometimes all of them — even though there's nothing physically wrong with your bowel. About 1 in 10 people has IBS.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>Try the low FODMAP diet for 2–4 weeks.</strong> This temporarily cuts out certain carbs (onions, garlic, wheat, beans, apples) that ferment in the gut and cause gas. Work with a dietitian.</li>
+<li><strong>Add soluble fiber.</strong> Psyllium (Metamucil) helps both constipation and diarrhea — it bulks loose stools and softens hard ones. Start with a low dose and increase slowly.</li>
+<li><strong>Try peppermint oil capsules.</strong> These are antispasmodic — they relax the gut muscle and reduce cramping. Look for enteric-coated capsules to avoid heartburn.</li>
+<li><strong>Manage stress.</strong> IBS isn't "all in your head," but stress directly triggers symptoms through the brain-gut connection. Deep breathing, exercise, and good sleep help.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have blood in your stool (bright red or black/tarry)</li>
+<li>You lose weight without trying</li>
+<li>You have a fever with abdominal pain</li>
+<li>The pain is severe and constant (not the cramping that comes and goes)</li>
+<li>You wake up at night with pain or diarrhea — IBS rarely wakes you from sleep</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Key fact</h5>
+<p>IBS is a real medical condition, not a psychological one. The gut has its own nervous system (the enteric nervous system — sometimes called the "second brain") with 500 million neurons. In IBS, this system is hypersensitive. The good news: treatments work, and most people can manage their symptoms well enough to live normally.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>IBS is a <strong>disorder of gut-brain interaction</strong>. This means the communication network between your central nervous system (brain and spinal cord) and your enteric nervous system (the gut's built-in neural network) is working differently than normal. The result is a combination of <strong>visceral hypersensitivity</strong> (your gut feels normal sensations — gas, stool moving — as painful) and <strong>altered motility</strong> (the muscles in your intestinal wall contract too strongly, too weakly, or out of rhythm).</p>
+<p>The diagnosis is based on the <strong>Rome IV criteria</strong>: recurrent abdominal pain at least 1 day per week for the last 3 months, associated with 2 or more of: related to defecation, change in stool frequency, or change in stool form. The pain improves after a bowel movement.</p>
+<p>IBS has three main subtypes based on the Bristol Stool Scale:</p>
+<ul>
+<li><strong>IBS-C (constipation-predominant):</strong> hard, lumpy stools (>25% of bowel movements are Type 1 or 2)</li>
+<li><strong>IBS-D (diarrhea-predominant):</strong> loose, watery stools (>25% of bowel movements are Type 6 or 7)</li>
+<li><strong>IBS-M (mixed):</strong> both hard and loose stools on different days</li>
+</ul>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Abdominal pain or cramping:</strong> typically in the lower abdomen, relieved by passing stool or gas. The pain comes in waves — it's not constant.</li>
+<li><strong>Bloating and distension:</strong> the feeling of a swollen belly, often worse after meals and at the end of the day. You may actually look visibly distended.</li>
+<li><strong>Change in bowel habits:</strong> constipation, diarrhea, or alternating between them. The stool may contain mucus (this is normal in IBS — not a sign of infection).</li>
+<li><strong>Urgency:</strong> a sudden, strong need to use the bathroom, especially with IBS-D. Can be distressing and affect daily activities.</li>
+<li><strong>Incomplete evacuation:</strong> the feeling that you haven't fully emptied your bowels after a movement.</li>
+<li><strong>Gas and flatulence:</strong> increased gas production from fermenting food that's moving too slowly through the gut, or from swallowing air due to anxiety.</li>
+<li><strong>Extra-intestinal symptoms:</strong> fatigue, headache, back pain, and bladder symptoms (frequent urination) are common — IBS affects more than just the gut.</li>
+</ul>
+<h4>Treatment</h4>
+<p>Treatment is graded — start with basics and escalate if needed.</p>
+<ul>
+<li><strong>Dietary modifications:</strong></li>
+<li><strong>Low FODMAP diet:</strong> The strongest evidence-based dietary approach. FODMAPs (Fermentable Oligo-, Di-, Mono-saccharides and Polyols) are short-chain carbohydrates that are poorly absorbed in the small intestine. They draw water into the bowel and are rapidly fermented by gut bacteria, producing gas. The diet has 3 phases: strict elimination (2–4 weeks), reintroduction (identify which FODMAPs trigger you), and personalization (eat as varied a diet as tolerated). An RCT (Staudacher et al., 2017) showed symptom improvement in 50–80% of IBS patients.</li>
+<li><strong>Soluble fiber (psyllium):</strong> Improves global IBS symptoms — NNT (number needed to treat) = 7 for IBS-C, but also helps IBS-D by bulking loose stools. Insoluble fiber (bran, whole grains) can make symptoms worse.</li>
+<li><strong>Avoid trigger foods:</strong> Fatty meals stimulate the gastrocolic reflex (the signal from stomach to colon that triggers a bowel movement), which is often exaggerated in IBS. Caffeine and alcohol are common triggers.</li>
+</ul>
+<ul>
+<li><strong>Pharmacotherapy:</strong></li>
+<li><strong>Antispasmodics (peppermint oil, hyoscine, mebeverine):</strong> Relax intestinal smooth muscle. Peppermint oil (enteric-coated) has the best evidence — a 2019 meta-analysis (Alammar et al., 2019, n=726) showed a 40% improvement in global symptoms vs. 24% for placebo.</li>
+<li><strong>Loperamide (Imodium):</strong> For diarrhea — slows gut transit. Use as needed, not daily.</li>
+<li><strong>Rifaximin (Xifaxan):</strong> A non-absorbable antibiotic for IBS-D. The TARGET 1 and 2 trials (Pimentel et al., 2011, n=1,260) showed 40.7% adequate relief vs. 31.7% for placebo. Retreatment is effective if symptoms recur.</li>
+<li><strong>Lubiprostone (Amitiza):</strong> A chloride channel activator for IBS-C (women only — men were not studied). Increases fluid secretion into the intestine. 18% improvement in global symptoms vs. 10% placebo.</li>
+<li><strong>Linaclotide (Linzess) / Plecanatide:</strong> Guanylate cyclase-C agonists for IBS-C. Increase fluid secretion and accelerate transit. Linaclotide 290 μg: 33.7% responders for abdominal pain + constipation improvement vs. 13.9% placebo at 12 weeks (Rao et al., 2012).</li>
+<li><strong>Eluxadoline (Viberzi):</strong> A mixed mu-opioid receptor agonist/delta-opioid receptor antagonist for IBS-D. Reduces diarrhea and pain without constipation. The two Phase 3 trials (Lembo et al., 2016) showed 25–30% composite response vs. 15–16% placebo. Contraindicated in patients without a gallbladder (risk of sphincter of Oddi spasm).</li>
+<li><strong>Tricyclic antidepressants (amitriptyline, nortriptyline, imipramine) at low doses:</strong> The primary benefit is <strong>visceral pain modulation</strong>, not mood improvement. Low doses (10–50 mg at bedtime) reduce pain signals from the gut via the descending pain inhibitory pathway. Number needed to treat for global IBS symptoms is ~4. Start at 10 mg and titrate up slowly.</li>
+<li><strong>SSRIs (selective serotonin reuptake inhibitors):</strong> May help in IBS with comorbid anxiety or depression. Less evidence for pain modulation than TCAs.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't keep eliminating foods indefinitely. The low FODMAP diet is meant to be temporary — long-term restriction can cause nutritional deficiencies and gut microbiome changes. Reintroduce foods after 2–4 weeks.</li>
+<li>Don't rely on fiber supplements that are insoluble (wheat bran, corn bran) — these can worsen pain and bloating in IBS. Stick with soluble fiber (psyllium).</li>
+<li>Don't use laxatives daily for IBS-C without medical supervision — they can cause dependency and electrolyte issues.</li>
+<li>Don't stop a TCA because you're not depressed — the pain-relieving effect at low doses is independent of any antidepressant effect.</li>
+<li>Don't ignore alarm features. Blood in stool, unexplained weight loss, fever, and nocturnal symptoms are NOT typical of IBS and need further investigation.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–7</div>
+<div class="tl-text">Start a symptom diary — track stool frequency, consistency (Bristol scale), pain level, and food intake. This is the most useful diagnostic tool. Begin basic first-line measures: soluble fiber (psyllium 3.5 g daily, increase by 3.5 g every week), peppermint oil capsules as needed.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–4</div>
+<div class="tl-text">If symptoms persist, start a structured low FODMAP elimination diet. Work with a dietitian if possible — the diet is complex and self-directed implementation often fails. Continue fiber. Consider an antispasmodic (peppermint oil or hyoscine) for cramps.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 4–6</div>
+<div class="tl-text">Low FODMAP elimination phase ends. Begin structured reintroduction — test one FODMAP group per week (lactose, fructose, sorbitol, fructans/GOS) and find your personal tolerance. Most people can tolerate some FODMAPs, just not all of them.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 2–3</div>
+<div class="tl-text">If low FODMAP + fiber + antispasmodic are not enough, escalate pharmacotherapy. For IBS-D: consider rifaximin (14-day course) or eluxadoline. For IBS-C: consider linaclotide or lubiprostone. For pain: consider low-dose amitriptyline (10–25 mg at bedtime).</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Month 3–6</div>
+<div class="tl-text">If medical therapy partially helps but stress/symptoms are still affecting quality of life, add cognitive behavioral therapy (CBT) or gut-directed hypnotherapy. These have the best evidence for long-term symptom control with NNTs comparable to medication. If no improvement at all despite all these measures, consider further diagnostic testing (calprotectin, celiac serology, colonoscopy) to rule out organic disease.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>IBS is a <strong>biopsychosocial disorder</strong> — it arises from the interplay of genetic susceptibility, environmental triggers (stress, enteric infection), altered gut physiology, and psychological factors. The dominant pathophysiological mechanisms are:</p>
+<p><strong>Visceral hypersensitivity.</strong> This is the most consistent finding in IBS. Patients perceive normal intestinal distension (from gas, stool, or food) as painful — a phenomenon called <strong>allodynia</strong>. The threshold for discomfort during rectal balloon distension is 20–40 mmHg lower in IBS patients than in healthy controls. The mechanism involves <strong>central sensitization</strong>: dorsal horn neurons in the spinal cord (laminae I–V) amplify ascending signals from the gut via N-methyl-D-aspartate (NMDA) receptor activation. There is also evidence of <strong>peripheral sensitization</strong> — increased expression of transient receptor potential vanilloid-1 (TRPV1) receptors on colonic afferent nerve endings makes them more responsive to mechanical and chemical stimuli.</p>
+<p><strong>Altered gastrointestinal motility.</strong> Transit times vary by subtype. In IBS-D, colonic transit is accelerated (mean whole-gut transit time 22 hours vs. 40 hours in healthy controls). In IBS-C, transit is slowed (60–100 hours). Motility abnormalities are not limited to the colon — small bowel transit can also be abnormal, and fasting/feeding motor patterns (migrating motor complexes) may be disrupted.</p>
+<p><strong>Gut-brain axis dysregulation.</strong> The enteric nervous system (ENS), sometimes called the "second brain," contains ~500 million neurons organized into the myenteric (Auerbach's) and submucosal (Meissner's) plexuses. It communicates bidirectionally with the central nervous system via the vagus nerve, pelvic nerves, and sympathetic pathways. In IBS, this communication is disrupted:</p>
+<ul>
+<li><strong>Descending pain modulation</strong> is impaired — the periaqueductal gray (PAG) and rostral ventromedial medulla (RVM) fail to dampen incoming visceral signals normally.</li>
+<li><strong>Autonomic imbalance</strong> — altered sympathovagal balance affects gut secretion, motility, and blood flow.</li>
+<li><strong>HPA axis activation</strong> — chronic stress elevates cortisol, which increases intestinal permeability and alters immune function in the gut.</li>
+</ul>
+<p><strong>Low-grade mucosal inflammation.</strong> Post-infectious IBS (PI-IBS) develops in 10–15% of people after an acute enteric infection (Campylobacter, Salmonella, Shigella, norovirus). Biopsies show increased intraepithelial lymphocytes, mast cells near nerve endings, and elevated pro-inflammatory cytokines (IL-6, TNF-α, IL-1β). Mast cell degranulation products (histamine, tryptase, prostaglandins) directly activate nearby afferent nerve terminals, contributing to hypersensitivity.</p>
+<p><strong>Altered gut microbiome.</strong> The gut microbiota in IBS differs from healthy controls — typically reduced diversity, lower levels of Bifidobacterium and Lactobacillus, and increased Firmicutes/Bacteroidetes ratio. Specific patterns correlate with subtypes: IBS-D patients often have increased Proteobacteria (including Enterobacteriaceae), while IBS-C patients have more methanogenic archaea (Methanobrevibacter smithii), which slow transit by producing methane. Fermentation of undigested FODMAPs by bacteria produces hydrogen, methane, and short-chain fatty acids — the rapid gas production causes distension and pain.</p>
+<p><strong>Altered bile acid metabolism.</strong> About 25% of IBS-D patients have bile acid malabsorption (BAM) — excessive bile acids reach the colon, where they stimulate fluid and electrolyte secretion, accelerating transit. The SeHCAT test (tauroselcholic acid retention) can identify these patients, who benefit from bile acid sequestrants (colesevelam, cholestyramine).</p>
+<h4>Differential diagnosis — don't miss these</h4>
+<ol>
+<li><strong>Celiac disease:</strong> Chronic diarrhea, bloating, and fatigue that overlap heavily with IBS-D. Key clues: iron-deficiency anemia, dermatitis herpetiformis, family history of celiac. Serology (tTG-IgA) is essential — 4–5% of patients meeting IBS criteria actually have celiac disease. Do not miss this.</li>
+<li><strong>Inflammatory bowel disease (Crohn's disease, ulcerative colitis):</strong> Alarm features: bloody diarrhea, fever, nocturnal symptoms, weight loss, perianal fistulas, elevated fecal calprotectin (>250 μg/g). Colonoscopy with biopsies confirms. CD and UC rarely cause constipation without other features.</li>
+<li><strong>Bile acid malabsorption (BAM):</strong> Watery diarrhea, urgency, and loose stools that worsen after fatty meals. SeHCAT retention <10% is diagnostic. Trial of colesevelam or cholestyramine is both diagnostic and therapeutic.</li>
+<li><strong>Lactose intolerance:</strong> Bloating, gas, and diarrhea triggered specifically by dairy. The hydrogen breath test after a 25 g lactose load distinguishes this from IBS. Note that up to 40% of IBS patients have concomitant lactose malabsorption.</li>
+<li><strong>Small intestinal bacterial overgrowth (SIBO):</strong> Severe bloating, diarrhea, and nutritional deficiencies (B12, iron). Risk factors: PPI use, prior abdominal surgery, diabetes, hypothyroidism. Glucose or lactulose breath test (elevated hydrogen >20 ppm above baseline within 90 minutes). Some debate exists about overlap between IBS and SIBO.</li>
+<li><strong>Endometriosis:</strong> In women of reproductive age — cyclical abdominal/pelvic pain that correlates with menses, dyspareunia, and infertility. Deep infiltrating endometriosis can cause constipation, diarrhea, or both. Laparoscopy is the gold standard.</li>
+<li><strong>Colorectal cancer:</strong> Change in bowel habits in a person over 45, rectal bleeding, microcytic anemia, family history. Colonoscopy is required. IBS is not a risk factor for colorectal cancer, but the symptoms overlap at presentation.</li>
+<li><strong>Pancreatic exocrine insufficiency (PEI):</strong> Floating, foul-smelling, greasy stools (steatorrhea), weight loss, fat-soluble vitamin deficiencies. Fecal elastase-1 <200 μg/g is diagnostic. Consider in refractory IBS-D.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical history + Rome IV criteria</td>
+<td>Recurrent abdominal pain >1 day/week for 3 months + ≥2 of: related to defecation, change in stool frequency, change in stool form</td>
+<td>Every patient — IBS is a clinical diagnosis. No test confirms it.</td>
+</tr>
+<tr>
+<td>Complete blood count (CBC)</td>
+<td>Anemia (iron-deficiency, B12, or anemia of chronic disease)</td>
+<td>All patients at initial evaluation</td>
+</tr>
+<tr>
+<td>C-reactive protein (CRP) / erythrocyte sedimentation rate (ESR)</td>
+<td>Elevated in IBD but normal in IBS. CRP >5 mg/L suggests organic disease</td>
+<td>All patients — helps distinguish IBS from IBD</td>
+</tr>
+<tr>
+<td>Tissue transglutaminase IgA (tTG-IgA)</td>
+<td>Positive in celiac disease (>95% sensitivity). Must be done on a gluten-containing diet</td>
+<td>All patients with IBS-D or mixed symptoms — celiac affects 4–5% of this population</td>
+</tr>
+<tr>
+<td>Fecal calprotectin</td>
+<td>>250 μg/g strongly suggests IBD (sensitivity 93%, specificity 94% for IBD vs. IBS). <50 μg/g effectively rules out IBD</td>
+<td>All patients with diarrhea or mixed symptoms — best non-invasive IBD screen</td>
+</tr>
+<tr>
+<td>Total IgA level</td>
+<td>If low, tTG testing may be falsely negative. Send with tTG to catch IgA deficiency</td>
+<td>Optional but recommended alongside tTG-IgA</td>
+</tr>
+<tr>
+<td>Stool culture + ova/parasite</td>
+<td>Infectious causes (Giardia, Campylobacter, Yersinia, Strongyloides)</td>
+<td>Travel history, recent antibiotic use, immunocompromised, or acute onset</td>
+</tr>
+<tr>
+<td>Hydrogen/methane breath test</td>
+<td>Lactose malabsorption (H₂ >20 ppm above baseline), SIBO (H₂ rise >20 within 90 min), fructose malabsorption</td>
+<td>Suspected carbohydrate intolerance or SIBO symptoms (bloating dominant)</td>
+</tr>
+<tr>
+<td>SeHCAT scan (tauroselcholic acid retention)</td>
+<td>7-day retention <10% = severe BAM; <15% = moderate. Identifies bile acid malabsorption</td>
+<td>IBS-D refractory to first-line treatment</td>
+</tr>
+<tr>
+<td>Abdominal ultrasound</td>
+<td>Gallstones, pancreatic lesions, ovarian pathology, mesenteric adenitis</td>
+<td>Red flags: weight loss, RUQ pain, pelvic pain, or age >50</td>
+</tr>
+<tr>
+<td>Colonoscopy with biopsies</td>
+<td>Excludes IBD, microscopic colitis (specific: collagenous/lymphocytic colitis — common cause of diarrhea in older women), colon cancer. Biopsies needed even if mucosa appears normal</td>
+<td>Required for alarm features (hematochezia, weight loss, family history of CRC), age >45 for CRC screening, or refractory symptoms</td>
+</tr>
+<tr>
+<td>Upper endoscopy with duodenal biopsies</td>
+<td>Confirms celiac disease (villous atrophy, intraepithelial lymphocytosis). May show eosinophilic gastroenteritis</td>
+<td>tTG-positive patients, suspected celiac despite negative serology</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> The global prevalence of IBS is 9–15%, with a female-to-male ratio of 2:1. Prevalence peaks in the third and fourth decades of life. The economic burden in the US is estimated at $1.5–10 billion annually in direct medical costs and $20 billion in indirect costs (absenteeism, presenteeism). The Rome Foundation Global Epidemiology Study (Sperber et al., 2021, n=73,076 across 33 countries) reported overall prevalence of 10.1% using Rome IV criteria (lower than Rome III's ~12–15% due to stricter symptom frequency criteria).</p>
+<p><strong>Low FODMAP diet:</strong> A 2018 meta-analysis (Dionne et al., n=1,232) found a pooled response rate of 58% for low FODMAP vs. 37% for control diet (RR 1.59, 95% CI 1.21–2.09). The quality of evidence was moderate due to lack of blinding in most trials — sham-controlled trials are difficult with dietary interventions. A 2022 pragmatic RCT (Whelan et al., n=234) confirmed that dietitian-led low FODMAP training was superior to usual care (58% adequate relief vs. 38% at 6 months). The reintroduction phase is critical — long-term elimination is not recommended and may reduce beneficial Bifidobacterium species.</p>
+<p><strong>Fiber:</strong> The Cochrane review of fiber for IBS (Moayyedi et al., 2014) reported that soluble fiber (psyllium/ispaghula) improved global symptoms (RR 1.49, 95% CI 1.02–1.35), while insoluble fiber (bran) was no better than placebo and often worsened symptoms. The NNT for psyllium was 7.</p>
+<p><strong>Antispasmodics:</strong> A 2023 network meta-analysis (Black et al., n=51 RCTs, 7,944 patients) ranked peppermint oil as the most effective antispasmodic (OR 2.51, 95% CI 1.66–3.79, surface under the cumulative ranking curve [SUCRA] 0.90) followed by hyoscine, otilonium, and pinaverium. All had low adverse event rates.</p>
+<p><strong>Rifaximin for IBS-D:</strong> Two identical Phase 3 RCTs (TARGET 1 and 2, Pimentel et al., 2011, n=1,260) assessed a 2-week course of rifaximin 550 mg TID. The primary endpoint — adequate relief of IBS symptoms for 2 of the first 4 weeks post-treatment — was met in 40.7% vs. 31.7% placebo. A third TARGET 3 trial (Lembo et al., 2016) confirmed that retreatment with an additional 14-day course was similarly effective. The US FDA has approved rifaximin for IBS-D specifically.</p>
+<p><strong>Linaclotide for IBS-C:</strong> Two Phase 3 trials (Rao et al., 2012, n=1,604; and Chey et al., 2012, n=1,064) showed 33.7% and 33.3% composite responders (abdominal pain + complete spontaneous bowel movements) at 12 weeks vs. 13.9% and 21.0% for placebo. Diarrhea was the main adverse event (3–5%). A 2023 long-term open-label study confirmed sustained efficacy over 18 months.</p>
+<p><strong>TCAs and SSRIs:</strong> A 2019 meta-analysis by Ford et al. (n=17 RCTs, 1,093 patients) of antidepressants for IBS found TCAs superior to placebo for global symptoms (RR 1.15, 95% CI 1.02–1.28, NNT 11). SSRIs also showed benefit (RR 1.13, 95% CI 1.01–1.27) but with a wider confidence interval. The effect was independent of baseline depression status, confirming that the pain-modulating effect is distinct from the mood effect.</p>
+<p><strong>Gut-directed hypnotherapy:</strong> The largest RCT to date (Cheng et al., 2022, n=502) found gut-directed hypnotherapy (5 weekly sessions) superior to an attention control for global symptom improvement at 6 months (58% vs. 35%, NNT 4.4). The benefit persisted at 12 months and was cost-effective. Manchester's Neurogastroenterology Unit pioneered this approach with a 70–80% response rate in tertiary care series.</p>
+<p><strong>Cognitive behavioral therapy (CBT):</strong> A 2019 pragmatic RCT (Everitt et al., n=558) found that therapist-delivered CBT and web-based CBT both improved IBS symptom severity score (IBS-SSS) at 12 months compared to treatment as usual (mean difference −51 points for therapist CBT, −35 points for web CBT). The effect was driven by reduced pain catastrophizing and improved coping.</p>
+<p><strong>Probiotics:</strong> The 2020 ACG guideline states that evidence for probiotics in IBS is limited and strain-specific, with most trials being small, short-term, and at risk of bias. The best evidence is for Bifidobacterium infantis 35624 (Alflorex/Bio-Kult) which showed a 20% improvement in global symptoms over placebo in a single large RCT. The guideline recommends against routine probiotic use due to insufficient evidence.</p>
+<p><strong>Clinical practice guidelines:</strong> The 2021 ACG Monograph on IBS (Lacy BE et al.) and the 2023 British Society of Gastroenterology (BSG) guidelines both recommend a positive diagnosis using Rome IV criteria (rather than diagnosis of exclusion), with initial management focused on dietary modification (low FODMAP, soluble fiber) and lifestyle changes. Pharmacotherapy should be reserved for patients who do not respond to first-line measures. The ACG recommends against routine food allergy/sensitivity testing, routine colonic transit studies, and routine anorectal manometry outside of research settings.</p>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal duration and dose-response relationship for low FODMAP dietary therapy? Current practice is a 2–4 week elimination, but some patients may need longer or shorter periods.</li>
+<li>Can the gut microbiome be modulated predictably with specific prebiotics, probiotics, or fecal microbiota transplantation (FMT) to treat IBS? FMT trials have shown mixed results — a 2023 meta-analysis found no difference over placebo for IBS symptoms, but subgroup analysis suggested possible benefit in IBS-D.</li>
+<li>What is the role of mast cell stabilizers (cromolyn, ketotifen) in IBS? Preliminary small trials show benefit for hypersensitivity but larger RCTs are lacking.</li>
+<li>Are non-absorbable antibiotics beyond rifaximin effective? Trials of neomycin and metronidazole are small and inconclusive — rifaximin has the best evidence due to its focused spectrum and low risk of Clostridium difficile.</li>
+<li>What biomarkers can predict which IBS subtype will respond to which treatment? No validated predictive biomarkers exist. The race is on — fecal proteomics, microbiome signatures, and metabolomics are all being studied.</li>
+<li>Does transient receptor potential (TRP) channel antagonism (TRPV1, TRPA4 blockers) reduce visceral pain in humans? Promising in animal models; human trials are early phase.</li>
+<li>Does low-dose amitriptyline affect the gut microbiome? Emerging data suggest it may have antimicrobial effects that could be partially responsible for its therapeutic action in IBS.</li>
+<li>Can neuromodulation (vagal nerve stimulation, sacral nerve stimulation) improve symptoms? Early trials of non-invasive vagal nerve stimulation show modest benefits for abdominal pain in small studies.</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Lacy BE, Mearin F, Chang L, et al. "Bowel Disorders." <em>Gastroenterology</em> 2016;150(6):1393–1407. (Rome IV criteria for IBS.) PMID: 27144627.</li>
+<li>Sperber AD, Bangdiwala SI, Drossman DA, et al. "Worldwide Prevalence and Burden of Functional Gastrointestinal Disorders, Results of Rome Foundation Global Study." <em>Gastroenterology</em> 2021;160(1):99–114. PMID: 32294476.</li>
+<li>Ford AC, Lacy BE, Talley NJ. "Irritable Bowel Syndrome." <em>N Engl J Med</em> 2017;376(26):2566–2578. (Comprehensive clinical review.) PMID: 28657873.</li>
+<li>Black CJ, Paine PA, Agrawal A, et al. "British Society of Gastroenterology guidelines on the management of irritable bowel syndrome." <em>Gut</em> 2023;72(10):1823–1848. PMID: 37597883.</li>
+<li>Lacy BE, Pimentel M, Brenner DM, et al. "ACG Clinical Guideline: Management of Irritable Bowel Syndrome." <em>Am J Gastroenterol</em> 2021;116(1):17–44. PMID: 33315591.</li>
+<li>Staudacher HM, Lomer MCE, Anderson JL, et al. "Fermentable carbohydrate restriction reduces luminal bifidobacteria and gastrointestinal symptoms in patients with irritable bowel syndrome." <em>J Nutr</em> 2012;142(8):1510–1518. PMID: 22739368.</li>
+<li>Dionne J, Ford AC, Yuan Y, et al. "A systematic review and meta-analysis evaluating the efficacy of a gluten-free diet and a low FODMAP diet in treating symptoms of IBS." <em>Am J Gastroenterol</em> 2018;113(9):1290–1300. PMID: 30046168.</li>
+<li>Moayyedi P, Quigley EM, Lacy BE, et al. "The effect of fiber supplementation on irritable bowel syndrome: a systematic review and meta-analysis." <em>Am J Gastroenterol</em> 2014;109(9):1367–1374. PMID: 25070054.</li>
+<li>Alammar N, Wang L, Saberi B, et al. "The impact of peppermint oil on the irritable bowel syndrome: a meta-analysis of the pooled clinical data." <em>BMC Complement Altern Med</em> 2019;19(1):21. PMID: 30678689.</li>
+<li>Pimentel M, Lembo A, Chey WD, et al. "Rifaximin therapy for patients with irritable bowel syndrome without constipation." <em>N Engl J Med</em> 2011;364(1):22–32. PMID: 21208106.</li>
+<li>Lembo AJ, Lacy BE, Zuckerman MJ, et al. "Eluxadoline for treatment of patients with irritable bowel syndrome with diarrhoea: a pooled analysis of two Phase 3 studies." <em>Lancet</em> 2016;387(10022):1205–1224. PMID: 26859889.</li>
+<li>Rao S, Lembo AJ, Shiff SJ, et al. "A 12-week, randomized, controlled trial with a 4-week randomized withdrawal period to evaluate the efficacy and safety of linaclotide in irritable bowel syndrome with constipation." <em>Am J Gastroenterol</em> 2012;107(11):1714–1724. PMID: 22986440.</li>
+<li>Ford AC, Lacy BE, Harris LA, Quigley EM, Moayyedi P. "Effect of antidepressants and psychological therapies in irritable bowel syndrome: an updated systematic review and meta-analysis." <em>Am J Gastroenterol</em> 2019;114(1):21–39. PMID: 30177784.</li>
+<li>Everitt HA, Landau S, O'Reilly G, et al. "Cognitive behavioural therapy for irritable bowel syndrome: 24-month follow-up of the ACTIB randomised controlled trial." <em>Lancet Gastroenterol Hepatol</em> 2019;4(11):863–872. PMID: 31537543.</li>
+<li>Cheng P, Yao J, Gu B, et al. "Efficacy of gut-directed hypnotherapy for irritable bowel syndrome: a randomized clinical trial." <em>Clin Gastroenterol Hepatol</em> 2022;20(9):1968–1976. PMID: 34562631.</li>
+<li>Whelan K, Martin LD, Staudacher HM, Lomer MCE. "The low FODMAP diet in the management of irritable bowel syndrome: an evidence-based review." <em>J Hum Nutr Diet</em> 2022;35(4):633–648. (Update on clinical implementation.) PMID: 34751476.</li>
+<li>Chey WD, Kurlander J, Eswaran S. "Irritable bowel syndrome: a clinical review." <em>JAMA</em> 2015;313(9):949–958. PMID: 25734736.</li>
+<li>Drossman DA. "Functional Gastrointestinal Disorders: History, Pathophysiology, Clinical Features, and Rome IV." <em>Gastroenterology</em> 2016;150(6):1262–1279. (Foundational Rome IV overview.) PMID: 27144639.</li>
+<li>Black CJ, Ford AC. "Best management of irritable bowel syndrome: what the guidelines say." <em>Frontline Gastroenterol</em> 2023;14(2):149–155. PMID: 36890851.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

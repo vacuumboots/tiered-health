@@ -1,0 +1,236 @@
+<svg class="anatomy-svg" viewBox="0 0 500 550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0f4f8"/><stop offset="100%" stop-color="#e8edf2"/></linearGradient>
+    <linearGradient id="airway" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="membrane" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="virus" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c0392b"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient>
+    <linearGradient id="virus2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="nucleus" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6c5ce7"/><stop offset="100%" stop-color="#a29bfe"/></linearGradient>
+    <linearGradient id="cytokine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e17055"/><stop offset="100%" stop-color="#d63031"/></linearGradient>
+    <linearGradient id="ha" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00b894"/><stop offset="100%" stop-color="#00cec9"/></linearGradient>
+    <linearGradient id="na" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fdcb6e"/><stop offset="100%" stop-color="#f39c12"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="550" fill="url(#bg)" rx="8"/>
+
+  <!-- Title -->
+  <text x="250" y="28" fill="#2d3436" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">Influenza Virus — Infection &amp; Immune Response</text>
+
+  <!-- ═══════ RESPIRATORY TRACT (Left side) ═══════ -->
+  <g transform="translate(10, 10)">
+
+    <!-- Nasal cavity -->
+    <path d="M40,60 C55,55 70,55 85,60 L90,62" fill="none" stroke="#b2bec3" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.5"/>
+
+    <!-- Trachea outline -->
+    <path d="M60,70 C55,80 52,95 50,110 L48,130 L48,150 L50,170 L55,185 L60,195 L68,200 L75,200 L82,195 L87,185 L92,170 L94,150 L94,130 L92,110 L90,95 L85,80 L80,70"
+          fill="url(#airway)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.8"/>
+
+    <!-- Tracheal rings -->
+    <line x1="55" y1="85" x2="85" y2="85" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="53" y1="100" x2="87" y2="100" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="52" y1="115" x2="89" y2="115" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="52" y1="130" x2="90" y2="130" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="53" y1="145" x2="90" y2="145" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="55" y1="160" x2="88" y2="160" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+    <line x1="58" y1="175" x2="85" y2="175" stroke="#c4b5a0" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- Bronchi (left and right) -->
+    <path d="M68,200 C62,215 54,230 48,245" fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.6"/>
+    <path d="M75,200 C80,215 86,230 92,245" fill="none" stroke="#c4b5a0" stroke-width="2.5" opacity="0.6"/>
+
+    <!-- Lungs (simplified) -->
+    <ellipse cx="40" cy="280" rx="22" ry="35" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+    <ellipse cx="100" cy="280" rx="22" ry="35" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.4"/>
+
+    <!-- Label -->
+    <text x="70" y="230" fill="#636e72" font-size="9" font-weight="600" text-anchor="middle">Respiratory</text>
+    <text x="70" y="242" fill="#636e72" font-size="9" font-weight="600" text-anchor="middle">epithelium</text>
+
+    <!-- Inhaled virus particles floating down trachea -->
+    <circle cx="62" cy="88" r="3.5" fill="url(#virus)" opacity="0.7"/>
+    <circle cx="78" cy="105" r="3" fill="url(#virus)" opacity="0.6"/>
+    <circle cx="60" cy="120" r="3.5" fill="url(#virus2)" opacity="0.7"/>
+    <circle cx="82" cy="140" r="3" fill="url(#virus)" opacity="0.5"/>
+    <circle cx="65" cy="155" r="3.5" fill="url(#virus2)" opacity="0.6"/>
+    <circle cx="80" cy="170" r="2.5" fill="url(#virus)" opacity="0.5"/>
+    <circle cx="70" cy="192" r="3" fill="url(#virus2)" opacity="0.6"/>
+
+    <!-- Inhaled virus particles flowing into lungs -->
+    <circle cx="50" cy="220" r="3" fill="url(#virus)" opacity="0.5"/>
+    <circle cx="92" cy="225" r="2.5" fill="url(#virus)" opacity="0.5"/>
+
+    <!-- Legend for respiratory tract -->
+    <text x="70" y="330" fill="#636e72" font-size="8" text-anchor="middle">Virus inhaled</text>
+    <text x="70" y="342" fill="#636e72" font-size="8" text-anchor="middle">into airways</text>
+  </g>
+
+  <!-- ═══════ ZOOM BOX: Epithelial cell (Right side) ═══════ -->
+  <g transform="translate(130, 35)">
+    <rect x="0" y="0" width="350" height="340" rx="10" fill="#ffffff" stroke="#dfe6e9" stroke-width="1.5" opacity="0.95"/>
+
+    <!-- Cell membrane -->
+    <path d="M20,60 C30,55 45,55 60,58 L80,62 L100,55 L120,58 L140,62 L160,55 L180,58 L200,62 L220,55 L240,58 L260,62 L280,55 L300,58 L320,62 L330,60"
+          fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2" opacity="0.3"/>
+    <path d="M20,175 C30,172 45,178 60,175 L80,172 L100,178 L120,175 L140,172 L160,178 L180,175 L200,172 L220,178 L240,175 L260,172 L280,178 L300,175 L320,172 L330,175"
+          fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2" opacity="0.3"/>
+
+    <!-- Membrane phospholipid bilayer hints -->
+    <path d="M20,60 L20,175" stroke="#fdcb6e" stroke-width="1" opacity="0.2" stroke-dasharray="2,2"/>
+    <path d="M330,60 L330,175" stroke="#fdcb6e" stroke-width="1" opacity="0.2" stroke-dasharray="2,2"/>
+
+    <!-- Cell interior (cytoplasm) -->
+    <rect x="20" y="62" width="310" height="113" rx="5" fill="#f8f9fa" opacity="0.5"/>
+
+    <!-- Nucleus -->
+    <ellipse cx="175" cy="118" rx="55" ry="35" fill="url(#nucleus)" opacity="0.5" filter="url(#soft)"/>
+    <ellipse cx="175" cy="118" rx="35" ry="22" fill="url(#nucleus)" opacity="0.3"/>
+
+    <!-- Step 1: Virus attaching to cell surface (left side) -->
+    <circle cx="80" cy="55" r="12" fill="url(#virus)" opacity="0.9" filter="url(#soft)"/>
+    <!-- HA spikes on virus -->
+    <line x1="80" y1="43" x2="80" y2="35" stroke="#00b894" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="73" y1="45" x2="68" y2="38" stroke="#00b894" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <line x1="87" y1="45" x2="92" y2="38" stroke="#00b894" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <!-- NA spikes -->
+    <line x1="72" y1="62" x2="65" y2="68" stroke="#f39c12" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+    <line x1="88" y1="62" x2="95" y2="68" stroke="#f39c12" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Label: Step 1 -->
+    <text x="80" y="82" fill="#00b894" font-size="8" font-weight="700" text-anchor="middle">① Attachment</text>
+    <text x="80" y="93" fill="#636e72" font-size="7" text-anchor="middle">HA binds sialic</text>
+    <text x="80" y="103" fill="#636e72" font-size="7" text-anchor="middle">acid receptors</text>
+
+    <!-- Step 1 arrow leading into cell -->
+    <path d="M80,57 C80,62 80,65 80,68" fill="none" stroke="#b2bec3" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Step 2: Endocytosis / Entry arrow -->
+    <path d="M175,55 C175,62 175,68 175,75" fill="none" stroke="#b2bec3" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)" opacity="0.6"/>
+
+    <text x="175" y="52" fill="#6c5ce7" font-size="8" font-weight="700" text-anchor="middle">② Entry &amp;</text>
+    <text x="175" y="63" fill="#6c5ce7" font-size="8" font-weight="700" text-anchor="middle">uncoating</text>
+
+    <!-- Step 3: Replication nucleus arrow -->
+    <path d="M175,75 C175,80 175,85 175,90" fill="none" stroke="#b2bec3" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)" opacity="0.6"/>
+
+    <text x="245" y="85" fill="#a29bfe" font-size="8" font-weight="700">③ Nuclear</text>
+    <text x="245" y="96" fill="#a29bfe" font-size="8" font-weight="700">replication</text>
+
+    <!-- Step 4: Assembly and budding (right side) -->
+    <circle cx="270" cy="55" r="11" fill="url(#virus2)" opacity="0.7" filter="url(#soft)"/>
+    <!-- New virus HA spikes -->
+    <line x1="270" y1="44" x2="270" y2="37" stroke="#00b894" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="264" y1="46" x2="260" y2="40" stroke="#00b894" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="276" y1="46" x2="280" y2="40" stroke="#00b894" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <!-- New virus NA spikes -->
+    <line x1="263" y1="60" x2="258" y2="65" stroke="#f39c12" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    <line x1="277" y1="60" x2="282" y2="65" stroke="#f39c12" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+
+    <text x="270" y="80" fill="#e74c3c" font-size="8" font-weight="700" text-anchor="middle">④ Budding &amp;</text>
+    <text x="270" y="91" fill="#e74c3c" font-size="8" font-weight="700" text-anchor="middle">release (NA)</text>
+
+    <!-- Step 5: Cell death / damaged cell -->
+    <text x="270" y="115" fill="#d63031" font-size="7" text-anchor="middle">Cell death /</text>
+    <text x="270" y="125" fill="#d63031" font-size="7" text-anchor="middle">epithelial damage</text>
+
+    <!-- Damaged cell markers -->
+    <path d="M50,140 L60,150 M60,140 L50,150" stroke="#d63031" stroke-width="1" opacity="0.4"/>
+    <path d="M250,140 L260,150 M260,140 L250,150" stroke="#d63031" stroke-width="1" opacity="0.4"/>
+
+    <!-- Cytokine release (bottom of cell) -->
+    <circle cx="80" cy="168" r="3" fill="url(#cytokine)" opacity="0.8"/>
+    <circle cx="140" cy="172" r="2.5" fill="url(#cytokine)" opacity="0.7"/>
+    <circle cx="200" cy="170" r="3" fill="url(#cytokine)" opacity="0.6"/>
+    <circle cx="250" cy="168" r="2" fill="url(#cytokine)" opacity="0.7"/>
+    <circle cx="300" cy="172" r="2.5" fill="url(#cytokine)" opacity="0.6"/>
+
+    <text x="175" y="195" fill="#d63031" font-size="8" font-weight="700" text-anchor="middle">⑤ Cytokine release → fever, myalgia, headache</text>
+
+    <!-- Zoom box label -->
+    <text x="175" y="18" fill="#2d3436" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui,sans-serif">Respiratory Epithelial Cell &amp; Viral Lifecycle</text>
+
+    <!-- Cell membrane label -->
+    <text x="345" y="120" fill="#fdcb6e" font-size="7" font-weight="600" text-anchor="end">Cell membrane</text>
+    <!-- Nucleus label -->
+    <text x="195" y="145" fill="#6c5ce7" font-size="7">Nucleus</text>
+  </g>
+
+  <!-- ═══════ VIRUS LEGEND (Bottom left) ═══════ -->
+  <g transform="translate(10, 390)">
+    <rect x="0" y="0" width="220" height="145" rx="8" fill="#ffffff" stroke="#dfe6e9" stroke-width="1" opacity="0.9"/>
+    <text x="110" y="18" fill="#2d3436" font-size="10" font-weight="700" text-anchor="middle">Influenza Virus Structure</text>
+
+    <!-- Virus particle -->
+    <circle cx="45" cy="55" r="18" fill="url(#virus)" opacity="0.8"/>
+    <!-- HA spikes -->
+    <line x1="45" y1="37" x2="45" y2="25" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="33" y1="42" x2="22" y2="35" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="57" y1="42" x2="68" y2="35" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="30" y1="55" x2="18" y2="55" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="60" y1="55" x2="72" y2="55" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="33" y1="68" x2="22" y2="75" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <line x1="57" y1="68" x2="68" y2="75" stroke="#00b894" stroke-width="3" stroke-linecap="round"/>
+    <!-- NA spikes (mushroom shaped, between HA) -->
+    <line x1="39" y1="40" x2="35" y2="32" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+    <line x1="51" y1="40" x2="55" y2="32" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+    <line x1="39" y1="68" x2="35" y2="76" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+    <line x1="51" y1="68" x2="55" y2="76" stroke="#f39c12" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Labels -->
+    <line x1="68" y1="26" x2="95" y2="26" stroke="#00b894" stroke-width="1.2"/>
+    <text x="98" y="24" fill="#00b894" font-size="8" font-weight="600">Hemagglutinin (HA)</text>
+    <text x="98" y="36" fill="#636e72" font-size="7">Binds to host cell receptors</text>
+
+    <line x1="60" y1="70" x2="95" y2="70" stroke="#f39c12" stroke-width="1.2"/>
+    <text x="98" y="68" fill="#f39c12" font-size="8" font-weight="600">Neuraminidase (NA)</text>
+    <text x="98" y="80" fill="#636e72" font-size="7">Cleaves receptors for viral release</text>
+
+    <text x="98" y="106" fill="#636e72" font-size="7">Genome: 8 segments of</text>
+    <text x="98" y="118" fill="#636e72" font-size="7">negative-sense ssRNA</text>
+
+    <!-- Drug targets -->
+    <rect x="5" y="124" width="210" height="16" rx="3" fill="#ffeaa7" opacity="0.4"/>
+    <text x="110" y="136" fill="#d63031" font-size="7" font-weight="600" text-anchor="middle">Drug targets: Oseltamivir (NA inhibitor) · Baloxavir (PA endonuclease inhibitor)</text>
+  </g>
+
+  <!-- ═══════ SYSTEMIC EFFECTS (Bottom right) ═══════ -->
+  <g transform="translate(245, 390)">
+    <rect x="0" y="0" width="245" height="145" rx="8" fill="#ffffff" stroke="#dfe6e9" stroke-width="1" opacity="0.9"/>
+    <text x="122" y="18" fill="#2d3436" font-size="10" font-weight="700" text-anchor="middle">Systemic Effects</text>
+
+    <!-- Brain / Head -->
+    <circle cx="40" cy="55" r="16" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+    <text x="40" y="52" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Fever</text>
+    <text x="40" y="64" fill="#636e72" font-size="7" text-anchor="middle">↑ Hypothalamus</text>
+
+    <!-- Muscles -->
+    <path d="M90,42 L120,42 L120,50 L90,50 Z" fill="#f5c842" stroke="#e6a817" stroke-width="0.8" opacity="0.5"/>
+    <path d="M90,50 L120,50 L120,58 L90,58 Z" fill="#f5c842" stroke="#e6a817" stroke-width="0.8" opacity="0.5"/>
+    <path d="M90,58 L120,58 L120,66 L90,66 Z" fill="#f5c842" stroke="#e6a817" stroke-width="0.8" opacity="0.5"/>
+    <text x="105" y="82" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Myalgia</text>
+
+    <!-- Lungs -->
+    <ellipse cx="185" cy="52" rx="14" ry="10" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+    <ellipse cx="185" cy="62" rx="14" ry="10" fill="url(#airway)" stroke="#c4b5a0" stroke-width="1" opacity="0.6"/>
+    <text x="185" y="82" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Cough</text>
+
+    <!-- Fatigue -->
+    <text x="60" y="108" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Severe fatigue</text>
+    <text x="140" y="108" fill="#636e72" font-size="8" font-weight="600" text-anchor="middle">Headache</text>
+
+    <!-- Arrow showing connection: cytokine release → systemic symptoms -->
+    <path d="M40,100 C40,118 122,118 122,118" fill="none" stroke="#d63031" stroke-width="1.2" stroke-dasharray="4,2" opacity="0.6" marker-end="url(#arrow)"/>
+
+    <text x="122" y="135" fill="#d63031" font-size="7" font-weight="600" text-anchor="middle">Driven by: IL-6, TNF-α, IFN, PGE₂</text>
+  </g>
+
+  <!-- Arrow definitions -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#b2bec3"/>
+    </marker>
+  </defs>
+</svg>

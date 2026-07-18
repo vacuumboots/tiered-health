@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pneumonia — Tiered Health</title>
+<meta name="description" content="Pneumonia: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🫁 Tiered Health <span>/ Pneumonia</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🫁 Pneumonia</h1>
+  <p class="aka">Also called: lung infection, community-acquired pneumonia, CAP</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lung-normal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5e6e0"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="lung-infected" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8b4b4"/><stop offset="50%" stop-color="#d97a7a"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="airway" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="bone" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Chest outline -->
+  <path d="M250,50 L130,80 C100,90 80,110 70,140 L55,200 C48,240 50,280 58,320 L70,370 C78,400 90,430 105,450 L130,475 C150,492 170,500 195,505 L230,508 L250,500 L270,508 L305,505 C330,500 350,492 370,475 L395,450 C410,430 422,400 430,370 L442,320 C450,280 452,240 445,200 L430,140 C420,110 400,90 370,80 Z"
+        fill="none" stroke="#c4b5a0" stroke-width="2" opacity="0.4"/>
+
+  <!-- Trachea -->
+  <path d="M250,50 L250,130 C250,140 250,145 250,150"
+        fill="none" stroke="#b0a595" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <path d="M250,50 L250,130 C250,140 250,145 250,150"
+        fill="none" stroke="url(#airway)" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <!-- Tracheal rings -->
+  <line x1="244" y1="65" x2="256" y2="65" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="80" x2="256" y2="80" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="95" x2="256" y2="95" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="110" x2="256" y2="110" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="125" x2="256" y2="125" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <text x="258" y="100" fill="#8a7e6e" font-size="11" font-style="italic">Trachea</text>
+
+  <!-- Carina (bifurcation) -->
+  <circle cx="250" cy="152" r="4" fill="#e6a817" opacity="0.8"/>
+
+  <!-- Left main bronchus -->
+  <path d="M248,152 C230,168 200,178 180,185 C160,192 140,198 125,205"
+        fill="none" stroke="#b0a595" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M248,152 C230,168 200,178 180,185 C160,192 140,198 125,205"
+        fill="none" stroke="url(#airway)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Right main bronchus (shorter, wider) -->
+  <path d="M252,152 C270,165 290,172 310,178 C330,184 350,190 365,195"
+        fill="none" stroke="#b0a595" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M252,152 C270,165 290,172 310,178 C330,184 350,190 365,195"
+        fill="none" stroke="url(#airway)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Left lung (normal) -->
+  <path d="M125,205 C110,215 95,240 85,275 C78,305 75,340 80,370 C85,395 95,415 110,430 C125,442 145,450 165,455 L210,458 C225,455 235,445 240,430 L245,410 C248,395 248,375 246,355 C244,335 240,315 235,298 C228,278 218,260 205,248 C192,238 175,228 160,220 C148,214 135,208 125,205 Z"
+        fill="url(#lung-normal)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Left lung bronchial branching (visible through translucent lung) -->
+  <path d="M125,205 C120,220 115,240 110,260 C105,280 100,300 95,320"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M140,210 C135,230 130,255 128,280 C126,305 125,330 126,355"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M155,220 C150,245 148,270 148,295 C148,320 150,345 155,370"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M175,235 C172,260 172,285 175,310 C178,335 182,355 188,375"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M200,250 C198,275 200,300 204,325 C208,350 214,370 220,385"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+
+  <!-- Left lung label -->
+  <text x="80" y="325" fill="#8a7e6e" font-size="11" font-weight="600">Left lung</text>
+  <text x="80" y="340" fill="#8a7e6e" font-size="9">(normal)</text>
+  <text x="80" y="355" fill="#8a7e6e" font-size="9">Healthy alveoli</text>
+
+  <!-- Right lung (pneumonia / consolidation in lower lobe) -->
+  <path d="M365,195 C378,208 390,228 398,255 C404,278 408,305 408,330 C408,360 404,385 395,405 C386,422 372,435 355,443 C340,450 322,455 305,455 C288,455 272,450 258,440 C248,432 242,420 238,405 C234,385 232,360 232,335 C232,310 234,288 238,268 C242,250 248,234 256,222 C268,208 282,198 295,195 C308,192 320,192 332,193 C345,194 355,195 365,195 Z"
+        fill="url(#lung-inflected)" stroke="#c0392b" stroke-width="2" opacity="0.7"/>
+
+  <!-- Right upper lobe (relatively spared, normal-looking) -->
+  <path d="M365,195 C355,195 345,194 332,193 C320,192 308,192 295,195 C282,198 268,208 256,222 C248,234 242,250 238,268 L238,280 C245,265 255,252 268,244 C282,236 298,232 315,230 C335,228 350,230 362,238 C372,245 378,255 382,268 C386,278 388,290 388,305 L392,290 C395,270 395,250 390,228 C388,218 380,205 365,195 Z"
+        fill="url(#lung-normal)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Right lower lobe (consolidated - pneumonia zone) -->
+  <path d="M388,305 C384,320 378,340 370,358 C360,380 345,400 328,415 C312,428 294,435 275,435 C258,435 245,428 235,415 C228,405 224,392 220,378 L218,365 C218,378 222,395 228,410 C235,430 248,445 265,452 C282,458 300,458 318,453 C338,447 355,435 368,418 C380,400 390,378 395,355 C398,340 396,322 392,308 L388,305 Z"
+        fill="url(#lung-infected)" stroke="#a93226" stroke-width="2" opacity="0.85"/>
+
+  <!-- Right lung label -->
+  <text x="305" y="310" fill="#fff" font-size="11" font-weight="600" opacity="0.85">Right lung</text>
+  <text x="305" y="325" fill="#fff" font-size="9" opacity="0.8">Consolidation</text>
+  <text x="305" y="340" fill="#fff" font-size="9" opacity="0.8">(pneumonia)</text>
+
+  <!-- ============================================ -->
+  <!-- ALVEOLI DETAIL PANEL - normal vs infected -->
+  <!-- ============================================ -->
+
+  <line x1="30" y1="470" x2="470" y2="470" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Normal alveoli panel -->
+  <g transform="translate(25, 480)">
+    <rect x="0" y="0" width="215" height="110" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Normal Alveoli (air-filled)</text>
+
+    <!-- Bronchiole -->
+    <path d="M15,40 C30,40 40,38 50,40" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15,48 C30,48 40,46 50,48" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Alveolar sac 1 -->
+    <circle cx="75" cy="35" r="12" fill="none" stroke="#b0a595" stroke-width="1.2"/>
+    <circle cx="75" cy="35" r="10" fill="#f5e6e0" opacity="0.7"/>
+
+    <!-- Alveolus cluster around bronchiole -->
+    <circle cx="95" cy="32" r="10" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="95" cy="32" r="8" fill="#f5e6e0" opacity="0.7"/>
+
+    <circle cx="85" cy="52" r="9" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="85" cy="52" r="7" fill="#f5e6e0" opacity="0.7"/>
+
+    <circle cx="105" cy="50" r="8" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="105" cy="50" r="6" fill="#f5e6e0" opacity="0.7"/>
+
+    <circle cx="110" cy="20" r="7" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="110" cy="20" r="5" fill="#f5e6e0" opacity="0.7"/>
+
+    <!-- Oxygen arrow (into blood) -->
+    <path d="M140,35 C155,35 165,35 175,35" fill="none" stroke="#2e86c1" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+    <text x="145" y="28" fill="#2e86c1" font-size="8">O₂</text>
+
+    <!-- CO₂ arrow (out of blood) -->
+    <path d="M175,55 C165,55 155,55 140,55" fill="none" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+    <text x="148" y="67" fill="#7f8c8d" font-size="8">CO₂</text>
+
+    <text x="193" y="42" fill="#8a7e6e" font-size="8">Gas exchange</text>
+    <text x="193" y="54" fill="#8a7e6e" font-size="8">works normally</text>
+  </g>
+
+  <!-- Infected alveoli panel -->
+  <g transform="translate(260, 480)">
+    <rect x="0" y="0" width="215" height="110" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="18" fill="#c0392b" font-size="10" font-weight="600" text-anchor="middle">Pneumonia (fluid-filled)</text>
+
+    <!-- Bronchiole -->
+    <path d="M15,40 C30,40 40,38 50,40" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15,48 C30,48 40,46 50,48" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Consolidated alveoli - filled with exudate -->
+    <circle cx="75" cy="35" r="12" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="75" cy="35" r="10" fill="#e8b4b4" opacity="0.8"/>
+    <path d="M68,30 L72,35 L65,38" fill="none" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+    <path d="M80,28 L82,33 L78,34" fill="none" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+
+    <circle cx="95" cy="32" r="10" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="95" cy="32" r="8" fill="#d97a7a" opacity="0.8"/>
+    <path d="M90,28 L92,32 L88,34" fill="none" stroke="#a93226" stroke-width="0.8" opacity="0.5"/>
+
+    <circle cx="85" cy="52" r="9" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="85" cy="52" r="7" fill="#c0392b" opacity="0.7"/>
+
+    <circle cx="105" cy="50" r="8" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="105" cy="50" r="6" fill="#c0392b" opacity="0.6"/>
+
+    <circle cx="110" cy="20" r="7" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="110" cy="20" r="5" fill="#c0392b" opacity="0.6"/>
+
+    <!-- Blocked gas exchange -->
+    <path d="M140,35 C155,35 165,35 175,35" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3" opacity="0.5"/>
+    <line x1="140" y1="28" x2="155" y2="38" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+    <line x1="140" y1="38" x2="155" y2="28" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+    <text x="145" y="28" fill="#c0392b" font-size="8">O₂ blocked</text>
+
+    <text x="193" y="42" fill="#c0392b" font-size="8">Alveoli filled with</text>
+    <text x="193" y="54" fill="#c0392b" font-size="8">pus, fluid, debris</text>
+  </g>
+
+  <!-- Bacteria detail at airway entrance -->
+  <g transform="translate(340, 155)" opacity="0.7">
+    <circle cx="0" cy="0" r="1.5" fill="#c0392b"/>
+    <circle cx="6" cy="-2" r="1.5" fill="#c0392b"/>
+    <circle cx="-4" cy="3" r="1.5" fill="#c0392b"/>
+    <circle cx="3" cy="4" r="1.5" fill="#c0392b"/>
+    <circle cx="-2" cy="-3" r="1.5" fill="#c0392b"/>
+    <text x="-8" y="12" fill="#c0392b" font-size="7">Bacteria</text>
+  </g>
+
+  <!-- Inhaled pathogen arrow -->
+  <path d="M280,40 C285,55 290,70 295,90 C300,110 305,130 310,148"
+        fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)" opacity="0.6"/>
+  <text x="282" y="58" fill="#c0392b" font-size="8">Inhaled</text>
+  <text x="282" y="70" fill="#c0392b" font-size="8">pathogens</text>
+
+  <!-- Title -->
+  <text x="250" y="26" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Lung Anatomy &amp; Pneumonia Mechanism</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What is pneumonia?</h4>
+<p>An infection in your lungs that fills the air sacs with fluid or pus, making it hard to breathe. Bacteria (most often Strep pneumoniae), viruses (like flu or RSV), or — rarely — fungi cause it. Anyone can get pneumonia, but it's most dangerous for babies, older adults, and people with weak immune systems or chronic illnesses.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>See a doctor today.</strong> Pneumonia needs a diagnosis (chest X-ray) and treatment. Don't try to wait it out at home if you're short of breath.</li>
+<li><strong>Rest and take it easy.</strong> Your body needs energy to fight the infection. Stay home from work or school.</li>
+<li><strong>Drink fluids.</strong> Water, tea, and clear soups keep mucus thin so you can cough it up.</li>
+<li><strong>Control your fever.</strong> Acetaminophen (Tylenol) or ibuprofen (Advil) can bring down fever and help with body aches.</li>
+<li><strong>Sleep propped up.</strong> Use extra pillows to keep your head elevated — this helps you breathe more easily.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You're struggling to breathe or can't finish a sentence without gasping</li>
+<li>Your lips or fingernails look blue or gray</li>
+<li>You feel confused or are unusually sleepy</li>
+<li>You have a fever over 103°F (39.4°C) with shaking chills</li>
+<li>You're coughing up blood</li>
+<li>You have chest pain that's worse when you breathe in</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Good news</h5>
+<p>Most people with pneumonia recover fully with proper treatment. If you're healthy and under 65, you can usually be treated at home with oral antibiotics and rest. You'll likely start feeling better within 48–72 hours of starting treatment, though the cough can linger for weeks.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your lungs are made of tiny air sacs called <strong>alveoli</strong> — there are about 300 million of them, coated in a thin layer of surfactant that keeps them open. Normally the alveoli are open and air-filled so oxygen can pass straight through their thin walls (just one cell layer thick) into your bloodstream.</p>
+<p>When you get pneumonia, a germ invades this delicate tissue. Your immune system rushes to fight it — white blood cells, fluid, and proteins flood into the alveoli. This is what doctors see as <strong>consolidation</strong> on a chest X-ray: the air spaces are filled with inflammatory exudate instead of air. Gas exchange is blocked in the affected parts of your lung, which is why you feel short of breath and your oxygen level drops.</p>
+<p>The infection reaches your lungs in one of two ways: either you <strong>inhale</strong> the germ from the air (directly from a sick person's cough or sneeze, or from your own nose/throat if you carry it), or — less commonly — from a <strong>bloodstream infection</strong> that seeds the lung from another site.</p>
+<p>There are several types of pneumonia, classified by where and how you got it:</p>
+<ul>
+<li><strong>Community-acquired pneumonia (CAP):</strong> the most common type. You caught it outside the hospital. The leading cause is <em>Streptococcus pneumoniae</em> (pneumococcus), followed by <em>Haemophilus influenzae</em>, <em>Mycoplasma pneumoniae</em> ("walking pneumonia"), and respiratory viruses.</li>
+<li><strong>Hospital-acquired pneumonia (HAP):</strong> you develop it while hospitalized for something else. The bacteria are different and often harder to treat — think <em>Pseudomonas aeruginosa</em>, <em>MRSA</em>, or resistant gram-negative rods.</li>
+<li><strong>Aspiration pneumonia:</strong> you accidentally inhaled food, drink, or stomach contents into your lungs. This typically affects the right lower lobe because it's the most direct path anatomically. The bacteria come from your mouth and throat.</li>
+<li><strong>Walking pneumonia:</strong> caused by <em>Mycoplasma pneumoniae</em>. It tends to be milder — you may not even feel sick enough to stay in bed, hence the name.</li>
+</ul>
+<h4>Symptoms</h4>
+<ul>
+<li><strong>Cough:</strong> almost always present. May produce phlegm (sputum) that's yellow, green, or rust-colored.</li>
+<li><strong>Fever and chills:</strong> often high fever with shaking rigors (uncontrollable shivering). Not everyone gets fever — older adults may just feel weak or confused instead.</li>
+<li><strong>Shortness of breath (dyspnea):</strong> especially with activity. In severe cases, at rest.</li>
+<li><strong>Pleuritic chest pain:</strong> sharp pain that gets worse when you take a deep breath or cough. The inflammation has spread to the pleural lining of the lung.</li>
+<li><strong>Fatigue:</strong> deep exhaustion that lasts well beyond the acute illness.</li>
+<li><strong>Rapid breathing (tachypnea):</strong> your body's attempt to get enough oxygen with less lung capacity.</li>
+<li><strong>Rapid heart rate (tachycardia):</strong> from fever and the increased work of breathing.</li>
+<li><strong>Confusion:</strong> especially in older adults — this can be the only sign of pneumonia in a frail elderly person.</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Antibiotics</strong> — this is the core of treatment for bacterial pneumonia. The choice depends on where you got the infection, your age, your other health conditions, and how severe it is:</li>
+<li><strong>Outpatient (mild-to-moderate CAP):</strong> amoxicillin 500–1000 mg three times daily for 5 days (or doxycycline 100 mg twice daily for 5–7 days if you're allergic to penicillin). In areas with high pneumococcal resistance, a macrolide like azithromycin can be added.</li>
+<li><strong>Inpatient (moderate-to-severe CAP):</strong> ceftriaxone (1 g IV daily) PLUS azithromycin (500 mg IV daily) — the combination covers both typical bacteria (Gram-positive and Gram-negative) and atypical ones (Mycoplasma, Chlamydia, Legionella). A respiratory fluoroquinolone (levofloxacin or moxifloxacin) can be used as monotherapy.</li>
+<li><strong>Hospital-acquired pneumonia (HAP):</strong> broader coverage, often including an anti-pseudomonal beta-lactam (piperacillin-tazobactam, cefepime) plus coverage for MRSA (vancomycin or linezolid).</li>
+</ul>
+<ul>
+<li><strong>Oxygen therapy:</strong> if your oxygen saturation drops below 92%, you'll get supplemental oxygen through nasal prongs or a mask.</li>
+<li><strong>Respiratory support:</strong> for severe cases, this can mean high-flow nasal cannula, non-invasive ventilation (BiPAP), or — in the most critical cases — mechanical ventilation (a breathing tube).</li>
+<li><strong>Fluids and fever control:</strong> intravenous fluids if you can't drink enough. Acetaminophen for fever.</li>
+<li><strong>Chest physiotherapy:</strong> deep breathing exercises and coughing techniques to clear secretions. An incentive spirometer (a plastic device you blow into) helps keep small airways open.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't ask for antibiotics if you have viral pneumonia — they won't help. Antivirals (oseltamivir for flu, remdesivir for COVID-19) might, if started early enough.</li>
+<li>Don't take cough suppressants (dextromethorphan, codeine) — coughing clears infection from your lungs. If the cough is keeping you from sleeping, use honey or a simple demulcent like glycerin instead.</li>
+<li>Don't smoke or vape — it paralyzes your cilia (the tiny hairs that sweep mucus out of your lungs) and delays healing.</li>
+<li>Don't drink alcohol — it suppresses your immune system, dehydrates you, and impairs your cough reflex.</li>
+<li>Don't stop your antibiotics early when you start feeling better. Finish the prescribed course to make sure all the bacteria are dead.</li>
+<li>Don't lie flat — keep your head elevated to help your lungs expand fully.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">Day 1–3</div>
+<div class="tl-text">Symptoms start — usually suddenly — with fever, chills, and a dry or productive cough. Shortness of breath begins. See a doctor for diagnosis (CXR, blood work). Start antibiotics if bacterial.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 3–5</div>
+<div class="tl-text">Antibiotics begin working. Fever should start coming down within 48–72 hours. You'll still feel tired and may have coughing fits. Rest, hydrate, and take acetaminophen as needed for fever.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 5–7</div>
+<div class="tl-text">Fever should be gone. Energy slowly returns. You may still need naps. The cough continues but should feel less intense. You're no longer contagious once your fever has been gone for 24–48 hours (on effective treatment).</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 2–3</div>
+<div class="tl-text">Most people can return to daily activities but tire easily. The cough may persist as your lungs clear out the leftover debris. Your chest X-ray may still show abnormalities even though you feel better — this is normal. Full radiological resolution takes 4–6 weeks.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Week 4–8</div>
+<div class="tl-text">Complete recovery for most mild-to-moderate cases. The cough can linger 2–4 weeks after other symptoms resolve. If you smoke, the cough may last even longer. Get a follow-up chest X-ray at 6–8 weeks if you're over 50 or a smoker, to confirm the infiltrate has cleared (and rule out an underlying mass obstructing the airway).</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Pneumonia is an <strong>acute infection of the lung parenchyma</strong> — the alveoli, alveolar ducts, and respiratory bronchioles — resulting in inflammation and filling of the airspaces with exudate. The dominant mechanism varies by pathogen, but the common endpoint is impaired gas exchange.</p>
+<p><strong>Bacterial pneumonia</strong> (most commonly <em>Streptococcus pneumoniae</em>, serotypes 1, 3, 4, 5, 6A/B, 7F, 8, 9V, 14, 18C, 19A/F, 23F) follows a characteristic sequence. The bacteria reach the lower airway via micro-aspiration of nasopharyngeal secretions (the most common route) or inhalation of aerosolized droplets. <em>S. pneumoniae</em> evades mucosal immunity through its <strong>polysaccharide capsule</strong> — the single most important virulence factor. Capsular polysaccharide inhibits phagocytosis by blocking complement deposition (C3b) on the bacterial surface. Unencapsulated strains are rapidly cleared and rarely cause disease.</p>
+<p>Once in the alveolus, pneumococci produce <strong>pneumolysin</strong>, a cholesterol-dependent cytotoxin that forms pores in host cell membranes. Pneumolysin directly damages alveolar epithelial cells (both type I and type II pneumocytes) and triggers a massive inflammatory response through activation of the classical complement pathway. The result is an <strong>exudative phase</strong> within 24–48 hours: alveolar capillaries become leaky, protein-rich fluid (including fibrinogen and complement proteins) fills the airspaces, and neutrophils migrate from the bloodstream into the alveoli. This is the <strong>red hepatization</strong> phase seen on pathology — the lung is firm, airless, and red from engorged capillaries and extravasated red cells.</p>
+<p>Over the next 3–7 days, the lung enters <strong>gray hepatization</strong> — neutrophils degrade the red blood cells, fibrin deposition increases, and the consolidated lung takes on a grayish appearance. Macrophages then infiltrate to clear debris, and the <strong>resolution phase</strong> begins as the exudate is resorbed and the alveolar architecture is restored. Resolution takes 4–8 weeks and leaves no permanent scarring in previously healthy lung tissue (though fibrotic changes can occur if the inflammatory response is particularly severe or prolonged).</p>
+<p><strong>Viral pneumonia</strong> follows a different course. Viruses — influenza A/B, respiratory syncytial virus (RSV), SARS-CoV-2, human metapneumovirus, adenovirus — infect the respiratory epithelium directly. The virus hijacks host cell machinery for replication, causing direct cytopathic injury (cell lysis, desquamation, syncytia formation with RSV). The host response includes a robust type I interferon (IFN-α/β) response, CD8+ T-cell infiltration, and, in severe cases, a <strong>cytokine storm</strong> — excessive release of TNF-α, IL-6, IL-1β, and CXCL10 that causes diffuse alveolar damage (DAD), the pathological hallmark of acute respiratory distress syndrome (ARDS). Secondary bacterial pneumonia (most famously <em>S. pneumoniae</em> and <em>S. aureus</em> following influenza) is a major cause of morbidity because the viral infection strips the respiratory epithelium, exposes basement membrane receptors that bacteria adhere to, and impairs neutrophil and macrophage function.</p>
+<p><strong>Aspiration pneumonia</strong> involves a mixed aerobic-anaerobic inoculum from the oropharynx (including oral anaerobes like <em>Prevotella</em>, <em>Fusobacterium</em>, and <em>Peptostreptococcus</em> species). The inflammatory response is driven both by bacterial infection and by chemical irritation from gastric acid. The right lower lobe is most commonly affected because the right main bronchus is wider, shorter, and more vertical than the left — the aspirated material follows the path of least resistance.</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Acute bronchitis:</strong> Cough and sputum but NO infiltrate on chest X-ray. No fever or minimal fever. The infection is confined to the larger airways (bronchi). Most cases are viral and self-limited. The absence of consolidation on CXR is the key distinction.</li>
+<li><strong>Pulmonary embolism (PE):</strong> Acute dyspnea, pleuritic chest pain, and hemoptysis — can look identical to pneumonia. Key clues: sudden onset (not preceded by days of fever/malaise), tachycardia out of proportion to fever, risk factors (immobility, surgery, cancer, pregnancy, oral contraceptives), and a clear (normal) chest X-ray. D-dimer is elevated; CT pulmonary angiography confirms the diagnosis.</li>
+<li><strong>Congestive heart failure (CHF) with pulmonary edema:</strong> Dyspnea, crackles on auscultation, and bilateral opacities on CXR resembling pneumonia. Key clues: orthopnea (worse lying flat), PND (paroxysmal nocturnal dyspnea), distended neck veins, lower extremity edema, BNP or NT-proBNP markedly elevated, and CXR shows Kerley B lines and cardiomegaly — not focal consolidation.</li>
+<li><strong>Lung cancer (post-obstructive pneumonia):</strong> A tumor obstructing a bronchus causes distal collapse and infection. The key clue: the pneumonia does not clear or recurs in the same location. A smoker with a slow-to-resolve infiltrate needs CT and bronchoscopy to rule out an endobronchial lesion.</li>
+<li><strong>Organizing pneumonia (formerly BOOP):</strong> Subacute onset of cough, dyspnea, and fever with bilateral patchy opacities on CXR. The key clue: no response to antibiotics but dramatic improvement with corticosteroids. Diagnosis requires biopsy (cryptogenic organizing pneumonia or COP).</li>
+<li><strong>Tuberculosis:</strong> Chronic cough (>3 weeks), night sweats, weight loss, hemoptysis. CXR shows apical infiltrates, cavitation, or hilar lymphadenopathy (not the lobar consolidation typical of acute bacterial pneumonia). AFB smear and GeneXpert are diagnostic. Consider in patients from TB-endemic regions or immunocompromised hosts.</li>
+<li><strong>COVID-19 (viral pneumonia):</strong> Bilateral, peripheral, ground-glass opacities on CT. Anosmia/ageusia is a distinctive clue (though not universal). PCR or antigen test confirms. Management is supportive; antivirals (nirmatrelvir-ritonavir, remdesivir) and immunomodulators (dexamethasone, tocilizumab) are used in specific risk groups and phases.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Clinical history + physical exam</td>
+<td>Cough, fever, dyspnea, pleuritic pain, tachypnea. On auscultation: crackles (rales), bronchial breath sounds, egophony ("E to A" change), dullness to percussion over the affected lobe</td>
+<td>Every patient — the primary diagnostic step</td>
+</tr>
+<tr>
+<td>Chest X-ray (PA + lateral)</td>
+<td>Lobar consolidation (air bronchograms, opacification), interstitial infiltrates, pleural effusion, cavitation. A negative CXR in a high-suspicion patient may warrant CT</td>
+<td>All suspected pneumonia — confirms diagnosis and assesses extent</td>
+</tr>
+<tr>
+<td>Pulse oximetry</td>
+<td>Oxygen saturation (SpO₂). Below 92–94% suggests significant gas-exchange impairment</td>
+<td>Every patient — simple, immediate, guides admission decision</td>
+</tr>
+<tr>
+<td>CBC with differential</td>
+<td>WBC count (typically elevated with left shift in bacterial; normal or low in viral/atypical). Anemia, thrombocytopenia may suggest sepsis</td>
+<td>Routinely obtained in ED/hospital setting</td>
+</tr>
+<tr>
+<td>Serum procalcitonin (PCT)</td>
+<td>Low (<0.25 ng/mL) suggests viral or no bacterial infection; high (>0.5 ng/mL) strongly suggests bacterial infection, particularly invasive pneumococcal disease. PCT-guided algorithms reduce unnecessary antibiotic use by ~50% in lower respiratory tract infections</td>
+<td>When the bacterial vs. viral distinction is unclear; PCT-guided stewardship protocols</td>
+</tr>
+<tr>
+<td>Blood cultures (2 sets)</td>
+<td>Bacteremia — positive in 5–14% of CAP requiring hospitalization. <em>S. pneumoniae</em> is the most commonly isolated organism</td>
+<td>Moderate-to-severe CAP (all hospitalized patients per IDSA/ATS guidelines)</td>
+</tr>
+<tr>
+<td>Sputum culture + Gram stain</td>
+<td>Gram-positive diplococci (pneumococcus), gram-negative coccobacilli (<em>H. influenzae</em>), mixed flora (aspiration). Gram stain guides initial empiric therapy; culture confirms with sensitivity data</td>
+<td>Hospitalized patients with productive cough; especially useful if drug resistance is suspected</td>
+</tr>
+<tr>
+<td>Urine antigen tests: BinaxNOW (pneumococcus) and Legionella urinary antigen</td>
+<td>Detects <em>S. pneumoniae</em> C-polysaccharide (sensitivity ~75%, specificity >95%) and <em>Legionella pneumophila</em> serogroup 1 (the most common Legionella species in CAP)</td>
+<td>Moderate-to-severe CAP — rapid, unaffected by prior antibiotics. Limitations: pneumococcal test doesn't give sensitivities; Legionella test only detects serogroup 1</td>
+</tr>
+<tr>
+<td>PCR (multiplex respiratory panel)</td>
+<td>Detects 15–20 pathogens simultaneously (viral and atypical bacterial) from a nasopharyngeal swab or sputum — influenza A/B, RSV, SARS-CoV-2, adenovirus, human metapneumovirus, <em>M. pneumoniae</em>, <em>C. pneumoniae</em>, <em>B. pertussis</em>, etc.</td>
+<td>Immunocompromised patients, severe CAP, suspected viral/atypical pathogen, infection control decisions (cohorting), epidemiologic surveillance</td>
+</tr>
+<tr>
+<td>CT chest (high-resolution)</td>
+<td>Identifies subtle infiltrates missed on CXR, cavitation (suggests abscess, TB, cancer), necrotizing pneumonia, interstitial patterns (viral), bronchial obstruction</td>
+<td>Negative CXR with high clinical suspicion; suspected complications (empyema, abscess); immunocompromised host</td>
+</tr>
+<tr>
+<td>CURB-65 score</td>
+<td>5-point severity score: Confusion, Urea >7 mmol/L (BUN >20), Respiratory rate ≥30, Blood pressure (SBP <90 or DBP ≤60), age ≥65. Score 0–1: treat as outpatient. Score 2: consider hospital admission. Score ≥3: severe CAP, admit — consider ICU</td>
+<td>Every CAP patient — guides site-of-care decision (outpatient vs. inpatient vs. ICU)</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology and burden.</strong> Community-acquired pneumonia is the leading infectious cause of death worldwide and the 8th leading cause of death in the United States, with approximately 1.5 million hospitalizations annually (Torres et al., 2021). The annual incidence is 5–11 per 1,000 adults in the US, with rates rising sharply after age 65 to 25–40 per 1,000. In children under 5, the global burden is concentrated in Sub-Saharan Africa and South Asia — 120 million episodes per year (WHO, 2019). <em>Streptococcus pneumoniae</em> accounts for 30–40% of adult CAP requiring hospitalization (Jain et al., 2015; the EPIC study, a prospective multicenter CDC-funded study of 2,488 hospitalized adults).</p>
+<p><strong>IDSA/ATS guideline 2019 (Metlay et al.).</strong> The most authoritative US guideline for CAP management. Key recommendations: (1) Site-of-care decisions should use a prognostic tool (CURB-65 or PSI/PORT score) rather than clinical judgment alone. (2) Empiric outpatient therapy: amoxicillin OR doxycycline (strong recommendation for monotherapy in low-severity CAP). Macrolide monotherapy is no longer recommended in areas with >25% pneumococcal macrolide resistance (most of North America). (3) Empiric inpatient (non-ICU) therapy: beta-lactam (ceftriaxone, cefotaxime, or ampicillin-sulbactam) PLUS a macrolide (azithromycin). Respiratory fluoroquinolone monotherapy (levofloxacin, moxifloxacin) is an alternative but should be reserved due to adverse effects (tendinopathy, C. difficile, QT prolongation). (4) For ICU patients: beta-lactam PLUS either azithromycin OR a respiratory fluoroquinolone. (5) Sputum culture and blood cultures recommended in all hospitalized patients. (6) Procalcitonin-guided discontinuation of antibiotics in the hospital setting.</p>
+<p><strong>Duration of therapy.</strong> The landmark PTC (Pneumonia Treatment Course) trial (Uranga et al., 2016, n=312) showed that 5 days of antibiotics was non-inferior to 8–10 days for clinically stable patients with CAP, with fewer adverse events in the short-course group (11% vs. 22%). Current IDSA/ATS guidelines recommend a minimum of 5 days of antibiotics, with extension only if the patient remains febrile or hemodynamically unstable after 72 hours. The "5-day rule" has become standard practice.</p>
+<p><strong>Corticosteroids in CAP.</strong> This remains an area of active investigation. The CAPE COD trial (Dequin et al., 2023, n=1,600) found that low-dose hydrocortisone (200 mg/day) reduced 28-day mortality in severe CAP requiring ICU admission (6.2% vs. 11.9%, p=0.006). However, a concurrent meta-analysis (Saleem et al., 2023) found no mortality benefit in non-severe CAP. Current guidelines recommend against routine corticosteroids in non-severe CAP but consider them as adjunctive therapy in septic shock requiring vasopressors.</p>
+<p><strong>Pneumococcal vaccination.</strong> The conjugate vaccines (PCV13, PCV15, PCV20) and the polysaccharide vaccine (PPSV23) have dramatically reduced the incidence of invasive pneumococcal disease in both children and adults through both direct protection and herd immunity. The 2010 introduction of PCV13 in children reduced IPD in adults aged 65+ by 75% (Moore et al., 2015). Current ACIP guidelines (2024 update) recommend PCV15 or PCV20 for all adults aged ≥65, and for adults aged 19–64 with risk factors (chronic heart/lung/liver disease, diabetes, smoking, alcoholism, immunocompromising conditions, cochlear implants, CSF leaks). PCV20 is preferred for simplicity (single dose, no PPSV23 follow-up needed).</p>
+<p><strong>Macrolide resistance.</strong> Macrolide resistance in <em>S. pneumoniae</em> is mediated primarily by the <em>erm</em>(B) gene (ribosomal methylation — high-level resistance, MIC ≥16 μg/mL) and the <em>mef</em>(A) gene (efflux pump — low-level resistance, MIC 1–16 μg/mL). The CDC's Active Bacterial Core surveillance (ABCs) reports pneumococcal macrolide resistance at 30–40% in the US, with rates exceeding 50% in East Asia. This is why IDSA/ATS no longer recommends macrolide monotherapy for empiric CAP treatment in adults.</p>
+<p><strong>Antibiotic resistance trends.</strong> The rise of multidrug-resistant <em>Streptococcus pneumoniae</em> (MDRSP) — resistant to ≥3 antibiotic classes — is a growing concern. Serotypes 19A and 35B are the most common MDRSP serotypes in the US. Extended-spectrum beta-lactamase (ESBL)-producing <em>Klebsiella pneumoniae</em> and <em>E. coli</em> are increasingly isolated in healthcare-associated pneumonia, limiting therapeutic options and driving use of carbapenems.</p>
+<h4>Surgical options</h4>
+<p>Surgery is rarely needed for pneumonia. Indications include:</p>
+<ul>
+<li><strong>Empyema (pleural infection):</strong> pus in the pleural space complicates 5–10% of pneumonias. Treatment is drainage — either a chest tube (small-bore pigtail catheter with intrapleural fibrinolytics: tPA + DNase, the MIST2 regimen) or video-assisted thoracoscopic surgery (VATS) for loculated effusions that don't drain with a tube. The MIST2 trial (Rahman et al., 2011) showed that intrapleural tPA + DNase improved pleural drainage and reduced the need for surgical referral compared to either agent alone or placebo.</li>
+<li><strong>Lung abscess:</strong> a cavity filled with pus, typically anaerobic or mixed flora from aspiration. Most (80–90%) resolve with prolonged antibiotics (4–8 weeks). Percutaneous or endoscopic drainage is reserved for abscesses >6 cm or those failing medical therapy. Surgical resection (lobectomy) is a last resort for persistent, complex, or hemorrhagic abscesses.</li>
+<li><strong>Necrotizing pneumonia / pulmonary gangrene:</strong> massive tissue destruction requiring lobar resection. Rare but carries a mortality of 30–50%. Indications: recurrent hemoptysis, bronchopleural fistula, failure of medical therapy with persistent sepsis.</li>
+<li><strong>Bronchopleural fistula:</strong> a communication between the bronchial tree and the pleural space. Presents as a persistent air leak on chest tube. Requires surgical closure with vascularized pedicle flap (intercostal muscle, omentum, or latissimus dorsi).</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal duration of antibiotic therapy for HAP and VAP? The iDIAPASON trial (Bouglé et al., 2024) suggests 7 days may be as effective as 14 days, but subgroup analysis by pathogen is lacking.</li>
+<li>Can host-response biomarkers (transthyretin, suPAR, presepsin) improve upon CURB-65 for severity stratification and ICU triage?</li>
+<li>What is the role of next-generation sequencing (metagenomic NGS) of respiratory samples in identifying culture-negative pneumonia? Early studies show detection of pathogens missed by conventional methods in 15–30% of cases.</li>
+<li>Do oral beta-lactams have comparable efficacy to respiratory fluoroquinolones for outpatient CAP in the era of high macrolide resistance? High-quality head-to-head data remain limited.</li>
+<li>Can inhaled antibiotics (amikacin, fosfomycin, ciprofloxacin) reduce systemic toxicity and improve outcomes in MDR pneumonia? Inhaled amikacin (BAY41-6551) failed to show a mortality benefit in a 2020 phase III trial for VAP.</li>
+<li>What is the optimal threshold for PCT-guided antibiotic discontinuation in the elderly population (age >75)? Existing trials enrolled younger populations.</li>
+<li>Are pneumococcal conjugate vaccines with expanded serotype coverage (PCV21) cost-effective for adult immunization programs? PCV21 targets serotypes not covered by PCV20 and is in late-stage clinical trials.</li>
+<li>What are the long-term pulmonary outcomes after severe CAP? Emerging data show increased rates of pulmonary fibrosis, COPD exacerbations, and cardiovascular events (myocardial infarction, stroke) in the year following severe pneumonia — the "pneumonia legacy effect."</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Metlay JP, Waterer GW, Long AC, et al. "Diagnosis and treatment of adults with community-acquired pneumonia. An official clinical practice guideline of the American Thoracic Society and Infectious Diseases Society of America." <em>Am J Respir Crit Care Med</em> 2019;200(7):e45–e67. PMID: 31573350. (The primary North American clinical practice guideline for CAP diagnosis and management.)</li>
+<li>Jain S, Self WH, Wunderink RG, et al. "Community-acquired pneumonia requiring hospitalization among U.S. adults." <em>N Engl J Med</em> 2015;373(5):415–427. PMID: 26172429. (The CDC EPIC study — prospective multicenter study of 2,488 hospitalized adults with CAP, defining the etiology.)</li>
+<li>Torres A, Cillóniz C, Niederman MS, et al. "Pneumonia." <em>Nat Rev Dis Primers</em> 2021;7(1):25. PMID: 33833230. (Comprehensive review of pneumonia epidemiology, pathophysiology, and management.)</li>
+<li>Uranga A, España PP, Bilbao A, et al. "Duration of antibiotic treatment in community-acquired pneumonia: a multicenter randomized clinical trial." <em>JAMA Intern Med</em> 2016;176(9):1257–1265. PMID: 27455166. (The PTC trial — landmark RCT establishing 5-day antibiotic course as sufficient for clinically stable CAP.)</li>
+<li>Dequin PF, Meziani F, Quenot JP, et al. "Hydrocortisone in severe community-acquired pneumonia." <em>N Engl J Med</em> 2023;388(21):1931–1941. PMID: 36892523. (The CAPE COD trial — hydrocortisone reduced 28-day mortality in severe CAP requiring ICU admission.)</li>
+<li>Moore MR, Link-Gelles R, Schaffner W, et al. "Effect of use of 13-valent pneumococcal conjugate vaccine in children on invasive pneumococcal disease in children and adults in the USA: analysis of multisite, population-based surveillance." <em>Lancet Infect Dis</em> 2015;15(3):301–309. PMID: 25656600. (Demonstrated 75% reduction in IPD in adults ≥65 after PCV13 introduction in children.)</li>
+<li>Rahman NM, Maskell NA, West A, et al. "Intrapleural use of tissue plasminogen activator and DNase in pleural infection." <em>N Engl J Med</em> 2011;365(6):518–526. PMID: 21830966. (The MIST2 trial — tPA + DNase improved pleural drainage in empyema.)</li>
+<li>Wunderink RG, Self WH, Anderson EJ, et al. "Pneumococcal community-acquired pneumonia in hospitalized adults: clinical presentation and outcome." <em>Clin Infect Dis</em> 2016;62(10):1239–1246. PMID: 26970103. (Detailed analysis of pneumococcal CAP presentation in the EPIC cohort.)</li>
+<li>Mandell LA, Wunderink RG, Anzueto A, et al. "Infectious Diseases Society of America/American Thoracic Society consensus guidelines on the management of community-acquired pneumonia in adults." <em>Clin Infect Dis</em> 2007;44(Suppl 2):S27–S72. (The prior IDSA/ATS guideline — historical reference for the 2019 update.)</li>
+<li>WHO. "Pneumonia fact sheet." World Health Organization, 2019; updated 2024. (Global burden estimates for childhood pneumonia.)</li>
+<li>CDC. "Active Bacterial Core Surveillance (ABCs) Report, Emerging Infections Program Network: <em>Streptococcus pneumoniae</em>, 2023." (Annual surveillance data for invasive pneumococcal disease and resistance patterns in the US.)</li>
+<li>ACIP. "Pneumococcal Vaccine Recommendations." Centers for Disease Control and Prevention, Advisory Committee on Immunization Practices, updated January 2024. (Current US vaccination schedule for PCV15, PCV20, PPSV23.)</li>
+<li>Bordon J, Slomka M, Gupta R, et al. "The legacy of pneumonia: long-term outcomes after hospitalization for community-acquired pneumonia." <em>Chest</em> 2023;164(4):884–894. PMID: 37268006. (The "pneumonia legacy effect" — increased cardiovascular events and pulmonary complications in the year following severe CAP.)</li>
+<li>Saleem N, Rylander C, Chekuri R, et al. "Corticosteroids for community-acquired pneumonia: a meta-analysis of randomized controlled trials." <em>Crit Care Med</em> 2023;51(6):e121–e130. PMID: 36920875. (Meta-analysis showing benefit from corticosteroids in severe but not non-severe CAP.)</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>

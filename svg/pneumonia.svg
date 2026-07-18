@@ -1,0 +1,183 @@
+<svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lung-normal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f5e6e0"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="lung-infected" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8b4b4"/><stop offset="50%" stop-color="#d97a7a"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+    <linearGradient id="airway" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#e6a817"/></linearGradient>
+    <linearGradient id="bone" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Chest outline -->
+  <path d="M250,50 L130,80 C100,90 80,110 70,140 L55,200 C48,240 50,280 58,320 L70,370 C78,400 90,430 105,450 L130,475 C150,492 170,500 195,505 L230,508 L250,500 L270,508 L305,505 C330,500 350,492 370,475 L395,450 C410,430 422,400 430,370 L442,320 C450,280 452,240 445,200 L430,140 C420,110 400,90 370,80 Z"
+        fill="none" stroke="#c4b5a0" stroke-width="2" opacity="0.4"/>
+
+  <!-- Trachea -->
+  <path d="M250,50 L250,130 C250,140 250,145 250,150"
+        fill="none" stroke="#b0a595" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <path d="M250,50 L250,130 C250,140 250,145 250,150"
+        fill="none" stroke="url(#airway)" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <!-- Tracheal rings -->
+  <line x1="244" y1="65" x2="256" y2="65" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="80" x2="256" y2="80" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="95" x2="256" y2="95" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="110" x2="256" y2="110" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <line x1="244" y1="125" x2="256" y2="125" stroke="#b0a595" stroke-width="1.2" opacity="0.5"/>
+  <text x="258" y="100" fill="#8a7e6e" font-size="11" font-style="italic">Trachea</text>
+
+  <!-- Carina (bifurcation) -->
+  <circle cx="250" cy="152" r="4" fill="#e6a817" opacity="0.8"/>
+
+  <!-- Left main bronchus -->
+  <path d="M248,152 C230,168 200,178 180,185 C160,192 140,198 125,205"
+        fill="none" stroke="#b0a595" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M248,152 C230,168 200,178 180,185 C160,192 140,198 125,205"
+        fill="none" stroke="url(#airway)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Right main bronchus (shorter, wider) -->
+  <path d="M252,152 C270,165 290,172 310,178 C330,184 350,190 365,195"
+        fill="none" stroke="#b0a595" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M252,152 C270,165 290,172 310,178 C330,184 350,190 365,195"
+        fill="none" stroke="url(#airway)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Left lung (normal) -->
+  <path d="M125,205 C110,215 95,240 85,275 C78,305 75,340 80,370 C85,395 95,415 110,430 C125,442 145,450 165,455 L210,458 C225,455 235,445 240,430 L245,410 C248,395 248,375 246,355 C244,335 240,315 235,298 C228,278 218,260 205,248 C192,238 175,228 160,220 C148,214 135,208 125,205 Z"
+        fill="url(#lung-normal)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Left lung bronchial branching (visible through translucent lung) -->
+  <path d="M125,205 C120,220 115,240 110,260 C105,280 100,300 95,320"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M140,210 C135,230 130,255 128,280 C126,305 125,330 126,355"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M155,220 C150,245 148,270 148,295 C148,320 150,345 155,370"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M175,235 C172,260 172,285 175,310 C178,335 182,355 188,375"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+  <path d="M200,250 C198,275 200,300 204,325 C208,350 214,370 220,385"
+        fill="none" stroke="#e6a817" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.35"/>
+
+  <!-- Left lung label -->
+  <text x="80" y="325" fill="#8a7e6e" font-size="11" font-weight="600">Left lung</text>
+  <text x="80" y="340" fill="#8a7e6e" font-size="9">(normal)</text>
+  <text x="80" y="355" fill="#8a7e6e" font-size="9">Healthy alveoli</text>
+
+  <!-- Right lung (pneumonia / consolidation in lower lobe) -->
+  <path d="M365,195 C378,208 390,228 398,255 C404,278 408,305 408,330 C408,360 404,385 395,405 C386,422 372,435 355,443 C340,450 322,455 305,455 C288,455 272,450 258,440 C248,432 242,420 238,405 C234,385 232,360 232,335 C232,310 234,288 238,268 C242,250 248,234 256,222 C268,208 282,198 295,195 C308,192 320,192 332,193 C345,194 355,195 365,195 Z"
+        fill="url(#lung-inflected)" stroke="#c0392b" stroke-width="2" opacity="0.7"/>
+
+  <!-- Right upper lobe (relatively spared, normal-looking) -->
+  <path d="M365,195 C355,195 345,194 332,193 C320,192 308,192 295,195 C282,198 268,208 256,222 C248,234 242,250 238,268 L238,280 C245,265 255,252 268,244 C282,236 298,232 315,230 C335,228 350,230 362,238 C372,245 378,255 382,268 C386,278 388,290 388,305 L392,290 C395,270 395,250 390,228 C388,218 380,205 365,195 Z"
+        fill="url(#lung-normal)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Right lower lobe (consolidated - pneumonia zone) -->
+  <path d="M388,305 C384,320 378,340 370,358 C360,380 345,400 328,415 C312,428 294,435 275,435 C258,435 245,428 235,415 C228,405 224,392 220,378 L218,365 C218,378 222,395 228,410 C235,430 248,445 265,452 C282,458 300,458 318,453 C338,447 355,435 368,418 C380,400 390,378 395,355 C398,340 396,322 392,308 L388,305 Z"
+        fill="url(#lung-infected)" stroke="#a93226" stroke-width="2" opacity="0.85"/>
+
+  <!-- Right lung label -->
+  <text x="305" y="310" fill="#fff" font-size="11" font-weight="600" opacity="0.85">Right lung</text>
+  <text x="305" y="325" fill="#fff" font-size="9" opacity="0.8">Consolidation</text>
+  <text x="305" y="340" fill="#fff" font-size="9" opacity="0.8">(pneumonia)</text>
+
+  <!-- ============================================ -->
+  <!-- ALVEOLI DETAIL PANEL - normal vs infected -->
+  <!-- ============================================ -->
+
+  <line x1="30" y1="470" x2="470" y2="470" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Normal alveoli panel -->
+  <g transform="translate(25, 480)">
+    <rect x="0" y="0" width="215" height="110" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Normal Alveoli (air-filled)</text>
+
+    <!-- Bronchiole -->
+    <path d="M15,40 C30,40 40,38 50,40" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15,48 C30,48 40,46 50,48" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Alveolar sac 1 -->
+    <circle cx="75" cy="35" r="12" fill="none" stroke="#b0a595" stroke-width="1.2"/>
+    <circle cx="75" cy="35" r="10" fill="#f5e6e0" opacity="0.7"/>
+
+    <!-- Alveolus cluster around bronchiole -->
+    <circle cx="95" cy="32" r="10" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="95" cy="32" r="8" fill="#f5e6e0" opacity="0.7"/>
+
+    <circle cx="85" cy="52" r="9" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="85" cy="52" r="7" fill="#f5e6e0" opacity="0.7"/>
+
+    <circle cx="105" cy="50" r="8" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="105" cy="50" r="6" fill="#f5e6e0" opacity="0.7"/>
+
+    <circle cx="110" cy="20" r="7" fill="none" stroke="#b0a595" stroke-width="1"/>
+    <circle cx="110" cy="20" r="5" fill="#f5e6e0" opacity="0.7"/>
+
+    <!-- Oxygen arrow (into blood) -->
+    <path d="M140,35 C155,35 165,35 175,35" fill="none" stroke="#2e86c1" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+    <text x="145" y="28" fill="#2e86c1" font-size="8">O₂</text>
+
+    <!-- CO₂ arrow (out of blood) -->
+    <path d="M175,55 C165,55 155,55 140,55" fill="none" stroke="#7f8c8d" stroke-width="1.5" marker-end="url(#arrow)" opacity="0.6"/>
+    <text x="148" y="67" fill="#7f8c8d" font-size="8">CO₂</text>
+
+    <text x="193" y="42" fill="#8a7e6e" font-size="8">Gas exchange</text>
+    <text x="193" y="54" fill="#8a7e6e" font-size="8">works normally</text>
+  </g>
+
+  <!-- Infected alveoli panel -->
+  <g transform="translate(260, 480)">
+    <rect x="0" y="0" width="215" height="110" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="107" y="18" fill="#c0392b" font-size="10" font-weight="600" text-anchor="middle">Pneumonia (fluid-filled)</text>
+
+    <!-- Bronchiole -->
+    <path d="M15,40 C30,40 40,38 50,40" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15,48 C30,48 40,46 50,48" fill="none" stroke="#e6a817" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Consolidated alveoli - filled with exudate -->
+    <circle cx="75" cy="35" r="12" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="75" cy="35" r="10" fill="#e8b4b4" opacity="0.8"/>
+    <path d="M68,30 L72,35 L65,38" fill="none" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+    <path d="M80,28 L82,33 L78,34" fill="none" stroke="#c0392b" stroke-width="0.8" opacity="0.5"/>
+
+    <circle cx="95" cy="32" r="10" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="95" cy="32" r="8" fill="#d97a7a" opacity="0.8"/>
+    <path d="M90,28 L92,32 L88,34" fill="none" stroke="#a93226" stroke-width="0.8" opacity="0.5"/>
+
+    <circle cx="85" cy="52" r="9" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="85" cy="52" r="7" fill="#c0392b" opacity="0.7"/>
+
+    <circle cx="105" cy="50" r="8" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="105" cy="50" r="6" fill="#c0392b" opacity="0.6"/>
+
+    <circle cx="110" cy="20" r="7" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+    <circle cx="110" cy="20" r="5" fill="#c0392b" opacity="0.6"/>
+
+    <!-- Blocked gas exchange -->
+    <path d="M140,35 C155,35 165,35 175,35" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3" opacity="0.5"/>
+    <line x1="140" y1="28" x2="155" y2="38" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+    <line x1="140" y1="38" x2="155" y2="28" stroke="#c0392b" stroke-width="1.5" opacity="0.5"/>
+    <text x="145" y="28" fill="#c0392b" font-size="8">O₂ blocked</text>
+
+    <text x="193" y="42" fill="#c0392b" font-size="8">Alveoli filled with</text>
+    <text x="193" y="54" fill="#c0392b" font-size="8">pus, fluid, debris</text>
+  </g>
+
+  <!-- Bacteria detail at airway entrance -->
+  <g transform="translate(340, 155)" opacity="0.7">
+    <circle cx="0" cy="0" r="1.5" fill="#c0392b"/>
+    <circle cx="6" cy="-2" r="1.5" fill="#c0392b"/>
+    <circle cx="-4" cy="3" r="1.5" fill="#c0392b"/>
+    <circle cx="3" cy="4" r="1.5" fill="#c0392b"/>
+    <circle cx="-2" cy="-3" r="1.5" fill="#c0392b"/>
+    <text x="-8" y="12" fill="#c0392b" font-size="7">Bacteria</text>
+  </g>
+
+  <!-- Inhaled pathogen arrow -->
+  <path d="M280,40 C285,55 290,70 295,90 C300,110 305,130 310,148"
+        fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)" opacity="0.6"/>
+  <text x="282" y="58" fill="#c0392b" font-size="8">Inhaled</text>
+  <text x="282" y="70" fill="#c0392b" font-size="8">pathogens</text>
+
+  <!-- Title -->
+  <text x="250" y="26" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Lung Anatomy &amp; Pneumonia Mechanism</text>
+</svg>

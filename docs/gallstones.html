@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallstones — Tiered Health</title>
+<meta name="description" content="Gallstones: causes, symptoms, recovery timeline, and when to seek help. Three reading levels from quick gist to full clinical depth.">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5c5c5c;
+    --accent: #2d6a6e;
+    --accent-light: #e8f3f3;
+    --danger: #c0392b;
+    --danger-light: #fdf2f2;
+    --border: #e0e0dc;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e8e8e4;
+      --text-muted: #a0a0a0;
+      --accent: #5cbcbf;
+      --accent-light: #1e3030;
+      --danger: #e74c3c;
+      --danger-light: #2a1515;
+      --border: #383838;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .site-header-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--accent); }
+  .logo span { font-weight: 400; color: var(--text-muted); }
+
+  /* ── Tier toggle ── */
+  .tier-toggle {
+    display: flex; background: var(--bg); border-radius: 24px;
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .tier-btn {
+    padding: 0.4rem 1rem; border: none; background: transparent;
+    font-size: 0.82rem; font-weight: 500; cursor: pointer;
+    color: var(--text-muted); transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tier-btn.active {
+    background: var(--accent); color: #fff;
+  }
+  .tier-btn:not(.active):hover { color: var(--text); }
+
+  /* ── Accessibility ── */
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: var(--radius); z-index: 20; font-weight: 600;
+  }
+  .skip-link:focus { top: 0.5rem; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .back-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  .condition-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .aka { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+  /* ── Anatomy diagram ── */
+  .anatomy-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;
+  }
+  .anatomy-box h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .anatomy-box svg { width: 100%; max-width: 500px; margin: 0 auto; display: block; }
+
+  /* ── Tier content ── */
+  .tier-panel { display: none; }
+  .tier-panel.active { display: block; }
+
+  .tier-label {
+    display: inline-block; font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .tier-gist .tier-label { background: #e8f5e9; color: #2e7d32; }
+  .tier-adult .tier-label { background: #e3f2fd; color: #1565c0; }
+  .tier-full .tier-label { background: #f3e5f5; color: #7b1fa2; }
+
+  .tier-panel h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .tier-panel h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--accent); }
+  .tier-panel h4 { font-size: 1rem; margin: 1rem 0 0.3rem; }
+  .tier-panel p { margin-bottom: 0.85rem; }
+  .tier-panel ul, .tier-panel ol { margin: 0.5rem 0 1rem 1.5rem; }
+  .tier-panel li { margin-bottom: 0.35rem; }
+  .tier-panel hr { margin: 1.5rem 0; border: none; border-top: 1px solid var(--border); }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 1.25rem 0;
+  }
+  .callout.danger {
+    border-left-color: var(--danger);
+    background: var(--danger-light);
+  }
+  .callout h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+
+  /* ── Timeline ── */
+  .timeline { margin: 0 0 1.5rem; position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 1.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.65rem; top: 0.45rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+  .tl-text { margin-top: 0.15rem; }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  .data-table th, .data-table td {
+    padding: 0.6rem 0.75rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .data-table tr:hover { background: var(--accent-light); }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text-muted);
+  }
+  .page-footer p { margin-bottom: 0.3rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    html { font-size: 15px; }
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .condition-title { font-size: 1.5rem; }
+    .tier-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+  }
+
+  /* ── Print ── */
+  @media print {
+    .site-header { position: static; box-shadow: none; }
+    .tier-toggle { display: none; }
+    .tier-panel { display: block !important; margin-bottom: 2rem; }
+    .tier-label { border: 1px solid #ccc; background: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="logo">🪨 Tiered Health <span>/ Gallstones</span></div>
+    <div class="tier-toggle" role="tablist" aria-label="Reading level">
+      <button class="tier-btn active" role="tab" aria-selected="true" data-tier="gist" id="tab-gist">Gist</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="adult" id="tab-adult">Adult</button>
+      <button class="tier-btn" role="tab" aria-selected="false" data-tier="full" id="tab-full">Full</button>
+    </div>
+  </div>
+</header>
+
+<main class="page" id="main-content">
+
+  <p><a href="index.html" class="back-link">← All conditions</a></p>
+
+  <h1 class="condition-title">🪨 Gallstones</h1>
+  <p class="aka">Also called: cholelithiasis · biliary colic · cholecystitis</p>
+
+  <div class="anatomy-box">
+    <h3>Anatomy</h3>
+    <svg class="anatomy-svg" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f5e6d3"/><stop offset="100%" stop-color="#eddcc8"/></linearGradient>
+    <linearGradient id="liver-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c94f4f"/><stop offset="100%" stop-color="#a63a3a"/></linearGradient>
+    <linearGradient id="gb-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6b8e23"/><stop offset="100%" stop-color="#556b2f"/></linearGradient>
+    <linearGradient id="duct" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f5c842"/><stop offset="100%" stop-color="#daa520"/></linearGradient>
+    <linearGradient id="bone-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8ddd0"/><stop offset="100%" stop-color="#d4c8b8"/></linearGradient>
+    <linearGradient id="stone-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4a843"/><stop offset="50%" stop-color="#b8860b"/><stop offset="100%" stop-color="#8b6914"/></linearGradient>
+    <linearGradient id="pancreas-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f0c8a0"/><stop offset="100%" stop-color="#e0b080"/></linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8a7e6e"/>
+    </marker>
+  </defs>
+
+  <!-- Body outline, torso, right upper quadrant -->
+  <path d="M80,40 C60,45 45,60 40,85 L35,130 C32,165 30,200 32,235 L35,280 C38,310 42,330 50,345 L65,365 L80,380 L95,390 L110,395 L130,398 L150,395 L170,388 L185,378 L195,365 L202,350 L206,332 L208,310 L210,285 L212,255 L214,220 L215,185 L214,150 L212,120 L210,95 L208,75 L202,60 L195,50 L185,44 L170,40 L150,38 L130,39 L110,40 Z"
+        fill="url(#skin)" stroke="#c4b5a0" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- Rib cage hints (ghosted) -->
+  <path d="M80,100 C90,95 100,92 115,90" fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.3"/>
+  <path d="M72,130 C85,124 100,120 120,118" fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.3"/>
+  <path d="M68,160 C82,153 100,148 125,145" fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.3"/>
+  <path d="M65,190 C80,182 100,176 128,172" fill="none" stroke="url(#bone-grad)" stroke-width="2" opacity="0.3"/>
+
+  <!-- ═══════════ LIVER ═══════════ -->
+  <path d="M150,45 C170,42 190,44 210,50 C240,60 265,78 280,102 C292,122 298,145 295,168 C290,195 278,215 260,230 C245,242 225,250 205,252 C190,253 175,250 165,245 C155,240 148,232 142,222 C136,210 132,195 130,178 C128,160 128,142 130,125 C133,108 138,92 145,78 C148,70 150,58 150,45 Z"
+        fill="url(#liver-grad)" stroke="#8b3030" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Liver capsule outline -->
+  <path d="M150,45 C170,42 190,44 210,50 C240,60 265,78 280,102 C292,122 298,145 295,168 C290,195 278,215 260,230 C245,242 225,250 205,252 C190,253 175,250 165,245 C155,240 148,232 142,222 C136,210 132,195 130,178 C128,160 128,142 130,125 C133,108 138,92 145,78 C148,70 150,58 150,45 Z"
+        fill="none" stroke="#8b3030" stroke-width="1.5" opacity="0.4" stroke-dasharray="3,2"/>
+
+  <text x="270" y="65" fill="#8b3030" font-size="12" font-weight="600" font-style="italic">Liver</text>
+  <text x="270" y="78" fill="#8b3030" font-size="9" font-style="italic">(right lobe)</text>
+
+  <!-- ═══════════ PANCREAS ═══════════ -->
+  <path d="M85,355 C100,348 120,340 145,335 C170,330 195,328 220,330 C245,332 265,338 280,348 C290,355 295,365 292,375 C288,385 278,392 262,395 C245,398 225,398 205,395 C185,392 165,386 150,378 C135,370 120,362 108,358 C98,356 92,358 88,362 C84,366 82,372 84,378 C86,384 92,388 100,390 L108,392"
+        fill="url(#pancreas-grad)" stroke="#c4a070" stroke-width="1.5" opacity="0.6"/>
+
+  <text x="140" y="378" fill="#a07840" font-size="10" font-style="italic">Pancreas</text>
+
+  <!-- ═══════════ GALLBLADDER ═══════════ -->
+  <!-- Fundus (bottom bulb) -->
+  <ellipse cx="190" cy="245" rx="28" ry="35" fill="url(#gb-grad)" stroke="#3a4a1a" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Body -->
+  <path d="M168,218 C172,200 180,185 188,175 C196,168 205,165 210,168 C214,172 215,178 213,185 C210,195 205,208 200,218"
+        fill="url(#gb-grad)" stroke="#3a4a1a" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Neck / infundibulum (Hartmann's pouch) -->
+  <path d="M210,168 C216,162 222,158 228,158 C234,158 238,162 238,168 C238,175 234,180 228,182 C222,184 216,182 213,185"
+        fill="url(#gb-grad)" stroke="#3a4a1a" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Gallstone inside gallbladder -->
+  <ellipse cx="192" cy="250" rx="8" ry="7" fill="url(#stone-grad)" stroke="#6b4410" stroke-width="1" opacity="0.9"/>
+  <ellipse cx="192" cy="250" rx="4" ry="3" fill="#d4a843" opacity="0.4"/>
+
+  <!-- Second smaller stone -->
+  <circle cx="182" cy="240" r="4" fill="url(#stone-grad)" stroke="#6b4410" stroke-width="0.8" opacity="0.85"/>
+
+  <!-- Label: Gallbladder -->
+  <text x="148" y="205" fill="#3a4a1a" font-size="11" font-weight="600">Gallbladder</text>
+  <!-- Label line -->
+  <line x1="163" y1="210" x2="148" y2="205" stroke="#3a4a1a" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- ═══════════ BILE DUCTS ═══════════ -->
+
+  <!-- Cystic duct (gallbladder → common bile duct) -->
+  <path d="M238,168 C245,165 252,162 258,160 C264,158 270,158 275,160 C280,162 282,166 282,172"
+        fill="none" stroke="url(#duct)" stroke-width="3.5" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Common hepatic duct (from liver → convergence) -->
+  <path d="M215,140 C225,135 240,132 255,133 C270,134 280,138 285,145 C288,150 288,158 285,165 C282,170 278,172 275,172"
+        fill="none" stroke="url(#duct)" stroke-width="3.5" stroke-linecap="round" filter="url(#soft)" opacity="0.7"/>
+
+  <!-- Right and left hepatic ducts (from within liver) -->
+  <path d="M220,100 C225,110 230,120 240,130 C248,138 258,140 270,138 C278,136 282,133 285,145"
+        fill="none" stroke="url(#duct)" stroke-width="2.5" stroke-linecap="round" filter="url(#soft)" opacity="0.5"/>
+  <path d="M200,95 C205,105 210,118 220,130"
+        fill="none" stroke="url(#duct)" stroke-width="2" stroke-linecap="round" filter="url(#soft)" opacity="0.5"/>
+
+  <!-- Common bile duct (runs from convergence down behind pancreas) -->
+  <path d="M282,172 C285,178 288,185 290,195 C292,210 292,228 290,245 C288,260 285,278 280,295 C275,310 268,325 260,340 C255,350 252,358 250,365"
+        fill="none" stroke="url(#duct)" stroke-width="4" stroke-linecap="round" filter="url(#soft)"/>
+
+  <!-- Stone stuck in cystic duct (cause of obstruction) -->
+  <ellipse cx="262" cy="162" rx="6" ry="5.5" fill="url(#stone-grad)" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="2,1" opacity="0.95"/>
+  <!-- Obstruction marker lines -->
+  <line x1="256" y1="157" x2="256" y2="167" stroke="#c0392b" stroke-width="1.5" opacity="0.7"/>
+  <line x1="268" y1="157" x2="268" y2="167" stroke="#c0392b" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- ═══════════ DUODENUM ═══════════ -->
+  <path d="M300,280 C310,275 325,272 340,275 C355,278 365,285 370,296 C375,308 372,322 365,335 C358,348 348,356 335,360 C322,364 310,362 302,355 C296,350 295,342 298,335 C301,328 306,325 312,325 C318,325 322,330 324,336"
+        fill="none" stroke="#a08060" stroke-width="2.5" stroke-linecap="round" opacity="0.5" stroke-dasharray="4,2"/>
+
+  <!-- Ampulla of Vater (CBD + pancreatic duct meet duodenum) -->
+  <circle cx="290" cy="358" r="4" fill="#daa520" stroke="#a08060" stroke-width="1" opacity="0.7"/>
+  <!-- Pancreatic duct joining -->
+  <path d="M250,365 C260,363 270,362 280,360 C286,358 288,358 290,358"
+        fill="none" stroke="#f5c842" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <text x="320" y="275" fill="#a08060" font-size="9" font-style="italic">Duodenum</text>
+
+  <!-- ═══════════ LABELS ═══════════ -->
+
+  <!-- Common hepatic duct label -->
+  <text x="295" y="148" fill="#b8860b" font-size="9" font-weight="600">Common</text>
+  <text x="295" y="159" fill="#b8860b" font-size="9" font-weight="600">hepatic duct</text>
+
+  <!-- Cystic duct label -->
+  <text x="240" y="178" fill="#b8860b" font-size="9" font-weight="600">Cystic duct</text>
+
+  <!-- Common bile duct label -->
+  <text x="295" y="230" fill="#b8860b" font-size="9" font-weight="600">Common bile</text>
+  <text x="295" y="241" fill="#b8860b" font-size="9" font-weight="600">duct (CBD)</text>
+
+  <!-- Stone obstruction callout -->
+  <line x1="262" y1="162" x2="320" y2="195" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <text x="322" y="195" fill="#c0392b" font-size="10" font-weight="600">Stone obstruction</text>
+  <text x="322" y="207" fill="#c0392b" font-size="9">Bile trapped →</text>
+  <text x="322" y="218" fill="#c0392b" font-size="9">inflammation</text>
+
+  <!-- Stone in GB label -->
+  <line x1="192" y1="250" x2="145" y2="255" stroke="#8a7e6e" stroke-width="0.8" opacity="0.6"/>
+  <text x="108" y="255" fill="#8a7e6e" font-size="9">Gallstones</text>
+  <circle cx="118" cy="260" r="3" fill="url(#stone-grad)" stroke="#6b4410" stroke-width="0.6"/>
+  <circle cx="130" cy="262" r="2.5" fill="url(#stone-grad)" stroke="#6b4410" stroke-width="0.6" opacity="0.7"/>
+
+  <!-- Ampulla label -->
+  <line x1="290" y1="358" x2="310" y2="388" stroke="#a08060" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+  <text x="310" y="388" fill="#a08060" font-size="8">Ampulla of Vater</text>
+  <text x="310" y="398" fill="#a08060" font-size="8">(CBD &amp; pancreatic</text>
+  <text x="310" y="408" fill="#a08060" font-size="8">duct join here)</text>
+
+  <!-- ═══════════ MECHANISM INSETS ═══════════ -->
+
+  <!-- Separator line -->
+  <line x1="20" y1="440" x2="480" y2="440" stroke="#e0e0dc" stroke-width="1"/>
+
+  <!-- Inset A: Billiary colic (temporary obstruction) -->
+  <g transform="translate(20, 450)">
+    <rect x="0" y="0" width="220" height="130" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="110" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Biliary Colic</text>
+    <!-- Gallbladder cartoon -->
+    <ellipse cx="60" cy="55" rx="18" ry="22" fill="url(#gb-grad)" stroke="#3a4a1a" stroke-width="1" opacity="0.7"/>
+    <!-- Cystic duct -->
+    <path d="M75,42 C85,38 95,38 100,42" fill="none" stroke="#f5c842" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Stone at cystic duct -->
+    <circle cx="85" cy="42" r="5" fill="url(#stone-grad)" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,1"/>
+    <!-- Pain lines -->
+    <path d="M38,45 C30,40 28,48 35,52" fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+    <path d="M40,60 C32,58 30,65 36,68" fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+    <text x="110" y="55" fill="#1a1a1a" font-size="8">Stone temporarily blocks</text>
+    <text x="110" y="68" fill="#1a1a1a" font-size="8">cystic duct → pain after</text>
+    <text x="110" y="81" fill="#1a1a1a" font-size="8">meals, resolves in hours</text>
+    <!-- Arrow showing stone falls back -->
+    <path d="M85,50 C85,60 80,68 75,72" fill="none" stroke="#8a7e6e" stroke-width="1.2" marker-end="url(#arrow)" opacity="0.5"/>
+    <text x="60" y="100" fill="#8a7e6e" font-size="7">Stone falls back → pain resolves</text>
+  </g>
+
+  <!-- Inset B: Cholecystitis (persistent obstruction) -->
+  <g transform="translate(260, 450)">
+    <rect x="0" y="0" width="220" height="130" rx="6" fill="var(--surface, #fff)" stroke="var(--border, #e0e0dc)" stroke-width="1" opacity="0.9"/>
+    <text x="110" y="18" fill="#8a7e6e" font-size="10" font-weight="600" text-anchor="middle">Acute Cholecystitis</text>
+    <!-- Swollen, inflamed GB -->
+    <ellipse cx="60" cy="55" rx="22" ry="26" fill="#b04040" stroke="#8b2020" stroke-width="1.5" opacity="0.6"/>
+    <ellipse cx="60" cy="55" rx="18" ry="22" fill="url(#gb-grad)" stroke="#3a4a1a" stroke-width="1" opacity="0.5"/>
+    <!-- Thicker wall -->
+    <ellipse cx="60" cy="55" rx="22" ry="26" fill="none" stroke="#c0392b" stroke-width="2.5" opacity="0.7"/>
+    <!-- Red X on stone stays stuck -->
+    <circle cx="85" cy="42" r="5" fill="url(#stone-grad)" stroke="#c0392b" stroke-width="1.5"/>
+    <line x1="80" y1="38" x2="90" y2="46" stroke="#c0392b" stroke-width="2" opacity="0.8"/>
+    <line x1="90" y1="38" x2="80" y2="46" stroke="#c0392b" stroke-width="2" opacity="0.8"/>
+    <!-- Inflamed markers -->
+    <path d="M35,40 C28,35 25,45 32,48" fill="none" stroke="#c0392b" stroke-width="2" opacity="0.7"/>
+    <path d="M35,60 C28,58 25,65 32,68" fill="none" stroke="#c0392b" stroke-width="2" opacity="0.7"/>
+    <path d="M40,75 C35,80 32,88 38,90" fill="none" stroke="#c0392b" stroke-width="1.5" opacity="0.6"/>
+    <text x="110" y="50" fill="#1a1a1a" font-size="8">Stone stays stuck →</text>
+    <text x="110" y="63" fill="#1a1a1a" font-size="8">GB wall thickens,</text>
+    <text x="110" y="76" fill="#1a1a1a" font-size="8">swells, and becomes</text>
+    <text x="110" y="89" fill="#1a1a1a" font-size="8">infected (fever + pain)</text>
+    <!-- ER indicator -->
+    <text x="110" y="110" fill="#c0392b" font-size="8" font-weight="600">⚠️ Surgical emergency</text>
+  </g>
+
+  <!-- Title -->
+  <text x="250" y="24" fill="var(--text, #1a1a1a)" font-size="12" font-weight="700" text-anchor="middle">Gallbladder &amp; Bile Duct Anatomy — Stone Obstruction</text>
+</svg>
+  </div>
+  <!-- ═══════════ GIST TIER ═══════════ -->
+  <section class="tier-panel tier-gist active" role="tabpanel" aria-labelledby="tab-gist" id="panel-gist">
+    <span class="tier-label">Grade 6 reading level</span>
+<h4>What are gallstones?</h4>
+<p>Gallstones are hardened deposits of bile that form in your gallbladder — a small pouch under your liver. About 10–15% of adults have them, but most never know it because they cause no symptoms. Trouble starts when a stone gets stuck and blocks the flow of bile.</p>
+<h4>What to do right now</h4>
+<ol>
+<li><strong>If you have pain but no fever, rest and watch.</strong> Biliary colic (pain after a fatty meal) usually goes away on its own in a few hours. Avoid fried or greasy food for 24 hours.</li>
+<li><strong>If you have pain with fever, get medical attention</strong> — this could be cholecystitis (infected gallbladder). You may need antibiotics and surgery.</li>
+<li><strong>Don't try to "pass" a gallstone.</strong> Unlike kidney stones, gallstones don't pass through urine. They're not going anywhere on their own once formed.</li>
+<li><strong>If you're symptom-free, you don't need treatment.</strong> Most people with silent gallstones never develop problems.</li>
+</ol>
+<div class="callout danger">
+<h5>⚠️ Go to the emergency room if:</h5>
+<ul>
+<li>You have severe right upper belly or right shoulder pain that won't go away</li>
+<li>You have a fever with the pain (over 38°C / 100.4°F)</li>
+<li>Your skin or the whites of your eyes turn yellow (jaundice)</li>
+<li>You have chills or shivering with the pain</li>
+<li>Your vomit looks dark or coffee-ground, or your stool looks pale or clay-colored</li>
+</ul>
+</div>
+<div class="callout">
+<h5>Key fact</h5>
+<p>Only about 1–4% of people with silent (asymptomatic) gallstones develop complications each year. Most gallstones are discovered accidentally on an ultrasound done for another reason. If yours don't bother you, they can stay.</p>
+</div>
+  </section>
+
+  <!-- ═══════════ ADULT TIER ═══════════ -->
+  <section class="tier-panel tier-adult" role="tabpanel" aria-labelledby="tab-adult" id="panel-adult">
+    <span class="tier-label">Grade 12 reading level</span>
+<h4>What's happening in your body</h4>
+<p>Your gallbladder is a pear-shaped organ tucked under your liver on the right side of your upper abdomen. It stores <strong>bile</strong> — a digestive fluid your liver makes that helps you break down fats. Between meals, the gallbladder fills up and concentrates the bile. When you eat a fatty meal, it squeezes the bile out through the <strong>cystic duct</strong> into the <strong>common bile duct</strong>, which empties into your small intestine.</p>
+<p>Gallstones form when the chemical balance of bile goes off. Bile contains cholesterol, bile salts, and bilirubin (a breakdown product of old red blood cells). If there's too much cholesterol for the bile salts to keep dissolved, the cholesterol crystallizes — like sugar crystals forming in supersaturated honey. These crystals grow into stones over time.</p>
+<p>About 80% of gallstones are <strong>cholesterol stones</strong> (yellow-green). The other 20% are <strong>pigment stones</strong> (dark, made of bilirubin), more common in people with liver cirrhosis, hemolytic anemia, or chronic infections.</p>
+<p><strong>Who is at risk?</strong> The classic "5 Fs" still teaches well: <strong>F</strong>emale, <strong>F</strong>orty, <strong>F</strong>ertile (or pregnant), <strong>F</strong>at (obese), and <strong>F</strong>amily history. Rapid weight loss — from crash dieting or bariatric surgery — also triggers stone formation because the liver dumps extra cholesterol into bile as it breaks down fat stores. Other risk factors include diabetes, metabolic syndrome, Crohn's disease, and some medications (octreotide, ceftriaxone, hormonal contraceptives).</p>
+<h4>Symptoms</h4>
+<p>Most gallstones are silent. When they cause trouble, it's because a stone has obstructed the cystic duct or common bile duct.</p>
+<ul>
+<li><strong>Biliary colic:</strong> A steady, gripping pain in the right upper belly or the center of your upper abdomen, often radiating to the right shoulder blade. It comes on 30–60 minutes after a fatty meal, builds to a peak, and lasts 1–5 hours before fading. Between episodes you feel fine. This is the classic symptom of transient stone obstruction.</li>
+<li><strong>Nausea and vomiting:</strong> Common during a colic attack — the gallbladder's distress reflex triggers the vagus nerve.</li>
+<li><strong>Acute cholecystitis (inflamed gallbladder):</strong> If a stone stays stuck, the gallbladder becomes swollen, red, and infected. The pain becomes constant and severe, often with fever and tenderness when a doctor presses on your right upper belly (Murphy's sign — you catch your breath when they push).</li>
+<li><strong>Jaundice (yellow skin/eyes):</strong> A stone has left the gallbladder and lodged in the common bile duct (choledocholithiasis), blocking bile flow. This is a serious sign.</li>
+<li><strong>Dark urine and pale stool:</strong> Another sign of bile duct obstruction — bilirubin builds up in the blood and gets filtered by kidneys (dark urine), while the stool lacks the pigment that gives it color (pale stool).</li>
+</ul>
+<h4>Treatment</h4>
+<ul>
+<li><strong>Observation (no treatment):</strong> For asymptomatic stones — and that's most of them. The risk of complications is too low to justify surgery. Once symptoms start, though, the risk of more problems goes up (about 30–50% of people who have one colic episode will have another within a year). At that point, treatment is usually recommended.</li>
+<li><strong>Laparoscopic cholecystectomy:</strong> This is the gold standard — removing the gallbladder through 3–4 small incisions in the belly. It's done under general anesthesia. Most people go home the same day or next morning and return to normal activity in 1–2 weeks. Your body adapts: bile flows directly from the liver to the small intestine in a steady trickle rather than in concentrated bursts. Some people get looser stools at first, especially after fatty meals, but this usually improves over months.</li>
+<li><strong>Open cholecystectomy:</strong> The older approach — a larger incision under the ribs. Used when the gallbladder is too inflamed, scarred from prior surgeries, or when anatomy is tricky. Recovery takes 4–6 weeks. Done in about 5% of cases now.</li>
+<li><strong>Antibiotics:</strong> If you have cholecystitis, you'll get IV antibiotics before surgery to control the infection. Common choices include piperacillin-tazobactam or a cephalosporin plus metronidazole.</li>
+<li><strong>ERCP (endoscopic retrograde cholangiopancreatography):</strong> If a stone is stuck in the common bile duct, a gastroenterologist can pass a camera down your throat, into the duodenum, and snip open the duct's opening to let the stone pass or pull it out with a tiny basket. This is often done before or after gallbladder removal.</li>
+<li><strong>Ursodeoxycholic acid (UDCA):</strong> An oral bile acid that can slowly dissolve small cholesterol stones. It works in about 30–40% of cases but takes months and stones often return. It's mainly used for people who can't have surgery.</li>
+</ul>
+<div class="callout">
+<h5>What NOT to do</h5>
+<ul>
+<li>Don't try a "gallbladder flush" with olive oil and lemon juice. It doesn't work — the "stones" people pass afterwards are just soap droplets formed by the oil mixing with digestive juices. You can end up in the ER with pancreatitis.</li>
+<li>Don't keep eating high-fat meals hoping the pain will go away with a different position. If you have symptoms, get evaluated.</li>
+<li>Don't ignore jaundice or fever with belly pain. Cholangitis (infected bile duct) is life-threatening without treatment.</li>
+<li>Don't avoid surgery because you're afraid of losing your gallbladder. You don't need it to live well, and leaving an inflamed gallbladder can lead to rupture, abscess, or sepsis.</li>
+<li>Don't take NSAIDs if you have suspected cholecystitis without a doctor's ok — if surgery is needed, bleeding risk increases.</li>
+</ul>
+</div>
+    <h3>Recovery Timeline</h3>
+    <div class="timeline">
+<div class="tl-item">
+<div class="tl-time">During attack (colic)</div>
+<div class="tl-text">Pain lasts 1–5 hours, then resolves as the stone falls back. Rest, avoid food. If pain persists >6 hours with fever, seek emergency care.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Day 1–2 after diagnosis</div>
+<div class="tl-text">If acute cholecystitis: hospital admission, IV fluids, IV antibiotics, NPO (nothing by mouth), surgical consult. Ultrasound confirms diagnosis.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">Within 72 hours (early cholecystectomy)</div>
+<div class="tl-text">For mild-moderate cholecystitis, early laparoscopic cholecystectomy (within 72 hours of admission) is superior to delayed — shorter hospital stay, lower conversion to open, fewer complications.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">1–2 weeks post-op</div>
+<div class="tl-text">Return to normal activities and desk work. Avoid heavy lifting (>10 lbs) for 4–6 weeks. Some loose stools, especially after fatty meals — this is normal and improves.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">4–6 weeks post-op (open surgery)</div>
+<div class="tl-text">Full recovery from open cholecystectomy. Incision healing, lifting restrictions lifted.</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">3–6 months post-op</div>
+<div class="tl-text">Bowel habits usually normalize. Most people have no dietary restrictions. A small percentage have chronic diarrhea (post-cholecystectomy diarrhea) that may need treatment.</div>
+</div>
+</div>
+  </section>
+
+  <!-- ═══════════ FULL TIER ═══════════ -->
+  <section class="tier-panel tier-full" role="tabpanel" aria-labelledby="tab-full" id="panel-full">
+    <span class="tier-label">Best current evidence</span>
+<h4>Pathophysiology</h4>
+<p>Gallstone formation (cholelithiasis) is a multifactorial process driven by three key mechanisms: <strong>cholesterol supersaturation of bile</strong>, <strong>gallbladder dysmotility</strong>, and <strong>nucleation-promoting factors</strong>.</p>
+<p><strong>Cholesterol supersaturation.</strong> Bile is an aqueous solution that must keep insoluble cholesterol in a micellar suspension using bile salts and phospholipids (primarily lecithin). When the molar ratio of cholesterol exceeds the solubilizing capacity of bile salts and lecithin, bile becomes <strong>supersaturated</strong> — the thermodynamic driving force for crystal formation. Hepatic hypersecretion of cholesterol is the dominant cause: women have higher baseline biliary cholesterol saturation than men (driven by estrogen-induced upregulation of HMG-CoA reductase, the rate-limiting enzyme in cholesterol synthesis). Supersaturation alone isn't sufficient for stone formation — many people with supersaturated bile never form stones — but it's the necessary first step.</p>
+<p><strong>Gallbladder dysmotility.</strong> A healthy gallbladder empties 50–80% of its volume in response to a meal. In gallstone formers, the gallbladder's contractile response is impaired — emptying fraction drops to 20–40%. Stagnant bile gives crystals time to aggregate and grow. The causes of dysmotility are incompletely understood but involve reduced sensitivity to cholecystokinin (CCK), the hormone that triggers gallbladder contraction, and possibly damage to the smooth muscle from recurrent low-grade inflammation. Pregnancy, rapid weight loss, and total parenteral nutrition all exacerbate stasis.</p>
+<p><strong>Nucleation and crystal growth.</strong> Once bile is supersaturated, cholesterol precipitates as <strong>anhydrous cholesterol monohydrate crystals</strong> — the characteristic rhomboid plates seen on polarized microscopy (they appear as Maltese cross birefringent forms). <strong>Mucin</strong> (mucous glycoprotein secreted by the gallbladder epithelium) acts as a scaffold: crystals adhere to the mucin gel layer, aggregate, and grow into macroscopic stones over months to years. The gallbladder's inability to clear mucin during stasis accelerates growth. Pigment stones (calcium bilirubinate) form when unconjugated bilirubin precipitates — this happens in hemolytic anemias (excess bilirubin production), cirrhosis (altered bilirubin metabolism), and biliary infections (bacterial β-glucuronidase deconjugates bilirubin).</p>
+<p><strong>Natural history of the stone.</strong> A stone may remain silent indefinitely, or it may migrate. The most consequential event is impaction in the <strong>cystic duct</strong>, obstructing outflow. Bile trapped in the gallbladder becomes concentrated and irritates the mucosa; prostaglandin-mediated inflammation leads to <strong>acute cholecystitis</strong> (edema, neutrophil infiltration, ischemic injury). If the cystic duct obstruction persists, the gallbladder wall can become gangrenous in 10–15% of cases, and perforation occurs in 2–10% (higher in diabetics and the elderly). Stones that pass the cystic duct and lodge in the <strong>common bile duct</strong> cause <strong>choledocholithiasis</strong> — obstruction of the common channel produces jaundice, bile duct dilation, and risk of <strong>ascending cholangitis</strong> (bacterial superinfection of the obstructed bile duct) or <strong>gallstone pancreatitis</strong> (if the stone transiently obstructs the pancreatic duct at the ampulla of Vater).</p>
+<h4>Differential diagnosis</h4>
+<ol>
+<li><strong>Peptic ulcer disease (PUD):</strong> Epigastric pain that may radiate to the back. Relieved by food or antacids. No fever, no jaundice. Endoscopy confirms.</li>
+<li><strong>Acute pancreatitis:</strong> Severe epigastric pain radiating to the back, elevated serum lipase (>3× upper limit of normal). Often from gallstones or alcohol. Gallstone pancreatitis typically resolves after stone passes or is removed via ERCP.</li>
+<li><strong>Hepatic abscess:</strong> Right upper quadrant pain, fever, weight loss. Imaging shows a hypoechoic/ hypodense liver lesion. Blood cultures positive in 50% of cases.</li>
+<li><strong>Right lower lobe pneumonia:</strong> Pleuritic right upper quadrant or shoulder pain, cough, fever. CXR shows infiltrate. The diaphragmatic pleura is irritated by the infected lung.</li>
+<li><strong>Renal colic (right-sided):</strong> Flank pain radiating to the groin, hematuria. Unlikely to be triggered by meals. CT or ultrasound shows a kidney stone, not gallbladder pathology.</li>
+<li><strong>Budd-Chiari syndrome / hepatic congestion:</strong> RUQ pain with hepatomegaly, ascites, and elevated bilirubin. Doppler ultrasound shows absent or reversed hepatic vein flow.</li>
+<li><strong>Acute coronary syndrome:</strong> Epigastric pain that can mimic biliary colic in atypical presentations. Check ECG and troponin in elderly patients or those with cardiac risk factors and atypical pain.</li>
+</ol>
+<h4>Diagnostic workup</h4>
+<table class="data-table">
+<thead><tr>
+<th>Test</th>
+<th>What it shows</th>
+<th>When to order</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Abdominal ultrasound</td>
+<td>Gallstones (sensitivity >95%), gallbladder wall thickening (>4 mm suggests cholecystitis), pericholecystic fluid, sonographic Murphy sign (probe tenderness)</td>
+<td>First-line. Best initial test for suspected gallstones or cholecystitis. No radiation, low cost</td>
+</tr>
+<tr>
+<td>Liver function tests (LFTs)</td>
+<td>Elevated ALT, AST, ALP, GGT, and bilirubin suggest common bile duct obstruction. ALP and GGT rise earliest. ALT/AST may spike in acute obstruction</td>
+<td>Every patient with suspected gallstone disease. Normal LFTs do not rule out gallbladder pathology</td>
+</tr>
+<tr>
+<td>CBC with differential</td>
+<td>Leukocytosis (WBC >10,000/μL) with left shift suggests cholecystitis or cholangitis</td>
+<td>Every patient with pain and fever</td>
+</tr>
+<tr>
+<td>Lipase / amylase</td>
+<td>Elevated lipase (>3× ULN) indicates gallstone pancreatitis</td>
+<td>RUQ pain to rule out concomitant pancreatitis</td>
+</tr>
+<tr>
+<td>MRCP (Magnetic Resonance Cholangiopancreatography)</td>
+<td>Non-invasive visualization of the bile and pancreatic ducts. Stones in the common bile duct appear as filling defects. Sensitivity ~93% for CBD stones</td>
+<td>Suspected choledocholithiasis (elevated LFTs, dilated CBD on US). Pre-cholecystectomy planning if intermediate risk for CBD stone</td>
+</tr>
+<tr>
+<td>EUS (Endoscopic Ultrasound)</td>
+<td>High-resolution probe placed in the duodenum visualizes the distal bile duct and ampulla. Sensitivity ~95–98% for CBD stones — the highest of any non-invasive test</td>
+<td>Alternative to MRCP (preferred if patient has ferromagnetic implants, claustrophobia, or when direct tissue sampling is beneficial)</td>
+</tr>
+<tr>
+<td>ERCP</td>
+<td>Both diagnostic and therapeutic. Cannulation of the ampulla, contrast injection, stone extraction via sphincterotomy or basket</td>
+<td>Confirmed choledocholithiasis or high probability + need for immediate therapy (cholangitis, ongoing obstruction)</td>
+</tr>
+<tr>
+<td>HIDA scan (cholescintigraphy)</td>
+<td>Nuclear medicine study. Tracer injected IV, taken up by hepatocytes, excreted into bile. Failure of the gallbladder to fill within 60 minutes with CCK stimulation indicates cystic duct obstruction (acute cholecystitis — sensitivity ~96%)</td>
+<td>Atypical presentations where ultrasound is equivocal (e.g., acalculous cholecystitis). Less commonly used now</td>
+</tr>
+<tr>
+<td>CT abdomen (with IV contrast)</td>
+<td>Less sensitive than ultrasound for stones (only ~75% of stones are radiopaque), but better for detecting complications: gallbladder perforation, abscess, emphysematous cholecystitis, pancreatitis</td>
+<td>Complicated presentations, suspected perforation, or when alternative diagnoses (abscess, tumor) are suspected</td>
+</tr>
+</tbody></table>
+<h4>Evidence summary</h4>
+<p><strong>Epidemiology:</strong> Gallstones affect 10–15% of the adult population in Western countries, with higher prevalence in women (20–25% by age 60 vs. 10–15% in men). The NHANES III analysis (Everhart et al., 1999) of 14,000+ US adults found a prevalence of 8.6% in non-Hispanic whites, with Hispanic Americans at highest risk (12.6%) and Black Americans at lowest (5.2%). The incidence is ~0.6–1.4 new cases per 100 person-years (Lammert et al., 2016).</p>
+<p><strong>Asymptomatic gallstones — watchful waiting is safe:</strong> The Cochrane review by Gurusamy & Samraj (2007) found no RCTs comparing cholecystectomy vs. observation for silent stones — the evidence base is observational. Gracie & Ransohoff's landmark study (1982; n=123, 15-year follow-up) reported that only ~18% of asymptomatic patients ever developed symptoms, at a rate of ~2% per year in the first 5 years, declining thereafter. The risk of serious complications (cholecystitis, cholangitis, pancreatitis) was ~0.1–0.3% per year. Current guidelines (EASL 2016, Japanese 2021) unanimously recommend observation for asymptomatic gallstones — the number needed to treat is too high to justify prophylactic surgery.</p>
+<p><strong>Early vs. delayed cholecystectomy for acute cholecystitis:</strong> The landmark meta-analysis by Gurusamy et al. (Cochrane Review 2013, updated 2023) pooled 8 RCTs (n=1,419) comparing early laparoscopic cholecystectomy (within 7 days of symptom onset) vs. delayed (6–12 weeks after a "cooling" period with antibiotics). Results: early surgery reduced total hospital stay by 3.5 days (MD -3.50, 95% CI -5.49 to -1.52), with no significant difference in bile duct injury, conversion to open surgery, or mortality. The Tokyo Guidelines 2018 (TG18) and EASL 2016 both recommend early surgery for mild-moderate cholecystitis (Grade I–II). For severe cholecystitis (Grade III, organ dysfunction), delayed surgery after medical optimization is preferred.</p>
+<p><strong>Medical dissolution therapy:</strong> Ursodeoxycholic acid (UDCA, 10–15 mg/kg/day) can dissolve small (<5 mm), radiolucent cholesterol stones in select patients. The British Gallstone Study Group (1991) reported complete dissolution in ~30% at 6 months and ~40% at 12 months. However, stone recurrence rates are 30–50% at 4 years after stopping therapy (Lammert et al., 2016). UDCA is rarely used in modern practice outside patients deemed unfit for surgery, as it requires protracted treatment with uncertain durability. A 2021 randomized trial (n=140) found UDCA plus lifestyle modification reduced gallstone formation during rapid weight loss after bariatric surgery (OR 0.43, 95% CI 0.22–0.86).</p>
+<p><strong>Laparoscopic vs. open cholecystectomy:</strong> A Cochrane review by Keus et al. (2006) of 45 RCTs (n=4,576) comparing laparoscopic vs. open cholecystectomy found that laparoscopic approach reduced hospital stay by 3.4 days (95% CI 2.5–4.3), postoperative pain, and time to return to work, with comparable bile duct injury rates (~0.3–0.5%). Conversion rate to open was 5–10% in early series but <5% in high-volume centers today.</p>
+<p><strong>Cholecystectomy and post-cholecystectomy syndrome:</strong> A systematic review by Latenstein et al. (2024) found that 10–40% of patients report persistent abdominal symptoms after cholecystectomy, though only 5–10% have symptoms severe enough to seek further medical care. Pre-operative atypical symptoms (non-biliary dyspepsia, bloating, heartburn) were strong predictors of persistent post-operative symptoms, emphasizing the importance of careful patient selection.</p>
+<h4>Surgical options</h4>
+<ul>
+<li><strong>Laparoscopic cholecystectomy (standard):</strong> 3–4 small incisions. Pneumoperitoneum with CO₂ insufflation. Dissection of Calot's triangle: cystic duct and cystic artery are clipped and divided, the gallbladder is detached from the liver bed and extracted through the umbilical port. Same-day discharge or 23-hour admission. Open conversion rate <5% in experienced hands. The critical view of safety (CVS) technique — only two structures (cystic duct and artery) entering the gallbladder, with the hepatocystic triangle cleared — is the standard method to prevent bile duct injury.</li>
+<li><strong>Laparoscopic cholecystectomy (difficult):</strong> For acute cholecystitis, empyema, or gangrenous gallbladder. A "fundus-down" (domed-first) approach can help. Bailout strategies include subtotal cholecystectomy (leaving the posterior wall of Hartmann's pouch) to avoid the inflamed hilum, with drains placed — this reduces bile duct injury risk in hostile anatomy.</li>
+<li><strong>Open cholecystectomy:</strong> Larger right subcostal (Kocher) incision. Used when laparoscopy is unsafe or anatomy is unrecognizable. Higher wound infection rate (~5% vs. 1–2%) and longer recovery. Incidence has declined to ~5% of all cholecystectomies.</li>
+<li><strong>ERCP with sphincterotomy (for choledocholithiasis):</strong> The endoscope is passed through the stomach and duodenum to the ampulla of Vater. A wire-guided sphincterotome cuts the biliary sphincter, and stones are extracted with a balloon or basket. Success rate >90% for CBD stone clearance. Risks include pancreatitis (~3–5%), bleeding (~1–2%), perforation (~0.3–1%), and cholangitis (~1%). Yellow-tip: place a prophylactic pancreatic stent if the pancreatic duct is repeatedly cannulated or difficult to access — this halves the post-ERCP pancreatitis rate.</li>
+<li><strong>Cholecystostomy tube (percutaneous drainage):</strong> Image-guided (US or CT) catheter placed directly into the gallbladder. Used as a temporizing measure in critically ill patients (septic shock, severe cholecystitis Grade III in elderly/frail patients) who cannot tolerate general anesthesia. The tube drains pus and infected bile, and the patient returns for cholecystectomy after recovery (typically 6–8 weeks). Some frail patients may keep the tube as a definitive treatment, but recurrence is ~20%.</li>
+</ul>
+<h4>Open questions / active research</h4>
+<ul>
+<li>What is the optimal management of common bile duct stones discovered during laparoscopic cholecystectomy? Pre-operative ERCP vs. intra-operative laparoscopic CBD exploration (LCBDE) vs. post-operative ERCP — the debate continues, with recent network meta-analyses suggesting similar outcomes for LCBDE and pre-op ERCP.</li>
+<li>Does the rising rate of cholecystectomy for "biliary dyskinesia" (low gallbladder ejection fraction without stones) reflect a real disease or diagnostic overuse? RCTs are lacking.</li>
+<li>Can gallstones be prevented in high-risk populations? The UDCA bariatric surgery data is promising, but no validated primary prevention strategy exists for the general population.</li>
+<li>What is the long-term metabolic impact of cholecystectomy? Observational data associates cholecystectomy with increased risk of metabolic syndrome, non-alcoholic fatty liver disease (NAFLD), and colorectal cancer — but confounding is difficult to disentangle.</li>
+<li>Role of artificial intelligence in ultrasound interpretation — can AI match or exceed expert sonographer sensitivity for small (<3 mm) stones?</li>
+</ul>
+    <h3>Key Sources</h3>
+    <ul>
+<li>Lammert F, Gurusamy K, Ko CW, et al. "Gallstones." <em>Nat Rev Dis Primers</em> 2016;2:16024. PMID: 27121416.</li>
+<li>European Association for the Study of the Liver (EASL). "EASL Clinical Practice Guidelines on the prevention, diagnosis and treatment of gallstones." <em>J Hepatol</em> 2016;65(1):146–181. PMID: 27085810.</li>
+<li>Fujita N, Yasuda I, Endo I, et al. "Evidence-based clinical practice guidelines for cholelithiasis 2021." <em>J Gastroenterol</em> 2023;58(9):801–833. PMID: 37452855.</li>
+<li>Gutt C, Schläfer S, Lammert F. "The Treatment of Gallstone Disease." <em>Dtsch Arztebl Int</em> 2020;117(9):148–158. PMID: 32234195.</li>
+<li>Gracie WA, Ransohoff DF. "The natural history of silent gallstones: the innocent gallstone is not a myth." <em>N Engl J Med</em> 1982;307(13):798–800. PMID: 7110246.</li>
+<li>Gurusamy KS, Samraj K. "Cholecystectomy versus no cholecystectomy in patients with silent gallstones." <em>Cochrane Database Syst Rev</em> 2007;(1):CD006230. PMID: 17253585.</li>
+<li>Gurusamy KS, Davidson C, Gluud C, Davidson BR. "Early versus delayed laparoscopic cholecystectomy for people with acute cholecystitis." <em>Cochrane Database Syst Rev</em> 2013;(6):CD005440. PMID: 23771684. (Updated 2023.)</li>
+<li>Keus F, de Jong JA, Gooszen HG, van Laarhoven CJ. "Laparoscopic versus open cholecystectomy for patients with symptomatic cholecystolithiasis." <em>Cochrane Database Syst Rev</em> 2006;(4):CD006231. PMID: 17054285.</li>
+<li>Halpin V. "Acute cholecystitis." <em>BMJ Clin Evid</em> 2014;2014:0411. PMID: 25144428.</li>
+<li>Buxbaum JL, Abbas Fehmi SM, Sultan S, et al. "ASGE guideline on the role of endoscopy in the evaluation and management of choledocholithiasis." <em>Gastrointest Endosc</em> 2019;89(6):1075–1105. PMID: 30979521.</li>
+<li>Latenstein CSS, Wennemeyer L, de Jong JJ, et al. "Persistent symptoms after cholecystectomy: a systematic review." <em>Surgery</em> 2024;175(3):651–660. (Post-cholecystectomy syndrome review.)</li>
+<li>Yokoe M, Hata J, Takada T, et al. "Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis." <em>J Hepatobiliary Pancreat Sci</em> 2018;25(1):41–54. PMID: 29044865.</li>
+<li>Everhart JE, Khare M, Hill M, Maurer KR. "Prevalence and ethnic differences in gallbladder disease in the United States." <em>Gastroenterology</em> 1999;117(3):632–639. PMID: 10464139. (NHANES III analysis.)</li>
+<li>Stokes CS, Krawczyk M, Lammert F. "Gallstones: environment, lifestyle and genes." <em>Dig Dis</em> 2011;29(2):191–201. PMID: 21734385.</li>
+<li>Portincasa P, Moschetta A, Palasciano G. "Cholesterol gallstone disease." <em>Lancet</em> 2006;368(9531):230–239. PMID: 16844493.</li>
+</ul>
+  </section>
+
+  <footer class="page-footer">
+    <p><strong>Last reviewed:</strong> July 2026</p>
+    <p><strong>Disclaimer:</strong> This page is for educational purposes only. It is not medical advice. If you have a medical emergency, call emergency services or go to your nearest emergency department. Always consult a qualified healthcare provider for diagnosis and treatment.</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const buttons = document.querySelectorAll('.tier-btn');
+  const panels = {
+    gist: document.getElementById('panel-gist'),
+    adult: document.getElementById('panel-adult'),
+    full: document.getElementById('panel-full')
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.dataset.tier;
+      buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      panels[tier].classList.add('active');
+      history.replaceState(null, null, '#' + tier);
+    });
+  });
+
+  const hash = window.location.hash.replace('#', '');
+  if (panels[hash]) {
+    document.querySelector('[data-tier="' + hash + '"]').click();
+  }
+})();
+</script>
+
+</body>
+</html>
